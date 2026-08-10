@@ -216,6 +216,23 @@ npm i -g vercel
 vercel link      # writes .vercel/project.json (already gitignored)
 ```
 
+### Site URL
+
+`NEXT_PUBLIC_SITE_URL` sets the canonical origin — it is what canonical tags,
+`og:` tags, `sitemap.xml` and `robots.txt` are built from. Set it in Vercel to
+whatever the deployment actually answers on:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-project.vercel.app
+```
+
+When it is unset the site falls back to `url` in `src/content/site.json`. That
+fallback is a placeholder, so **a deploy without this variable advertises a
+domain nobody is serving** — search engines follow the canonical away from the
+real site and social previews fetch their image from the wrong host. Point it at
+the vercel.app URL now and change it to the custom domain later; it is the only
+place the origin needs updating.
+
 ### Dependency updates
 
 [`.github/dependabot.yml`](.github/dependabot.yml) opens weekly PRs for npm
