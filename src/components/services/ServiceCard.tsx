@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Icon } from "@/components/ui/Icon";
+import { sharedCopy } from "@/data/pages";
 import type { Service } from "@/data/services";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +83,7 @@ export function ServiceCard({
       </ul>
 
       <p className="mt-6 flex items-center gap-1.5 pt-1 text-sm font-medium text-brand-700 transition-colors group-hover/card:text-brand-600">
-        Learn More
+        {sharedCopy.actions.learnMore}
         <ArrowRight
           className="size-4 transition-transform duration-200 group-hover/card:translate-x-1"
           aria-hidden

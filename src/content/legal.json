@@ -1,6 +1,19 @@
 {
   "disclaimer": "This is placeholder text provided for layout purposes only. It is not legal advice. Replace it with a policy reviewed by qualified legal counsel before this site goes live.",
   "effectiveDate": "1 January 2026",
+  "effectiveDateLabel": "Effective",
+  "privacyPage": {
+    "eyebrow": "Legal",
+    "title": "Privacy Policy",
+    "description": "What information we collect when you use this site or contact us, why we collect it, and the choices you have.",
+    "seoDescription": "How we collect, use and protect the information you share with us through this website."
+  },
+  "termsPage": {
+    "eyebrow": "Legal",
+    "title": "Terms of Service",
+    "description": "The terms that apply when you access and use this website.",
+    "seoDescription": "The terms that apply when you access and use this website."
+  },
   "privacySections": [
     {
       "heading": "Overview",

@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/legal/LegalPage";
-import { termsSections } from "@/data/legal";
+import { termsPage, termsSections } from "@/data/legal";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Terms of Service",
-  description:
-    "The terms that apply when you access and use this website.",
+  title: termsPage.title,
+  description: termsPage.seoDescription,
   path: "/terms",
 });
 
 export default function TermsPage() {
   return (
     <LegalPage
-      eyebrow="Legal"
-      title="Terms of Service"
-      description="The terms that apply when you access and use this website."
+      eyebrow={termsPage.eyebrow}
+      title={termsPage.title}
+      description={termsPage.description}
       sections={termsSections}
       kind="terms"
     />

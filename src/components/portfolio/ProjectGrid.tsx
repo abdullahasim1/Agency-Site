@@ -8,6 +8,7 @@ import {
   type PortfolioFilter,
 } from "@/components/portfolio/PortfolioFilters";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { fill, portfolioCopy } from "@/data/pages";
 import type { Project, ProjectCategory } from "@/data/projects";
 import { gridItem } from "@/lib/motion";
 
@@ -62,14 +63,20 @@ export function ProjectGrid({ projects, categories }: ProjectGridProps) {
 
         {/* Announced to screen readers as the filter changes. */}
         <p aria-live="polite" className="text-sm text-ink-500">
-          Showing {visible.length} of {projects.length} projects
+          {fill(portfolioCopy.grid.countText, {
+            visible: String(visible.length),
+            total: String(projects.length),
+          })}
         </p>
       </div>
 
       <div
         id="portfolio-grid"
         role="tabpanel"
-        aria-label={`${active} projects`}
+        aria-label={fill(portfolioCopy.grid.panelLabel, {
+          category:
+            active === "All" ? portfolioCopy.grid.allFilterLabel : active,
+        })}
         className="mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3"
       >
         <AnimatePresence mode="popLayout" initial={false}>
@@ -99,7 +106,7 @@ export function ProjectGrid({ projects, categories }: ProjectGridProps) {
 
       {visible.length === 0 ? (
         <p className="mt-12 rounded-card border border-dashed border-ink-300 p-10 text-center text-sm text-ink-500">
-          No projects in this category yet.
+          {portfolioCopy.grid.emptyText}
         </p>
       ) : null}
     </div>

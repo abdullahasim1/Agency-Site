@@ -1,0 +1,22 @@
+{
+  "seo": {
+    "title": "Frequently Asked Questions",
+    "description": "How engagements start, how long projects take, where AI genuinely fits, who owns the code, and how we price work.",
+    "keywords": [
+      "AI agency FAQ",
+      "software development questions",
+      "automation engagement",
+      "project pricing"
+    ]
+  },
+  "hero": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions",
+    "description": "Straight answers to the questions we are asked most often. If yours is not here, ask us directly — we would rather answer it properly."
+  },
+  "cta": {
+    "eyebrow": "Still deciding?",
+    "title": "Have a Question We Have Not Answered?",
+    "description": "Book a free consultation or send us a message. There is no obligation and no sales script."
+  }
+}

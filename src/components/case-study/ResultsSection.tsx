@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /**
@@ -18,9 +19,9 @@ export function ResultsSection({ project }: { project: Project }) {
     <section className="section-y-sm">
       <Container>
         <SectionHeading
-          eyebrow="Outcome"
-          title="Results"
-          description="What changed for the business after launch."
+          eyebrow={portfolioCopy.caseStudy.results.eyebrow}
+          title={portfolioCopy.caseStudy.results.title}
+          description={portfolioCopy.caseStudy.results.description}
         />
 
         <Stagger

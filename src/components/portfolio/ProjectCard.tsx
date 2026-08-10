@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
+import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -87,7 +88,7 @@ export function ProjectCard({
         </ul>
 
         <p className="mt-6 flex items-center gap-1.5 pt-1 text-sm font-medium text-brand-700 transition-colors group-hover/card:text-brand-600">
-          View Case Study
+          {sharedCopy.actions.viewCaseStudy}
           <ArrowUpRight
             className="size-4 transition-transform duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
             aria-hidden

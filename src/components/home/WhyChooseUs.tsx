@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { homeCopy } from "@/data/pages";
 import { differentiators } from "@/data/whyChooseUs";
 
 /**
@@ -23,9 +24,9 @@ export function WhyChooseUs() {
     <section className="section-y relative">
       <Container>
         <SectionHeading
-          eyebrow="Why us"
-          title="Why Businesses Choose Us"
-          description="Five things clients tell us make the difference between a system that gets used and one that quietly gets abandoned."
+          eyebrow={homeCopy.whyChooseUs.eyebrow}
+          title={homeCopy.whyChooseUs.title}
+          description={homeCopy.whyChooseUs.description}
         />
 
         <Stagger

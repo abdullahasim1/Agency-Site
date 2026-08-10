@@ -1,0 +1,73 @@
+{
+  "seo": {
+    "title": "Our Services",
+    "description": "From intelligent automation to custom software platforms, we build technology around the way your business works — AI agents, voice AI, workflow automation, web and mobile applications, CRM and API integrations.",
+    "keywords": [
+      "AI automation services",
+      "AI agent development",
+      "voice AI development",
+      "workflow automation",
+      "custom software development",
+      "web application development",
+      "mobile app development",
+      "CRM integration"
+    ]
+  },
+  "hero": {
+    "eyebrow": "Services",
+    "title": "Our Expertise",
+    "description": "From intelligent automation to custom software platforms, we build technology around the way your business works."
+  },
+  "heroMeta": {
+    "serviceLinesLabel": "Service lines",
+    "industriesLabel": "Industries served",
+    "engagementLabel": "Engagement",
+    "engagementValue": "Project or retained",
+    "deliveryLabel": "Delivery",
+    "deliveryValue": "Discover · Plan · Build · Launch"
+  },
+  "listHeading": "All services",
+  "industries": {
+    "eyebrow": "Industries",
+    "title": "Where We Work",
+    "description": "Sector experience shapes the questions we ask in discovery, not the technology we reach for."
+  },
+  "cta": {
+    "eyebrow": "Start a project",
+    "title": "Not Sure Which Service You Need?",
+    "description": "Describe the problem in plain language. We will tell you which approach fits and what it realistically takes."
+  },
+  "detailCta": {
+    "eyebrow": "Next step",
+    "title": "Need {service} For Your Business?",
+    "description": "Book a free consultation and we will map the fastest route from where you are to something running in production."
+  },
+  "detail": {
+    "overview": {
+      "eyebrow": "Overview",
+      "title": "What This Involves",
+      "description": ""
+    },
+    "deliverables": {
+      "eyebrow": "Deliverables",
+      "title": "What You Receive",
+      "description": "Every engagement ends with artefacts you own and can hand to another team."
+    },
+    "useCases": {
+      "eyebrow": "Fit",
+      "title": "Common Use Cases",
+      "description": "If one of these sounds like your situation, this is the right starting point."
+    },
+    "relatedWork": {
+      "eyebrow": "Proof",
+      "title": "Related Work",
+      "description": "Projects where {service} did the heavy lifting."
+    },
+    "relatedWorkAction": "View all projects",
+    "otherServices": {
+      "eyebrow": "Also available",
+      "title": "Other Services",
+      "description": ""
+    }
+  }
+}

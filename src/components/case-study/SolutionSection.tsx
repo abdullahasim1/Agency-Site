@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /** What we built, mirroring the challenge points above it. */
@@ -11,7 +12,11 @@ export function SolutionSection({ project }: { project: Project }) {
     <section className="section-y-sm bg-ink-25">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-14">
-          <SectionHeading eyebrow="Solution" title="What We Built" />
+          <SectionHeading
+            eyebrow={portfolioCopy.caseStudy.solution.eyebrow}
+            title={portfolioCopy.caseStudy.solution.title}
+            description={portfolioCopy.caseStudy.solution.description}
+          />
 
           <div>
             <Reveal>

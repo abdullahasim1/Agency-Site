@@ -6,27 +6,23 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { consultationPoints } from "@/data/contact";
+import { bookACallCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Book a Free Consultation",
-  description:
-    "Book a free 30-minute consultation. We will understand your requirements, identify automation opportunities, recommend a technology approach and agree next steps.",
+  title: bookACallCopy.seo.title,
+  description: bookACallCopy.seo.description,
   path: "/book-a-call",
-  keywords: [
-    "book a consultation",
-    "free AI consultation",
-    "automation consultation",
-    "software development call",
-  ],
+  keywords: bookACallCopy.seo.keywords,
 });
 
-const assurances = [
-  { icon: Clock, text: "30 minutes, no preparation needed" },
-  { icon: ShieldCheck, text: "No sales script, no obligation" },
-  { icon: Mail, text: "Written summary afterwards" },
-];
+/**
+ * Icons for the assurance list. They are bundled components, so they stay in
+ * code and pair with the editable text by position — the panel controls the
+ * wording, this controls the glyph.
+ */
+const assuranceIcons = [Clock, ShieldCheck, Mail];
 
 export default function BookACallPage() {
   return (
@@ -46,44 +42,45 @@ export default function BookACallPage() {
             {/* Left: what the call covers */}
             <div>
               <Reveal y={12}>
-                <Eyebrow>Free consultation</Eyebrow>
+                <Eyebrow>{bookACallCopy.eyebrow}</Eyebrow>
               </Reveal>
 
               <Reveal delay={0.08} y={14}>
-                <h1 className="type-display mt-6">
-                  Let&apos;s Discuss Your Project
-                </h1>
+                <h1 className="type-display mt-6">{bookACallCopy.title}</h1>
               </Reveal>
 
               <Reveal delay={0.16} y={14}>
                 <p className="type-lead mt-5 text-ink-600">
-                  A 30-minute conversation with the engineers who would build it.
-                  We use the time to understand the problem properly rather than
-                  to pitch — by the end you should know whether a project is
-                  worth starting, and roughly what it involves.
+                  {bookACallCopy.lead}
                 </p>
               </Reveal>
 
               <Reveal delay={0.22} y={14}>
                 <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2.5">
-                  {assurances.map((item) => (
-                    <li
-                      key={item.text}
-                      className="flex items-center gap-2 text-sm text-ink-600"
-                    >
-                      <item.icon
-                        className="size-4 shrink-0 text-brand-500"
-                        aria-hidden
-                      />
-                      {item.text}
-                    </li>
-                  ))}
+                  {bookACallCopy.assurances.map((text, index) => {
+                    const AssuranceIcon =
+                      assuranceIcons[index % assuranceIcons.length];
+                    return (
+                      <li
+                        key={text}
+                        className="flex items-center gap-2 text-sm text-ink-600"
+                      >
+                        <AssuranceIcon
+                          className="size-4 shrink-0 text-brand-500"
+                          aria-hidden
+                        />
+                        {text}
+                      </li>
+                    );
+                  })}
                 </ul>
               </Reveal>
 
               <div className="mt-10">
                 <Reveal delay={0.28} y={14}>
-                  <h2 className="type-h4">What we cover in 30 minutes</h2>
+                  <h2 className="type-h4">
+                    {bookACallCopy.consultationHeading}
+                  </h2>
                 </Reveal>
 
                 <Stagger
@@ -123,15 +120,16 @@ export default function BookACallPage() {
                     aria-hidden
                   />
                   <p className="text-sm leading-relaxed text-ink-600">
-                    Cannot find a time that works? Email{" "}
+                    {bookACallCopy.fallback.before}{" "}
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
                       className="font-medium text-brand-700 underline underline-offset-4 transition-colors hover:text-brand-600"
                     >
                       {siteConfig.contact.email}
                     </a>{" "}
-                    and we will work around your schedule, including outside{" "}
-                    {siteConfig.contact.hours}.
+                    {fill(bookACallCopy.fallback.after, {
+                      hours: siteConfig.contact.hours,
+                    })}
                   </p>
                 </div>
               </Reveal>

@@ -47,18 +47,27 @@ manage, and every edit is attributed to a real person.
 
 ### What you can edit
 
-The sidebar has four groups:
+The sidebar has five groups:
 
-| Group             | Contents                                                              |
-| ----------------- | --------------------------------------------------------------------- |
-| **Work**          | Projects and Services — full add / edit / delete                       |
-| **Site content**  | Site settings, stats, why‑choose‑us, process steps                     |
-| **Pages**         | About (mission, values, capabilities, team), FAQ, testimonials, industries, technologies |
-| **Forms & legal** | Contact form options, privacy policy and terms                         |
+| Group              | Contents                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| **Work**           | Projects and Services — full add / edit / delete                                                   |
+| **Page copy**      | Per‑page headings, hero text, section intros, button labels, form labels and SEO titles/descriptions — one entry per page, plus **Shared copy** for the footer, closing call‑to‑action and other text that repeats sitewide |
+| **Site content**   | Site settings, stats, why‑choose‑us, process steps                                                 |
+| **Page sections**  | About (mission, values, capabilities, team), FAQ, testimonials, industries, technologies            |
+| **Forms & legal**  | Contact form options, privacy policy and terms                                                     |
 
 **Projects** and **Services** are *collections* — a list with an **Add** button
 and a delete option on each entry, like WordPress posts. Everything else is a
 *singleton*: one form per section, because those sections exist exactly once.
+
+A few fields contain a word in curly braces, like `Showing {visible} of {total}
+projects` or `© {year} DevRox`. Those are filled in automatically when the page
+renders — edit the words around them freely, and leave the braced words in place.
+
+Counts and figures that the site can work out for itself (how many case studies,
+how many industries) are not editable, only their labels are. That way a number
+on the page can never drift out of step with the content behind it.
 
 Two things stay in code on purpose:
 
@@ -90,15 +99,32 @@ repo access removes their ability to edit.
 
 ### Setting up the panel in production
 
-Production needs a GitHub App so editors can sign in. Run this once:
+Production needs a GitHub App so editors can sign in. Keystatic has a wizard
+that creates it and writes the credentials for you — there is no CLI to run.
+It only appears in development *and* in GitHub mode, so switch modes for one
+run:
 
-```bash
-npx keystatic github:setup
-```
+1. Create `.env.local` with the repo and the setup flag:
 
-It creates the app and fills in these four values, which must also be added to
-the Vercel project (**Settings → Environment Variables**) plus
-`NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO` set to `owner/repo`:
+   ```bash
+   NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO=owner/repo
+   NEXT_PUBLIC_KEYSTATIC_SETUP=1
+   ```
+
+2. `npm run dev`, then open
+   [http://localhost:3000/keystatic/setup](http://localhost:3000/keystatic/setup).
+   Follow the prompts: name the app, and install it on that repo.
+3. The wizard writes the credentials to **`.env`** (not `.env.local`). Move the
+   four lines it added into `.env.local` alongside the repo variable, delete
+   `.env`, and remove `NEXT_PUBLIC_KEYSTATIC_SETUP=1`.
+4. Restart the dev server. The panel is now in GitHub mode and asks you to sign
+   in.
+
+Both files are gitignored, so no credential is ever committed.
+
+These five variables must also be added to the Vercel project
+(**Settings → Environment Variables**), or the panel will not be served on the
+deployed site:
 
 | Variable                                | Purpose                                  |
 | --------------------------------------- | ---------------------------------------- |
@@ -108,8 +134,13 @@ the Vercel project (**Settings → Environment Variables**) plus
 | `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Used to build the sign‑in link           |
 | `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO`     | `owner/repo` — switches the panel to GitHub mode |
 
-Without `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO` the panel stays in local mode, which
-is what you want for development.
+`NEXT_PUBLIC_KEYSTATIC_SETUP` is a local, one‑time flag. Never set it in Vercel.
+
+**The panel is off unless all five are present.** A deployment missing any one
+of them serves `/keystatic` and its API as 404 rather than falling back to
+local mode — local mode writes files with no sign‑in at all, which would let
+anyone rewrite the site's content. The public pages are unaffected either way,
+so a missing variable can never break the site itself.
 
 ### Where the content lives
 
@@ -117,10 +148,12 @@ is what you want for development.
 | -------------------- | ------------------------------------------- |
 | Projects             | `src/content/projects/<slug>/index.json`    |
 | Services             | `src/content/services/<slug>.json`          |
+| Page copy            | `src/content/pages/<page>.json`             |
 | Everything else      | `src/content/<section>.json`                |
 
 `src/data/*.ts` keeps the TypeScript types and the helpers the pages read
-through; it no longer holds the content itself.
+through; it no longer holds the content itself. `src/data/pages.ts` also exports
+`fill()`, which is what expands the `{braced}` words described above.
 
 > **Careful with slugs.** A project or service slug is its URL
 > (`/portfolio/<slug>`). Renaming one breaks existing links to that page.

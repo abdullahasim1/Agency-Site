@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { LogoMark, Wordmark } from "@/components/ui/LogoMark";
 import { PRIMARY_CTA, primaryNav } from "@/data/navigation";
+import { sharedCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { EASE_OUT_SOFT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -83,7 +84,7 @@ export function Navbar() {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink-950 focus:px-4 focus:py-2 focus:text-sm focus:text-white"
       >
-        Skip to content
+        {sharedCopy.skipLink}
       </a>
 
       <Container>

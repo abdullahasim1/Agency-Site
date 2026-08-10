@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /**
@@ -34,7 +35,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 href="/"
                 className="transition-colors hover:text-ink-800"
               >
-                Home
+                {sharedCopy.breadcrumb.home}
               </Link>
             </li>
             <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
@@ -43,7 +44,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 href="/portfolio"
                 className="transition-colors hover:text-ink-800"
               >
-                Portfolio
+                {sharedCopy.breadcrumb.portfolio}
               </Link>
             </li>
             <ChevronRight className="size-3.5 text-ink-300" aria-hidden />

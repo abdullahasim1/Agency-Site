@@ -5,8 +5,11 @@ import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { budgetRanges, projectTypes } from "@/data/contact";
+import { contactCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
+
+const copy = contactCopy.form;
 
 type FieldName =
   | "fullName"
@@ -38,26 +41,25 @@ function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {};
 
   if (values.fullName.trim().length < 2) {
-    errors.fullName = "Please enter your full name.";
+    errors.fullName = copy.errors.fullName;
   }
 
   if (values.email.trim() === "") {
-    errors.email = "Please enter your business email.";
+    errors.email = copy.errors.emailMissing;
   } else if (!EMAIL_PATTERN.test(values.email.trim())) {
-    errors.email = "That email address does not look right.";
+    errors.email = copy.errors.emailInvalid;
   }
 
   if (values.phone.trim() !== "" && values.phone.replace(/\D/g, "").length < 7) {
-    errors.phone = "Please enter a reachable phone number.";
+    errors.phone = copy.errors.phone;
   }
 
   if (values.projectType === "") {
-    errors.projectType = "Please choose the closest project type.";
+    errors.projectType = copy.errors.projectType;
   }
 
   if (values.message.trim().length < 20) {
-    errors.message =
-      "A little more detail helps us reply usefully — 20 characters or more.";
+    errors.message = copy.errors.message;
   }
 
   return errors;
@@ -150,14 +152,13 @@ export function ContactForm() {
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-white text-brand-600 ring-1 ring-brand-100">
           <CheckCircle2 className="size-6" aria-hidden />
         </span>
-        <h3 className="type-h3 mt-5">Enquiry received</h3>
+        <h3 className="type-h3 mt-5">{copy.success.heading}</h3>
         <p className="mx-auto mt-3 max-w-md text-[0.9375rem] leading-relaxed text-ink-600">
-          Thanks for reaching out. We read every enquiry ourselves and reply
-          within one business day.
+          {copy.success.description}
         </p>
         <div className="mt-7 flex justify-center">
           <Button variant="secondary" size="md" onClick={() => setStatus("idle")}>
-            Send another enquiry
+            {copy.success.resetLabel}
           </Button>
         </div>
       </div>
@@ -172,62 +173,59 @@ export function ContactForm() {
       className="rounded-panel border border-ink-200 bg-white p-6 shadow-soft sm:p-8"
     >
       <h2 id={`${uid}-form-heading`} className="type-h3">
-        Tell Us About Your Project
+        {copy.heading}
       </h2>
-      <p className="mt-2.5 text-sm leading-relaxed text-ink-600">
-        The more context you give, the more specific our first reply can be.
-        Fields marked with an asterisk are required.
-      </p>
+      <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{copy.intro}</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
-        <Field label="Full Name" htmlFor={fieldId("fullName")} required error={errors.fullName} errorId={errorId("fullName")}>
+        <Field label={copy.fullNameLabel} htmlFor={fieldId("fullName")} required error={errors.fullName} errorId={errorId("fullName")}>
           <input
             {...controlProps("fullName")}
             type="text"
             autoComplete="name"
-            placeholder="Jordan Ellis"
+            placeholder={copy.fullNamePlaceholder}
             onChange={(event) => update("fullName", event.target.value)}
           />
         </Field>
 
-        <Field label="Business Email" htmlFor={fieldId("email")} required error={errors.email} errorId={errorId("email")}>
+        <Field label={copy.emailLabel} htmlFor={fieldId("email")} required error={errors.email} errorId={errorId("email")}>
           <input
             {...controlProps("email")}
             type="email"
             inputMode="email"
             autoComplete="email"
-            placeholder="jordan@company.com"
+            placeholder={copy.emailPlaceholder}
             onChange={(event) => update("email", event.target.value)}
           />
         </Field>
 
-        <Field label="Company" htmlFor={fieldId("company")} error={errors.company} errorId={errorId("company")}>
+        <Field label={copy.companyLabel} htmlFor={fieldId("company")} error={errors.company} errorId={errorId("company")}>
           <input
             {...controlProps("company")}
             type="text"
             autoComplete="organization"
-            placeholder="Company name"
+            placeholder={copy.companyPlaceholder}
             onChange={(event) => update("company", event.target.value)}
           />
         </Field>
 
-        <Field label="Phone" htmlFor={fieldId("phone")} error={errors.phone} errorId={errorId("phone")}>
+        <Field label={copy.phoneLabel} htmlFor={fieldId("phone")} error={errors.phone} errorId={errorId("phone")}>
           <input
             {...controlProps("phone")}
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="+1 (555) 000-0000"
+            placeholder={copy.phonePlaceholder}
             onChange={(event) => update("phone", event.target.value)}
           />
         </Field>
 
-        <Field label="Project Type" htmlFor={fieldId("projectType")} required error={errors.projectType} errorId={errorId("projectType")}>
+        <Field label={copy.projectTypeLabel} htmlFor={fieldId("projectType")} required error={errors.projectType} errorId={errorId("projectType")}>
           <select
             {...controlProps("projectType")}
             onChange={(event) => update("projectType", event.target.value)}
           >
-            <option value="">Select a project type</option>
+            <option value="">{copy.projectTypePlaceholder}</option>
             {projectTypes.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -236,12 +234,12 @@ export function ContactForm() {
           </select>
         </Field>
 
-        <Field label="Budget" htmlFor={fieldId("budget")} error={errors.budget} errorId={errorId("budget")}>
+        <Field label={copy.budgetLabel} htmlFor={fieldId("budget")} error={errors.budget} errorId={errorId("budget")}>
           <select
             {...controlProps("budget")}
             onChange={(event) => update("budget", event.target.value)}
           >
-            <option value="">Select a range</option>
+            <option value="">{copy.budgetPlaceholder}</option>
             {budgetRanges.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -251,7 +249,7 @@ export function ContactForm() {
         </Field>
 
         <Field
-          label="Message"
+          label={copy.messageLabel}
           htmlFor={fieldId("message")}
           required
           error={errors.message}
@@ -261,7 +259,7 @@ export function ContactForm() {
           <textarea
             {...controlProps("message")}
             rows={6}
-            placeholder="What are you trying to build or automate? What does the process look like today?"
+            placeholder={copy.messagePlaceholder}
             onChange={(event) => update("message", event.target.value)}
           />
         </Field>
@@ -274,15 +272,14 @@ export function ContactForm() {
         >
           <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />
           <span>
-            We could not send your message. Please try again, or email us
-            directly at{" "}
+            {copy.failure.before}{" "}
             <a
               href={`mailto:${siteConfig.contact.email}`}
               className="font-medium underline underline-offset-4"
             >
               {siteConfig.contact.email}
             </a>
-            .
+            {copy.failure.after}
           </span>
         </p>
       ) : null}
@@ -301,7 +298,7 @@ export function ContactForm() {
             )
           }
         >
-          {isSubmitting ? "Sending…" : "Send Inquiry"}
+          {isSubmitting ? copy.submittingLabel : copy.submitLabel}
         </Button>
 
         <p className="text-xs leading-relaxed text-ink-500 sm:max-w-xs sm:text-right">
@@ -345,7 +342,9 @@ function Field({
             *
           </span>
         ) : null}
-        {required ? <span className="sr-only"> (required)</span> : null}
+        {required ? (
+          <span className="sr-only"> {copy.requiredHint}</span>
+        ) : null}
       </label>
 
       <div className="mt-2">{children}</div>

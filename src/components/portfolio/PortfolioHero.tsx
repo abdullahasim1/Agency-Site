@@ -2,6 +2,7 @@ import { ProjectCollage } from "@/components/portfolio/ProjectCollage";
 import { PageHero } from "@/components/ui/PageHero";
 import { getProjects } from "@/data/projects";
 import { industries } from "@/data/industries";
+import { portfolioCopy } from "@/data/pages";
 import { techCategories } from "@/data/technologies";
 
 /**
@@ -17,15 +18,27 @@ export async function PortfolioHero() {
 
   return (
     <PageHero
-      eyebrow="Portfolio"
-      title="Our Work"
-      description="Real products. Real automation. Real business impact."
+      eyebrow={portfolioCopy.hero.eyebrow}
+      title={portfolioCopy.hero.title}
+      description={portfolioCopy.hero.description}
       visual={<ProjectCollage />}
       meta={[
-        { label: "Case studies", value: `${projects.length}` },
-        { label: "Industries", value: `${industries.length}` },
-        { label: "Technologies", value: `${technologyCount}` },
-        { label: "Disciplines", value: "AI · Automation · Product" },
+        {
+          label: portfolioCopy.heroMeta.caseStudiesLabel,
+          value: `${projects.length}`,
+        },
+        {
+          label: portfolioCopy.heroMeta.industriesLabel,
+          value: `${industries.length}`,
+        },
+        {
+          label: portfolioCopy.heroMeta.technologiesLabel,
+          value: `${technologyCount}`,
+        },
+        {
+          label: portfolioCopy.heroMeta.disciplinesLabel,
+          value: portfolioCopy.heroMeta.disciplinesValue,
+        },
       ]}
     />
   );

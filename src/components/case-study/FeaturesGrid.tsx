@@ -3,6 +3,7 @@ import { GlowCard } from "@/components/ui/GlowCard";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { fill, portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /** Key features of the delivered system. */
@@ -11,9 +12,11 @@ export function FeaturesGrid({ project }: { project: Project }) {
     <section className="section-y-sm">
       <Container>
         <SectionHeading
-          eyebrow="Capabilities"
-          title="Key Features"
-          description={`What ${project.title} does in day-to-day use.`}
+          eyebrow={portfolioCopy.caseStudy.features.eyebrow}
+          title={portfolioCopy.caseStudy.features.title}
+          description={fill(portfolioCopy.caseStudy.features.description, {
+            project: project.title,
+          })}
         />
 
         <Stagger

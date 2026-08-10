@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import { getRelatedProjects, type Project } from "@/data/projects";
 
 /**
@@ -21,12 +22,12 @@ export async function ProjectCTA({ project }: { project: Project }) {
         <section className="section-y-sm">
           <Container>
             <SectionHeading
-              eyebrow="More work"
-              title="Related Projects"
-              description="Other systems built on similar foundations."
+              eyebrow={portfolioCopy.caseStudy.related.eyebrow}
+              title={portfolioCopy.caseStudy.related.title}
+              description={portfolioCopy.caseStudy.related.description}
               action={
                 <Button href="/portfolio" variant="outline" size="md">
-                  View all projects
+                  {portfolioCopy.caseStudy.relatedAction}
                 </Button>
               }
             />
@@ -50,9 +51,9 @@ export async function ProjectCTA({ project }: { project: Project }) {
       ) : null}
 
       <FinalCTA
-        eyebrow="Next step"
-        title="Want a System Like This?"
-        description="Tell us what your business needs to automate and we'll map out a practical build."
+        eyebrow={portfolioCopy.caseStudy.cta.eyebrow}
+        title={portfolioCopy.caseStudy.cta.title}
+        description={portfolioCopy.caseStudy.cta.description}
       />
     </>
   );

@@ -1,0 +1,32 @@
+{
+  "finalCta": {
+    "eyebrow": "Next step",
+    "title": "Have a Digital Product or Automation Idea?",
+    "description": "Let's turn your idea into a reliable, scalable and intelligent solution.",
+    "secondaryLabel": "Contact Us"
+  },
+  "techMarqueeLabel": "Tools we build with",
+  "skipLink": "Skip to content",
+  "actions": {
+    "allServices": "All services",
+    "viewAllProjects": "View All Projects",
+    "viewOurWork": "View Our Work",
+    "learnMore": "Learn More",
+    "viewCaseStudy": "View Case Study"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio"
+  },
+  "statsHeading": "Company statistics",
+  "footer": {
+    "companyTitle": "Company",
+    "servicesTitle": "Services",
+    "technologiesTitle": "Technologies",
+    "resourcesTitle": "Resources",
+    "ctaText": "Have a project in mind?",
+    "ctaLinkLabel": "Book a free consultation",
+    "copyright": "© {year} {legalName}. All rights reserved."
+  }
+}

@@ -3,6 +3,7 @@ import { AlertTriangle } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /** The situation before the engagement, in the client's terms. */
@@ -11,7 +12,11 @@ export function ChallengeSection({ project }: { project: Project }) {
     <section className="section-y-sm">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-14">
-          <SectionHeading eyebrow="Challenge" title="The Challenge" />
+          <SectionHeading
+            eyebrow={portfolioCopy.caseStudy.challenge.eyebrow}
+            title={portfolioCopy.caseStudy.challenge.title}
+            description={portfolioCopy.caseStudy.challenge.description}
+          />
 
           <div>
             <Reveal>

@@ -2,6 +2,7 @@ import { CalendarClock, ExternalLink } from "lucide-react";
 
 import { SchedulerMockup } from "@/components/contact/SchedulerMockup";
 import { Button } from "@/components/ui/Button";
+import { bookACallCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 
 /**
@@ -17,13 +18,14 @@ import { siteConfig } from "@/data/site";
  */
 export function BookingEmbed() {
   const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL;
+  const copy = bookACallCopy.scheduler;
 
   if (bookingUrl) {
     return (
       <div className="overflow-hidden rounded-panel border border-ink-200 bg-white shadow-soft">
         <iframe
           src={bookingUrl}
-          title="Booking calendar"
+          title={copy.calendarTitle}
           loading="lazy"
           className="h-[44rem] w-full border-0"
           allow="camera; microphone; fullscreen"
@@ -38,12 +40,10 @@ export function BookingEmbed() {
         <CalendarClock className="size-6" aria-hidden />
       </span>
 
-      <h2 className="type-h3 mt-6">Scheduler Coming Soon</h2>
+      <h2 className="type-h3 mt-6">{copy.placeholderHeading}</h2>
 
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
-        Our booking calendar is being connected. In the meantime, email us and we
-        will send you two or three times that work — usually within the same
-        business day.
+        {copy.placeholderDescription}
       </p>
 
       <SchedulerMockup className="mt-8" />
@@ -55,10 +55,10 @@ export function BookingEmbed() {
           size="lg"
           trailingIcon={<ExternalLink className="size-[1.125rem]" aria-hidden />}
         >
-          Email to book a slot
+          {copy.emailButtonLabel}
         </Button>
         <Button href="/contact" size="lg" variant="secondary">
-          Use the contact form
+          {copy.formButtonLabel}
         </Button>
       </div>
 

@@ -2,6 +2,7 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { sharedCopy } from "@/data/pages";
 import { stats } from "@/data/stats";
 
 /**
@@ -14,7 +15,7 @@ export function Stats() {
   return (
     <section aria-labelledby="stats-heading" className="relative">
       <h2 id="stats-heading" className="sr-only">
-        Company statistics
+        {sharedCopy.statsHeading}
       </h2>
 
       <Container>

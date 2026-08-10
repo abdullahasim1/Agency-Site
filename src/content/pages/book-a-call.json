@@ -1,0 +1,32 @@
+{
+  "seo": {
+    "title": "Book a Free Consultation",
+    "description": "Book a free 30-minute consultation. We will understand your requirements, identify automation opportunities, recommend a technology approach and agree next steps.",
+    "keywords": [
+      "book a consultation",
+      "free AI consultation",
+      "automation consultation",
+      "software development call"
+    ]
+  },
+  "eyebrow": "Free consultation",
+  "title": "Let's Discuss Your Project",
+  "lead": "A 30-minute conversation with the engineers who would build it. We use the time to understand the problem properly rather than to pitch — by the end you should know whether a project is worth starting, and roughly what it involves.",
+  "assurances": [
+    "30 minutes, no preparation needed",
+    "No sales script, no obligation",
+    "Written summary afterwards"
+  ],
+  "consultationHeading": "What we cover in 30 minutes",
+  "fallback": {
+    "before": "Cannot find a time that works? Email",
+    "after": "and we will work around your schedule, including outside {hours}."
+  },
+  "scheduler": {
+    "calendarTitle": "Booking calendar",
+    "placeholderHeading": "Scheduler Coming Soon",
+    "placeholderDescription": "Our booking calendar is being connected. In the meantime, email us and we will send you two or three times that work — usually within the same business day.",
+    "emailButtonLabel": "Email to book a slot",
+    "formButtonLabel": "Use the contact form"
+  }
+}

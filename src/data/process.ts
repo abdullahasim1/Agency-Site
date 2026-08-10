@@ -23,3 +23,6 @@ export interface ProcessStep {
 }
 
 export const processSteps = raw.items as unknown as ProcessStep[];
+
+/** Prefix in front of each step's output line. */
+export const processOutputLabel = raw.outputLabel as string;

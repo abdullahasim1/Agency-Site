@@ -5,6 +5,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { homeCopy } from "@/data/pages";
 import { getProjects } from "@/data/projects";
 import { testimonials } from "@/data/testimonials";
 
@@ -23,9 +24,9 @@ export async function Testimonials() {
     <section className="section-y relative bg-ink-25">
       <Container>
         <SectionHeading
-          eyebrow="Testimonials"
-          title="What Clients Say"
-          description="Feedback from the teams we have built and shipped systems with."
+          eyebrow={homeCopy.testimonials.eyebrow}
+          title={homeCopy.testimonials.title}
+          description={homeCopy.testimonials.description}
         />
 
         <Stagger

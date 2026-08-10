@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import {
   legalDisclaimer,
   legalEffectiveDate,
+  legalEffectiveDateLabel,
   type LegalSection,
 } from "@/data/legal";
 
@@ -45,7 +46,7 @@ export function LegalPage({
         <Container width="prose">
           <Reveal>
             <p className="type-eyebrow text-ink-400">
-              Effective {legalEffectiveDate}
+              {legalEffectiveDateLabel} {legalEffectiveDate}
             </p>
           </Reveal>
 

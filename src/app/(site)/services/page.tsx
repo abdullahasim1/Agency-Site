@@ -11,6 +11,7 @@ import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechMarquee } from "@/components/ui/TechMarquee";
 import { industries } from "@/data/industries";
+import { servicesCopy } from "@/data/pages";
 import { getServices } from "@/data/services";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -23,20 +24,10 @@ const industryTones = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Our Services",
-  description:
-    "From intelligent automation to custom software platforms, we build technology around the way your business works — AI agents, voice AI, workflow automation, web and mobile applications, CRM and API integrations.",
+  title: servicesCopy.seo.title,
+  description: servicesCopy.seo.description,
   path: "/services",
-  keywords: [
-    "AI automation services",
-    "AI agent development",
-    "voice AI development",
-    "workflow automation",
-    "custom software development",
-    "web application development",
-    "mobile app development",
-    "CRM integration",
-  ],
+  keywords: servicesCopy.seo.keywords,
 });
 
 export default async function ServicesPage() {
@@ -44,15 +35,27 @@ export default async function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Services"
-        title="Our Expertise"
-        description="From intelligent automation to custom software platforms, we build technology around the way your business works."
+        eyebrow={servicesCopy.hero.eyebrow}
+        title={servicesCopy.hero.title}
+        description={servicesCopy.hero.description}
         visual={<AutomationRunVisual />}
         meta={[
-          { label: "Service lines", value: `${services.length}` },
-          { label: "Industries served", value: `${industries.length}+` },
-          { label: "Engagement", value: "Project or retained" },
-          { label: "Delivery", value: "Discover · Plan · Build · Launch" },
+          {
+            label: servicesCopy.heroMeta.serviceLinesLabel,
+            value: `${services.length}`,
+          },
+          {
+            label: servicesCopy.heroMeta.industriesLabel,
+            value: `${industries.length}+`,
+          },
+          {
+            label: servicesCopy.heroMeta.engagementLabel,
+            value: servicesCopy.heroMeta.engagementValue,
+          },
+          {
+            label: servicesCopy.heroMeta.deliveryLabel,
+            value: servicesCopy.heroMeta.deliveryValue,
+          },
         ]}
       />
 
@@ -60,7 +63,7 @@ export default async function ServicesPage() {
 
       <section className="section-y">
         <Container>
-          <h2 className="sr-only">All services</h2>
+          <h2 className="sr-only">{servicesCopy.listHeading}</h2>
           <Stagger
             as="ul"
             stagger={0.06}
@@ -78,9 +81,9 @@ export default async function ServicesPage() {
       <section className="section-y-sm bg-ink-25">
         <Container>
           <SectionHeading
-            eyebrow="Industries"
-            title="Where We Work"
-            description="Sector experience shapes the questions we ask in discovery, not the technology we reach for."
+            eyebrow={servicesCopy.industries.eyebrow}
+            title={servicesCopy.industries.title}
+            description={servicesCopy.industries.description}
           />
 
           <Stagger
@@ -131,9 +134,9 @@ export default async function ServicesPage() {
       <Process />
 
       <FinalCTA
-        eyebrow="Start a project"
-        title="Not Sure Which Service You Need?"
-        description="Describe the problem in plain language. We will tell you which approach fits and what it realistically takes."
+        eyebrow={servicesCopy.cta.eyebrow}
+        title={servicesCopy.cta.title}
+        description={servicesCopy.cta.description}
       />
 
       <script

@@ -1,19 +1,21 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /** Overview paragraph plus the client / industry facts panel. */
 export function ProjectOverview({ project }: { project: Project }) {
   const { overview } = project;
+  const labels = portfolioCopy.caseStudy.overviewFacts;
 
   const facts = [
-    { label: "Client", value: overview.client },
-    { label: "Industry", value: overview.industry },
-    { label: "Timeline", value: overview.timeline },
-    { label: "Year", value: overview.year },
-    { label: "Platforms", value: overview.platforms.join(", ") },
-    { label: "Team", value: overview.team },
+    { label: labels.clientLabel, value: overview.client },
+    { label: labels.industryLabel, value: overview.industry },
+    { label: labels.timelineLabel, value: overview.timeline },
+    { label: labels.yearLabel, value: overview.year },
+    { label: labels.platformsLabel, value: overview.platforms.join(", ") },
+    { label: labels.teamLabel, value: overview.team },
   ];
 
   return (
@@ -21,7 +23,11 @@ export function ProjectOverview({ project }: { project: Project }) {
       <Container>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14">
           <div>
-            <SectionHeading eyebrow="Overview" title="Project Overview" />
+            <SectionHeading
+              eyebrow={portfolioCopy.caseStudy.overview.eyebrow}
+              title={portfolioCopy.caseStudy.overview.title}
+              description={portfolioCopy.caseStudy.overview.description}
+            />
 
             <Reveal delay={0.08}>
               <p className="type-lead mt-6 text-ink-600">
@@ -31,7 +37,9 @@ export function ProjectOverview({ project }: { project: Project }) {
 
             <Reveal delay={0.14}>
               <div className="mt-8">
-                <h3 className="type-eyebrow text-ink-400">Services provided</h3>
+                <h3 className="type-eyebrow text-ink-400">
+                  {labels.servicesHeading}
+                </h3>
                 <ul className="mt-3.5 flex flex-wrap gap-x-5 gap-y-2">
                   {overview.services.map((service) => (
                     <li

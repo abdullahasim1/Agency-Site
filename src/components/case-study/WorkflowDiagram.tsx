@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /**
@@ -29,10 +30,10 @@ export function WorkflowDiagram({ project }: { project: Project }) {
 
       <Container className="relative">
         <SectionHeading
-          eyebrow="Architecture"
+          eyebrow={portfolioCopy.caseStudy.workflow.eyebrow}
           tone="dark"
-          title="How It Works"
-          description="The path a single request takes through the system, end to end."
+          title={portfolioCopy.caseStudy.workflow.title}
+          description={portfolioCopy.caseStudy.workflow.description}
         />
 
         <Stagger

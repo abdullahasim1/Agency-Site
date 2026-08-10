@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/legal/LegalPage";
-import { privacySections } from "@/data/legal";
+import { privacyPage, privacySections } from "@/data/legal";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Privacy Policy",
-  description:
-    "How we collect, use and protect the information you share with us through this website.",
+  title: privacyPage.title,
+  description: privacyPage.seoDescription,
   path: "/privacy",
 });
 
 export default function PrivacyPage() {
   return (
     <LegalPage
-      eyebrow="Legal"
-      title="Privacy Policy"
-      description="What information we collect when you use this site or contact us, why we collect it, and the choices you have."
+      eyebrow={privacyPage.eyebrow}
+      title={privacyPage.title}
+      description={privacyPage.description}
       sections={privacySections}
       kind="privacy"
     />

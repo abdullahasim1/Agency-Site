@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /**
@@ -18,9 +19,9 @@ export function ProjectGallery({ project }: { project: Project }) {
     <section className="section-y-sm bg-ink-25">
       <Container>
         <SectionHeading
-          eyebrow="Interface"
-          title="A Closer Look"
-          description="Screens from the delivered system."
+          eyebrow={portfolioCopy.caseStudy.gallery.eyebrow}
+          title={portfolioCopy.caseStudy.gallery.title}
+          description={portfolioCopy.caseStudy.gallery.description}
         />
 
         <Stagger

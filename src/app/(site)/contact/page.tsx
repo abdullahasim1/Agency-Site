@@ -6,42 +6,41 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRIMARY_CTA } from "@/data/navigation";
+import { contactCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact Us",
-  description: `Tell us what you are building or automating. ${siteConfig.contact.responseTime}`,
+  title: contactCopy.seo.title,
+  description: fill(contactCopy.seo.description, {
+    responseTime: siteConfig.contact.responseTime,
+  }),
   path: "/contact",
-  keywords: [
-    "contact AI agency",
-    "software development enquiry",
-    "automation consultation",
-  ],
+  keywords: contactCopy.seo.keywords,
 });
 
 const details = [
   {
     icon: Mail,
-    label: "Email",
+    label: contactCopy.details.emailLabel,
     value: siteConfig.contact.email,
     href: `mailto:${siteConfig.contact.email}`,
   },
   {
     icon: Phone,
-    label: "Phone",
+    label: contactCopy.details.phoneLabel,
     value: siteConfig.contact.phone,
     href: siteConfig.contact.phoneHref,
   },
   {
     icon: MapPin,
-    label: "Location",
+    label: contactCopy.details.locationLabel,
     value: siteConfig.contact.location,
     href: null,
   },
   {
     icon: Clock,
-    label: "Hours",
+    label: contactCopy.details.hoursLabel,
     value: siteConfig.contact.hours,
     href: null,
   },
@@ -65,27 +64,22 @@ export default function ContactPage() {
             {/* Left: introduction and contact details */}
             <div>
               <Reveal y={12}>
-                <Eyebrow>Contact</Eyebrow>
+                <Eyebrow>{contactCopy.eyebrow}</Eyebrow>
               </Reveal>
 
               <Reveal delay={0.08} y={14}>
-                <h1 className="type-display mt-6">Let&apos;s Build Something Great</h1>
+                <h1 className="type-display mt-6">{contactCopy.title}</h1>
               </Reveal>
 
               <Reveal delay={0.16} y={14}>
                 <p className="type-lead mt-5 text-ink-600">
-                  Send us the problem, not a polished brief. Describe the process
-                  you want to automate or the product you want built, and we will
-                  come back with a straight assessment: what is worth doing, what
-                  it takes, and whether we are the right team for it.
+                  {contactCopy.lead}
                 </p>
               </Reveal>
 
               <Reveal delay={0.22} y={14}>
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-600">
-                  Every enquiry is read by an engineer. There is no qualification
-                  script and no obligation — plenty of first conversations end
-                  with us pointing someone at a simpler answer.
+                  {contactCopy.secondaryParagraph}
                 </p>
               </Reveal>
 
@@ -123,14 +117,14 @@ export default function ContactPage() {
 
               <Reveal delay={0.36} y={14}>
                 <p className="mt-8 rounded-card border border-ink-200 bg-ink-25 p-5 text-sm leading-relaxed text-ink-600">
-                  Prefer to talk it through?{" "}
+                  {contactCopy.callout.before}{" "}
                   <a
                     href={PRIMARY_CTA.href}
                     className="font-medium text-brand-700 underline underline-offset-4 transition-colors hover:text-brand-600"
                   >
-                    Book a free 30-minute consultation
+                    {contactCopy.callout.linkLabel}
                   </a>{" "}
-                  and pick a slot that suits you.
+                  {contactCopy.callout.after}
                 </p>
               </Reveal>
             </div>

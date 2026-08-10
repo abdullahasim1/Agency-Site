@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechTiles } from "@/components/ui/TechTiles";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /** Grouped technology stack for the case study. */
@@ -10,9 +11,9 @@ export function TechStack({ project }: { project: Project }) {
     <section className="section-y-sm bg-ink-25">
       <Container>
         <SectionHeading
-          eyebrow="Stack"
-          title="Technology Stack"
-          description="The tools this system runs on, grouped by the role they play."
+          eyebrow={portfolioCopy.caseStudy.techStack.eyebrow}
+          title={portfolioCopy.caseStudy.techStack.title}
+          description={portfolioCopy.caseStudy.techStack.description}
         />
 
         <Stagger as="ul" stagger={0.06} className="mt-10 grid gap-5 lg:grid-cols-2">

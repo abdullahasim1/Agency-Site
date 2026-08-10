@@ -9,6 +9,7 @@ import {
   footerResourceLinks,
   footerTechnologyLinks,
 } from "@/data/navigation";
+import { fill, sharedCopy } from "@/data/pages";
 import { getServices } from "@/data/services";
 import { siteConfig } from "@/data/site";
 
@@ -22,16 +23,16 @@ export async function Footer() {
   const services = await getServices();
 
   const columns = [
-    { title: "Company", links: footerCompanyLinks },
+    { title: sharedCopy.footer.companyTitle, links: footerCompanyLinks },
     {
-      title: "Services",
+      title: sharedCopy.footer.servicesTitle,
       links: services.map((service) => ({
         label: service.navLabel,
         href: `/services/${service.slug}`,
       })),
     },
-    { title: "Technologies", links: footerTechnologyLinks },
-    { title: "Resources", links: footerResourceLinks },
+    { title: sharedCopy.footer.technologiesTitle, links: footerTechnologyLinks },
+    { title: sharedCopy.footer.resourcesTitle, links: footerResourceLinks },
   ];
 
   return (
@@ -139,7 +140,7 @@ export async function Footer() {
         {/* CTA strip */}
         <div className="flex flex-col gap-4 border-t border-white/10 py-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-ink-400">
-            Have a project in mind?{" "}
+            {sharedCopy.footer.ctaText}{" "}
             <span className="text-ink-200">
               {siteConfig.contact.responseTime}
             </span>
@@ -148,7 +149,7 @@ export async function Footer() {
             href="/book-a-call"
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-white"
           >
-            Book a free consultation
+            {sharedCopy.footer.ctaLinkLabel}
             <ArrowUpRight
               className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               aria-hidden
@@ -159,7 +160,10 @@ export async function Footer() {
         {/* Legal */}
         <div className="flex flex-col gap-3 border-t border-white/10 py-7 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {siteConfig.legalName}. All rights reserved.
+            {fill(sharedCopy.footer.copyright, {
+              year: String(year),
+              legalName: siteConfig.legalName,
+            })}
           </p>
           <ul className="flex items-center gap-5">
             {footerLegalLinks.map((link) => (

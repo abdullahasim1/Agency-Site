@@ -18,10 +18,25 @@ export interface LegalSection {
   paragraphs: string[];
 }
 
+/** The header and search listing for one legal route. */
+export interface LegalPageCopy {
+  eyebrow: string;
+  title: string;
+  description: string;
+  seoDescription: string;
+}
+
 /** Shown at the top of both documents so the placeholder status is never hidden. */
 export const legalDisclaimer = raw.disclaimer as string;
 
 export const legalEffectiveDate = raw.effectiveDate as string;
+
+/** Word in front of the effective date, e.g. "Effective 1 January 2026". */
+export const legalEffectiveDateLabel = raw.effectiveDateLabel as string;
+
+export const privacyPage = raw.privacyPage as unknown as LegalPageCopy;
+
+export const termsPage = raw.termsPage as unknown as LegalPageCopy;
 
 export const privacySections = raw.privacySections as unknown as LegalSection[];
 

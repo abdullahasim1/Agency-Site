@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { homeCopy, sharedCopy } from "@/data/pages";
 import { getFeaturedProjects } from "@/data/projects";
 
 /** Six featured projects. The portfolio is the visual centre of the site. */
@@ -15,9 +16,9 @@ export async function FeaturedProjects() {
     <section id="work" className="section-y relative bg-ink-25">
       <Container>
         <SectionHeading
-          eyebrow="Portfolio"
-          title="Featured Work"
-          description="Explore some of the digital products, AI systems and automation solutions we've built."
+          eyebrow={homeCopy.featuredProjects.eyebrow}
+          title={homeCopy.featuredProjects.title}
+          description={homeCopy.featuredProjects.description}
           action={
             <Button
               href="/portfolio"
@@ -29,7 +30,7 @@ export async function FeaturedProjects() {
                 />
               }
             >
-              View All Projects
+              {sharedCopy.actions.viewAllProjects}
             </Button>
           }
         />

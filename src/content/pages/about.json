@@ -1,0 +1,65 @@
+{
+  "seo": {
+    "title": "About Us",
+    "description": "{name} is an AI, automation and software engineering studio. We build intelligent systems that are tested, observable and owned outright by the businesses that run them.",
+    "keywords": [
+      "AI agency",
+      "automation agency",
+      "software development company",
+      "about us"
+    ]
+  },
+  "hero": {
+    "eyebrow": "About us",
+    "title": "Engineering-Led AI and Automation",
+    "description": "{name} is a team of engineers, designers and automation specialists building intelligent software for growing businesses. We take on the systems that a company depends on daily, and we hold them to production standards."
+  },
+  "heroMeta": {
+    "foundedLabel": "Founded",
+    "teamLabel": "Team",
+    "teamSuffix": "specialists",
+    "modelLabel": "Model",
+    "modelValue": "Remote-first",
+    "engagementsLabel": "Engagements",
+    "engagementsValue": "Worldwide"
+  },
+  "story": {
+    "eyebrow": "Who we are",
+    "title": "Our Story",
+    "paragraphs": [
+      "{name} started as a small engineering team building internal tools for operations-heavy businesses. The pattern was always the same: valuable work buried under repetitive work, and software that had been bolted together rather than designed.",
+      "We now build AI-powered applications, autonomous agents, voice systems and workflow automation, alongside the web and mobile products those systems sit behind. What has not changed is the approach — understand the process first, use AI only where judgement is genuinely required, and leave behind something a different team could pick up and maintain.",
+      "We are deliberate about what we do not claim. There are no award badges or vendor certifications on this site, because we would rather point you at the work and let you judge it."
+    ]
+  },
+  "missionVision": {
+    "eyebrow": "Direction",
+    "title": "Mission & Vision",
+    "description": "Why the studio exists, and the standard we are trying to move the market towards."
+  },
+  "values": {
+    "eyebrow": "Principles",
+    "title": "How We Operate",
+    "description": "Four commitments that decide how engagements actually run."
+  },
+  "capabilities": {
+    "eyebrow": "Capabilities",
+    "title": "What We Do Well",
+    "description": "The disciplines we keep in-house, so engagements do not stall waiting on a third party."
+  },
+  "whyUs": {
+    "eyebrow": "Why us",
+    "title": "Why Clients Work With Us",
+    "description": "The reasons companies stay past the first engagement."
+  },
+  "team": {
+    "eyebrow": "Team",
+    "title": "The People You Work With",
+    "description": "Small, senior and directly involved. You talk to the engineers building your system, not an account layer."
+  },
+  "cta": {
+    "eyebrow": "Work with us",
+    "title": "Want to Talk to the People Who Build It?",
+    "description": "Book a free consultation and speak directly with the engineers who would run your project."
+  }
+}

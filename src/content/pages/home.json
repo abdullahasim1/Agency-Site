@@ -1,0 +1,43 @@
+{
+  "heroHeadline": "Building Intelligent Digital Solutions That",
+  "heroHeadlineAccent": "Drive Business Growth",
+  "heroLead": "We design and build AI-powered applications, intelligent automations, digital products and scalable software systems that help businesses work smarter and grow faster.",
+  "heroCapabilitiesLabel": "What we build",
+  "heroCapabilities": [
+    "AI Agents",
+    "Voice AI",
+    "Workflow Automation",
+    "Web & Mobile Apps",
+    "Custom Software"
+  ],
+  "services": {
+    "eyebrow": "Services",
+    "title": "Our Expertise",
+    "description": "From intelligent automation to custom software platforms, we build technology around the way your business works."
+  },
+  "featuredProjects": {
+    "eyebrow": "Portfolio",
+    "title": "Featured Work",
+    "description": "Explore some of the digital products, AI systems and automation solutions we've built."
+  },
+  "whyChooseUs": {
+    "eyebrow": "Why us",
+    "title": "Why Businesses Choose Us",
+    "description": "Five things clients tell us make the difference between a system that gets used and one that quietly gets abandoned."
+  },
+  "process": {
+    "eyebrow": "Process",
+    "title": "How We Work",
+    "description": "A predictable four-step engagement. You always know what stage we are at, what is being decided, and what exists at the end of it."
+  },
+  "technologies": {
+    "eyebrow": "Stack",
+    "title": "Technologies We Work With",
+    "description": "A deliberately focused stack. We go deep on a small number of tools rather than claiming breadth we cannot support in production."
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What Clients Say",
+    "description": "Feedback from the teams we have built and shipped systems with."
+  }
+}

@@ -2,10 +2,12 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+import { portfolioCopy } from "@/data/pages";
 import type { ProjectCategory } from "@/data/projects";
 import { EASE_OUT_SOFT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
+/** `"All"` is the internal sentinel; its visible label is editable copy. */
 export type PortfolioFilter = ProjectCategory | "All";
 
 interface PortfolioFiltersProps {
@@ -54,7 +56,7 @@ export function PortfolioFilters({
   return (
     <div
       role="tablist"
-      aria-label="Filter projects by category"
+      aria-label={portfolioCopy.grid.filtersLabel}
       className="-mx-1 flex flex-wrap items-center gap-1.5 px-1"
     >
       {filters.map((filter, index) => {
@@ -87,7 +89,9 @@ export function PortfolioFilters({
                 transition={{ duration: 0.32, ease: EASE_OUT_SOFT }}
               />
             ) : null}
-            <span className="relative">{filter}</span>
+            <span className="relative">
+              {filter === "All" ? portfolioCopy.grid.allFilterLabel : filter}
+            </span>
             <span
               className={cn(
                 "relative nums-tabular text-xs",

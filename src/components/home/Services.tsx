@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { homeCopy, sharedCopy } from "@/data/pages";
 import { getFeaturedServices } from "@/data/services";
 
 export async function Services() {
@@ -13,9 +14,9 @@ export async function Services() {
     <section id="services" className="section-y relative bg-ink-25">
       <Container>
         <SectionHeading
-          eyebrow="Services"
-          title="Our Expertise"
-          description="From intelligent automation to custom software platforms, we build technology around the way your business works."
+          eyebrow={homeCopy.services.eyebrow}
+          title={homeCopy.services.title}
+          description={homeCopy.services.description}
           action={
             <Button
               href="/services"
@@ -27,7 +28,7 @@ export async function Services() {
                 />
               }
             >
-              All services
+              {sharedCopy.actions.allServices}
             </Button>
           }
         />

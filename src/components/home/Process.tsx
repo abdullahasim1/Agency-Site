@@ -4,10 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { processSteps } from "@/data/process";
+import { homeCopy } from "@/data/pages";
+import { processOutputLabel, processSteps } from "@/data/process";
 
 /**
  * How we work — a four-step timeline.
+ *
+ * Rendered on several pages (home, about, services), all sharing one heading
+ * edited under Home page → Process section.
  *
  * The connector is a single absolutely-positioned hairline behind the step
  * markers, so the timeline stays aligned at every breakpoint without any
@@ -18,9 +22,9 @@ export function Process() {
     <section className="section-y relative">
       <Container>
         <SectionHeading
-          eyebrow="Process"
-          title="How We Work"
-          description="A predictable four-step engagement. You always know what stage we are at, what is being decided, and what exists at the end of it."
+          eyebrow={homeCopy.process.eyebrow}
+          title={homeCopy.process.title}
+          description={homeCopy.process.description}
         />
 
         <div className="relative mt-14 lg:mt-16">
@@ -73,7 +77,9 @@ export function Process() {
                   </ul>
 
                   <p className="mt-5 border-t border-ink-200 pt-4 text-sm text-ink-500">
-                    <span className="font-medium text-ink-700">Output: </span>
+                    <span className="font-medium text-ink-700">
+                      {processOutputLabel}
+                    </span>
                     {step.output}
                   </p>
                 </div>

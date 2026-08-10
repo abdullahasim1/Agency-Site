@@ -1,6 +1,7 @@
 import { collection, config, fields, singleton } from "@keystatic/core";
 
 import { iconRegistry } from "./src/data/icons";
+import { keystaticMode, keystaticRepo } from "./src/lib/keystatic-mode";
 
 /**
  * Keystatic — the DevRox admin panel, served at /keystatic.
@@ -52,26 +53,106 @@ const idField = fields.text({
   validation: { isRequired: true },
 });
 
-const repo = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO;
+/**
+ * A section intro — the small label, the heading and the line underneath.
+ *
+ * Used throughout the page-copy singletons so every heading on the site is
+ * editable without touching a component.
+ */
+const sectionField = (label: string, description?: string) =>
+  fields.object(
+    {
+      eyebrow: fields.text({
+        label: "Label",
+        description: "Small line above the heading.",
+      }),
+      title: fields.text({
+        label: "Heading",
+        validation: { isRequired: true },
+      }),
+      description: fields.text({
+        label: "Supporting text",
+        multiline: true,
+      }),
+    },
+    { label, description },
+  );
+
+/** Title, description and keywords for a page's search-engine listing. */
+const seoField = (description?: string) =>
+  fields.object(
+    {
+      title: fields.text({
+        label: "Browser / search title",
+        description: "The site name is appended automatically.",
+        validation: { isRequired: true },
+      }),
+      description: fields.text({
+        label: "Search description",
+        description: "Aim for roughly 150–160 characters.",
+        multiline: true,
+        validation: { isRequired: true },
+      }),
+      keywords: fields.array(fields.text({ label: "Keyword" }), {
+        label: "Keywords",
+        itemLabel: (props) => props.value || "Keyword",
+      }),
+    },
+    { label: "SEO", description },
+  );
+
+/** Header and search listing for a legal page; the body sections are separate. */
+const legalPageField = (label: string) =>
+  fields.object(
+    {
+      eyebrow: fields.text({ label: "Label" }),
+      title: fields.text({
+        label: "Heading",
+        validation: { isRequired: true },
+      }),
+      description: fields.text({
+        label: "Introduction",
+        multiline: true,
+      }),
+      seoDescription: fields.text({
+        label: "Search description",
+        description: "Shown in search results. The heading is used as the title.",
+        multiline: true,
+      }),
+    },
+    { label },
+  );
 
 export default config({
   /*
-   * GitHub mode needs a repo, and it is only set in deployed environments.
-   * Falling back to local storage keeps `npm run dev` working with no env file
-   * and means a missing variable can never silently point the panel at the
-   * wrong repository.
+   * `local` writes to the working tree and has no sign-in, so it is only ever
+   * used in development. In production the panel needs a repo *and* the GitHub
+   * App credentials; when either is missing the routes are not served at all
+   * (see src/lib/keystatic-mode.ts). The storage value here still has to be a
+   * valid one for the config to typecheck, so a disabled panel reads as
+   * `local` — nothing serves it.
    */
   storage:
-    process.env.NODE_ENV === "production" && repo
-      ? { kind: "github", repo: repo as `${string}/${string}` }
+    keystaticMode === "github"
+      ? { kind: "github", repo: keystaticRepo }
       : { kind: "local" },
 
   ui: {
     brand: { name: "DevRox" },
     navigation: {
       "Work": ["projects", "services"],
+      "Page copy": [
+        "homePage",
+        "aboutPage",
+        "servicesPage",
+        "portfolioPage",
+        "faqPage",
+        "contactPage",
+        "bookACallPage",
+        "sharedCopy",
+      ],
       "Site content": ["site", "stats", "why", "process"],
-      "Pages": ["about", "faq", "testimonials", "industries", "technologies"],
+      "Page sections": ["about", "faq", "testimonials", "industries", "technologies"],
       "Forms & legal": ["contact", "legal"],
     },
   },
@@ -134,10 +215,13 @@ export default config({
           description: "Opening paragraph of the case study.",
           multiline: true,
         }),
-        image: fields.text({
-          label: "Cover image path",
+        image: fields.image({
+          label: "Cover image",
           description:
-            "Path under /public, e.g. /images/projects/verivoice/cover.svg. Run `npm run art` to generate artwork for a new project.",
+            "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
+          directory: "public/images/projects",
+          publicPath: "/images/projects",
+          validation: { isRequired: true },
         }),
         imageAlt: fields.text({ label: "Cover image alt text" }),
         technologies: fields.array(fields.text({ label: "Technology" }), {
@@ -215,9 +299,12 @@ export default config({
         ),
         gallery: fields.array(
           fields.object({
-            src: fields.text({
-              label: "Image path",
-              description: "Path under /public.",
+            src: fields.image({
+              label: "Image",
+              description:
+                "Upload a screenshot. Stored under public/images/projects/<slug>/.",
+              directory: "public/images/projects",
+              publicPath: "/images/projects",
               validation: { isRequired: true },
             }),
             alt: fields.text({ label: "Alt text" }),
@@ -359,7 +446,593 @@ export default config({
   },
 
   singletons: {
+    /*
+     * Page copy — one singleton per page, so an editor opens "Home page" and
+     * finds every heading and paragraph on that page in one form. `{name}`,
+     * `{service}`, `{hours}` and `{responseTime}` are placeholders filled in at
+     * render time from Site settings; leaving them in place keeps the copy in
+     * sync when those values change.
+     */
+    homePage: singleton({
+      label: "Home page",
+      path: "src/content/pages/home",
+      format: { data: "json" },
+      schema: {
+        heroHeadline: fields.text({
+          label: "Headline",
+          description: "First line of the main heading.",
+          validation: { isRequired: true },
+        }),
+        heroHeadlineAccent: fields.text({
+          label: "Headline — highlighted line",
+          description: "Second line, drawn in the brand gradient.",
+          validation: { isRequired: true },
+        }),
+        heroLead: fields.text({
+          label: "Introduction",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        heroCapabilitiesLabel: fields.text({
+          label: "Capabilities label",
+          description: 'Sits above the list of what you build, e.g. "What we build".',
+        }),
+        heroCapabilities: fields.array(fields.text({ label: "Capability" }), {
+          label: "Capabilities",
+          description: "Short phrases shown under the introduction.",
+          itemLabel: (props) => props.value || "Capability",
+        }),
+        services: sectionField("Services section"),
+        featuredProjects: sectionField("Featured work section"),
+        whyChooseUs: sectionField("Why choose us section"),
+        process: sectionField("Process section"),
+        technologies: sectionField("Technologies section"),
+        testimonials: sectionField("Testimonials section"),
+      },
+    }),
+
+    aboutPage: singleton({
+      label: "About page",
+      path: "src/content/pages/about",
+      format: { data: "json" },
+      schema: {
+        seo: seoField(),
+        hero: sectionField("Page header", "Uses {name} for the agency name."),
+        heroMeta: fields.object(
+          {
+            foundedLabel: fields.text({ label: "Founded — label" }),
+            teamLabel: fields.text({ label: "Team — label" }),
+            teamSuffix: fields.text({
+              label: "Team — word after the number",
+              description: 'e.g. "specialists", giving "6 specialists".',
+            }),
+            modelLabel: fields.text({ label: "Model — label" }),
+            modelValue: fields.text({ label: "Model — value" }),
+            engagementsLabel: fields.text({ label: "Engagements — label" }),
+            engagementsValue: fields.text({ label: "Engagements — value" }),
+          },
+          {
+            label: "Header facts",
+            description:
+              "The four-box strip under the header. The founded year and team size are counted automatically, so only their labels are editable here.",
+          },
+        ),
+        story: fields.object(
+          {
+            eyebrow: fields.text({ label: "Label" }),
+            title: fields.text({
+              label: "Heading",
+              validation: { isRequired: true },
+            }),
+            paragraphs: fields.array(
+              fields.text({ label: "Paragraph", multiline: true }),
+              {
+                label: "Paragraphs",
+                description: "Uses {name} for the agency name.",
+                itemLabel: (props) => props.value.slice(0, 60) || "Paragraph",
+              },
+            ),
+          },
+          { label: "Our story" },
+        ),
+        missionVision: sectionField("Mission & vision section"),
+        values: sectionField("How we operate section"),
+        capabilities: sectionField("Capabilities section"),
+        whyUs: sectionField("Why clients work with us section"),
+        team: sectionField("Team section"),
+        cta: sectionField("Closing call to action"),
+      },
+    }),
+
+    servicesPage: singleton({
+      label: "Services page",
+      path: "src/content/pages/services",
+      format: { data: "json" },
+      schema: {
+        seo: seoField(),
+        hero: sectionField("Page header"),
+        heroMeta: fields.object(
+          {
+            serviceLinesLabel: fields.text({ label: "Service lines — label" }),
+            industriesLabel: fields.text({ label: "Industries — label" }),
+            engagementLabel: fields.text({ label: "Engagement — label" }),
+            engagementValue: fields.text({ label: "Engagement — value" }),
+            deliveryLabel: fields.text({ label: "Delivery — label" }),
+            deliveryValue: fields.text({ label: "Delivery — value" }),
+          },
+          {
+            label: "Header facts",
+            description:
+              "The four-box strip under the header. The service and industry counts are worked out automatically, so only their labels are editable here.",
+          },
+        ),
+        listHeading: fields.text({
+          label: "Service list heading",
+          description:
+            "Read aloud by screen readers before the grid of services; not shown on screen.",
+        }),
+        industries: sectionField("Industries section"),
+        cta: sectionField("Closing call to action"),
+        detailCta: sectionField(
+          "Single service — closing call to action",
+          "Shown at the bottom of every individual service page. Use {service} where the service name should appear.",
+        ),
+        detail: fields.object(
+          {
+            overview: sectionField("Overview section"),
+            deliverables: sectionField("Deliverables section"),
+            useCases: sectionField("Use cases section"),
+            relatedWork: sectionField(
+              "Related work section",
+              "Use {service} where the service name should appear.",
+            ),
+            relatedWorkAction: fields.text({
+              label: "Related work — button label",
+              description: "Links to the full portfolio.",
+              validation: { isRequired: true },
+            }),
+            otherServices: sectionField("Other services section"),
+          },
+          {
+            label: "Single service page",
+            description:
+              "Section headings shared by every individual service page.",
+          },
+        ),
+      },
+    }),
+
+    portfolioPage: singleton({
+      label: "Portfolio page",
+      path: "src/content/pages/portfolio",
+      format: { data: "json" },
+      schema: {
+        seo: seoField(),
+        hero: sectionField("Page header"),
+        heroMeta: fields.object(
+          {
+            caseStudiesLabel: fields.text({ label: "Case studies — label" }),
+            industriesLabel: fields.text({ label: "Industries — label" }),
+            technologiesLabel: fields.text({ label: "Technologies — label" }),
+            disciplinesLabel: fields.text({ label: "Disciplines — label" }),
+            disciplinesValue: fields.text({ label: "Disciplines — value" }),
+          },
+          {
+            label: "Header facts",
+            description:
+              "The four-box strip under the header. The first three counts are worked out from the projects themselves, so only their labels are editable here.",
+          },
+        ),
+        grid: fields.object(
+          {
+            heading: fields.text({
+              label: "List heading",
+              description:
+                "Read aloud by screen readers before the grid; not shown on screen.",
+            }),
+            allFilterLabel: fields.text({
+              label: '"Everything" filter label',
+              description:
+                "The first filter, which clears the category. The rest come from the categories on each project.",
+            }),
+            filtersLabel: fields.text({
+              label: "Filter row description",
+              description: "Announced to screen readers. Not shown on screen.",
+            }),
+            countText: fields.text({
+              label: "Result count",
+              description:
+                "Use {visible} for how many are showing and {total} for how many exist.",
+            }),
+            panelLabel: fields.text({
+              label: "Grid description",
+              description:
+                "Announced to screen readers. Use {category} for the chosen filter.",
+            }),
+            emptyText: fields.text({
+              label: "Nothing-to-show message",
+              description: "Shown when a category has no projects in it yet.",
+            }),
+          },
+          { label: "Project grid" },
+        ),
+        cta: sectionField("Closing call to action"),
+        caseStudy: fields.object(
+          {
+            overview: sectionField("Overview section"),
+            overviewFacts: fields.object(
+              {
+                clientLabel: fields.text({ label: "Client — label" }),
+                industryLabel: fields.text({ label: "Industry — label" }),
+                timelineLabel: fields.text({ label: "Timeline — label" }),
+                yearLabel: fields.text({ label: "Year — label" }),
+                platformsLabel: fields.text({ label: "Platforms — label" }),
+                teamLabel: fields.text({ label: "Team — label" }),
+                servicesHeading: fields.text({
+                  label: "Services provided — heading",
+                }),
+              },
+              {
+                label: "Overview facts panel",
+                description:
+                  "Labels for the facts box beside the overview. The values themselves are set on each project.",
+              },
+            ),
+            challenge: sectionField("Challenge section"),
+            solution: sectionField("Solution section"),
+            features: sectionField(
+              "Key features section",
+              "Use {project} where the project name should appear.",
+            ),
+            workflow: sectionField("How it works section"),
+            gallery: sectionField("Gallery section"),
+            techStack: sectionField("Technology stack section"),
+            results: sectionField("Results section"),
+            related: sectionField("Related projects section"),
+            relatedAction: fields.text({
+              label: "Related projects button",
+              description: "Links to the portfolio listing.",
+            }),
+            cta: sectionField("Closing call to action"),
+          },
+          {
+            label: "Single project page",
+            description:
+              "Section headings shared by every individual project page. Sections with no supporting text simply do not show one.",
+          },
+        ),
+      },
+    }),
+
+    faqPage: singleton({
+      label: "FAQ page",
+      path: "src/content/pages/faq",
+      format: { data: "json" },
+      schema: {
+        seo: seoField(),
+        hero: sectionField("Page header"),
+        cta: sectionField("Closing call to action"),
+      },
+    }),
+
+    contactPage: singleton({
+      label: "Contact page",
+      path: "src/content/pages/contact",
+      format: { data: "json" },
+      schema: {
+        seo: seoField("Use {responseTime} to pull in the reply time from Site settings."),
+        eyebrow: fields.text({ label: "Label" }),
+        title: fields.text({
+          label: "Heading",
+          validation: { isRequired: true },
+        }),
+        lead: fields.text({
+          label: "Introduction",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        secondaryParagraph: fields.text({
+          label: "Second paragraph",
+          multiline: true,
+        }),
+        callout: fields.object(
+          {
+            before: fields.text({ label: "Text before the link" }),
+            linkLabel: fields.text({ label: "Link text" }),
+            after: fields.text({ label: "Text after the link" }),
+          },
+          {
+            label: "Booking callout",
+            description:
+              "The boxed note beside the form. The link always points at the booking page.",
+          },
+        ),
+        details: fields.object(
+          {
+            emailLabel: fields.text({ label: "Email — label" }),
+            phoneLabel: fields.text({ label: "Phone — label" }),
+            locationLabel: fields.text({ label: "Location — label" }),
+            hoursLabel: fields.text({ label: "Hours — label" }),
+          },
+          {
+            label: "Contact details panel",
+            description:
+              "Labels for the four-box strip. The details themselves come from Site settings, so they are only written once.",
+          },
+        ),
+        form: fields.object(
+          {
+            heading: fields.text({
+              label: "Form heading",
+              validation: { isRequired: true },
+            }),
+            intro: fields.text({ label: "Form introduction", multiline: true }),
+            fullNameLabel: fields.text({ label: "Full name — label" }),
+            fullNamePlaceholder: fields.text({
+              label: "Full name — placeholder",
+            }),
+            emailLabel: fields.text({ label: "Email — label" }),
+            emailPlaceholder: fields.text({ label: "Email — placeholder" }),
+            companyLabel: fields.text({ label: "Company — label" }),
+            companyPlaceholder: fields.text({ label: "Company — placeholder" }),
+            phoneLabel: fields.text({ label: "Phone — label" }),
+            phonePlaceholder: fields.text({ label: "Phone — placeholder" }),
+            projectTypeLabel: fields.text({ label: "Project type — label" }),
+            projectTypePlaceholder: fields.text({
+              label: "Project type — empty option",
+              description:
+                "The first, unselected option. The choices themselves are under Contact form options.",
+            }),
+            budgetLabel: fields.text({ label: "Budget — label" }),
+            budgetPlaceholder: fields.text({
+              label: "Budget — empty option",
+              description:
+                "The first, unselected option. The ranges themselves are under Contact form options.",
+            }),
+            messageLabel: fields.text({ label: "Message — label" }),
+            messagePlaceholder: fields.text({
+              label: "Message — placeholder",
+              multiline: true,
+            }),
+            requiredHint: fields.text({
+              label: "Required-field note",
+              description:
+                "Read out after the label of a required field. Not shown on screen.",
+            }),
+            submitLabel: fields.text({ label: "Send button" }),
+            submittingLabel: fields.text({
+              label: "Send button while sending",
+            }),
+            errors: fields.object(
+              {
+                fullName: fields.text({ label: "Name missing or too short" }),
+                emailMissing: fields.text({ label: "Email left empty" }),
+                emailInvalid: fields.text({ label: "Email does not look valid" }),
+                phone: fields.text({ label: "Phone number too short" }),
+                projectType: fields.text({ label: "No project type chosen" }),
+                message: fields.text({
+                  label: "Message too short",
+                  multiline: true,
+                }),
+              },
+              {
+                label: "Validation messages",
+                description:
+                  "Shown under a field when someone submits without filling it in correctly.",
+              },
+            ),
+            success: fields.object(
+              {
+                heading: fields.text({ label: "Heading" }),
+                description: fields.text({
+                  label: "Message",
+                  multiline: true,
+                }),
+                resetLabel: fields.text({ label: "Send another button" }),
+              },
+              {
+                label: "After a successful send",
+                description: "Replaces the form once the enquiry goes through.",
+              },
+            ),
+            failure: fields.object(
+              {
+                before: fields.text({
+                  label: "Text before the email address",
+                  multiline: true,
+                }),
+                after: fields.text({ label: "Text after the email address" }),
+              },
+              {
+                label: "If sending fails",
+                description:
+                  "Shown above the send button. The email address comes from Site settings.",
+              },
+            ),
+          },
+          { label: "Enquiry form" },
+        ),
+      },
+    }),
+
+    bookACallPage: singleton({
+      label: "Book a call page",
+      path: "src/content/pages/book-a-call",
+      format: { data: "json" },
+      schema: {
+        seo: seoField(),
+        eyebrow: fields.text({ label: "Label" }),
+        title: fields.text({
+          label: "Heading",
+          validation: { isRequired: true },
+        }),
+        lead: fields.text({
+          label: "Introduction",
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        assurances: fields.array(fields.text({ label: "Assurance" }), {
+          label: "Assurances",
+          description: "The short reassuring points under the introduction.",
+          itemLabel: (props) => props.value || "Assurance",
+        }),
+        consultationHeading: fields.text({
+          label: "Consultation heading",
+          description: "Above the list of what the call covers.",
+        }),
+        fallback: fields.object(
+          {
+            before: fields.text({ label: "Text before the email address" }),
+            after: fields.text({
+              label: "Text after the email address",
+              description: "Use {hours} to pull in the office hours.",
+              multiline: true,
+            }),
+          },
+          {
+            label: "No suitable time note",
+            description:
+              "The boxed note under the scheduler. The email address comes from Site settings.",
+          },
+        ),
+        scheduler: fields.object(
+          {
+            calendarTitle: fields.text({
+              label: "Calendar frame title",
+              description:
+                "Names the embedded calendar for screen readers. Not shown on screen.",
+            }),
+            placeholderHeading: fields.text({ label: "Heading" }),
+            placeholderDescription: fields.text({
+              label: "Message",
+              multiline: true,
+            }),
+            emailButtonLabel: fields.text({ label: "Email button" }),
+            formButtonLabel: fields.text({ label: "Contact form button" }),
+          },
+          {
+            label: "Scheduler panel",
+            description:
+              "Shown while no booking calendar is connected. Once one is set up, the calendar replaces everything except the frame title.",
+          },
+        ),
+      },
+    }),
+
+    sharedCopy: singleton({
+      label: "Shared page copy",
+      path: "src/content/pages/shared",
+      format: { data: "json" },
+      schema: {
+        finalCta: fields.object(
+          {
+            eyebrow: fields.text({ label: "Label" }),
+            title: fields.text({
+              label: "Heading",
+              validation: { isRequired: true },
+            }),
+            description: fields.text({
+              label: "Supporting text",
+              multiline: true,
+            }),
+            secondaryLabel: fields.text({
+              label: "Second button text",
+              description: "The outlined button; it always links to Contact.",
+            }),
+          },
+          {
+            label: "Default closing call to action",
+            description:
+              "Used on any page that does not set its own — the home page and single project pages. Editing it changes all of them at once.",
+          },
+        ),
+        techMarqueeLabel: fields.text({
+          label: "Tools strip label",
+          description:
+            "Above the scrolling strip of tools on the home, services and FAQ pages. The tools themselves are under Technologies.",
+        }),
+        skipLink: fields.text({
+          label: "Skip-to-content link",
+          description:
+            "The first thing a keyboard user reaches on every page; it jumps past the navigation.",
+        }),
+        actions: fields.object(
+          {
+            allServices: fields.text({
+              label: "Home → all services",
+              description: "Button beside the services heading on the home page.",
+            }),
+            viewAllProjects: fields.text({
+              label: "Home → all projects",
+              description:
+                "Button beside the featured work on the home page, and under it on small screens.",
+            }),
+            viewOurWork: fields.text({
+              label: "Service page → portfolio",
+              description:
+                "Second button in the header of a single service page.",
+            }),
+            learnMore: fields.text({
+              label: "Service card link",
+              description: "The link at the bottom of every service card.",
+            }),
+            viewCaseStudy: fields.text({
+              label: "Project card link",
+              description: "The link at the bottom of every project card.",
+            }),
+          },
+          {
+            label: "Shared buttons and links",
+            description:
+              "Labels that repeat on several pages. Editing one changes it everywhere it appears.",
+          },
+        ),
+        breadcrumb: fields.object(
+          {
+            home: fields.text({ label: "Home" }),
+            services: fields.text({ label: "Services" }),
+            portfolio: fields.text({ label: "Portfolio" }),
+          },
+          {
+            label: "Breadcrumb names",
+            description:
+              "The “you are here” trail at the top of single service and project pages. The last item is the page's own title.",
+          },
+        ),
+        statsHeading: fields.text({
+          label: "Figures strip heading",
+          description:
+            "Read aloud by screen readers before the counters; not shown on screen. The figures are under Stats.",
+        }),
+        footer: fields.object(
+          {
+            companyTitle: fields.text({ label: "Company column heading" }),
+            servicesTitle: fields.text({
+              label: "Services column heading",
+              description: "The links below it come from the services you add.",
+            }),
+            technologiesTitle: fields.text({
+              label: "Technologies column heading",
+            }),
+            resourcesTitle: fields.text({ label: "Resources column heading" }),
+            ctaText: fields.text({ label: "Footer strip — text" }),
+            ctaLinkLabel: fields.text({
+              label: "Footer strip — link",
+              description: "Always points at the booking page.",
+            }),
+            copyright: fields.text({
+              label: "Copyright line",
+              description:
+                "Use {year} for the current year and {legalName} for the legal name from Site settings.",
+            }),
+          },
+          { label: "Footer" },
+        ),
+      },
+    }),
+
     site: singleton({
+
       label: "Site settings",
       path: "src/content/site",
       format: { data: "json" },
@@ -388,6 +1061,7 @@ export default config({
           label: "Site URL",
           description:
             "Canonical address, e.g. https://www.devrox.com. Overridden by NEXT_PUBLIC_SITE_URL on preview deploys.",
+          validation: { isRequired: true },
         }),
         contact: fields.object(
           {
@@ -428,7 +1102,10 @@ export default config({
           label: "X / Twitter handle",
           description: "Including the @, e.g. @devrox",
         }),
-        foundedYear: fields.integer({ label: "Founded year" }),
+        foundedYear: fields.integer({
+          label: "Founded year",
+          validation: { isRequired: true },
+        }),
       },
     }),
 
@@ -443,6 +1120,8 @@ export default config({
             value: fields.integer({
               label: "Number",
               description: "The figure the counter animates towards.",
+              defaultValue: 0,
+              validation: { isRequired: true },
             }),
             prefix: fields.text({
               label: "Prefix",
@@ -506,6 +1185,11 @@ export default config({
       path: "src/content/process",
       format: { data: "json" },
       schema: {
+        outputLabel: fields.text({
+          label: "Output prefix",
+          description:
+            'Introduces each step\'s output, e.g. "Output: " gives "Output: A written problem definition."',
+        }),
         items: fields.array(
           fields.object({
             id: idField,
@@ -538,7 +1222,7 @@ export default config({
     }),
 
     about: singleton({
-      label: "About page",
+      label: "Team, values & capabilities",
       path: "src/content/about",
       format: { data: "json" },
       schema: {
@@ -617,7 +1301,7 @@ export default config({
     }),
 
     faq: singleton({
-      label: "FAQ",
+      label: "FAQ questions",
       path: "src/content/faq",
       format: { data: "json" },
       schema: {
@@ -798,6 +1482,13 @@ export default config({
           label: "Effective date",
           description: 'Written out, e.g. "1 January 2026".',
         }),
+        effectiveDateLabel: fields.text({
+          label: "Effective date prefix",
+          description:
+            'Introduces the date above each document, e.g. "Effective" gives "Effective 1 January 2026".',
+        }),
+        privacyPage: legalPageField("Privacy policy — page header"),
+        termsPage: legalPageField("Terms of service — page header"),
         privacySections: fields.array(
           fields.object({
             heading: fields.text({

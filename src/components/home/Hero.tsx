@@ -6,16 +6,8 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRIMARY_CTA, SECONDARY_CTA } from "@/data/navigation";
+import { homeCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
-
-/** Capability line under the CTAs — descriptive, not a performance claim. */
-const capabilities = [
-  "AI Agents",
-  "Voice AI",
-  "Workflow Automation",
-  "Web & Mobile Apps",
-  "Custom Software",
-];
 
 export function Hero() {
   return (
@@ -43,10 +35,10 @@ export function Hero() {
 
             <Reveal delay={0.08} y={14}>
               <h1 className="type-display mt-6">
-                Building Intelligent Digital Solutions That{" "}
+                {homeCopy.heroHeadline}{" "}
                 <span className="relative whitespace-nowrap">
                   <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-cyan bg-clip-text text-transparent">
-                    Drive Business Growth
+                    {homeCopy.heroHeadlineAccent}
                   </span>
                 </span>
               </h1>
@@ -54,9 +46,7 @@ export function Hero() {
 
             <Reveal delay={0.16} y={14}>
               <p className="type-lead mt-6 max-w-xl text-ink-600">
-                We design and build AI-powered applications, intelligent
-                automations, digital products and scalable software systems that
-                help businesses work smarter and grow faster.
+                {homeCopy.heroLead}
               </p>
             </Reveal>
 
@@ -92,9 +82,11 @@ export function Hero() {
 
             <Reveal delay={0.32} y={14}>
               <div className="mt-10 border-t border-ink-200 pt-6">
-                <p className="type-eyebrow text-ink-400">What we build</p>
+                <p className="type-eyebrow text-ink-400">
+                  {homeCopy.heroCapabilitiesLabel}
+                </p>
                 <ul className="mt-3.5 flex flex-wrap gap-x-5 gap-y-2.5">
-                  {capabilities.map((capability) => (
+                  {homeCopy.heroCapabilities.map((capability) => (
                     <li
                       key={capability}
                       className="flex items-center gap-2 text-sm text-ink-600"

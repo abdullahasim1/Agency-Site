@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRIMARY_CTA } from "@/data/navigation";
+import { sharedCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 
 interface FinalCTAProps {
@@ -16,13 +17,16 @@ interface FinalCTAProps {
 /**
  * Closing call to action.
  *
+ * The defaults are edited under Shared page copy; pages that want their own
+ * wording pass it in, and those overrides live with the page that uses them.
+ *
  * Rendered as a dark panel inside a light band rather than a full-bleed dark
  * section, so it stays visually distinct from the dark footer directly below.
  */
 export function FinalCTA({
-  eyebrow = "Next step",
-  title = "Have a Digital Product or Automation Idea?",
-  description = "Let's turn your idea into a reliable, scalable and intelligent solution.",
+  eyebrow = sharedCopy.finalCta.eyebrow,
+  title = sharedCopy.finalCta.title,
+  description = sharedCopy.finalCta.description,
 }: FinalCTAProps) {
   return (
     <section className="section-y relative">
@@ -69,7 +73,7 @@ export function FinalCTA({
                   {PRIMARY_CTA.label}
                 </Button>
                 <Button href="/contact" size="lg" variant="secondary">
-                  Contact Us
+                  {sharedCopy.finalCta.secondaryLabel}
                 </Button>
               </div>
 

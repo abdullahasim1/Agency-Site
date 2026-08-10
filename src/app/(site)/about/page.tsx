@@ -12,35 +12,45 @@ import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { aboutCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { capabilities, missionVision, team, values } from "@/data/team";
 import { differentiators } from "@/data/whyChooseUs";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About Us",
-  description: `${siteConfig.name} is an AI, automation and software engineering studio. We build intelligent systems that are tested, observable and owned outright by the businesses that run them.`,
+  title: aboutCopy.seo.title,
+  description: fill(aboutCopy.seo.description, { name: siteConfig.name }),
   path: "/about",
-  keywords: [
-    "AI agency",
-    "automation agency",
-    "software development company",
-    "about us",
-  ],
+  keywords: aboutCopy.seo.keywords,
 });
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About us"
-        title="Engineering-Led AI and Automation"
-        description={`${siteConfig.name} is a team of engineers, designers and automation specialists building intelligent software for growing businesses. We take on the systems that a company depends on daily, and we hold them to production standards.`}
+        eyebrow={aboutCopy.hero.eyebrow}
+        title={aboutCopy.hero.title}
+        description={fill(aboutCopy.hero.description, {
+          name: siteConfig.name,
+        })}
         meta={[
-          { label: "Founded", value: `${siteConfig.foundedYear}` },
-          { label: "Team", value: `${team.length} specialists` },
-          { label: "Model", value: "Remote-first" },
-          { label: "Engagements", value: "Worldwide" },
+          {
+            label: aboutCopy.heroMeta.foundedLabel,
+            value: `${siteConfig.foundedYear}`,
+          },
+          {
+            label: aboutCopy.heroMeta.teamLabel,
+            value: `${team.length} ${aboutCopy.heroMeta.teamSuffix}`,
+          },
+          {
+            label: aboutCopy.heroMeta.modelLabel,
+            value: aboutCopy.heroMeta.modelValue,
+          },
+          {
+            label: aboutCopy.heroMeta.engagementsLabel,
+            value: aboutCopy.heroMeta.engagementsValue,
+          },
         ]}
       />
 
@@ -48,35 +58,26 @@ export default function AboutPage() {
       <section className="section-y-sm">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
-            <SectionHeading eyebrow="Who we are" title="Our Story" />
+            <SectionHeading
+              eyebrow={aboutCopy.story.eyebrow}
+              title={aboutCopy.story.title}
+            />
 
             <div className="space-y-5">
-              <Reveal>
-                <p className="type-lead text-ink-600">
-                  {siteConfig.name} started as a small engineering team building
-                  internal tools for operations-heavy businesses. The pattern was
-                  always the same: valuable work buried under repetitive work,
-                  and software that had been bolted together rather than
-                  designed.
-                </p>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <p className="text-[0.9375rem] leading-relaxed text-ink-600">
-                  We now build AI-powered applications, autonomous agents, voice
-                  systems and workflow automation, alongside the web and mobile
-                  products those systems sit behind. What has not changed is the
-                  approach — understand the process first, use AI only where
-                  judgement is genuinely required, and leave behind something a
-                  different team could pick up and maintain.
-                </p>
-              </Reveal>
-              <Reveal delay={0.14}>
-                <p className="text-[0.9375rem] leading-relaxed text-ink-600">
-                  We are deliberate about what we do not claim. There are no
-                  award badges or vendor certifications on this site, because we
-                  would rather point you at the work and let you judge it.
-                </p>
-              </Reveal>
+              {/* The opening paragraph carries the lead treatment; the rest is body copy. */}
+              {aboutCopy.story.paragraphs.map((paragraph, index) => (
+                <Reveal key={index} delay={index === 0 ? 0 : 0.02 + index * 0.06}>
+                  <p
+                    className={
+                      index === 0
+                        ? "type-lead text-ink-600"
+                        : "text-[0.9375rem] leading-relaxed text-ink-600"
+                    }
+                  >
+                    {fill(paragraph, { name: siteConfig.name })}
+                  </p>
+                </Reveal>
+              ))}
 
               <Reveal delay={0.2}>
                 <StoryTimeline className="mt-8" />
@@ -92,9 +93,9 @@ export default function AboutPage() {
       <section className="section-y-sm">
         <Container>
           <SectionHeading
-            eyebrow="Direction"
-            title="Mission & Vision"
-            description="Why the studio exists, and the standard we are trying to move the market towards."
+            eyebrow={aboutCopy.missionVision.eyebrow}
+            title={aboutCopy.missionVision.title}
+            description={aboutCopy.missionVision.description}
           />
 
           <Stagger
@@ -127,9 +128,9 @@ export default function AboutPage() {
       <section className="section-y-sm bg-ink-25">
         <Container>
           <SectionHeading
-            eyebrow="Principles"
-            title="How We Operate"
-            description="Four commitments that decide how engagements actually run."
+            eyebrow={aboutCopy.values.eyebrow}
+            title={aboutCopy.values.title}
+            description={aboutCopy.values.description}
           />
 
           <Stagger
@@ -160,9 +161,9 @@ export default function AboutPage() {
       <section className="section-y-sm">
         <Container>
           <SectionHeading
-            eyebrow="Capabilities"
-            title="What We Do Well"
-            description="The disciplines we keep in-house, so engagements do not stall waiting on a third party."
+            eyebrow={aboutCopy.capabilities.eyebrow}
+            title={aboutCopy.capabilities.title}
+            description={aboutCopy.capabilities.description}
           />
 
           <Stagger
@@ -199,9 +200,9 @@ export default function AboutPage() {
       <section className="section-y-sm bg-ink-25">
         <Container>
           <SectionHeading
-            eyebrow="Why us"
-            title="Why Clients Work With Us"
-            description="The reasons companies stay past the first engagement."
+            eyebrow={aboutCopy.whyUs.eyebrow}
+            title={aboutCopy.whyUs.title}
+            description={aboutCopy.whyUs.description}
           />
 
           <Stagger as="ul" stagger={0.06} className="mt-10 space-y-4">
@@ -234,9 +235,9 @@ export default function AboutPage() {
       <section className="section-y-sm">
         <Container>
           <SectionHeading
-            eyebrow="Team"
-            title="The People You Work With"
-            description="Small, senior and directly involved. You talk to the engineers building your system, not an account layer."
+            eyebrow={aboutCopy.team.eyebrow}
+            title={aboutCopy.team.title}
+            description={aboutCopy.team.description}
           />
 
           <Stagger
@@ -282,9 +283,9 @@ export default function AboutPage() {
       </section>
 
       <FinalCTA
-        eyebrow="Work with us"
-        title="Want to Talk to the People Who Build It?"
-        description="Book a free consultation and speak directly with the engineers who would run your project."
+        eyebrow={aboutCopy.cta.eyebrow}
+        title={aboutCopy.cta.title}
+        description={aboutCopy.cta.description}
       />
 
       <script

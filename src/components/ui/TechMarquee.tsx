@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { sharedCopy } from "@/data/pages";
 import { allTechnologies } from "@/data/technologies";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +23,7 @@ interface TechMarqueeProps {
  * this ships no JavaScript.
  */
 export function TechMarquee({
-  label = "Tools we build with",
+  label = sharedCopy.techMarqueeLabel,
   tone = "light",
   className,
 }: TechMarqueeProps) {

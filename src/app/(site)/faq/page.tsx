@@ -7,19 +7,14 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechMarquee } from "@/components/ui/TechMarquee";
 import { faqs, type FaqItem } from "@/data/faq";
+import { faqCopy } from "@/data/pages";
 import { breadcrumbSchema, buildMetadata, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Frequently Asked Questions",
-  description:
-    "How engagements start, how long projects take, where AI genuinely fits, who owns the code, and how we price work.",
+  title: faqCopy.seo.title,
+  description: faqCopy.seo.description,
   path: "/faq",
-  keywords: [
-    "AI agency FAQ",
-    "software development questions",
-    "automation engagement",
-    "project pricing",
-  ],
+  keywords: faqCopy.seo.keywords,
 });
 
 const categoryOrder: FaqItem["category"][] = [
@@ -40,9 +35,9 @@ export default function FaqPage() {
   return (
     <>
       <PageHero
-        eyebrow="FAQ"
-        title="Frequently Asked Questions"
-        description="Straight answers to the questions we are asked most often. If yours is not here, ask us directly — we would rather answer it properly."
+        eyebrow={faqCopy.hero.eyebrow}
+        title={faqCopy.hero.title}
+        description={faqCopy.hero.description}
         visual={<ConsultationMockup />}
       />
 
@@ -99,9 +94,9 @@ export default function FaqPage() {
       <TechMarquee />
 
       <FinalCTA
-        eyebrow="Still deciding?"
-        title="Have a Question We Have Not Answered?"
-        description="Book a free consultation or send us a message. There is no obligation and no sales script."
+        eyebrow={faqCopy.cta.eyebrow}
+        title={faqCopy.cta.title}
+        description={faqCopy.cta.description}
       />
 
       <script

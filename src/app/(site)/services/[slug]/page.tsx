@@ -16,6 +16,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PRIMARY_CTA } from "@/data/navigation";
+import { fill, servicesCopy, sharedCopy } from "@/data/pages";
 import { getProjectsBySlugs } from "@/data/projects";
 import { getServices } from "@/data/services";
 import { breadcrumbSchema, buildMetadata, serviceSchema } from "@/lib/seo";
@@ -90,7 +91,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
                 <li>
                   <Link href="/" className="transition-colors hover:text-ink-800">
-                    Home
+                    {sharedCopy.breadcrumb.home}
                   </Link>
                 </li>
                 <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
@@ -99,7 +100,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                     href="/services"
                     className="transition-colors hover:text-ink-800"
                   >
-                    Services
+                    {sharedCopy.breadcrumb.services}
                   </Link>
                 </li>
                 <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
@@ -151,7 +152,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   {PRIMARY_CTA.label}
                 </Button>
                 <Button href="/portfolio" size="lg" variant="secondary">
-                  View Our Work
+                  {sharedCopy.actions.viewOurWork}
                 </Button>
               </div>
             </Reveal>
@@ -168,7 +169,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="section-y-sm">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
-            <SectionHeading eyebrow="Overview" title="What This Involves" />
+            <SectionHeading
+              eyebrow={servicesCopy.detail.overview.eyebrow}
+              title={servicesCopy.detail.overview.title}
+              description={servicesCopy.detail.overview.description}
+            />
             <Reveal>
               <p className="type-lead text-ink-600">{service.fullDescription}</p>
             </Reveal>
@@ -180,9 +185,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="section-y-sm bg-ink-25">
         <Container>
           <SectionHeading
-            eyebrow="Deliverables"
-            title="What You Receive"
-            description="Every engagement ends with artefacts you own and can hand to another team."
+            eyebrow={servicesCopy.detail.deliverables.eyebrow}
+            title={servicesCopy.detail.deliverables.title}
+            description={servicesCopy.detail.deliverables.description}
           />
 
           <Stagger
@@ -213,9 +218,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <SectionHeading
-              eyebrow="Fit"
-              title="Common Use Cases"
-              description="If one of these sounds like your situation, this is the right starting point."
+              eyebrow={servicesCopy.detail.useCases.eyebrow}
+              title={servicesCopy.detail.useCases.title}
+              description={servicesCopy.detail.useCases.description}
             />
 
             <Stagger as="ul" stagger={0.06} className="space-y-3">
@@ -246,12 +251,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <section className="section-y-sm bg-ink-25">
           <Container>
             <SectionHeading
-              eyebrow="Proof"
-              title="Related Work"
-              description={`Projects where ${service.title.toLowerCase()} did the heavy lifting.`}
+              eyebrow={servicesCopy.detail.relatedWork.eyebrow}
+              title={servicesCopy.detail.relatedWork.title}
+              description={fill(servicesCopy.detail.relatedWork.description, {
+                service: service.title.toLowerCase(),
+              })}
               action={
                 <Button href="/portfolio" variant="outline" size="md">
-                  View all projects
+                  {servicesCopy.detail.relatedWorkAction}
                 </Button>
               }
             />
@@ -278,8 +285,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="section-y-sm">
         <Container>
           <Reveal>
-            <Eyebrow>Also available</Eyebrow>
-            <h2 className="type-h3 mt-4">Other Services</h2>
+            <Eyebrow>{servicesCopy.detail.otherServices.eyebrow}</Eyebrow>
+            <h2 className="type-h3 mt-4">
+              {servicesCopy.detail.otherServices.title}
+            </h2>
           </Reveal>
 
           <Stagger
@@ -313,9 +322,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       </section>
 
       <FinalCTA
-        eyebrow="Next step"
-        title={`Need ${service.title} For Your Business?`}
-        description="Book a free consultation and we will map the fastest route from where you are to something running in production."
+        eyebrow={servicesCopy.detailCta.eyebrow}
+        title={fill(servicesCopy.detailCta.title, { service: service.title })}
+        description={servicesCopy.detailCta.description}
       />
 
       <script

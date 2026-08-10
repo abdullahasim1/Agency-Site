@@ -1,0 +1,100 @@
+{
+  "seo": {
+    "title": "Our Work",
+    "description": "Real products. Real automation. Real business impact. Explore case studies covering AI agents, voice automation, workflow systems, web platforms and mobile applications.",
+    "keywords": [
+      "AI case studies",
+      "automation case studies",
+      "software development portfolio",
+      "AI agent projects",
+      "voice AI projects"
+    ]
+  },
+  "hero": {
+    "eyebrow": "Portfolio",
+    "title": "Our Work",
+    "description": "Real products. Real automation. Real business impact."
+  },
+  "heroMeta": {
+    "caseStudiesLabel": "Case studies",
+    "industriesLabel": "Industries",
+    "technologiesLabel": "Technologies",
+    "disciplinesLabel": "Disciplines",
+    "disciplinesValue": "AI · Automation · Product"
+  },
+  "grid": {
+    "heading": "All projects",
+    "allFilterLabel": "All",
+    "filtersLabel": "Filter projects by category",
+    "countText": "Showing {visible} of {total} projects",
+    "panelLabel": "{category} projects",
+    "emptyText": "No projects in this category yet."
+  },
+  "cta": {
+    "eyebrow": "Start a project",
+    "title": "Want a system like these built for your business?",
+    "description": "Tell us what the process looks like today and we will tell you honestly what is worth automating."
+  },
+  "caseStudy": {
+    "overview": {
+      "eyebrow": "Overview",
+      "title": "Project Overview",
+      "description": ""
+    },
+    "overviewFacts": {
+      "clientLabel": "Client",
+      "industryLabel": "Industry",
+      "timelineLabel": "Timeline",
+      "yearLabel": "Year",
+      "platformsLabel": "Platforms",
+      "teamLabel": "Team",
+      "servicesHeading": "Services provided"
+    },
+    "challenge": {
+      "eyebrow": "Challenge",
+      "title": "The Challenge",
+      "description": ""
+    },
+    "solution": {
+      "eyebrow": "Solution",
+      "title": "What We Built",
+      "description": ""
+    },
+    "features": {
+      "eyebrow": "Capabilities",
+      "title": "Key Features",
+      "description": "What {project} does in day-to-day use."
+    },
+    "workflow": {
+      "eyebrow": "Architecture",
+      "title": "How It Works",
+      "description": "The path a single request takes through the system, end to end."
+    },
+    "gallery": {
+      "eyebrow": "Interface",
+      "title": "A Closer Look",
+      "description": "Screens from the delivered system."
+    },
+    "techStack": {
+      "eyebrow": "Stack",
+      "title": "Technology Stack",
+      "description": "The tools this system runs on, grouped by the role they play."
+    },
+    "results": {
+      "eyebrow": "Outcome",
+      "title": "Results",
+      "description": "What changed for the business after launch."
+    },
+    "related": {
+      "eyebrow": "More work",
+      "title": "Related Projects",
+      "description": "Other systems built on similar foundations."
+    },
+    "relatedAction": "View all projects",
+    "cta": {
+      "eyebrow": "Next step",
+      "title": "Want a System Like This?",
+      "description": "Tell us what your business needs to automate and we'll map out a practical build."
+    }
+  }
+}

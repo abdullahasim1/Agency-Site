@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { homeCopy } from "@/data/pages";
 import { techCategories } from "@/data/technologies";
 import { cn } from "@/lib/utils";
 
@@ -43,10 +44,10 @@ export function Technologies() {
 
       <Container className="relative">
         <SectionHeading
-          eyebrow="Stack"
+          eyebrow={homeCopy.technologies.eyebrow}
           tone="dark"
-          title="Technologies We Work With"
-          description="A deliberately focused stack. We go deep on a small number of tools rather than claiming breadth we cannot support in production."
+          title={homeCopy.technologies.title}
+          description={homeCopy.technologies.description}
         />
 
         <Stagger
