@@ -153,7 +153,9 @@
       "Bash(curl -s -I --max-time 12 https://www.devrox.com/)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "Bash(gh secret *)"
     ]
   }
 }
