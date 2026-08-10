@@ -149,7 +149,8 @@
       "Bash(curl -s \"http://localhost:3000/_next/static/chunks/_0ye0bul._.js\" -o /tmp/ks-app-chunk.js)",
       "Bash(grep -o 'keystaticMode[^,;]\\\\{0,80\\\\}' /tmp/ks-app-chunk.js)",
       "Bash(grep -o 'deployedURL[ ]*=[^;]\\\\{0,200\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
-      "Bash(grep -o 'default_permissions.\\\\{0,300\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)"
+      "Bash(grep -o 'default_permissions.\\\\{0,300\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
+      "Bash(curl -s -I --max-time 12 https://www.devrox.com/)"
     ]
   }
 }
