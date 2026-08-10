@@ -152,7 +152,8 @@
       "Bash(grep -o 'default_permissions.\\\\{0,300\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
       "Bash(curl -s -I --max-time 12 https://www.devrox.com/)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
