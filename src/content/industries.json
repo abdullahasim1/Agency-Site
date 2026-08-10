@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "id": "healthcare",
+      "name": "Healthcare",
+      "icon": "Stethoscope",
+      "description": "Patient coordination and administrative load, handled without adding clinical risk.",
+      "applications": [
+        "Appointment scheduling and reminders",
+        "Intake and referral document processing",
+        "Care-team notification workflows"
+      ]
+    },
+    {
+      "id": "saas",
+      "name": "SaaS & Technology",
+      "icon": "Boxes",
+      "description": "Product engineering capacity and AI features for teams shipping software.",
+      "applications": [
+        "Multi-tenant platform development",
+        "In-product AI assistants",
+        "Usage analytics and reporting"
+      ]
+    },
+    {
+      "id": "professional-services",
+      "name": "Professional Services",
+      "icon": "Briefcase",
+      "description": "Turning billable-hour drag into automated, auditable process.",
+      "applications": [
+        "Proposal and document generation",
+        "Client onboarding automation",
+        "Time, matter and project tracking"
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-commerce & Retail",
+      "icon": "ShoppingCart",
+      "description": "Operations that keep up with catalogue, order and support volume.",
+      "applications": [
+        "Order and fulfilment synchronisation",
+        "Automated customer support triage",
+        "Merchandising and margin analytics"
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "Logistics & Transport",
+      "icon": "Truck",
+      "description": "Field-ready tooling for work that happens away from a desk.",
+      "applications": [
+        "Driver and dispatch mobile apps",
+        "Route and exception monitoring",
+        "Proof-of-delivery capture"
+      ]
+    },
+    {
+      "id": "real-estate",
+      "name": "Real Estate",
+      "icon": "Building2",
+      "description": "Lead response and transaction coordination at speed.",
+      "applications": [
+        "Inbound enquiry qualification by voice",
+        "Listing and CRM synchronisation",
+        "Viewing scheduling automation"
+      ]
+    },
+    {
+      "id": "financial-services",
+      "name": "Financial Services",
+      "icon": "Scale",
+      "description": "Controlled automation for processes that must be defensible.",
+      "applications": [
+        "Document verification and extraction",
+        "Approval workflows with audit trails",
+        "Reconciliation and exception reporting"
+      ]
+    },
+    {
+      "id": "education",
+      "name": "Education & Training",
+      "icon": "GraduationCap",
+      "description": "Learner-facing platforms and the admin systems behind them.",
+      "applications": [
+        "Enrolment and cohort management",
+        "Assessment and feedback tooling",
+        "Learner support assistants"
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing",
+      "icon": "Wrench",
+      "description": "Connecting shop-floor reality to the systems that plan around it.",
+      "applications": [
+        "Inspection and quality capture apps",
+        "Maintenance scheduling automation",
+        "Production reporting dashboards"
+      ]
+    }
+  ]
+}

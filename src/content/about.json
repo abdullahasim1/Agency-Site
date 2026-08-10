@@ -1,0 +1,136 @@
+{
+  "team": [
+    {
+      "id": "tm-1",
+      "name": "Aria Sandoval",
+      "role": "Principal Engineer & Co-founder",
+      "initials": "AS",
+      "bio": "Leads architecture across platform engagements, with a background in distributed systems and data-intensive applications.",
+      "focus": ["System architecture", "Platform engineering", "Data modelling"],
+      "accent": "brand"
+    },
+    {
+      "id": "tm-2",
+      "name": "Jonas Whitfield",
+      "role": "Head of AI Engineering",
+      "initials": "JW",
+      "bio": "Builds agent architectures and evaluation harnesses, and decides where a model genuinely outperforms deterministic logic.",
+      "focus": ["Agent design", "Evaluation", "Applied NLP"],
+      "accent": "violet"
+    },
+    {
+      "id": "tm-3",
+      "name": "Noor Haddad",
+      "role": "Automation Lead",
+      "initials": "NH",
+      "bio": "Maps operational processes and turns them into orchestrated, monitored workflows that survive contact with production.",
+      "focus": ["Process design", "Orchestration", "Integrations"],
+      "accent": "cyan"
+    },
+    {
+      "id": "tm-4",
+      "name": "Elena Ferraro",
+      "role": "Product Design Lead",
+      "initials": "EF",
+      "bio": "Owns the design systems behind our client products, with a focus on accessibility and interfaces that stay coherent as they grow.",
+      "focus": ["Design systems", "Accessibility", "Interaction design"],
+      "accent": "brand"
+    },
+    {
+      "id": "tm-5",
+      "name": "Marcus Idowu",
+      "role": "Mobile Engineering Lead",
+      "initials": "MI",
+      "bio": "Ships cross-platform applications with an emphasis on offline reliability, sync correctness and release automation.",
+      "focus": ["React Native", "Offline sync", "Release pipelines"],
+      "accent": "violet"
+    },
+    {
+      "id": "tm-6",
+      "name": "Hannah Reiss",
+      "role": "Delivery Manager",
+      "initials": "HR",
+      "bio": "Keeps engagements honest — scope, milestones and the weekly rhythm that means clients are never surprised.",
+      "focus": ["Delivery", "Discovery", "Client partnership"],
+      "accent": "cyan"
+    }
+  ],
+  "missionVision": [
+    {
+      "id": "mission",
+      "title": "Our Mission",
+      "body": "To make advanced technology genuinely useful for ordinary businesses — replacing repetitive work with systems that are reliable, measurable and understood by the people who depend on them.",
+      "icon": "Target"
+    },
+    {
+      "id": "vision",
+      "title": "Our Vision",
+      "body": "A market where AI and automation are held to the same engineering standards as any other production system: tested, observable, documented and accountable for the outcomes they claim.",
+      "icon": "Radar"
+    }
+  ],
+  "values": [
+    {
+      "id": "clarity",
+      "title": "Clarity before code",
+      "body": "We write the problem down and agree on it before estimating. Ambiguity is the most expensive thing in software.",
+      "icon": "FileSearch"
+    },
+    {
+      "id": "evidence",
+      "title": "Evidence over hype",
+      "body": "Model and platform choices are made against evaluation cases, not marketing claims.",
+      "icon": "LineChart"
+    },
+    {
+      "id": "ownership",
+      "title": "You own everything",
+      "body": "Code, infrastructure and documentation are yours from day one. No lock-in, no hostage architecture.",
+      "icon": "Lock"
+    },
+    {
+      "id": "maintainability",
+      "title": "Built to be maintained",
+      "body": "The next engineer to open the codebase matters as much as the one who wrote it.",
+      "icon": "Wrench"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "cap-ai",
+      "title": "Applied AI engineering",
+      "description": "Agent architectures, retrieval systems, structured extraction and evaluation harnesses that keep quality measurable over time.",
+      "icon": "Brain"
+    },
+    {
+      "id": "cap-automation",
+      "title": "Process automation",
+      "description": "Orchestrated workflows with retries, idempotency, alerting and audit trails across the tools your business already runs on.",
+      "icon": "Workflow"
+    },
+    {
+      "id": "cap-product",
+      "title": "Product engineering",
+      "description": "Full-stack web and mobile development, from data model and API design through to a maintained design system.",
+      "icon": "Layers"
+    },
+    {
+      "id": "cap-voice",
+      "title": "Real-time voice systems",
+      "description": "Telephony integration, low-latency conversation handling, transcription and CRM write-back for inbound and outbound calling.",
+      "icon": "Mic"
+    },
+    {
+      "id": "cap-integration",
+      "title": "Systems integration",
+      "description": "Resilient connections between CRMs, databases, payment platforms and third-party APIs, with drift detection built in.",
+      "icon": "PlugZap"
+    },
+    {
+      "id": "cap-infra",
+      "title": "Infrastructure & delivery",
+      "description": "Containerised environments, CI pipelines, staged rollouts and the monitoring needed to operate a system confidently.",
+      "icon": "Cloud"
+    }
+  ]
+}

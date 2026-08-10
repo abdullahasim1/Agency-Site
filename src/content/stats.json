@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": "projects",
+      "value": 50,
+      "suffix": "+",
+      "label": "Projects Delivered",
+      "detail": "Shipped end to end, from discovery to production.",
+      "icon": "Rocket"
+    },
+    {
+      "id": "solutions",
+      "value": 25,
+      "suffix": "+",
+      "label": "Technology Solutions",
+      "detail": "Platforms, agents and automations in active use.",
+      "icon": "Layers"
+    },
+    {
+      "id": "industries",
+      "value": 15,
+      "suffix": "+",
+      "label": "Industries Served",
+      "detail": "From healthcare and logistics to SaaS and finance.",
+      "icon": "Building2"
+    },
+    {
+      "id": "experience",
+      "value": 10,
+      "suffix": "+",
+      "label": "Years of Experience",
+      "detail": "Combined engineering practice across the core team.",
+      "icon": "Gauge"
+    }
+  ]
+}

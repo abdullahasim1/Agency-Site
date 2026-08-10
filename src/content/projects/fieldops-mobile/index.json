@@ -1,0 +1,202 @@
+{
+  "id": "prj-fieldops-mobile",
+  "title": "FieldOps Mobile",
+  "tagline": "Offline-First Field Service Application",
+  "category": "Mobile / Custom Software",
+  "categories": [
+    "Mobile",
+    "Automation"
+  ],
+  "shortDescription": "An iOS and Android application for field crews working without connectivity, with conflict-safe sync and photographic proof of work.",
+  "fullDescription": "Field crews were completing jobs on paper because every previous app assumed a connection. FieldOps treats offline as the normal case: the entire day's work is available on the device, evidence is captured locally, and synchronisation resolves conflicts deterministically when signal returns. Dispatch sees progress as it syncs rather than at the end of the day.",
+  "image": "/images/projects/fieldops-mobile/cover.svg",
+  "imageAlt": "Abstract mobile application layout showing job cards and synchronisation states",
+  "technologies": [
+    "React Native",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "Firebase"
+  ],
+  "techStack": [
+    {
+      "group": "Mobile",
+      "items": [
+        "React Native",
+        "TypeScript",
+        "SQLite"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "REST API",
+        "Background workers"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Object storage"
+      ]
+    },
+    {
+      "group": "Services",
+      "items": [
+        "Firebase Cloud Messaging",
+        "Map & geocoding APIs"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "GitHub Actions",
+        "Over-the-air updates"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Full offline capability",
+      "description": "The complete day's schedule, forms and reference material available with no connection.",
+      "icon": "Smartphone"
+    },
+    {
+      "title": "Conflict-safe sync",
+      "description": "Deterministic resolution rules per field, so simultaneous edits never silently lose data.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "Evidence capture",
+      "description": "Photos, signatures and readings captured locally with location and timestamp metadata.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Dynamic job forms",
+      "description": "Form definitions delivered from the server so new job types need no app release.",
+      "icon": "Puzzle"
+    },
+    {
+      "title": "Route awareness",
+      "description": "Cached mapping and ordering so navigation works in areas with no data coverage.",
+      "icon": "Route"
+    },
+    {
+      "title": "Dispatch visibility",
+      "description": "Job status streams to the office as it syncs, with clear indication of stale data.",
+      "icon": "Radar"
+    }
+  ],
+  "challenge": {
+    "summary": "Crews worked in basements, rural sites and industrial buildings with no reliable signal. Two previous applications had been rejected by the field team.",
+    "points": [
+      "Connectivity was absent or intermittent for most of a typical working day.",
+      "Earlier apps lost work when a submission failed, so crews reverted to paper.",
+      "Paper job sheets were re-keyed in the office, adding a day of lag and transcription errors.",
+      "Proof of work was inconsistent, which caused billing disputes."
+    ]
+  },
+  "solution": {
+    "summary": "We designed for the disconnected case first and treated connectivity as an optimisation, not a requirement.",
+    "points": [
+      "Made the device the source of truth for an in-progress job, with a local database as primary storage.",
+      "Defined explicit per-field conflict resolution rules rather than last-write-wins.",
+      "Queued evidence uploads with resumable transfer and background retry.",
+      "Delivered form definitions from the server so new job types ship without an app store review.",
+      "Ran a two-week pilot with the crews who had rejected earlier apps, and changed the interaction model based on it."
+    ]
+  },
+  "results": [
+    {
+      "value": "100%",
+      "label": "Jobs completed in-app",
+      "detail": "Paper job sheets eliminated across the pilot region."
+    },
+    {
+      "value": "1 day → live",
+      "label": "Dispatch visibility lag",
+      "detail": "Status arrives as it syncs rather than after re-keying."
+    },
+    {
+      "value": "0",
+      "label": "Jobs lost to sync failure",
+      "detail": "Measured across the first six months of operation."
+    },
+    {
+      "value": "91%",
+      "label": "Crew adoption in month one",
+      "detail": "After two previous applications had been abandoned."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/fieldops-mobile/shot-1.svg",
+      "alt": "Daily job list on a mobile device",
+      "caption": "The full day's work, available with no connection."
+    },
+    {
+      "src": "/images/projects/fieldops-mobile/shot-2.svg",
+      "alt": "Job evidence capture screen",
+      "caption": "Evidence capture with location and timestamp metadata."
+    },
+    {
+      "src": "/images/projects/fieldops-mobile/shot-3.svg",
+      "alt": "Synchronisation status view",
+      "caption": "Sync state is always explicit — never a silent failure."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "ASSIGN",
+      "title": "Dispatch schedules",
+      "description": "The day's jobs are assigned and pushed to the device."
+    },
+    {
+      "id": "w2",
+      "tag": "CACHE",
+      "title": "Download for offline",
+      "description": "Jobs, forms and map tiles cached locally before the crew leaves."
+    },
+    {
+      "id": "w3",
+      "tag": "WORK",
+      "title": "Complete on site",
+      "description": "Forms, photos and signatures captured to the local database."
+    },
+    {
+      "id": "w4",
+      "tag": "SYNC",
+      "title": "Reconcile",
+      "description": "Queued changes upload with per-field conflict resolution."
+    },
+    {
+      "id": "w5",
+      "tag": "CLOSE",
+      "title": "Billing handoff",
+      "description": "Completed jobs and evidence flow into invoicing automatically."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — utilities maintenance contractor",
+    "industry": "Manufacturing",
+    "timeline": "13 weeks",
+    "year": "2024",
+    "platforms": [
+      "iOS",
+      "Android",
+      "Web dispatch console"
+    ],
+    "services": [
+      "Mobile App Development",
+      "Custom Software Development"
+    ],
+    "team": "2 engineers, 1 designer, 1 delivery lead"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 7
+}

@@ -1,0 +1,203 @@
+{
+  "id": "prj-commerce-insights",
+  "title": "Commerce Insights Dashboard",
+  "tagline": "Unified Merchandising & Margin Analytics",
+  "category": "Web Apps / SaaS",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "shortDescription": "An analytics platform consolidating orders, inventory, advertising and returns into one margin-accurate view of product performance.",
+  "fullDescription": "A multi-channel retailer was making buying decisions on revenue because true margin was spread across five systems and reconciled by hand each month. We built a warehouse-backed analytics platform that consolidates orders, cost of goods, advertising spend, fees and returns into a single contribution-margin figure per product — updated daily rather than monthly.",
+  "image": "/images/projects/commerce-insights/cover.svg",
+  "imageAlt": "Abstract analytics dashboard layout with charts and product performance panels",
+  "technologies": [
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "PostgreSQL",
+    "Docker"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Scheduled ETL"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Materialised views",
+        "Columnar aggregates"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Commerce platform APIs",
+        "Ad platform APIs",
+        "REST"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "Vercel",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "True contribution margin",
+      "description": "Cost of goods, fees, shipping, advertising and returns combined into one figure per product.",
+      "icon": "LineChart"
+    },
+    {
+      "title": "Multi-channel consolidation",
+      "description": "Marketplace, direct and wholesale performance normalised into a comparable model.",
+      "icon": "Boxes"
+    },
+    {
+      "title": "Inventory intelligence",
+      "description": "Sell-through, cover and reorder signalling based on velocity rather than static thresholds.",
+      "icon": "Package"
+    },
+    {
+      "title": "Return rate analysis",
+      "description": "Returns attributed to product, variant and channel to expose hidden margin loss.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "Saved views & alerts",
+      "description": "Teams save their own segmentation and receive alerts when a metric crosses a threshold.",
+      "icon": "AlarmClock"
+    },
+    {
+      "title": "Fast aggregate queries",
+      "description": "Pre-computed rollups keep multi-year, multi-million-row queries interactive.",
+      "icon": "Gauge"
+    }
+  ],
+  "challenge": {
+    "summary": "Merchandising decisions were made on revenue because margin was only known a month in arrears, after a manual reconciliation across five systems.",
+    "points": [
+      "Cost, fee, advertising and return data lived in five separate systems.",
+      "Reconciliation was a multi-day manual process performed monthly.",
+      "Products that looked profitable on revenue were loss-making after returns and ad spend.",
+      "Existing reporting timed out on queries spanning more than a quarter."
+    ]
+  },
+  "solution": {
+    "summary": "We built the margin model once, in the warehouse, and made every view read from it — so no team maintains its own version of the truth.",
+    "points": [
+      "Built scheduled ingestion from each platform with schema validation and drift detection.",
+      "Modelled contribution margin explicitly, with each cost component traceable to its source.",
+      "Pre-computed rollups and materialised views to keep large queries interactive.",
+      "Replaced monthly reconciliation with a daily refresh and a visible data-freshness indicator.",
+      "Added saved views and threshold alerts so teams are notified rather than having to check."
+    ]
+  },
+  "results": [
+    {
+      "value": "5 → 1",
+      "label": "Data sources consolidated",
+      "detail": "One margin model, one refresh, one source of truth."
+    },
+    {
+      "value": "Monthly → daily",
+      "label": "Margin reporting cadence",
+      "detail": "Manual reconciliation removed from the finance calendar."
+    },
+    {
+      "value": "< 2s",
+      "label": "Typical dashboard query",
+      "detail": "Across multi-year, multi-million-row datasets."
+    },
+    {
+      "value": "18%",
+      "label": "Catalogue found loss-making",
+      "detail": "Products profitable on revenue but negative after fees and returns."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/commerce-insights/shot-1.svg",
+      "alt": "Product margin overview dashboard",
+      "caption": "Contribution margin per product across every channel."
+    },
+    {
+      "src": "/images/projects/commerce-insights/shot-2.svg",
+      "alt": "Inventory cover and sell-through view",
+      "caption": "Sell-through and cover based on live velocity."
+    },
+    {
+      "src": "/images/projects/commerce-insights/shot-3.svg",
+      "alt": "Return rate breakdown by variant",
+      "caption": "Return attribution down to variant and channel."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "INGEST",
+      "title": "Scheduled extraction",
+      "description": "Each platform is pulled on schedule with schema validation."
+    },
+    {
+      "id": "w2",
+      "tag": "MODEL",
+      "title": "Normalise",
+      "description": "Orders, costs, fees and ad spend mapped into one comparable model."
+    },
+    {
+      "id": "w3",
+      "tag": "COMPUTE",
+      "title": "Derive margin",
+      "description": "Contribution margin calculated per product, variant and channel."
+    },
+    {
+      "id": "w4",
+      "tag": "ROLLUP",
+      "title": "Pre-aggregate",
+      "description": "Materialised views keep interactive queries fast at scale."
+    },
+    {
+      "id": "w5",
+      "tag": "SERVE",
+      "title": "Explore & alert",
+      "description": "Saved views, segmentation and threshold notifications."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — multi-channel retailer",
+    "industry": "E-commerce & Retail",
+    "timeline": "12 weeks",
+    "year": "2024",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "Custom Software Development"
+    ],
+    "team": "2 engineers, 1 data engineer, 1 designer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 9
+}

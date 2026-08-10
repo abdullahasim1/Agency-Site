@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "faq-start",
+      "question": "How does an engagement usually start?",
+      "answer": "With a 30-minute consultation. We walk through the problem, the systems already in place and what a good outcome would look like. If it is a fit, the next step is a short paid discovery that produces an architecture, a scope and a fixed delivery plan before any build work is committed.",
+      "category": "Engagement"
+    },
+    {
+      "id": "faq-timeline",
+      "question": "How long does a typical project take?",
+      "answer": "A focused automation or integration is usually two to five weeks. A voice agent or AI assistant with real system access is typically six to ten weeks. A full platform build runs three months or more, delivered in increments so you have working software throughout rather than at the end.",
+      "category": "Delivery"
+    },
+    {
+      "id": "faq-ai-fit",
+      "question": "How do you decide where AI is actually appropriate?",
+      "answer": "During discovery we separate the steps that need judgement from the steps that just need reliable logic. AI goes where judgement is required — classification, extraction, summarisation, conversation. Everything else stays deterministic, because it is cheaper, faster and far easier to audit. It is common for a project to end up using less AI than expected.",
+      "category": "Technology"
+    },
+    {
+      "id": "faq-ownership",
+      "question": "Who owns the code and the infrastructure?",
+      "answer": "You do, from the first commit. Work lands in a repository you control, infrastructure runs in your accounts, and handover includes architecture documentation and a walkthrough for your engineers. There is no proprietary runtime you have to keep paying us for.",
+      "category": "Commercial"
+    },
+    {
+      "id": "faq-existing-systems",
+      "question": "Can you work with our existing systems?",
+      "answer": "Yes, and it is the usual case. We integrate with CRMs, ERPs, databases, telephony and internal APIs rather than asking you to replace them. Where a legacy system has no usable API we work through the interfaces that do exist and isolate that dependency behind a clean boundary.",
+      "category": "Technology"
+    },
+    {
+      "id": "faq-data",
+      "question": "How is our data handled when AI models are involved?",
+      "answer": "Data handling is agreed in writing during discovery. We default to sending the minimum necessary to a model, redacting identifiers where the task allows it, and using providers whose terms exclude training on your data. Where requirements are stricter we use self-hosted or open models instead.",
+      "category": "Technology"
+    },
+    {
+      "id": "faq-pricing",
+      "question": "How do you price work?",
+      "answer": "Discovery is a fixed fee. Delivery is either fixed-scope for well-defined builds or a monthly retainer for ongoing product work. You get the estimate and the assumptions behind it in writing, and we flag scope changes when they happen rather than at invoicing.",
+      "category": "Commercial"
+    },
+    {
+      "id": "faq-support",
+      "question": "What happens after launch?",
+      "answer": "Every system ships with monitoring and alerting already in place. Most clients continue with a support arrangement covering incident response, dependency updates and a monthly improvement allocation. Some take the system fully in-house after handover, which is a perfectly good outcome.",
+      "category": "Delivery"
+    },
+    {
+      "id": "faq-small-projects",
+      "question": "Do you take on small projects?",
+      "answer": "Yes. A single well-chosen automation often pays for itself faster than a large platform. If the scope is genuinely small we will say so and price it accordingly rather than inflating it into a programme of work.",
+      "category": "Engagement"
+    },
+    {
+      "id": "faq-team",
+      "question": "Who will we actually be working with?",
+      "answer": "The engineers building your system, directly. There is no layer of account managers relaying information, and the people in the discovery sessions are the people who write the code.",
+      "category": "Engagement"
+    }
+  ]
+}

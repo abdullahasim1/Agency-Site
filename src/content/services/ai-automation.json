@@ -1,0 +1,46 @@
+{
+  "id": "svc-ai-automation",
+  "order": 1,
+  "title": "AI Automation",
+  "navLabel": "AI Automation",
+  "icon": "Wand2",
+  "shortDescription": "Automate repetitive business operations using intelligent workflows and AI-powered systems.",
+  "fullDescription": "Most teams lose hours every week to work that follows a predictable pattern: copying data between tools, triaging inbound requests, chasing approvals, producing the same report. We map those patterns, then replace them with automations that use AI only where judgement is genuinely required — classification, extraction, summarisation, drafting — and deterministic logic everywhere else. The result is a system you can audit, not a black box.",
+  "technologies": [
+    "OpenAI",
+    "Claude",
+    "n8n",
+    "Python",
+    "PostgreSQL"
+  ],
+  "deliverables": [
+    {
+      "title": "Automation opportunity map",
+      "description": "A ranked inventory of your manual processes scored by time saved, risk and implementation effort."
+    },
+    {
+      "title": "Production automations",
+      "description": "Versioned, monitored workflows with retries, error alerting and a clear audit trail for every run."
+    },
+    {
+      "title": "Human-in-the-loop controls",
+      "description": "Review queues and approval steps wherever an AI decision needs a person to sign off."
+    },
+    {
+      "title": "Operational dashboard",
+      "description": "Live visibility into throughput, failure rates, cost per run and hours recovered."
+    }
+  ],
+  "useCases": [
+    "Document and invoice processing with structured data extraction",
+    "Inbound lead triage, enrichment and routing",
+    "Automated reporting and recurring data reconciliation",
+    "Content and proposal drafting from internal knowledge"
+  ],
+  "relatedProjects": [
+    "ai-sales-automation",
+    "workflow-automation-system"
+  ],
+  "accent": "brand",
+  "featured": true
+}

@@ -1,0 +1,208 @@
+{
+  "id": "prj-ai-sales-automation",
+  "title": "AI Sales Automation",
+  "tagline": "Intelligent Lead Qualification & Pipeline Engine",
+  "category": "AI / Automation",
+  "categories": [
+    "AI",
+    "Automation"
+  ],
+  "shortDescription": "An automated qualification and outreach engine that scores inbound leads, enriches them and routes each to the right owner within minutes.",
+  "fullDescription": "A revenue team was drowning in inbound volume of wildly uneven quality. We built an engine that ingests every lead from every source, enriches it against public and internal data, scores it against a rubric agreed with the sales leadership, and either routes it to an owner with a briefing or places it into a nurture sequence. Reps stopped triaging and started selling.",
+  "image": "/images/projects/ai-sales-automation/cover.svg",
+  "imageAlt": "Abstract diagram of a lead scoring and routing pipeline with branching decision paths",
+  "technologies": [
+    "Python",
+    "OpenAI",
+    "n8n",
+    "PostgreSQL",
+    "GoHighLevel"
+  ],
+  "techStack": [
+    {
+      "group": "Automation",
+      "items": [
+        "n8n",
+        "Make"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Celery"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "OpenAI",
+        "Claude",
+        "Text embeddings"
+      ]
+    },
+    {
+      "group": "CRM",
+      "items": [
+        "GoHighLevel",
+        "REST integrations"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Unified lead ingestion",
+      "description": "Forms, ads, chat, email and partner feeds normalised into a single schema with deduplication on arrival.",
+      "icon": "Boxes"
+    },
+    {
+      "title": "Automatic enrichment",
+      "description": "Company size, sector and technology signals appended before a human ever opens the record.",
+      "icon": "FileSearch"
+    },
+    {
+      "title": "Rubric-based scoring",
+      "description": "Leads scored against explicit, versioned criteria so the reasoning behind a score is always inspectable.",
+      "icon": "Target"
+    },
+    {
+      "title": "Ownership routing",
+      "description": "Territory, capacity and specialism rules assign each lead to the right rep with a written briefing.",
+      "icon": "Route"
+    },
+    {
+      "title": "Adaptive nurture",
+      "description": "Below-threshold leads enter a sequence that re-scores them as new signals arrive.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "Pipeline reporting",
+      "description": "Source quality, conversion by score band and response-time tracking in one view.",
+      "icon": "LineChart"
+    }
+  ],
+  "challenge": {
+    "summary": "Lead response time averaged over a day because every enquiry was triaged by hand, and no one could tell which acquisition channels were actually producing revenue.",
+    "points": [
+      "Leads arrived through six disconnected channels with no shared format or deduplication.",
+      "Manual triage meant the average first response took more than 24 hours.",
+      "Scoring was intuition-based and varied by whoever happened to pick up the record.",
+      "Channel spend decisions were made without reliable attribution."
+    ]
+  },
+  "solution": {
+    "summary": "We separated the deterministic work from the judgement work: rules handle routing and thresholds, models handle interpretation of unstructured text.",
+    "points": [
+      "Built a single ingestion layer normalising every source into one validated schema.",
+      "Used models only for the genuinely fuzzy parts — reading free-text enquiries and summarising company context.",
+      "Encoded the scoring rubric as versioned configuration so sales leadership can change weightings without a deploy.",
+      "Added a review queue for borderline scores rather than forcing the system to guess.",
+      "Instrumented the full funnel so channel performance is measured against closed revenue, not lead count."
+    ]
+  },
+  "results": [
+    {
+      "value": "< 5 min",
+      "label": "Median first response",
+      "detail": "Down from more than a day under manual triage."
+    },
+    {
+      "value": "3.4×",
+      "label": "More qualified conversations",
+      "detail": "Per rep per week, with no increase in headcount."
+    },
+    {
+      "value": "12 hrs",
+      "label": "Manual triage removed weekly",
+      "detail": "Time returned to the sales team across the pipeline."
+    },
+    {
+      "value": "6 → 1",
+      "label": "Lead sources unified",
+      "detail": "One schema, one queue, one source of truth."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/ai-sales-automation/shot-1.svg",
+      "alt": "Lead scoring rubric configuration screen",
+      "caption": "Versioned scoring rubric — editable without a deployment."
+    },
+    {
+      "src": "/images/projects/ai-sales-automation/shot-2.svg",
+      "alt": "Routing rules and territory assignment view",
+      "caption": "Routing rules combining territory, capacity and specialism."
+    },
+    {
+      "src": "/images/projects/ai-sales-automation/shot-3.svg",
+      "alt": "Funnel attribution dashboard",
+      "caption": "Channel attribution measured against closed revenue."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "INGEST",
+      "title": "Capture & normalise",
+      "description": "Every source lands in one validated schema, deduplicated on arrival."
+    },
+    {
+      "id": "w2",
+      "tag": "ENRICH",
+      "title": "Append context",
+      "description": "Firmographic and behavioural signals attached automatically."
+    },
+    {
+      "id": "w3",
+      "tag": "SCORE",
+      "title": "Evaluate",
+      "description": "Rubric scoring with model-read free text and an inspectable rationale."
+    },
+    {
+      "id": "w4",
+      "tag": "ROUTE",
+      "title": "Assign or nurture",
+      "description": "Above threshold goes to an owner with a briefing; below enters nurture."
+    },
+    {
+      "id": "w5",
+      "tag": "MEASURE",
+      "title": "Close the loop",
+      "description": "Outcomes feed back into channel attribution and rubric tuning."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — B2B software vendor",
+    "industry": "SaaS & Technology",
+    "timeline": "8 weeks",
+    "year": "2025",
+    "platforms": [
+      "Automation platform",
+      "CRM"
+    ],
+    "services": [
+      "AI Automation",
+      "Workflow Automation",
+      "CRM & API Integrations"
+    ],
+    "team": "2 engineers, 1 delivery lead"
+  },
+  "featured": true,
+  "accent": "violet",
+  "order": 2
+}

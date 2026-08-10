@@ -1,0 +1,47 @@
+{
+  "title": "CRM & API Integrations",
+  "id": "svc-crm-api-integrations",
+  "navLabel": "CRM & Integrations",
+  "icon": "PlugZap",
+  "shortDescription": "Connect CRMs, APIs, databases, communication platforms and third-party services.",
+  "fullDescription": "Integrations are where most systems quietly break. We build them defensively: contracts validated at the boundary, webhooks verified and replayable, pagination and rate limits handled properly, and every sync observable. When a third-party API changes, you find out from an alert rather than from a customer.",
+  "technologies": [
+    "GoHighLevel",
+    "Twilio",
+    "REST",
+    "GraphQL",
+    "PostgreSQL",
+    "Node.js"
+  ],
+  "deliverables": [
+    {
+      "title": "Integration architecture",
+      "description": "Source of truth per entity, sync direction, conflict rules and field mapping."
+    },
+    {
+      "title": "Resilient connectors",
+      "description": "Signature-verified webhooks, replay support, backoff and idempotent writes."
+    },
+    {
+      "title": "Data hygiene",
+      "description": "Deduplication, normalisation and validation so your CRM stays trustworthy."
+    },
+    {
+      "title": "Monitoring",
+      "description": "Sync health, drift detection and alerts when a downstream contract changes."
+    }
+  ],
+  "useCases": [
+    "Two-way CRM synchronisation with an internal platform",
+    "Payment, invoicing and subscription integrations",
+    "Telephony and messaging platform connections",
+    "Consolidating data from several systems into one warehouse"
+  ],
+  "relatedProjects": [
+    "smart-crm",
+    "workflow-automation-system"
+  ],
+  "accent": "brand",
+  "featured": true,
+  "order": 7
+}

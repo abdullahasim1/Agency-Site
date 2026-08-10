@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # Application dependencies. Group the low-risk updates into one PR each week
+  # so the queue stays small; majors come through on their own for review.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  # The GitHub Actions we pin above (checkout, setup-node, cache, github-script).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

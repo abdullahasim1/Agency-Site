@@ -1,0 +1,30 @@
+{
+  "name": "DevRox",
+  "legalName": "DevRox Technologies",
+  "tagline": "AI · Automation · Software Engineering",
+  "description": "We design and build AI-powered applications, intelligent automations, digital products and scalable software systems that help businesses work smarter and grow faster.",
+  "shortDescription": "An AI, automation and software engineering studio building intelligent products for growing businesses.",
+  "url": "https://www.devrox.com",
+  "contact": {
+    "email": "hello@devrox.com",
+    "salesEmail": "newbusiness@devrox.com",
+    "phone": "+1 (415) 555-0142",
+    "phoneHref": "tel:+14155550142",
+    "location": "Remote-first · Serving clients worldwide",
+    "address": {
+      "line1": "Studio 4, Innovation Quarter",
+      "city": "Austin",
+      "region": "TX",
+      "country": "United States"
+    },
+    "hours": "Mon – Fri · 9:00 – 18:00 (CT)",
+    "responseTime": "We reply to every enquiry within one business day."
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/company/devrox",
+    "github": "https://github.com/devrox",
+    "x": "https://x.com/devrox"
+  },
+  "twitterHandle": "@devrox",
+  "foundedYear": 2016
+}

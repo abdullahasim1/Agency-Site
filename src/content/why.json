@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "id": "ai-first",
+      "number": "01",
+      "title": "AI-First Thinking",
+      "description": "We use AI where it creates measurable business value.",
+      "detail": "Before anything is built we identify which parts of a process genuinely need judgement and which just need reliable logic. AI goes where it earns its place, and we measure the difference it makes.",
+      "icon": "Sparkles"
+    },
+    {
+      "id": "custom-solutions",
+      "number": "02",
+      "title": "Custom Solutions",
+      "description": "Every system is designed around the client's actual workflow.",
+      "detail": "We start from how your team really works, including the exceptions and workarounds, rather than bending your process to fit a template.",
+      "icon": "Puzzle"
+    },
+    {
+      "id": "modern-technology",
+      "number": "03",
+      "title": "Modern Technology",
+      "description": "We use modern frameworks and scalable architecture.",
+      "detail": "Typed codebases, tested integrations and reproducible deployments. Choices are made for the next three years of the product, not just the launch.",
+      "icon": "Cpu"
+    },
+    {
+      "id": "automation-mindset",
+      "number": "04",
+      "title": "Automation Mindset",
+      "description": "We eliminate repetitive work wherever possible.",
+      "detail": "Every engagement leaves behind fewer manual steps than it started with — in your operations and in the delivery pipeline itself.",
+      "icon": "Repeat2"
+    },
+    {
+      "id": "long-term-partnership",
+      "number": "05",
+      "title": "Long-Term Partnership",
+      "description": "We build systems that can evolve with the business.",
+      "detail": "Documented architecture, readable code and real handover, so your team can extend the system with or without us.",
+      "icon": "Handshake"
+    }
+  ]
+}

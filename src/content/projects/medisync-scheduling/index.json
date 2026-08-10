@@ -1,0 +1,211 @@
+{
+  "id": "prj-medisync-scheduling",
+  "title": "MediSync Scheduling Assistant",
+  "tagline": "Voice-Led Appointment Coordination",
+  "category": "AI / Voice / Automation",
+  "categories": [
+    "AI",
+    "Automation"
+  ],
+  "shortDescription": "A voice and messaging assistant that handles appointment booking, rescheduling and reminders for a multi-site clinic group.",
+  "fullDescription": "Reception teams across several clinics spent most of their day on the phone rearranging appointments. MediSync answers those calls, confirms identity against the practice system, offers genuinely available slots and books them — while routing anything clinical straight to a person. Reminder and waitlist handling run automatically, which measurably reduced empty chairs.",
+  "image": "/images/projects/medisync-scheduling/cover.svg",
+  "imageAlt": "Abstract scheduling diagram showing appointment slots and voice interaction paths",
+  "technologies": [
+    "Twilio",
+    "ElevenLabs",
+    "OpenAI",
+    "Node.js",
+    "PostgreSQL"
+  ],
+  "techStack": [
+    {
+      "group": "Voice",
+      "items": [
+        "Twilio Programmable Voice",
+        "ElevenLabs",
+        "Whisper"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "OpenAI",
+        "Structured output",
+        "Intent classification"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "TypeScript",
+        "Queue workers"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Practice management API",
+        "SMS",
+        "Calendar sync"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Identity verification",
+      "description": "Callers confirmed against the practice system before any appointment detail is discussed.",
+      "icon": "Fingerprint"
+    },
+    {
+      "title": "Real availability",
+      "description": "Slots are read live and provisionally held during the call, never offered speculatively.",
+      "icon": "Calendar"
+    },
+    {
+      "title": "Strict clinical boundary",
+      "description": "Any clinical question is transferred immediately; the assistant handles scheduling only.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Automated reminders",
+      "description": "Voice and SMS reminders with one-step confirm, reschedule or cancel.",
+      "icon": "AlarmClock"
+    },
+    {
+      "title": "Waitlist backfill",
+      "description": "Cancellations trigger outbound offers to the waitlist in priority order.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "Multi-site routing",
+      "description": "Location, clinician and service rules applied per site from one configuration.",
+      "icon": "Network"
+    }
+  ],
+  "challenge": {
+    "summary": "Reception was saturated by scheduling calls, and late cancellations left slots empty because nobody had time to work the waitlist.",
+    "points": [
+      "Call volume peaked far beyond what reception could answer, so patients waited or gave up.",
+      "Late cancellations frequently went unfilled, wasting clinician time.",
+      "Reminder calls were made manually and inconsistently.",
+      "Any automated system had to be unambiguous about not giving clinical advice."
+    ]
+  },
+  "solution": {
+    "summary": "We scoped the assistant tightly to scheduling, integrated directly with the practice management system, and made escalation immediate on anything clinical.",
+    "points": [
+      "Constrained the assistant to scheduling intents, with hard transfer rules on clinical topics.",
+      "Integrated with the practice management API so availability and bookings are always real.",
+      "Provisionally held slots during the conversation to eliminate double-booking.",
+      "Automated reminders across voice and SMS with single-step responses.",
+      "Built waitlist backfill that dials candidates in priority order the moment a slot opens."
+    ]
+  },
+  "results": [
+    {
+      "value": "73%",
+      "label": "Scheduling calls handled end to end",
+      "detail": "Booking, rescheduling and cancellation without reception involvement."
+    },
+    {
+      "value": "38%",
+      "label": "Reduction in unfilled cancellations",
+      "detail": "Attributed to automated waitlist backfill."
+    },
+    {
+      "value": "0",
+      "label": "Clinical questions answered by the assistant",
+      "detail": "All transferred to a person by design."
+    },
+    {
+      "value": "6",
+      "label": "Clinic sites live",
+      "detail": "Running from a single shared configuration."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/medisync-scheduling/shot-1.svg",
+      "alt": "Appointment availability view",
+      "caption": "Live availability read from the practice management system."
+    },
+    {
+      "src": "/images/projects/medisync-scheduling/shot-2.svg",
+      "alt": "Call transcript with intent classification",
+      "caption": "Transcripts with intent classification and transfer reasons."
+    },
+    {
+      "src": "/images/projects/medisync-scheduling/shot-3.svg",
+      "alt": "Waitlist backfill queue",
+      "caption": "Waitlist backfill dialling in priority order after a cancellation."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "ANSWER",
+      "title": "Call received",
+      "description": "The assistant answers and establishes the caller's intent."
+    },
+    {
+      "id": "w2",
+      "tag": "VERIFY",
+      "title": "Confirm identity",
+      "description": "Caller matched against the practice record before details are shared."
+    },
+    {
+      "id": "w3",
+      "tag": "CHECK",
+      "title": "Read availability",
+      "description": "Real slots retrieved and provisionally held during the conversation."
+    },
+    {
+      "id": "w4",
+      "tag": "BOOK",
+      "title": "Confirm booking",
+      "description": "Appointment written back and confirmation sent by SMS."
+    },
+    {
+      "id": "w5",
+      "tag": "FOLLOW",
+      "title": "Remind & backfill",
+      "description": "Reminders scheduled; cancellations trigger waitlist outreach."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — multi-site clinic group",
+    "industry": "Healthcare",
+    "timeline": "9 weeks",
+    "year": "2025",
+    "platforms": [
+      "Telephony",
+      "SMS",
+      "Web admin console"
+    ],
+    "services": [
+      "AI Voice Agents",
+      "Workflow Automation",
+      "CRM & API Integrations"
+    ],
+    "team": "2 engineers, 1 delivery lead"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 8
+}

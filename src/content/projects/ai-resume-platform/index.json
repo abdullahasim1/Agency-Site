@@ -1,0 +1,204 @@
+{
+  "id": "prj-ai-resume-platform",
+  "title": "AI Resume Platform",
+  "tagline": "Resume Intelligence & Candidate Matching",
+  "category": "AI / Web Application",
+  "categories": [
+    "AI",
+    "Web Apps",
+    "SaaS"
+  ],
+  "shortDescription": "A web platform that parses resumes into structured data, matches candidates to roles with an explainable score, and generates tailored documents.",
+  "fullDescription": "Recruiters were reading hundreds of inconsistently formatted resumes to fill a handful of roles. The platform parses any document into a structured candidate profile, evaluates fit against a role's stated requirements, and shows exactly which requirement each part of the score came from. Because the scoring is explainable, recruiters can override it — and their overrides feed back into calibration.",
+  "image": "/images/projects/ai-resume-platform/cover.svg",
+  "imageAlt": "Abstract representation of document parsing into structured candidate profiles",
+  "technologies": [
+    "Next.js",
+    "Python",
+    "FastAPI",
+    "OpenAI",
+    "PostgreSQL"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Celery"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "OpenAI",
+        "Hugging Face",
+        "Vector embeddings"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "pgvector",
+        "Object storage"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "Vercel",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Format-agnostic parsing",
+      "description": "PDF, DOCX and scanned documents parsed into one structured profile schema.",
+      "icon": "FileSearch"
+    },
+    {
+      "title": "Explainable matching",
+      "description": "Every score breaks down by requirement, with the supporting evidence quoted from the document.",
+      "icon": "Target"
+    },
+    {
+      "title": "Semantic skill search",
+      "description": "Vector search finds equivalent experience even when the wording does not match the job description.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Tailored document generation",
+      "description": "Role-specific resume and summary variants produced from the structured profile.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Bias-aware review",
+      "description": "Configurable field redaction during first-pass review, with a full audit log of who saw what.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Recruiter feedback loop",
+      "description": "Overrides are captured and used to recalibrate scoring against real hiring decisions.",
+      "icon": "Repeat2"
+    }
+  ],
+  "challenge": {
+    "summary": "Screening was the bottleneck. Strong candidates were being missed because their wording did not match the job description, and there was no record of why anyone was rejected.",
+    "points": [
+      "Resumes arrived in every format, including scans, with no consistent structure.",
+      "Keyword filters rejected candidates whose equivalent experience was phrased differently.",
+      "Screening decisions were undocumented, which was a growing compliance concern.",
+      "Producing a tailored candidate summary for a client took a recruiter around 30 minutes."
+    ]
+  },
+  "solution": {
+    "summary": "We made the structured profile the product. Everything downstream — matching, search, document generation — reads from it, and every score is traceable back to the source text.",
+    "points": [
+      "Built a parsing pipeline with OCR fallback that normalises any input into one profile schema.",
+      "Scored candidates per requirement rather than in aggregate, quoting the evidence for each.",
+      "Added vector search over experience so equivalent skills surface without exact keyword overlap.",
+      "Logged every screening decision, its rationale and its reviewer for auditability.",
+      "Generated client-ready summaries from structured data instead of rewriting documents by hand."
+    ]
+  },
+  "results": [
+    {
+      "value": "82%",
+      "label": "Screening time reduced",
+      "detail": "Measured across first-pass review of inbound applications."
+    },
+    {
+      "value": "30 min → 2 min",
+      "label": "Candidate summary generation",
+      "detail": "Produced from the structured profile rather than written by hand."
+    },
+    {
+      "value": "100%",
+      "label": "Decisions with a recorded rationale",
+      "detail": "Every screening outcome auditable after the fact."
+    },
+    {
+      "value": "+27%",
+      "label": "Shortlist-to-interview rate",
+      "detail": "Attributed to semantic matching surfacing overlooked candidates."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/ai-resume-platform/shot-1.svg",
+      "alt": "Structured candidate profile view",
+      "caption": "Parsed profile — every field traceable to its source text."
+    },
+    {
+      "src": "/images/projects/ai-resume-platform/shot-2.svg",
+      "alt": "Requirement-level match breakdown",
+      "caption": "Match score broken down per requirement with quoted evidence."
+    },
+    {
+      "src": "/images/projects/ai-resume-platform/shot-3.svg",
+      "alt": "Semantic candidate search results",
+      "caption": "Semantic search across experience rather than keyword matching."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "UPLOAD",
+      "title": "Document intake",
+      "description": "Any format accepted, with OCR fallback for scanned files."
+    },
+    {
+      "id": "w2",
+      "tag": "PARSE",
+      "title": "Structure extraction",
+      "description": "Content normalised into a validated candidate profile schema."
+    },
+    {
+      "id": "w3",
+      "tag": "EMBED",
+      "title": "Index experience",
+      "description": "Skills and history embedded for semantic retrieval."
+    },
+    {
+      "id": "w4",
+      "tag": "MATCH",
+      "title": "Score against role",
+      "description": "Per-requirement scoring with quoted supporting evidence."
+    },
+    {
+      "id": "w5",
+      "tag": "OUTPUT",
+      "title": "Review & generate",
+      "description": "Recruiter reviews, overrides are logged, documents are generated."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — specialist recruitment firm",
+    "industry": "Professional Services",
+    "timeline": "11 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "AI Automation",
+      "Web Application Development"
+    ],
+    "team": "2 engineers, 1 designer"
+  },
+  "featured": true,
+  "accent": "brand",
+  "order": 4
+}

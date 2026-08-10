@@ -1,0 +1,47 @@
+{
+  "id": "svc-custom-software-development",
+  "order": 8,
+  "title": "Custom Software Development",
+  "navLabel": "Custom Software",
+  "icon": "Code2",
+  "shortDescription": "Build custom digital products around specific business requirements.",
+  "fullDescription": "Sometimes the process is the competitive advantage and off-the-shelf software cannot express it. We build bespoke platforms for those cases — starting from the real workflow rather than a feature list, shipping a usable slice early, and expanding from there. You own the code, the infrastructure and the roadmap.",
+  "technologies": [
+    "TypeScript",
+    "Next.js",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "Docker"
+  ],
+  "deliverables": [
+    {
+      "title": "Discovery and specification",
+      "description": "Workflows, roles, edge cases and success criteria written down before estimating."
+    },
+    {
+      "title": "Incremental delivery",
+      "description": "Working software in short cycles, deployed to a real environment you can use."
+    },
+    {
+      "title": "Test and quality coverage",
+      "description": "Automated tests across the paths where a defect would actually cost you money."
+    },
+    {
+      "title": "Infrastructure and handover",
+      "description": "Reproducible environments, documented deployment and a supported transition to your team."
+    }
+  ],
+  "useCases": [
+    "Operations platforms encoding a proprietary process",
+    "Regulated workflows requiring audit trails and controls",
+    "Replacing a fragile mix of spreadsheets and manual steps",
+    "Products that must integrate deeply with legacy systems"
+  ],
+  "relatedProjects": [
+    "smart-crm",
+    "commerce-insights"
+  ],
+  "accent": "violet",
+  "featured": true
+}

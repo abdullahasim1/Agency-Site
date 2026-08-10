@@ -1,0 +1,200 @@
+{
+  "id": "prj-workflow-automation-system",
+  "title": "Workflow Automation System",
+  "tagline": "Unified Operations Orchestration",
+  "category": "Automation",
+  "categories": [
+    "Automation"
+  ],
+  "shortDescription": "A consolidated orchestration layer replacing scattered scripts and disconnected no-code scenarios with monitored, recoverable workflows.",
+  "fullDescription": "Automation had grown organically across four platforms, several personal accounts and a handful of scheduled scripts. Nothing was versioned, failures were silent, and the person who built most of it had left. We rebuilt the estate as one orchestrated system with version control, retries, dead-letter handling and alerting — and documented every workflow so the team can maintain it themselves.",
+  "image": "/images/projects/workflow-automation-system/cover.svg",
+  "imageAlt": "Abstract orchestration diagram showing branching workflow paths and retry loops",
+  "technologies": [
+    "n8n",
+    "Node.js",
+    "PostgreSQL",
+    "Make",
+    "Docker"
+  ],
+  "techStack": [
+    {
+      "group": "Orchestration",
+      "items": [
+        "n8n (self-hosted)",
+        "Make"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "TypeScript",
+        "Queue workers"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "REST",
+        "Webhooks",
+        "GoHighLevel",
+        "Zapier"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "GitHub Actions",
+        "Uptime monitoring"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Version-controlled workflows",
+      "description": "Every workflow definition lives in git and deploys through the same pipeline as application code.",
+      "icon": "GitBranch"
+    },
+    {
+      "title": "Idempotent execution",
+      "description": "Idempotency keys throughout, so a retry can never double-charge, double-send or double-create.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Dead-letter handling",
+      "description": "Failed runs are captured with full payload and can be replayed once the cause is fixed.",
+      "icon": "LifeBuoy"
+    },
+    {
+      "title": "Rate-limit awareness",
+      "description": "Per-integration throttling and exponential backoff so third-party limits degrade rather than break.",
+      "icon": "Gauge"
+    },
+    {
+      "title": "Operational alerting",
+      "description": "Failures route to the responsible team with a written runbook attached to the notification.",
+      "icon": "AlarmClock"
+    },
+    {
+      "title": "Run observability",
+      "description": "Every execution searchable by entity, with timing, payload and outcome retained.",
+      "icon": "Activity"
+    }
+  ],
+  "challenge": {
+    "summary": "Nobody could answer what automation existed, where it ran or whether it had worked last night. Failures surfaced when a customer complained.",
+    "points": [
+      "Automation was spread across four platforms, some of it in personal accounts.",
+      "No version history, so a broken change could not be identified or rolled back.",
+      "Failures were silent; the first signal was usually a customer or a missing record.",
+      "Retries were unsafe, so operators avoided them and fixed things by hand instead."
+    ]
+  },
+  "solution": {
+    "summary": "We inventoried everything, rebuilt it on one self-hosted orchestrator, and treated workflows as software: versioned, reviewed, deployed and monitored.",
+    "points": [
+      "Audited and documented every existing automation before migrating any of it.",
+      "Consolidated onto self-hosted n8n with definitions in git and deployment through CI.",
+      "Made every step idempotent so retries and replays are safe by construction.",
+      "Added a dead-letter queue with full payload capture and one-click replay.",
+      "Wired alerting to the owning team with runbooks written for each failure mode."
+    ]
+  },
+  "results": [
+    {
+      "value": "4 → 1",
+      "label": "Platforms consolidated",
+      "detail": "One orchestrator, one deployment path, one place to look."
+    },
+    {
+      "value": "99.6%",
+      "label": "Workflow success rate",
+      "detail": "Measured over the first quarter after migration."
+    },
+    {
+      "value": "< 3 min",
+      "label": "Mean time to detection",
+      "detail": "Alerting replaced customer reports as the first failure signal."
+    },
+    {
+      "value": "31",
+      "label": "Workflows documented",
+      "detail": "Each with an owner, a diagram and a recovery runbook."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/workflow-automation-system/shot-1.svg",
+      "alt": "Workflow orchestration overview",
+      "caption": "Consolidated workflow inventory with ownership and status."
+    },
+    {
+      "src": "/images/projects/workflow-automation-system/shot-2.svg",
+      "alt": "Dead letter queue and replay interface",
+      "caption": "Dead-letter queue with full payload capture and replay."
+    },
+    {
+      "src": "/images/projects/workflow-automation-system/shot-3.svg",
+      "alt": "Run history and alerting dashboard",
+      "caption": "Run history, timing and alert routing per workflow."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "TRIGGER",
+      "title": "Event received",
+      "description": "Webhook, schedule or queue message enters the orchestrator."
+    },
+    {
+      "id": "w2",
+      "tag": "VALIDATE",
+      "title": "Contract check",
+      "description": "Payload validated and assigned an idempotency key before any side effect."
+    },
+    {
+      "id": "w3",
+      "tag": "EXECUTE",
+      "title": "Run steps",
+      "description": "Steps execute with per-integration throttling and backoff."
+    },
+    {
+      "id": "w4",
+      "tag": "RECOVER",
+      "title": "Retry or park",
+      "description": "Transient failures retry; permanent ones land in the dead-letter queue."
+    },
+    {
+      "id": "w5",
+      "tag": "NOTIFY",
+      "title": "Alert & log",
+      "description": "Outcome recorded, owning team alerted with the relevant runbook."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — e-commerce operations group",
+    "industry": "E-commerce & Retail",
+    "timeline": "7 weeks",
+    "year": "2024",
+    "platforms": [
+      "Automation platform"
+    ],
+    "services": [
+      "Workflow Automation",
+      "CRM & API Integrations"
+    ],
+    "team": "2 engineers, 1 delivery lead"
+  },
+  "featured": true,
+  "accent": "cyan",
+  "order": 5
+}

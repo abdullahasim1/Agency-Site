@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "id": "discover",
+      "number": "01",
+      "title": "Discover",
+      "summary": "Understand the business, goals, users and existing workflows.",
+      "icon": "Search",
+      "activities": [
+        "Stakeholder interviews and workflow walkthroughs",
+        "Audit of current tools, data and integration points",
+        "Constraints, compliance needs and success metrics"
+      ],
+      "output": "A written problem definition everyone agrees on."
+    },
+    {
+      "id": "plan",
+      "number": "02",
+      "title": "Plan",
+      "summary": "Define the architecture, technology stack and automation strategy.",
+      "icon": "Compass",
+      "activities": [
+        "Solution architecture and data model",
+        "Build-versus-configure decisions per component",
+        "Scoped delivery plan with milestones and risks"
+      ],
+      "output": "An architecture and a plan you can hold us to."
+    },
+    {
+      "id": "build",
+      "number": "03",
+      "title": "Build",
+      "summary": "Design, develop and integrate the complete solution.",
+      "icon": "Layers",
+      "activities": [
+        "Interface design against a shared design system",
+        "Incremental delivery with a usable environment each cycle",
+        "Integrations, automated tests and evaluation of AI behaviour"
+      ],
+      "output": "Working software in a real environment, every cycle."
+    },
+    {
+      "id": "launch",
+      "number": "04",
+      "title": "Launch & Optimize",
+      "summary": "Deploy, monitor and continuously improve the system.",
+      "icon": "Rocket",
+      "activities": [
+        "Staged rollout with monitoring and alerting in place",
+        "Team enablement, documentation and handover",
+        "Measurement against the metrics agreed in discovery"
+      ],
+      "output": "A monitored system and a prioritised improvement backlog."
+    }
+  ]
+}

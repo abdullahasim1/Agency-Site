@@ -1,0 +1,92 @@
+{
+  "categories": [
+    {
+      "id": "frontend",
+      "title": "Frontend",
+      "icon": "LayoutDashboard",
+      "description": "Interfaces that stay fast and accessible as products grow.",
+      "accent": "brand",
+      "items": [
+        { "name": "React", "note": "Component architecture and state management" },
+        { "name": "Next.js", "note": "App Router, server components, streaming" },
+        { "name": "TypeScript", "note": "End-to-end type safety" },
+        { "name": "Tailwind CSS", "note": "Token-driven design systems" }
+      ]
+    },
+    {
+      "id": "backend",
+      "title": "Backend",
+      "icon": "Server",
+      "description": "Typed services and APIs built to be observable in production.",
+      "accent": "brand",
+      "items": [
+        { "name": "Node.js", "note": "Event-driven services and job workers" },
+        { "name": "Express", "note": "Lightweight HTTP and webhook endpoints" },
+        { "name": "Python", "note": "Data processing and AI pipelines" },
+        { "name": "FastAPI", "note": "Typed Python APIs with generated schemas" }
+      ]
+    },
+    {
+      "id": "database",
+      "title": "Database",
+      "icon": "Database",
+      "description": "Data models designed for the queries the product needs.",
+      "accent": "violet",
+      "items": [
+        { "name": "PostgreSQL", "note": "Relational core, migrations, row-level security" },
+        { "name": "MongoDB", "note": "Flexible documents for evolving schemas" },
+        { "name": "MySQL", "note": "Established relational workloads" },
+        { "name": "Firebase", "note": "Realtime sync and mobile-first persistence" }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI",
+      "icon": "Brain",
+      "description": "Model selection driven by evaluation, not by hype.",
+      "accent": "violet",
+      "items": [
+        { "name": "OpenAI", "note": "Reasoning, tool use and structured output" },
+        { "name": "Gemini", "note": "Long-context and multimodal workloads" },
+        { "name": "Claude", "note": "Agentic workflows and careful instruction following" },
+        { "name": "Hugging Face", "note": "Open models, embeddings and fine-tuning" }
+      ]
+    },
+    {
+      "id": "automation",
+      "title": "Automation",
+      "icon": "Workflow",
+      "description": "Orchestration platforms chosen to fit the team who maintain them.",
+      "accent": "cyan",
+      "items": [
+        { "name": "n8n", "note": "Self-hosted, version-controlled workflows" },
+        { "name": "Make", "note": "Visual scenarios for business operations" },
+        { "name": "GoHighLevel", "note": "CRM, pipelines and marketing automation" },
+        { "name": "Zapier", "note": "Fast connections between SaaS tools" }
+      ]
+    },
+    {
+      "id": "communication",
+      "title": "Communication",
+      "icon": "Mic",
+      "description": "Voice and messaging infrastructure for real-time systems.",
+      "accent": "cyan",
+      "items": [
+        { "name": "Twilio", "note": "Programmable voice, SMS and call routing" },
+        { "name": "ElevenLabs", "note": "Low-latency speech synthesis" }
+      ]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud / Deployment",
+      "icon": "Cloud",
+      "description": "Reproducible environments and automated releases.",
+      "accent": "brand",
+      "items": [
+        { "name": "Vercel", "note": "Edge delivery and preview deployments" },
+        { "name": "Docker", "note": "Containerised, reproducible builds" },
+        { "name": "GitHub Actions", "note": "CI checks, tests and release pipelines" }
+      ]
+    }
+  ]
+}

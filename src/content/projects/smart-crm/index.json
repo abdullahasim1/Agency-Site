@@ -1,0 +1,213 @@
+{
+  "id": "prj-smart-crm",
+  "title": "Smart CRM",
+  "tagline": "AI-Assisted Customer Relationship Platform",
+  "category": "SaaS / AI",
+  "categories": [
+    "SaaS",
+    "AI",
+    "Web Apps"
+  ],
+  "shortDescription": "A multi-tenant CRM with AI assistance built into the record, summarising history and surfacing the next action for every account.",
+  "fullDescription": "Built for an operator whose process did not fit any off-the-shelf CRM, Smart CRM models their actual pipeline stages and permissions rather than approximating them. AI sits inside the record, not beside it: every account carries a rolling summary of its history, a suggested next action with the reasoning shown, and deduplication that runs continuously rather than as an occasional cleanup.",
+  "image": "/images/projects/smart-crm/cover.svg",
+  "imageAlt": "Abstract layout of a customer relationship platform with linked record panels",
+  "technologies": [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "OpenAI",
+    "Node.js"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "REST API",
+        "Background workers"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "OpenAI",
+        "Embeddings",
+        "Structured output"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Row-level security",
+        "Full-text search"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Twilio",
+        "Email sync",
+        "Webhooks"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Vercel",
+        "Docker",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Multi-tenant by design",
+      "description": "Tenant isolation enforced at the database level with row-level security rather than in application code.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Rolling account summaries",
+      "description": "Each record carries an up-to-date narrative of its history, regenerated as new activity lands.",
+      "icon": "FileSearch"
+    },
+    {
+      "title": "Next-action suggestions",
+      "description": "Recommended follow-ups with the signals behind them shown, so a rep can disagree knowingly.",
+      "icon": "Lightbulb"
+    },
+    {
+      "title": "Continuous deduplication",
+      "description": "Embedding-based matching flags likely duplicates as they are created, not months later.",
+      "icon": "Fingerprint"
+    },
+    {
+      "title": "Configurable pipelines",
+      "description": "Stages, fields and permissions defined per tenant without forking the codebase.",
+      "icon": "Puzzle"
+    },
+    {
+      "title": "Activity timeline",
+      "description": "Calls, emails and system events unified into one chronological view per account.",
+      "icon": "Activity"
+    }
+  ],
+  "challenge": {
+    "summary": "Their process spanned three tools and a large spreadsheet. Nobody trusted the data, and onboarding a new team member took weeks of tribal knowledge transfer.",
+    "points": [
+      "Customer history was split across a generic CRM, a shared inbox and a spreadsheet of exceptions.",
+      "Duplicate records accumulated faster than anyone could clean them.",
+      "Reporting required manual export and reconciliation every month.",
+      "The existing CRM could not express their permission model, so everyone effectively saw everything."
+    ]
+  },
+  "solution": {
+    "summary": "We modelled their real pipeline rather than a generic one, enforced isolation in the database, and put AI where it removes reading work instead of where it looks impressive.",
+    "points": [
+      "Designed a schema around their actual stages, exceptions and role boundaries.",
+      "Enforced tenant and role isolation with row-level security, removing a whole class of access bugs.",
+      "Generated account summaries on write so reps stop reading months of history before a call.",
+      "Ran duplicate detection continuously at the point of creation with a human confirmation step.",
+      "Replaced the monthly export ritual with live reporting built on the same source of truth."
+    ]
+  },
+  "results": [
+    {
+      "value": "3 → 1",
+      "label": "Systems consolidated",
+      "detail": "One platform replaced a CRM, a shared inbox and a spreadsheet."
+    },
+    {
+      "value": "94%",
+      "label": "Duplicate records resolved",
+      "detail": "Detected and merged during the migration and on an ongoing basis."
+    },
+    {
+      "value": "2 days",
+      "label": "New-starter ramp time",
+      "detail": "Down from roughly two weeks of shadowing."
+    },
+    {
+      "value": "Live",
+      "label": "Reporting cadence",
+      "detail": "Monthly manual reconciliation removed entirely."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/smart-crm/shot-1.svg",
+      "alt": "Account record with AI summary panel",
+      "caption": "Account view with rolling summary and suggested next action."
+    },
+    {
+      "src": "/images/projects/smart-crm/shot-2.svg",
+      "alt": "Pipeline configuration interface",
+      "caption": "Per-tenant pipeline configuration without code changes."
+    },
+    {
+      "src": "/images/projects/smart-crm/shot-3.svg",
+      "alt": "Duplicate detection review queue",
+      "caption": "Duplicate review queue with confidence and matching signals."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "SYNC",
+      "title": "Activity capture",
+      "description": "Calls, email and web events flow into one timeline per account."
+    },
+    {
+      "id": "w2",
+      "tag": "RESOLVE",
+      "title": "Identity resolution",
+      "description": "Embedding-based matching links records and flags likely duplicates."
+    },
+    {
+      "id": "w3",
+      "tag": "SUMMARISE",
+      "title": "Account narrative",
+      "description": "A rolling summary is regenerated as significant activity lands."
+    },
+    {
+      "id": "w4",
+      "tag": "SUGGEST",
+      "title": "Next action",
+      "description": "Recommendations surface with the underlying signals attached."
+    },
+    {
+      "id": "w5",
+      "tag": "REPORT",
+      "title": "Live reporting",
+      "description": "Pipeline and performance views read from the same source of truth."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — multi-brand services operator",
+    "industry": "Professional Services",
+    "timeline": "16 weeks",
+    "year": "2024",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Custom Software Development",
+      "Web Application Development",
+      "CRM & API Integrations"
+    ],
+    "team": "3 engineers, 1 designer, 1 delivery lead"
+  },
+  "featured": true,
+  "accent": "cyan",
+  "order": 3
+}

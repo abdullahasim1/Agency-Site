@@ -1,0 +1,203 @@
+{
+  "id": "prj-routelens-driver-app",
+  "title": "RouteLens Driver App",
+  "tagline": "Delivery Execution & Proof of Delivery",
+  "category": "Mobile / Logistics",
+  "categories": [
+    "Mobile",
+    "Automation"
+  ],
+  "shortDescription": "A driver application for route execution, exception handling and proof of delivery, with live progress streaming to dispatch.",
+  "fullDescription": "RouteLens gives drivers a single screen for the run ahead: ordered stops, navigation handoff, one-tap exception reporting and structured proof of delivery. Dispatch sees progress and estimated arrival in real time, and customers receive accurate notifications automatically instead of a phone call from the office.",
+  "image": "/images/projects/routelens-driver-app/cover.svg",
+  "imageAlt": "Abstract mobile route execution layout with ordered stops and status indicators",
+  "technologies": [
+    "React Native",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "Firebase"
+  ],
+  "techStack": [
+    {
+      "group": "Mobile",
+      "items": [
+        "React Native",
+        "TypeScript",
+        "SQLite"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "WebSockets",
+        "REST API"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "Object storage"
+      ]
+    },
+    {
+      "group": "Services",
+      "items": [
+        "Firebase Cloud Messaging",
+        "Mapping & routing APIs",
+        "SMS"
+      ]
+    },
+    {
+      "group": "Infrastructure",
+      "items": [
+        "Docker",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Ordered run view",
+      "description": "The full route as a single sequence, with the next action always the largest thing on screen.",
+      "icon": "Route"
+    },
+    {
+      "title": "One-tap exceptions",
+      "description": "Structured reasons for failed or partial delivery, captured in seconds at the door.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Proof of delivery",
+      "description": "Signature, photo and geotagged timestamp bundled and uploaded per stop.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Live ETA streaming",
+      "description": "Position and progress stream to dispatch, driving automatic customer notifications.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Low-connectivity tolerance",
+      "description": "Stop completion is recorded locally and queued when coverage drops.",
+      "icon": "Smartphone"
+    },
+    {
+      "title": "Driver-safe interaction",
+      "description": "Large targets, high contrast and minimal typing, designed for use in a vehicle.",
+      "icon": "Fingerprint"
+    }
+  ],
+  "challenge": {
+    "summary": "Dispatch had no visibility into a run until the driver called in, and proof of delivery was a paper sheet photographed at the end of the day.",
+    "points": [
+      "Delivery status was unknown between depot departure and return.",
+      "Customer arrival estimates were guesses relayed by the office.",
+      "Paper proof of delivery meant disputes were resolved days later, if at all.",
+      "Failed deliveries were reported inconsistently, so root causes were invisible."
+    ]
+  },
+  "solution": {
+    "summary": "We designed the app around what a driver can safely do in ten seconds at a doorstep, and streamed everything else to the office automatically.",
+    "points": [
+      "Reduced each stop to a single primary action with structured, tappable outcomes.",
+      "Captured proof of delivery as a bundled artefact with signature, photo and geotag.",
+      "Streamed position and progress so dispatch and customer notifications need no phone calls.",
+      "Queued completions locally so poor coverage never blocks a driver.",
+      "Standardised exception reasons, making failure causes measurable for the first time."
+    ]
+  },
+  "results": [
+    {
+      "value": "Live",
+      "label": "Run visibility",
+      "detail": "Dispatch sees progress continuously rather than on driver call-in."
+    },
+    {
+      "value": "96%",
+      "label": "Deliveries with digital proof",
+      "detail": "Signature, photo and geotag captured at the point of delivery."
+    },
+    {
+      "value": "−64%",
+      "label": "Inbound 'where is my order' calls",
+      "detail": "Displaced by automatic customer notifications."
+    },
+    {
+      "value": "12",
+      "label": "Standardised exception reasons",
+      "detail": "Making failed-delivery causes measurable and addressable."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/routelens-driver-app/shot-1.svg",
+      "alt": "Driver run overview screen",
+      "caption": "The run as one ordered sequence, next action prominent."
+    },
+    {
+      "src": "/images/projects/routelens-driver-app/shot-2.svg",
+      "alt": "Proof of delivery capture screen",
+      "caption": "Proof of delivery bundled per stop with geotag and timestamp."
+    },
+    {
+      "src": "/images/projects/routelens-driver-app/shot-3.svg",
+      "alt": "Dispatch live tracking console",
+      "caption": "Dispatch console with live position and estimated arrival."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "PLAN",
+      "title": "Route assigned",
+      "description": "The day's ordered run is dispatched to the driver's device."
+    },
+    {
+      "id": "w2",
+      "tag": "DRIVE",
+      "title": "Navigate to stop",
+      "description": "Handoff to the mapping app with the next stop preloaded."
+    },
+    {
+      "id": "w3",
+      "tag": "DELIVER",
+      "title": "Complete or except",
+      "description": "One-tap outcome with structured reasons for anything unsuccessful."
+    },
+    {
+      "id": "w4",
+      "tag": "PROVE",
+      "title": "Capture evidence",
+      "description": "Signature, photo and geotag bundled and queued for upload."
+    },
+    {
+      "id": "w5",
+      "tag": "STREAM",
+      "title": "Notify",
+      "description": "Progress streams to dispatch and triggers customer updates."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — regional distribution operator",
+    "industry": "Logistics & Transport",
+    "timeline": "10 weeks",
+    "year": "2025",
+    "platforms": [
+      "iOS",
+      "Android",
+      "Web dispatch console"
+    ],
+    "services": [
+      "Mobile App Development",
+      "Workflow Automation"
+    ],
+    "team": "2 engineers, 1 designer"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 10
+}

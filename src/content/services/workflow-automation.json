@@ -1,0 +1,46 @@
+{
+  "id": "svc-workflow-automation",
+  "order": 6,
+  "title": "Workflow Automation",
+  "navLabel": "Workflow Automation",
+  "icon": "Workflow",
+  "shortDescription": "Connect business tools and automate repetitive processes using intelligent workflows.",
+  "fullDescription": "Your tools already hold the data — the work is getting them to agree with each other. We design workflows that move information between systems reliably, with idempotent steps, dead-letter handling and alerting when something breaks. Where a no-code platform is the right answer we use one; where it would become a liability we write code.",
+  "technologies": [
+    "n8n",
+    "Make",
+    "Zapier",
+    "GoHighLevel",
+    "Node.js"
+  ],
+  "deliverables": [
+    {
+      "title": "Process mapping",
+      "description": "The current-state flow, its failure points, and the target-state design."
+    },
+    {
+      "title": "Orchestrated workflows",
+      "description": "Retries, idempotency keys, rate-limit handling and a dead-letter queue for anything that fails."
+    },
+    {
+      "title": "Alerting and runbooks",
+      "description": "Notifications on failure plus written recovery steps your team can follow."
+    },
+    {
+      "title": "Handover documentation",
+      "description": "Diagrams and notes so your team can extend the workflows without us."
+    }
+  ],
+  "useCases": [
+    "Onboarding sequences spanning several systems",
+    "Order, fulfilment and billing synchronisation",
+    "Scheduled data syncs and nightly reconciliation",
+    "Approval chains with notifications and audit history"
+  ],
+  "relatedProjects": [
+    "workflow-automation-system",
+    "ai-sales-automation"
+  ],
+  "accent": "cyan",
+  "featured": true
+}

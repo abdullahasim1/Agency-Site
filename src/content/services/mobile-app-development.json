@@ -1,0 +1,46 @@
+{
+  "id": "svc-mobile-app-development",
+  "order": 5,
+  "title": "Mobile App Development",
+  "navLabel": "Mobile Development",
+  "icon": "Smartphone",
+  "shortDescription": "Create modern iOS and Android applications from a single, maintainable codebase.",
+  "fullDescription": "Mobile work lives or dies on the details: offline behaviour, background sync, push permissions, battery use and store review. We build cross-platform apps that share business logic across iOS and Android while respecting each platform's conventions, and we handle the release pipeline so shipping an update is routine.",
+  "technologies": [
+    "React Native",
+    "TypeScript",
+    "Node.js",
+    "Firebase",
+    "PostgreSQL"
+  ],
+  "deliverables": [
+    {
+      "title": "Cross-platform application",
+      "description": "One codebase targeting iOS and Android with platform-appropriate navigation and gestures."
+    },
+    {
+      "title": "Offline-first data layer",
+      "description": "Local persistence, conflict resolution and background sync for unreliable connectivity."
+    },
+    {
+      "title": "Push and deep linking",
+      "description": "Notification infrastructure plus links that open the right screen with the right state."
+    },
+    {
+      "title": "Store release pipeline",
+      "description": "Signed builds, staged rollout and over-the-air updates for non-native changes."
+    }
+  ],
+  "useCases": [
+    "Field service and inspection apps that work without signal",
+    "Customer-facing companion apps to an existing platform",
+    "Driver, delivery and logistics applications",
+    "Internal tools that need a camera, GPS or barcode scanning"
+  ],
+  "relatedProjects": [
+    "fieldops-mobile",
+    "routelens-driver-app"
+  ],
+  "accent": "violet",
+  "featured": true
+}

@@ -1,0 +1,39 @@
+{
+  "projectTypes": [
+    "AI Automation",
+    "AI Agents",
+    "AI Voice Agents",
+    "Workflow Automation",
+    "Web Application",
+    "Mobile Application",
+    "Custom Software",
+    "CRM / API Integration",
+    "Not sure yet"
+  ],
+  "budgetRanges": [
+    "Under $10k",
+    "$10k – $25k",
+    "$25k – $50k",
+    "$50k – $100k",
+    "$100k+",
+    "Not decided yet"
+  ],
+  "consultationPoints": [
+    {
+      "title": "Understand your requirements",
+      "description": "We walk through the process as it works today, including the exceptions nobody documents."
+    },
+    {
+      "title": "Identify automation opportunities",
+      "description": "We point out which steps are worth automating first and which are not worth touching yet."
+    },
+    {
+      "title": "Recommend a technology approach",
+      "description": "A straight answer on architecture, integrations and where AI genuinely helps."
+    },
+    {
+      "title": "Discuss next steps",
+      "description": "Indicative scope, sequencing and timeline, so you can decide with real numbers."
+    }
+  ]
+}

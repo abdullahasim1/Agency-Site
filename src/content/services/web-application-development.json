@@ -1,0 +1,46 @@
+{
+  "id": "svc-web-application-development",
+  "order": 4,
+  "title": "Web Application Development",
+  "navLabel": "Web Development",
+  "icon": "Globe",
+  "shortDescription": "Build scalable and high-performance web applications using modern technologies.",
+  "fullDescription": "We build web applications that stay fast as they grow: typed end to end, server-rendered where it matters, and structured so a new engineer can find their way around in an afternoon. Performance, accessibility and observability are part of the definition of done rather than a later cleanup pass.",
+  "technologies": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "PostgreSQL"
+  ],
+  "deliverables": [
+    {
+      "title": "Product architecture",
+      "description": "Data model, rendering strategy, auth model and deployment topology agreed up front."
+    },
+    {
+      "title": "Design system and UI",
+      "description": "A reusable component library so future screens stay visually consistent."
+    },
+    {
+      "title": "API and data layer",
+      "description": "Typed contracts, validation at the boundary, migrations and seed data."
+    },
+    {
+      "title": "CI/CD and monitoring",
+      "description": "Automated checks on every pull request, preview environments, error and performance tracking."
+    }
+  ],
+  "useCases": [
+    "Customer portals and internal operations tools",
+    "Multi-tenant SaaS products with role-based access",
+    "Analytics dashboards over large datasets",
+    "Rebuilds of ageing applications that have stopped scaling"
+  ],
+  "relatedProjects": [
+    "ai-resume-platform",
+    "commerce-insights"
+  ],
+  "accent": "brand",
+  "featured": true
+}

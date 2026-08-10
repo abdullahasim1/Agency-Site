@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img">
+  <defs>
+    <pattern id="grid-ai-customer-support-platform-3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow-ai-customer-support-platform-3" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-ai-customer-support-platform-3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#0a0f1e"/>
+  <rect width="1280" height="720" fill="url(#grid-ai-customer-support-platform-3)"/>
+  <rect width="1280" height="46" fill="#111827"/>
+  <circle cx="26" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="46" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="66" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="96" y="13" width="1080" height="20" rx="10" fill="rgba(255,255,255,0.04)"/>
+  <text x="112" y="27" font-family="ui-monospace,monospace" font-size="12" fill="rgba(255,255,255,0.38)">ai-customer-support-platform · pipeline</text>
+  <line x1="0" y1="46" x2="1280" y2="46" stroke="rgba(255,255,255,0.06)"/>
+  <text x="40" y="100" font-family="ui-sans-serif,system-ui" font-size="20" font-weight="600" fill="rgba(255,255,255,0.88)">Request lifecycle</text>
+  <text x="40" y="128" font-family="ui-monospace,monospace" font-size="12" fill="rgba(255,255,255,0.38)">traced end to end</text>
+  <g transform="translate(120 210)">
+        <line x1="26" y1="0" x2="274" y2="0" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="4 6"/>
+        <circle cx="0" cy="0" r="16" fill="#8b5cf6" fill-opacity="0.9" stroke="#8b5cf6"/>
+        <path d="M-6 0 l4 4 l8 -9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="-8" y="44" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,0.72)">Received</text>
+      </g><g transform="translate(420 210)">
+        <line x1="26" y1="0" x2="274" y2="0" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="4 6"/>
+        <circle cx="0" cy="0" r="16" fill="#8b5cf6" fill-opacity="0.9" stroke="#8b5cf6"/>
+        <path d="M-6 0 l4 4 l8 -9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="-8" y="44" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,0.72)">Processing</text>
+      </g><g transform="translate(720 210)">
+        <line x1="26" y1="0" x2="274" y2="0" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="4 6"/>
+        <circle cx="0" cy="0" r="16" fill="#8b5cf6" fill-opacity="0.9" stroke="#8b5cf6"/>
+        <path d="M-6 0 l4 4 l8 -9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="-8" y="44" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,0.72)">Enriched</text>
+      </g><g transform="translate(1020 210)">
+        
+        <circle cx="0" cy="0" r="16" fill="#111827" fill-opacity="1" stroke="rgba(255,255,255,0.06)"/>
+        <circle cx="0" cy="0" r="4" fill="rgba(255,255,255,0.38)"/>
+        <text x="-8" y="44" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,0.38)">Delivered</text>
+      </g>
+  <line x1="40" y1="316" x2="1240" y2="316" stroke="rgba(255,255,255,0.06)"/>
+  <g transform="translate(40 348)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">01</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="763" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g><g transform="translate(40 400)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">02</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="489" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g><g transform="translate(40 452)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">03</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="577" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g><g transform="translate(40 504)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">04</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="555" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g><g transform="translate(40 556)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">05</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="317" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g><g transform="translate(40 608)" font-family="ui-monospace,monospace">
+      <text x="0" y="14" font-size="12" fill="#a78bfa">06</text>
+      <rect x="40" y="4" width="70" height="14" rx="4" fill="#2f2358" fill-opacity="0.7"/>
+      <rect x="124" y="5" width="771" height="10" rx="4" fill="rgba(255,255,255,0.12)"/>
+    </g>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="rgba(255,255,255,0.08)"/>
+</svg>

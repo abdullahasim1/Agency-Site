@@ -1,0 +1,46 @@
+{
+  "id": "svc-ai-voice-agents",
+  "order": 3,
+  "title": "AI Voice Agents",
+  "navLabel": "Voice AI",
+  "icon": "PhoneCall",
+  "shortDescription": "Build AI-powered voice systems for inbound calls, outbound calls, lead qualification, support and appointment booking.",
+  "fullDescription": "Voice is the hardest interface to get right: latency, interruptions, accents and background noise all show up immediately. We build voice agents around a real telephony stack, tune for sub-second turn-taking, and design conversations that fail gracefully — confirming details, handling silence, and handing off to a person the moment the caller asks. Every call is transcribed, scored and pushed into your CRM.",
+  "technologies": [
+    "Twilio",
+    "ElevenLabs",
+    "OpenAI",
+    "Node.js",
+    "Next.js"
+  ],
+  "deliverables": [
+    {
+      "title": "Telephony integration",
+      "description": "Inbound and outbound calling, call routing, warm transfer and voicemail handling."
+    },
+    {
+      "title": "Conversation design",
+      "description": "Scripted objectives, qualification logic, interruption handling and confirmation patterns."
+    },
+    {
+      "title": "CRM write-back",
+      "description": "Transcripts, recordings, outcomes and structured fields synced to your pipeline automatically."
+    },
+    {
+      "title": "Call quality review",
+      "description": "Scoring per call with the recordings and transcripts needed to tune the agent over time."
+    }
+  ],
+  "useCases": [
+    "24/7 inbound call answering and qualification",
+    "Outbound follow-up and appointment reminders",
+    "Appointment booking straight into a live calendar",
+    "Tier-one support with escalation to a human agent"
+  ],
+  "relatedProjects": [
+    "verivoice",
+    "medisync-scheduling"
+  ],
+  "accent": "cyan",
+  "featured": true
+}
