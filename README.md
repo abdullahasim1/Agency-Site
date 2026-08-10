@@ -113,7 +113,10 @@ run:
 
 2. `npm run dev`, then open
    [http://localhost:3000/keystatic/setup](http://localhost:3000/keystatic/setup).
-   Follow the prompts: name the app, and install it on that repo.
+   Two optional fields: **Deployed App URL** (your production domain — it adds a
+   second OAuth callback so the same app works live; you can add it on GitHub
+   later) and **GitHub organization** (leave blank to create the app under your
+   own account). Continue, name the app, and install it on the repo.
 3. The wizard writes the credentials to **`.env`** (not `.env.local`). Move the
    four lines it added into `.env.local` alongside the repo variable, delete
    `.env`, and remove `NEXT_PUBLIC_KEYSTATIC_SETUP=1`.
@@ -121,6 +124,16 @@ run:
    in.
 
 Both files are gitignored, so no credential is ever committed.
+
+If the wizard page will not load, the same app can be created by hand at
+**GitHub → Settings → Developer settings → GitHub Apps → New GitHub App**:
+callback URL `http://localhost:3000/api/keystatic/github/oauth/callback` (add
+one for the production domain too), **Request user authorization (OAuth) during
+installation** on, webhook off, and repository permissions **Contents:
+read & write**, **Metadata: read-only**, **Pull requests: read-only**. Then
+install it on the repo, generate a client secret, and fill the four variables
+yourself — the app slug is the last segment of its settings URL, and
+`KEYSTATIC_SECRET` is any random string (`openssl rand -hex 32`).
 
 These five variables must also be added to the Vercel project
 (**Settings → Environment Variables**), or the panel will not be served on the
