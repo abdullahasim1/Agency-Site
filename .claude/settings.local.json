@@ -147,7 +147,9 @@
       "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' http://localhost:3000/keystatic/setup)",
       "Bash(curl -s http://localhost:3000/keystatic/setup)",
       "Bash(curl -s \"http://localhost:3000/_next/static/chunks/_0ye0bul._.js\" -o /tmp/ks-app-chunk.js)",
-      "Bash(grep -o 'keystaticMode[^,;]\\\\{0,80\\\\}' /tmp/ks-app-chunk.js)"
+      "Bash(grep -o 'keystaticMode[^,;]\\\\{0,80\\\\}' /tmp/ks-app-chunk.js)",
+      "Bash(grep -o 'deployedURL[ ]*=[^;]\\\\{0,200\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
+      "Bash(grep -o 'default_permissions.\\\\{0,300\\\\}' node_modules/@keystatic/core/dist/keystatic-core-ui.js)"
     ]
   }
 }
