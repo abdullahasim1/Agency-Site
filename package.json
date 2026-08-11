@@ -11,7 +11,7 @@
     "art": "node scripts/generate-art.mjs"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": "22.x"
   },
   "dependencies": {
     "@keystatic/core": "^0.6.4",
