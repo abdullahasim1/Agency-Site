@@ -192,7 +192,13 @@
       "Bash(curl -s --max-time 15 https://api.github.com/repos/abdullahasim1/Agency-Site)",
       "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('found:', d.get\\('full_name'\\) or d.get\\('message'\\)\\);print\\('private:', d.get\\('private'\\)\\);print\\('default_branch:', d.get\\('default_branch'\\)\\)\")",
       "Bash(git rm *)",
-      "Bash(gh pr *)"
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Bash(curl -s -i -o - -D - \"https://devroc.vercel.app/api/keystatic/github/login\")",
+      "Bash(curl -s \"https://devroc.vercel.app/keystatic\" -o /tmp/ks.html)",
+      "Bash(grep -on \"appSlug[^,;\\)]\\\\{0,40\\\\}\" node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
+      "Bash(grep -rhoa 'euS=[^,;]\\\\{0,80\\\\}' .next/static/chunks/)",
+      "Bash(echo \"clean rebuild exit=$?\")"
     ]
   }
 }
