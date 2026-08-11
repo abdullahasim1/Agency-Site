@@ -190,7 +190,9 @@
       "Bash(curl -s -o body.html -w '%{http_code} -> %{redirect_url}\\\\n' --max-time 20 -H 'User-Agent: Mozilla/5.0 \\(X11; Linux x86_64\\)' 'https://github.com/login/oauth/authorize?client_id=Iv23liCBgO54bU0cHvmf&redirect_uri=https%3A%2F%2Fdevroc.vercel.app%2Fapi%2Fkeystatic%2Fgithub%2Foauth%2Fcallback')",
       "Bash(grep -io 'redirect_uri[^<\"]\\\\{0,140\\\\}\\\\|must match[^<\"]\\\\{0,140\\\\}\\\\|sign in to github\\\\|<title>[^<]*' body.html)",
       "Bash(curl -s --max-time 15 https://api.github.com/repos/abdullahasim1/Agency-Site)",
-      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('found:', d.get\\('full_name'\\) or d.get\\('message'\\)\\);print\\('private:', d.get\\('private'\\)\\);print\\('default_branch:', d.get\\('default_branch'\\)\\)\")"
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('found:', d.get\\('full_name'\\) or d.get\\('message'\\)\\);print\\('private:', d.get\\('private'\\)\\);print\\('default_branch:', d.get\\('default_branch'\\)\\)\")",
+      "Bash(git rm *)",
+      "Bash(gh pr *)"
     ]
   }
 }
