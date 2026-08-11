@@ -181,7 +181,12 @@
       "Bash(curl -s --max-time 30 https://devroc.vercel.app/?cb=__TRACKED_VAR__)",
       "Bash(curl -s -D - -o /tmp/ks_live.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)",
       "Bash(git fetch *)",
-      "Bash(curl -s -o /dev/null -w \"  %{http_code}\\\\n\" --max-time 20 \"http://localhost:3000/\")"
+      "Bash(curl -s -o /dev/null -w \"  %{http_code}\\\\n\" --max-time 20 \"http://localhost:3000/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 15 https://devroc.vercel.app/keystatic)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 15 https://devroc.vercel.app/api/keystatic/tree)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" --max-time 15 https://devroc.vercel.app/api/keystatic/github/login)",
+      "Bash(node -e \"const p=require\\('next/package.json'\\); console.log\\('server-only' in \\(p.dependencies||{}\\) ? 'yes: '+p.dependencies['server-only'] : 'no'\\); console.log\\('client-only:', p.dependencies['client-only']||'no'\\)\")",
+      "Bash(grep -v ':0$')"
     ]
   }
 }
