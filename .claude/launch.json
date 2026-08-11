@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["next", "dev"],
       "autoPort": true
+    },
+    {
+      "name": "dr-prod",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "start", "--port", "3200"],
+      "port": 3200
     }
   ]
 }

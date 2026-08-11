@@ -27,6 +27,12 @@ const repo = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO;
 const appSlug = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG;
 
 /**
+ * True in `next dev`. Safe to read on both sides: Next inlines `NODE_ENV` into
+ * the browser bundle, unlike the secrets below.
+ */
+const isDev = process.env.NODE_ENV === "development";
+
+/**
  * Which mode the panel runs in.
  *
  * **This has to evaluate identically on the server and in the browser.** The
@@ -50,7 +56,9 @@ const appSlug = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG;
  * deployment must not silently serve the unauthenticated local API.
  */
 export const keystaticMode: "local" | "github" =
-  repo && appSlug ? "github" : "local";
+  repo && (appSlug || (isDev && process.env.NEXT_PUBLIC_KEYSTATIC_SETUP === "1"))
+    ? "github"
+    : "local";
 
 /** The `owner/name` repo, narrowed to the shape Keystatic's config expects. */
 export const keystaticRepo = (repo ?? "") as `${string}/${string}`;
@@ -59,19 +67,20 @@ export const keystaticRepo = (repo ?? "") as `${string}/${string}`;
  * Whether to serve the panel and its API at all. **Server-only** — this reads
  * secrets, so it must never be called from a client component.
  *
- * GitHub mode additionally needs the three server-side secrets. If any is
- * missing the panel is not configured, and the safe answer is to serve no
- * panel rather than fall back to the unauthenticated local API, which would
+ * A deployment must have GitHub mode *and* all three server-side secrets. If
+ * any is missing the panel is not configured, and the safe answer is to serve
+ * nothing rather than fall back to the unauthenticated local API, which would
  * let anyone rewrite the site's content by calling the API directly.
  *
- * Local mode is only ever allowed in `next dev`. Keystatic draws that same
- * line internally.
+ * Development is always allowed: local mode is the normal way to work, and
+ * github mode has to be servable *before* the credentials exist, because the
+ * only thing that creates them is the setup wizard inside this very panel.
  */
-export const isKeystaticEnabled =
-  keystaticMode === "github"
-    ? Boolean(
-        process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
-          process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
-          process.env.KEYSTATIC_SECRET,
-      )
-    : process.env.NODE_ENV === "development";
+export const isKeystaticEnabled = isDev
+  ? true
+  : keystaticMode === "github" &&
+    Boolean(
+      process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
+        process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
+        process.env.KEYSTATIC_SECRET,
+    );
