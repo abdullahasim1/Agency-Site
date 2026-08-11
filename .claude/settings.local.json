@@ -174,7 +174,9 @@
       "Bash(curl -s -o /dev/null -w \"  /api/keystatic/github/login -> %{http_code}\\\\n\" --max-time 25 \"https://devroc.vercel.app/api/keystatic/github/login\")",
       "Bash(curl -s --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__ -o /tmp/ks.html)",
       "Bash(curl -s -D - -o /tmp/ks2.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)",
-      "Bash(grep -oE '[A-Za-z0-9:.,! ]{15,}')"
+      "Bash(grep -oE '[A-Za-z0-9:.,! ]{15,}')",
+      "Bash(curl -s -o /tmp/local-ks.html --max-time 40 \"http://localhost:3000/keystatic\")",
+      "Bash(curl -s -o /tmp/live-ks.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)"
     ]
   }
 }
