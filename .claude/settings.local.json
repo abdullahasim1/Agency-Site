@@ -186,7 +186,9 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 15 https://devroc.vercel.app/api/keystatic/tree)",
       "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" --max-time 15 https://devroc.vercel.app/api/keystatic/github/login)",
       "Bash(node -e \"const p=require\\('next/package.json'\\); console.log\\('server-only' in \\(p.dependencies||{}\\) ? 'yes: '+p.dependencies['server-only'] : 'no'\\); console.log\\('client-only:', p.dependencies['client-only']||'no'\\)\")",
-      "Bash(grep -v ':0$')"
+      "Bash(grep -v ':0$')",
+      "Bash(curl -s -o body.html -w '%{http_code} -> %{redirect_url}\\\\n' --max-time 20 -H 'User-Agent: Mozilla/5.0 \\(X11; Linux x86_64\\)' 'https://github.com/login/oauth/authorize?client_id=Iv23liCBgO54bU0cHvmf&redirect_uri=https%3A%2F%2Fdevroc.vercel.app%2Fapi%2Fkeystatic%2Fgithub%2Foauth%2Fcallback')",
+      "Bash(grep -io 'redirect_uri[^<\"]\\\\{0,140\\\\}\\\\|must match[^<\"]\\\\{0,140\\\\}\\\\|sign in to github\\\\|<title>[^<]*' body.html)"
     ]
   }
 }
