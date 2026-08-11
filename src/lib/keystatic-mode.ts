@@ -22,9 +22,23 @@
  * Both this and the app slug are `NEXT_PUBLIC_` on purpose — see the note on
  * `keystaticMode` for why the browser has to be able to reach this decision on
  * its own.
+ *
+ * Both are trimmed, because these are typed into a hosting dashboard by hand
+ * and a space or tab pasted along with the value is invisible everywhere it
+ * matters: in the dashboard field, in the built page, and in the panel's own
+ * error message. This is not hypothetical — Vercel held a leading tab on the
+ * repo, so Keystatic asked GitHub for the owner `\tabdullahasim1`, GitHub
+ * correctly said no such repo, and the panel bounced every editor back to
+ * sign-in, while the identical panel worked locally where the value was clean.
+ *
+ * Trimming the slug here only fixes *our* mode decision: `@keystatic/next`
+ * reads that variable straight from `process.env` for the sign-in and install
+ * links, so whitespace on it would still break those. The dashboard values are
+ * still worth keeping clean; this only stops one byte from taking the panel
+ * down.
  */
-const repo = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO;
-const appSlug = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG;
+const repo = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO?.trim();
+const appSlug = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG?.trim();
 
 /**
  * True in `next dev`. Safe to read on both sides: Next inlines `NODE_ENV` into

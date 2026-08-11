@@ -156,6 +156,46 @@ local mode — local mode writes files with no sign‑in at all, which would let
 anyone rewrite the site's content. The public pages are unaffected either way,
 so a missing variable can never break the site itself.
 
+**Paste the values carefully.** These are hand-typed into a web form, and a
+stray space or tab pasted along with a value is invisible in the Vercel field,
+in the built page and in Keystatic's own error text. It cost an afternoon here:
+Vercel held a leading tab on the repo, so the panel asked GitHub for the owner
+`<tab>abdullahasim1`, GitHub said no such repo, and every editor was bounced
+back to sign-in — while the identical panel worked locally, where the value was
+clean. `src/lib/keystatic-mode.ts` now trims the repo, but the app slug is read
+straight from the environment by `@keystatic/next`, so whitespace on that one
+still breaks the sign-in link.
+
+Remember that the three `NEXT_PUBLIC_*` values are **baked in at build time**.
+Editing one in Vercel changes nothing until you **Redeploy** — the deployed
+bundle still holds the old string.
+
+### If the live panel keeps asking you to sign in
+
+The panel loops back to sign-in whenever GitHub answers "no such repo", because
+from its side an editor without repo access and a misspelled repo look the same.
+Check, in this order:
+
+1. **Is the GitHub App installed on this repo?** GitHub → **Settings →
+   Applications → Installed GitHub Apps** → the Keystatic app → **Repository
+   access**. Selecting the repo is not enough — the **Save** button has to be
+   pressed.
+2. **Is the repo string exactly `owner/name`?** Read it out of the deployed
+   bundle rather than trusting the dashboard field, which hides whitespace:
+
+   ```bash
+   curl -s https://<your-domain>/keystatic \
+     | grep -oE '/_next/static/[^"]+\.js' | sort -u \
+     | while read -r c; do curl -s "https://<your-domain>$c"; done \
+     | grep -oaP '"[^"]*/Agency-Site"' | sort -u | cat -A
+   ```
+
+   `cat -A` makes the invisible visible: `^I` is a tab, a trailing `$` follows
+   the last real character. Anything between the quote and the owner name is a
+   bug.
+3. **Is the editor a collaborator with write access?** Read-only collaborators
+   can sign in but cannot commit, so saving fails later rather than sooner.
+
 ### Where the content lives
 
 | Content              | Files                                       |
