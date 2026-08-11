@@ -10,10 +10,10 @@
  * - **github** — the editor signs in with GitHub and saves commit on their
  *   behalf, so only repo collaborators can change anything.
  *
- * GitHub mode needs four values. If any one of them is missing the panel is
- * not configured, and the safe answer is to serve no panel at all rather than
- * fall back to the unauthenticated local API. The public site is unaffected
- * either way: pages read content from the files on disk, never through this.
+ * Everything here is **client-safe** and reads only `NEXT_PUBLIC_` variables,
+ * because the panel imports it in the browser. The credential check that
+ * decides whether the panel is served at all lives in `keystatic-enabled.ts`,
+ * which is server-only for that reason.
  */
 
 /**
@@ -28,7 +28,7 @@ const appSlug = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG;
 
 /**
  * True in `next dev`. Safe to read on both sides: Next inlines `NODE_ENV` into
- * the browser bundle, unlike the secrets below.
+ * the browser bundle, unlike the `KEYSTATIC_*` secrets.
  */
 const isDev = process.env.NODE_ENV === "development";
 
@@ -49,8 +49,8 @@ const isDev = process.env.NODE_ENV === "development";
  * `local` on the client while the server sat in `github` mode — every
  * collection then failing with `Unexpected token 'N', "Not Found" is not valid
  * JSON`, which is the 404 body being parsed as JSON. Those credentials are
- * still required, and are enforced by `isKeystaticEnabled` below, which only
- * ever runs on the server.
+ * still required, and are enforced by `isKeystaticEnabled` in the sibling
+ * file, which only ever runs on the server.
  *
  * Note this is deliberately not "github if anything is set": a half-configured
  * deployment must not silently serve the unauthenticated local API.
@@ -63,24 +63,9 @@ export const keystaticMode: "local" | "github" =
 /** The `owner/name` repo, narrowed to the shape Keystatic's config expects. */
 export const keystaticRepo = (repo ?? "") as `${string}/${string}`;
 
-/**
- * Whether to serve the panel and its API at all. **Server-only** — this reads
- * secrets, so it must never be called from a client component.
- *
- * A deployment must have GitHub mode *and* all three server-side secrets. If
- * any is missing the panel is not configured, and the safe answer is to serve
- * nothing rather than fall back to the unauthenticated local API, which would
- * let anyone rewrite the site's content by calling the API directly.
- *
- * Development is always allowed: local mode is the normal way to work, and
- * github mode has to be servable *before* the credentials exist, because the
- * only thing that creates them is the setup wizard inside this very panel.
+/*
+ * Whether the panel is served at all is a separate, **server-only** decision,
+ * because it depends on secrets: see `keystatic-enabled.ts`. Nothing in this
+ * file may read those, or it would resolve to the wrong value in the browser
+ * without ever throwing.
  */
-export const isKeystaticEnabled = isDev
-  ? true
-  : keystaticMode === "github" &&
-    Boolean(
-      process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
-        process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
-        process.env.KEYSTATIC_SECRET,
-    );

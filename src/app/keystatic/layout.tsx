@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { isKeystaticEnabled } from "@/lib/keystatic-mode";
+import { isKeystaticEnabled } from "@/lib/keystatic-enabled";
 
 import KeystaticApp from "./keystatic";
 
