@@ -163,7 +163,8 @@
       "Bash(curl -s --max-time 25 \"https://devroc.vercel.app/?cb=$\\(date +%s\\)\")",
       "Bash(curl -s --max-time 25 https://devroc.vercel.app/sitemap.xml?cb=__TRACKED_VAR__)",
       "Bash(grep -o \"settings/apps/new[^\\\\\"']*\\\\|organizations/\\\\${[a-z]*}/settings/apps/new\\\\|hook_attributes\\\\|redirect_url\\\\|callback_urls\\\\|request_oauth_on_install\\\\|default_permissions\\\\|\\\\\"contents\\\\\":\\\\\"write\\\\\"\\\\|\\\\\"pull_requests\\\\\":[^,]*\\\\|\\\\\"metadata\\\\\":[^,]*\" node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
-      "Bash(grep -o \"127\\\\.0\\\\.0\\\\.1[^\\\\\"'\\\\`]*\" node_modules/@keystatic/core/dist/keystatic-core-ui.js)"
+      "Bash(grep -o \"127\\\\.0\\\\.0\\\\.1[^\\\\\"'\\\\`]*\" node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
+      "Bash(git ls-tree *)"
     ]
   }
 }
