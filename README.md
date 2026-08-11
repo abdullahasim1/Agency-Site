@@ -137,7 +137,8 @@ yourself — the app slug is the last segment of its settings URL, and
 
 These five variables must also be added to the Vercel project
 (**Settings → Environment Variables**), or the panel will not be served on the
-deployed site:
+deployed site. Tick both **Production** and **Preview** — a variable set only on
+Production is missing on every pull‑request preview, so the panel 404s there:
 
 | Variable                                | Purpose                                  |
 | --------------------------------------- | ---------------------------------------- |
@@ -173,8 +174,8 @@ through; it no longer holds the content itself. `src/data/pages.ts` also exports
 
 ## CI/CD
 
-Continuous integration and deployment run on **GitHub Actions**; deploys go to
-**Vercel**.
+Checks run on **GitHub Actions**; deploys are handled by **Vercel's own GitHub
+integration**, not by a workflow in this repo.
 
 ### CI — [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
 
@@ -187,34 +188,22 @@ each is its own required status check:
 
 Superseded runs on the same branch are cancelled automatically.
 
-### CD — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+### Deploys — Vercel
 
-Triggered only **after CI succeeds** (`workflow_run`), so nothing ships unless
-lint, typecheck and build are all green:
+The repo is connected to a Vercel project through Vercel's GitHub integration,
+so Vercel builds and deploys by itself. There is no deploy workflow and no
+Vercel token in this repo:
 
-- **Pull request** → a **preview** deploy; the URL is posted (and updated) as a
-  PR comment.
 - **Push to `main`** → a **production** deploy.
+- **Pull request** → a **preview** deploy, with the URL posted on the PR.
 
 The site has server‑rendered routes (`/api/contact`, `/og`), so it cannot be a
 static export — it needs Node/serverless hosting, which is what Vercel provides.
 
-### Required secrets
-
-Add these under **Settings → Secrets and variables → Actions** in the repo:
-
-| Secret               | Where to find it                                                                 |
-| -------------------- | -------------------------------------------------------------------------------- |
-| `VERCEL_TOKEN`       | Vercel → **Account Settings → Tokens** → create a token                          |
-| `VERCEL_ORG_ID`      | Run `vercel link` locally, then read `.vercel/project.json` (`orgId`)            |
-| `VERCEL_PROJECT_ID`  | Same `.vercel/project.json` (`projectId`)                                         |
-
-To generate the org/project IDs once:
-
-```bash
-npm i -g vercel
-vercel link      # writes .vercel/project.json (already gitignored)
-```
+> **Vercel does not wait for CI.** The two run side by side. Vercel runs
+> `next build` itself, so a broken build still fails the deploy — but a lint or
+> typecheck failure will not stop it. If you want CI to be a real gate, add the
+> three CI jobs as required status checks on `main` under **Settings → Branches**.
 
 ### Site URL
 
@@ -238,9 +227,3 @@ place the origin needs updating.
 [`.github/dependabot.yml`](.github/dependabot.yml) opens weekly PRs for npm
 dependencies (minor/patch grouped into one) and for the GitHub Actions used in
 the workflows. These PRs run through the same CI before they can be merged.
-
-## Deploying without GitHub Actions
-
-If you connect the repo directly in the Vercel dashboard, Vercel builds and
-deploys on its own and you can skip the deploy workflow and its secrets. The
-CI workflow is still worth keeping as the quality gate.
