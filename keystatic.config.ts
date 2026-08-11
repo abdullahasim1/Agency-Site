@@ -126,11 +126,12 @@ const legalPageField = (label: string) =>
 export default config({
   /*
    * `local` writes to the working tree and has no sign-in, so it is only ever
-   * used in development. In production the panel needs a repo *and* the GitHub
-   * App credentials; when either is missing the routes are not served at all
-   * (see src/lib/keystatic-mode.ts). The storage value here still has to be a
-   * valid one for the config to typecheck, so a disabled panel reads as
-   * `local` — nothing serves it.
+   * used in development; `github` signs the editor in and commits on their
+   * behalf. This file is imported by the panel, which is a client component,
+   * so this expression is evaluated in the browser too — `keystaticMode` is
+   * built purely from `NEXT_PUBLIC_` variables for exactly that reason. The
+   * server-side credential check lives in `isKeystaticEnabled`, which gates
+   * whether the routes are mounted at all (see src/lib/keystatic-mode.ts).
    */
   storage:
     keystaticMode === "github"
