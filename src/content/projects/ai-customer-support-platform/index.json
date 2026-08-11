@@ -1,6 +1,6 @@
 {
+  "title": "AI Customer Support Platformm",
   "id": "prj-ai-customer-support-platform",
-  "title": "AI Customer Support Platform",
   "tagline": "Assisted Support & Deflection System",
   "category": "AI / SaaS",
   "categories": [
@@ -10,7 +10,7 @@
   ],
   "shortDescription": "A support platform that answers repeat questions from verified sources, drafts replies for agents, and escalates anything it cannot ground in documentation.",
   "fullDescription": "Support volume was growing faster than the team. Instead of a chatbot that guesses, we built a system that answers only what it can ground in the client's own documentation, cites the source on every reply, and routes everything else to a human with a draft already prepared. Agents review rather than compose, and the knowledge gaps the system finds become a prioritised content backlog.",
-  "image": "/images/projects/ai-customer-support-platform/cover.svg",
+  "image": "/images/projects/ai-customer-support-platform/image.svg",
   "imageAlt": "Abstract diagram of a support routing system with knowledge retrieval paths",
   "technologies": [
     "Next.js",
@@ -145,17 +145,17 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/ai-customer-support-platform/shot-1.svg",
+      "src": "/images/projects/ai-customer-support-platform/gallery/0/src.svg",
       "alt": "Support conversation with cited sources",
       "caption": "Every answer carries the documentation it was grounded in."
     },
     {
-      "src": "/images/projects/ai-customer-support-platform/shot-2.svg",
+      "src": "/images/projects/ai-customer-support-platform/gallery/1/src.svg",
       "alt": "Agent workspace with suggested reply",
       "caption": "Escalations arrive with a draft and the relevant sources."
     },
     {
-      "src": "/images/projects/ai-customer-support-platform/shot-3.svg",
+      "src": "/images/projects/ai-customer-support-platform/gallery/2/src.svg",
       "alt": "Knowledge gap backlog view",
       "caption": "Unanswerable questions ranked into a content backlog."
     }
@@ -163,33 +163,33 @@
   "workflow": [
     {
       "id": "w1",
-      "tag": "RECEIVE",
       "title": "Conversation opens",
-      "description": "Email or widget message enters the platform and is classified."
+      "description": "Email or widget message enters the platform and is classified.",
+      "tag": "RECEIVE"
     },
     {
       "id": "w2",
-      "tag": "RETRIEVE",
       "title": "Find sources",
-      "description": "Relevant documentation retrieved from the unified index."
+      "description": "Relevant documentation retrieved from the unified index.",
+      "tag": "RETRIEVE"
     },
     {
       "id": "w3",
-      "tag": "GROUND",
       "title": "Draft with citations",
-      "description": "A response is generated strictly from retrieved content."
+      "description": "A response is generated strictly from retrieved content.",
+      "tag": "GROUND"
     },
     {
       "id": "w4",
-      "tag": "GATE",
       "title": "Confidence check",
-      "description": "Above threshold sends automatically; below escalates with the draft."
+      "description": "Above threshold sends automatically; below escalates with the draft.",
+      "tag": "GATE"
     },
     {
       "id": "w5",
-      "tag": "LEARN",
       "title": "Close the gap",
-      "description": "Ungrounded questions feed the documentation backlog."
+      "description": "Ungrounded questions feed the documentation backlog.",
+      "tag": "LEARN"
     }
   ],
   "overview": {
