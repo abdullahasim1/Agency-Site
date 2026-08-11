@@ -198,7 +198,9 @@
       "Bash(curl -s \"https://devroc.vercel.app/keystatic\" -o /tmp/ks.html)",
       "Bash(grep -on \"appSlug[^,;\\)]\\\\{0,40\\\\}\" node_modules/@keystatic/core/dist/keystatic-core-ui.js)",
       "Bash(grep -rhoa 'euS=[^,;]\\\\{0,80\\\\}' .next/static/chunks/)",
-      "Bash(echo \"clean rebuild exit=$?\")"
+      "Bash(echo \"clean rebuild exit=$?\")",
+      "Bash(curl -s \"https://devroc.vercel.app/\")",
+      "Bash(curl -s \"https://devroc.vercel.app/sitemap.xml\")"
     ]
   }
 }
