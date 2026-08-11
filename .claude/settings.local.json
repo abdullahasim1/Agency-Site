@@ -179,7 +179,8 @@
       "Bash(curl -s -o /tmp/live-ks.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)",
       "Bash(curl -s -D - -o /dev/null --max-time 25 \"https://devroc.vercel.app/api/keystatic/github/login\")",
       "Bash(curl -s --max-time 30 https://devroc.vercel.app/?cb=__TRACKED_VAR__)",
-      "Bash(curl -s -D - -o /tmp/ks_live.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)"
+      "Bash(curl -s -D - -o /tmp/ks_live.html --max-time 30 https://devroc.vercel.app/keystatic?cb=__TRACKED_VAR__)",
+      "Bash(git fetch *)"
     ]
   }
 }
