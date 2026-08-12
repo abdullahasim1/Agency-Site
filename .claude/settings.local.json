@@ -230,7 +230,8 @@
       "Bash(curl -s -o /dev/null -D - --max-time 20 https://thedevrox.com/api/keystatic/github/login)",
       "Bash(gh auth *)",
       "Bash(curl -s -o /dev/null -w '%{http_code}' --max-time 8 \"https://cdn.simpleicons.org/react\")",
-      "Bash(node -e \"const j=require\\('./src/content/technologies.json'\\); const flat=j.categories.flatMap\\(c=>c.items.map\\(i=>i.name\\)\\); console.log\\('AI items:', j.categories.find\\(c=>c.id==='ai'\\).items.map\\(i=>i.name\\).join\\(', '\\)\\); console.log\\('Cloud items:', j.categories.find\\(c=>c.id==='cloud'\\).items.map\\(i=>i.name\\).join\\(', '\\)\\); console.log\\('AWS in list:', flat.includes\\('AWS'\\), '| Bedrock in list:', flat.includes\\('Amazon Bedrock'\\)\\); console.log\\('total techs:', flat.length\\);\")"
+      "Bash(node -e \"const j=require\\('./src/content/technologies.json'\\); const flat=j.categories.flatMap\\(c=>c.items.map\\(i=>i.name\\)\\); console.log\\('AI items:', j.categories.find\\(c=>c.id==='ai'\\).items.map\\(i=>i.name\\).join\\(', '\\)\\); console.log\\('Cloud items:', j.categories.find\\(c=>c.id==='cloud'\\).items.map\\(i=>i.name\\).join\\(', '\\)\\); console.log\\('AWS in list:', flat.includes\\('AWS'\\), '| Bedrock in list:', flat.includes\\('Amazon Bedrock'\\)\\); console.log\\('total techs:', flat.length\\);\")",
+      "Bash(node --input-type=module -e ' *)"
     ]
   }
 }
