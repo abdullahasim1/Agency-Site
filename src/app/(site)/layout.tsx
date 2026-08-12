@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { siteConfig } from "@/data/site";
-import { organizationSchema } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteConfig, siteTitle } from "@/data/site";
+import { siteGraph } from "@/lib/seo";
 
 /*
  * Marketing metadata for the public site. This lives on the (site) group rather
@@ -14,7 +15,7 @@ import { organizationSchema } from "@/lib/seo";
  */
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} — AI, Automation & Software Development Agency`,
+    default: siteTitle,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — AI, Automation & Software Development Agency`,
+    title: siteTitle,
     description: siteConfig.description,
     images: [
       {
@@ -57,10 +58,26 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     images: [`/og?title=${encodeURIComponent(siteConfig.name)}`],
   },
+  /*
+   * max-snippet: -1 lifts the cap on how much of a page may be quoted. That is
+   * the directive answer engines are bound by, so leaving it at the default is
+   * what keeps a page out of an AI Overview or a generated answer even when it
+   * is indexed. The preview limits are repeated on googleBot because Google
+   * reads its own group in preference to the generic one.
+   */
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
   formatDetection: { telephone: false, address: false, email: false },
 };
@@ -81,13 +98,9 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
-      <script
-        type="application/ld+json"
-        // Static object built from our own config — no user input reaches this.
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema()),
-        }}
-      />
+      {/* Organisation + WebSite, stated once. Each page's own graph refers back
+          into these two nodes by @id rather than restating them. */}
+      <JsonLd data={siteGraph()} />
     </div>
   );
 }

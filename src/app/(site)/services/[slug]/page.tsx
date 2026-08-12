@@ -6,11 +6,13 @@ import { ArrowUpRight, ChevronRight, Check } from "lucide-react";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Process } from "@/components/home/Process";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceHeroVisual } from "@/components/services/ServiceHeroVisual";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { FaqList } from "@/components/ui/FaqList";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
@@ -19,7 +21,7 @@ import { PRIMARY_CTA } from "@/data/navigation";
 import { fill, servicesCopy, sharedCopy } from "@/data/pages";
 import { getProjectsBySlugs } from "@/data/projects";
 import { getServices } from "@/data/services";
-import { breadcrumbSchema, buildMetadata, serviceSchema } from "@/lib/seo";
+import { buildMetadata, pageGraph, serviceSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 interface ServicePageProps {
@@ -71,6 +73,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const otherServices = services
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
+  const path = `/services/${service.slug}`;
+  const faq = service.faq ?? [];
 
   return (
     <>
@@ -111,7 +115,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </nav>
           </Reveal>
 
-          <div className="mt-8 grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
+          <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
             <div className="max-w-3xl">
             <Reveal y={12}>
               <span
@@ -168,7 +172,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       {/* Overview */}
       <section className="section-y-sm">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <SectionHeading
               eyebrow={servicesCopy.detail.overview.eyebrow}
               title={servicesCopy.detail.overview.title}
@@ -193,7 +197,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="mt-10 grid gap-5 sm:grid-cols-2"
+            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
           >
             {service.deliverables.map((deliverable) => (
               <StaggerItem as="li" key={deliverable.title} className="h-full">
@@ -216,7 +220,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       {/* Use cases */}
       <section className="section-y-sm">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <SectionHeading
               eyebrow={servicesCopy.detail.useCases.eyebrow}
               title={servicesCopy.detail.useCases.title}
@@ -266,7 +270,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <Stagger
               as="ul"
               stagger={0.08}
-              className="mt-10 grid gap-5 sm:grid-cols-2"
+              className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
             >
               {relatedProjects.map((project) => (
                 <StaggerItem as="li" key={project.id} className="h-full">
@@ -277,6 +281,23 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </StaggerItem>
               ))}
             </Stagger>
+          </Container>
+        </section>
+      ) : null}
+
+      {/* Questions — rendered only when this service has any written. */}
+      {faq.length > 0 ? (
+        <section className="section-y-sm bg-ink-25">
+          <Container>
+            <SectionHeading
+              eyebrow={servicesCopy.detail.faq.eyebrow}
+              title={servicesCopy.detail.faq.title}
+              description={servicesCopy.detail.faq.description}
+            />
+
+            <div className="mt-10 max-w-3xl">
+              <FaqList items={faq} />
+            </div>
           </Container>
         </section>
       ) : null}
@@ -294,7 +315,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="mt-8 grid gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-3"
+            className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-3"
           >
             {otherServices.map((item) => (
               <StaggerItem as="li" key={item.id} className="bg-white">
@@ -327,29 +348,34 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         description={servicesCopy.detailCta.description}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
+      <JsonLd
+        data={pageGraph({
+          path,
+          title: service.title,
+          description: service.shortDescription,
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: service.title, path },
+          ],
+          /* Empty for a service with no questions written yet, in which case
+             pageGraph leaves the FAQPage node out entirely. */
+          faq: faq.map((item) => ({
+            question: item.question,
+            answer: item.answer,
+          })),
+          nodes: [
             serviceSchema({
               title: service.title,
               description: service.shortDescription,
-              path: `/services/${service.slug}`,
+              path,
+              serviceType: service.title,
+              deliverables: service.deliverables.map(
+                (deliverable) => deliverable.title,
+              ),
             }),
-          ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Services", path: "/services" },
-              { name: service.title, path: `/services/${service.slug}` },
-            ]),
-          ),
-        }}
+          ],
+        })}
       />
     </>
   );

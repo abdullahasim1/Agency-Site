@@ -27,7 +27,7 @@ export function ResultsSection({ project }: { project: Project }) {
         <Stagger
           as="ul"
           stagger={0.07}
-          className="mt-10 grid gap-px overflow-hidden rounded-card bg-ink-200 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card bg-ink-200 sm:grid-cols-2 lg:grid-cols-4"
         >
           {project.results.map((result) => (
             <StaggerItem as="li" key={result.label} className="bg-white">

@@ -200,7 +200,29 @@
       "Bash(grep -rhoa 'euS=[^,;]\\\\{0,80\\\\}' .next/static/chunks/)",
       "Bash(echo \"clean rebuild exit=$?\")",
       "Bash(curl -s \"https://devroc.vercel.app/\")",
-      "Bash(curl -s \"https://devroc.vercel.app/sitemap.xml\")"
+      "Bash(curl -s \"https://devroc.vercel.app/sitemap.xml\")",
+      "Bash(gh repo *)",
+      "Bash(curl -s \"https://devroc.vercel.app/robots.txt\")",
+      "Bash(curl -s \"http://127.0.0.1:3000/\")",
+      "Bash(node -e 'const f=require\\(\"./src/content/services/ai-agents-automation.json\"\\);console.log\\(Object.keys\\(f\\).join\\(\"\\\\n\"\\)\\)')",
+      "Bash(node -e 'const f=require\\(\"./src/content/faq.json\"\\);console.log\\(JSON.stringify\\(f\\).slice\\(0,600\\)\\);console.log\\(\"\\\\ncount:\",\\(f.items||f.faqs||[]\\).length\\)')",
+      "Bash(awk -F: '{printf \"%s:%s\\\\n\", $1, $2}')",
+      "Bash(node /tmp/fix-grids.mjs)",
+      "Bash(node -e \"const p=require\\('./src/content/pages/home.json'\\); console.log\\(Object.keys\\(p\\)\\); console.log\\(JSON.stringify\\(p.seo||null,null,2\\)\\)\")",
+      "Bash(node -p \"require\\('next/package.json'\\).version\")",
+      "Bash(node -e \"const f=require\\('./src/content/faq.json'\\); console.log\\(f.items.length\\); console.log\\(JSON.stringify\\(f.items[0],null,2\\)\\)\")",
+      "Bash(node -e \"const s=require\\('./src/content/site.json'\\); console.log\\(JSON.stringify\\({name:s.name,legalName:s.legalName,tagline:s.tagline,description:s.description,shortDescription:s.shortDescription,url:s.url,contact:s.contact},null,2\\)\\)\")",
+      "Bash(node /tmp/audit-jsonld.mjs)",
+      "Bash(curl -s http://localhost:3200/keystatic)",
+      "Bash(curl -s http://localhost:3200/services/ai-agents)",
+      "Bash(node -e 'const s=require\\(\"./src/content/site.json\"\\); console.log\\(JSON.stringify\\(s.schema,null,2\\)\\)')",
+      "Bash(curl -s \"http://localhost:3200/api/keystatic/tree/main\" -o /dev/null -w \"tree api: %{http_code}\\\\n\")",
+      "Bash(grep -v '^$')",
+      "Bash(cp src/content/services/ai-agents.json /tmp/ai-agents.backup.json)",
+      "Bash(cp /tmp/ai-agents.backup.json src/content/services/ai-agents.json)",
+      "Bash(node -e 'const j=require\\(\"./src/content/services/ai-agents.json\"\\); console.log\\(\"faq field:\", JSON.stringify\\(j.faq\\)\\);')",
+      "Bash(node /tmp/grid-audit.mjs)",
+      "Bash(node -e 'console.log\\(JSON.stringify\\(require\\(\"./src/content/site.json\"\\).schema\\)\\)')"
     ]
   }
 }

@@ -8,13 +8,16 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PRIMARY_CTA } from "@/data/navigation";
 import { contactCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, pageGraph } from "@/lib/seo";
+
+const description = fill(contactCopy.seo.description, {
+  responseTime: siteConfig.contact.responseTime,
+});
 
 export const metadata: Metadata = buildMetadata({
   title: contactCopy.seo.title,
-  description: fill(contactCopy.seo.description, {
-    responseTime: siteConfig.contact.responseTime,
-  }),
+  description,
   path: "/contact",
   keywords: contactCopy.seo.keywords,
 });
@@ -60,7 +63,7 @@ export default function ContactPage() {
         />
 
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
             {/* Left: introduction and contact details */}
             <div>
               <Reveal y={12}>
@@ -84,7 +87,7 @@ export default function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.3} y={14}>
-                <dl className="mt-10 grid gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2">
+                <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2">
                   {details.map((detail) => (
                     <div
                       key={detail.label}
@@ -137,16 +140,17 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Contact", path: "/contact" },
-            ]),
-          ),
-        }}
+      <JsonLd
+        data={pageGraph({
+          path: "/contact",
+          title: contactCopy.seo.title,
+          description,
+          type: "ContactPage",
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ],
+        })}
       />
     </>
   );

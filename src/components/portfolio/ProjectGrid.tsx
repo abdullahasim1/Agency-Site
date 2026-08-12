@@ -77,7 +77,7 @@ export function ProjectGrid({ projects, categories }: ProjectGridProps) {
           category:
             active === "All" ? portfolioCopy.grid.allFilterLabel : active,
         })}
-        className="mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3"
+        className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3"
       >
         <AnimatePresence mode="popLayout" initial={false}>
           {visible.map((project, index) => (

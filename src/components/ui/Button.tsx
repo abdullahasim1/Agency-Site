@@ -69,7 +69,9 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-9 px-4 text-[0.8125rem]",
+  /* 40px on touch widths so the target clears the 24px WCAG minimum with room
+     to spare, then back to the compact 36px from sm upwards. */
+  sm: "h-10 px-4 text-[0.8125rem] sm:h-9",
   md: "h-11 px-5 text-[0.9375rem]",
   lg: "h-[3.25rem] px-7 text-base",
 };

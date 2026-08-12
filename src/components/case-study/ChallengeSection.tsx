@@ -11,7 +11,7 @@ export function ChallengeSection({ project }: { project: Project }) {
   return (
     <section className="section-y-sm">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-14">
           <SectionHeading
             eyebrow={portfolioCopy.caseStudy.challenge.eyebrow}
             title={portfolioCopy.caseStudy.challenge.title}

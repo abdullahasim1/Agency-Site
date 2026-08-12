@@ -27,7 +27,7 @@ export function Hero() {
       />
 
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-20">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-20">
           <div className="max-w-2xl">
             <Reveal y={12}>
               <Eyebrow>{siteConfig.tagline}</Eyebrow>

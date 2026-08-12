@@ -16,11 +16,14 @@ import { aboutCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { capabilities, missionVision, team, values } from "@/data/team";
 import { differentiators } from "@/data/whyChooseUs";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMetadata, pageGraph } from "@/lib/seo";
+
+const description = fill(aboutCopy.seo.description, { name: siteConfig.name });
 
 export const metadata: Metadata = buildMetadata({
   title: aboutCopy.seo.title,
-  description: fill(aboutCopy.seo.description, { name: siteConfig.name }),
+  description,
   path: "/about",
   keywords: aboutCopy.seo.keywords,
 });
@@ -57,7 +60,7 @@ export default function AboutPage() {
       {/* Introduction */}
       <section className="section-y-sm">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <SectionHeading
               eyebrow={aboutCopy.story.eyebrow}
               title={aboutCopy.story.title}
@@ -101,7 +104,7 @@ export default function AboutPage() {
           <Stagger
             as="ul"
             stagger={0.08}
-            className="mt-10 grid gap-5 lg:grid-cols-2"
+            className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2"
           >
             {missionVision.map((pillar) => (
               <StaggerItem as="li" key={pillar.id} className="h-full">
@@ -136,7 +139,7 @@ export default function AboutPage() {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="mt-10 grid gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2"
+            className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2"
           >
             {values.map((value) => (
               <StaggerItem as="li" key={value.id} className="bg-white">
@@ -169,7 +172,7 @@ export default function AboutPage() {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {capabilities.map((capability) => (
               <StaggerItem as="li" key={capability.id} className="h-full">
@@ -243,7 +246,7 @@ export default function AboutPage() {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {team.map((member) => (
               <StaggerItem as="li" key={member.id} className="h-full">
@@ -288,16 +291,17 @@ export default function AboutPage() {
         description={aboutCopy.cta.description}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "About", path: "/about" },
-            ]),
-          ),
-        }}
+      <JsonLd
+        data={pageGraph({
+          path: "/about",
+          title: aboutCopy.seo.title,
+          description,
+          type: "AboutPage",
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ],
+        })}
       />
     </>
   );

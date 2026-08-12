@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Check, Clock, Mail, ShieldCheck } from "lucide-react";
 
 import { BookingEmbed } from "@/components/contact/BookingEmbed";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { consultationPoints } from "@/data/contact";
 import { bookACallCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { buildMetadata, pageGraph } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: bookACallCopy.seo.title,
@@ -38,7 +39,7 @@ export default function BookACallPage() {
         />
 
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
             {/* Left: what the call covers */}
             <div>
               <Reveal y={12}>
@@ -143,16 +144,17 @@ export default function BookACallPage() {
         </Container>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Book a Call", path: "/book-a-call" },
-            ]),
-          ),
-        }}
+      <JsonLd
+        data={pageGraph({
+          path: "/book-a-call",
+          title: bookACallCopy.seo.title,
+          description: bookACallCopy.seo.description,
+          type: "ContactPage",
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Book a Call", path: "/book-a-call" },
+          ],
+        })}
       />
     </>
   );

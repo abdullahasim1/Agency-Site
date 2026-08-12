@@ -11,8 +11,9 @@ import { ResultsSection } from "@/components/case-study/ResultsSection";
 import { SolutionSection } from "@/components/case-study/SolutionSection";
 import { TechStack } from "@/components/case-study/TechStack";
 import { WorkflowDiagram } from "@/components/case-study/WorkflowDiagram";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
-import { breadcrumbSchema, buildMetadata, caseStudySchema } from "@/lib/seo";
+import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
 
 interface CaseStudyPageProps {
   params: Promise<{ slug: string }>;
@@ -58,6 +59,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   if (!project) notFound();
 
+  const path = `/portfolio/${project.slug}`;
+  const title = `${project.title} — ${project.tagline}`;
+
   return (
     <>
       <ProjectHero project={project} />
@@ -71,31 +75,28 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <ProjectGallery project={project} />
       <ProjectCTA project={project} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
+      <JsonLd
+        data={pageGraph({
+          path,
+          title,
+          description: project.shortDescription,
+          image: project.image,
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Portfolio", path: "/portfolio" },
+            { name: project.title, path },
+          ],
+          nodes: [
             caseStudySchema({
-              title: `${project.title} — ${project.tagline}`,
+              title,
               description: project.shortDescription,
-              path: `/portfolio/${project.slug}`,
+              path,
               image: project.image,
               datePublished: `${project.overview.year}-01-01`,
+              keywords: [project.category, ...project.technologies],
             }),
-          ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Portfolio", path: "/portfolio" },
-              { name: project.title, path: `/portfolio/${project.slug}` },
-            ]),
-          ),
-        }}
+          ],
+        })}
       />
     </>
   );

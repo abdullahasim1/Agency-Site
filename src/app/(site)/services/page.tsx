@@ -4,6 +4,7 @@ import { AutomationRunVisual } from "@/components/home/AutomationRunVisual";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Process } from "@/components/home/Process";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
@@ -13,7 +14,7 @@ import { TechMarquee } from "@/components/ui/TechMarquee";
 import { industries } from "@/data/industries";
 import { servicesCopy } from "@/data/pages";
 import { getServices } from "@/data/services";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { buildMetadata, pageGraph } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 /** Rotated across the industry grid so the tiles do not read as one block. */
@@ -67,7 +68,7 @@ export default async function ServicesPage() {
           <Stagger
             as="ul"
             stagger={0.06}
-            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {services.map((service) => (
               <StaggerItem as="li" key={service.id} className="h-full">
@@ -89,7 +90,7 @@ export default async function ServicesPage() {
           <Stagger
             as="ul"
             stagger={0.05}
-            className="mt-10 grid gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-3"
           >
             {industries.map((industry, index) => (
               <StaggerItem as="li" key={industry.name} className="bg-white">
@@ -139,16 +140,17 @@ export default async function ServicesPage() {
         description={servicesCopy.cta.description}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Services", path: "/services" },
-            ]),
-          ),
-        }}
+      <JsonLd
+        data={pageGraph({
+          path: "/services",
+          title: servicesCopy.seo.title,
+          description: servicesCopy.seo.description,
+          type: "CollectionPage",
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ],
+        })}
       />
     </>
   );

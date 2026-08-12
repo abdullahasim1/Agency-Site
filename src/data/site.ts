@@ -43,6 +43,30 @@ export interface SiteConfig {
   };
   twitterHandle: string;
   foundedYear: number;
+  /**
+   * The subset of the identity that gets *asserted to search engines* in
+   * JSON-LD, kept separate from the copy above on purpose.
+   *
+   * The visible contact details are placeholders, and publishing a placeholder
+   * as structured data is worse than publishing nothing: a reserved fictional
+   * phone number and `sameAs` links that 404 read as low-trust signals rather
+   * than neutral ones. So every field here is empty by default and
+   * `organizationSchema()` omits whatever is still blank. Fill them in from the
+   * Keystatic panel once the real details exist and the markup appears with no
+   * code change.
+   */
+  schema: {
+    telephone: string;
+    foundingDate: string;
+    sameAs: string[];
+    address: {
+      streetAddress: string;
+      addressLocality: string;
+      addressRegion: string;
+      postalCode: string;
+      addressCountry: string;
+    };
+  };
 }
 
 const data = raw as unknown as SiteConfig;
@@ -52,3 +76,10 @@ export const siteConfig: SiteConfig = {
   /** Used for metadataBase, canonical URLs, sitemap and Open Graph. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? data.url,
 };
+
+/**
+ * The homepage / default document title. Shared by the (site) layout's metadata
+ * and the homepage's JSON-LD so the two can never disagree about what the page
+ * is called — a mismatch there is a contradiction a crawler can see.
+ */
+export const siteTitle = `${siteConfig.name} — AI, Automation & Software Development Agency`;

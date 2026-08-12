@@ -36,7 +36,7 @@ export async function Services() {
         <Stagger
           as="ul"
           stagger={0.06}
-          className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4"
         >
           {featuredServices.map((service) => (
             <StaggerItem as="li" key={service.id} className="h-full">

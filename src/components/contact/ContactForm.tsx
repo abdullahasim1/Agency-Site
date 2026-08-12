@@ -65,8 +65,11 @@ function validate(values: FormValues): FormErrors {
   return errors;
 }
 
+/* text-base below sm is deliberate: mobile Safari zooms the page on focus when a
+   control's font-size is under 16px, which leaves the viewport scrolled sideways
+   after the field blurs. 15px returns from sm upwards, where no browser zooms. */
 const controlBase =
-  "block w-full rounded-[0.75rem] border bg-white px-4 py-3 text-[0.9375rem] text-ink-900 " +
+  "block w-full rounded-[0.75rem] border bg-white px-4 py-3 text-base text-ink-900 sm:text-[0.9375rem] " +
   "transition-[border-color,box-shadow] duration-200 placeholder:text-ink-400 " +
   "hover:border-ink-300 focus-visible:border-brand-400 focus-visible:outline-none " +
   "focus-visible:ring-2 focus-visible:ring-brand-500/25 disabled:cursor-not-allowed disabled:bg-ink-25";
@@ -177,7 +180,7 @@ export function ContactForm() {
       </h2>
       <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{copy.intro}</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label={copy.fullNameLabel} htmlFor={fieldId("fullName")} required error={errors.fullName} errorId={errorId("fullName")}>
           <input
             {...controlProps("fullName")}

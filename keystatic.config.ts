@@ -423,6 +423,27 @@ export default config({
           label: "Use cases",
           itemLabel: (props) => props.value || "Use case",
         }),
+        faq: fields.array(
+          fields.object({
+            question: fields.text({
+              label: "Question",
+              validation: { isRequired: true },
+            }),
+            answer: fields.text({
+              label: "Answer",
+              description:
+                "Answer the question in the first sentence, then add the detail. Search engines and AI assistants quote the opening line.",
+              multiline: true,
+              validation: { isRequired: true },
+            }),
+          }),
+          {
+            label: "Questions & answers",
+            description:
+              "Questions buyers actually ask about this service. Shown as an FAQ section on the service page and published as structured data, so these are what a search engine or AI assistant can answer with. Leave empty and the section simply does not appear.",
+            itemLabel: (props) => props.fields.question.value || "Question",
+          },
+        ),
         relatedProjects: fields.array(
           fields.text({ label: "Project slug" }),
           {
@@ -583,6 +604,7 @@ export default config({
             overview: sectionField("Overview section"),
             deliverables: sectionField("Deliverables section"),
             useCases: sectionField("Use cases section"),
+            faq: sectionField("Questions section"),
             relatedWork: sectionField(
               "Related work section",
               "Use {service} where the service name should appear.",
@@ -1107,6 +1129,49 @@ export default config({
           label: "Founded year",
           validation: { isRequired: true },
         }),
+        /*
+         * Kept separate from the contact details above because these are
+         * *claims made to search engines*, not display copy. The contact block
+         * can hold a placeholder while the site is being built; this block
+         * cannot — a fictional phone number or a social link that 404s is read
+         * as a low-trust signal. Anything left blank is simply left out of the
+         * markup, so filling these in is what switches the extra detail on.
+         */
+        schema: fields.object(
+          {
+            telephone: fields.text({
+              label: "Phone number",
+              description:
+                "In international format, e.g. +14155550142. Must be a number that really answers — leave blank otherwise.",
+            }),
+            foundingDate: fields.text({
+              label: "Founding date",
+              description: "YYYY or YYYY-MM-DD. Leave blank if unconfirmed.",
+            }),
+            sameAs: fields.array(fields.text({ label: "Profile URL" }), {
+              label: "Verified profiles",
+              description:
+                "Links to profiles that exist and are yours — LinkedIn, GitHub, X, Crunchbase. A link that 404s does more harm than no link.",
+              itemLabel: (props) => props.value || "Profile URL",
+            }),
+            address: fields.object(
+              {
+                streetAddress: fields.text({ label: "Street address" }),
+                addressLocality: fields.text({ label: "City" }),
+                addressRegion: fields.text({ label: "Region / state" }),
+                postalCode: fields.text({ label: "Postal code" }),
+                addressCountry: fields.text({
+                  label: "Country code",
+                  description: "Two letters, e.g. PK, US, GB.",
+                }),
+              },
+              { label: "Registered address" },
+            ),
+          },
+          {
+            label: "Structured data (verified details only)",
+          },
+        ),
       },
     }),
 

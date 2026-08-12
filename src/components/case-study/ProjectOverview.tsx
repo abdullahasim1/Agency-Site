@@ -21,7 +21,7 @@ export function ProjectOverview({ project }: { project: Project }) {
   return (
     <section className="section-y-sm">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14">
           <div>
             <SectionHeading
               eyebrow={portfolioCopy.caseStudy.overview.eyebrow}

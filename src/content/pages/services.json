@@ -58,6 +58,11 @@
       "title": "Common Use Cases",
       "description": "If one of these sounds like your situation, this is the right starting point."
     },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Common Questions",
+      "description": "The things buyers ask before committing to this kind of work."
+    },
     "relatedWork": {
       "eyebrow": "Proof",
       "title": "Related Work",

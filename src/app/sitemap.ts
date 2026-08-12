@@ -5,6 +5,17 @@ import { getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site";
 
 /**
+ * One timestamp for the whole sitemap, captured when the module is first
+ * evaluated — i.e. at build time.
+ *
+ * This is honest rather than arbitrary. Keystatic commits every content change
+ * to `main`, and every commit to `main` triggers a Vercel build, so "when this
+ * build ran" really is "when the content last changed". File mtimes would be
+ * worse: Vercel clones fresh, which stamps every file with checkout time.
+ */
+const lastModified = new Date();
+
+/**
  * The sitemap is built from the same data that drives the routes, so adding a
  * project or service picks it up automatically. Priorities and change
  * frequencies are rough hints for crawlers, not guarantees.
@@ -24,6 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
   ].map((entry) => ({
     url: url(entry.path),
+    lastModified,
     changeFrequency: entry.changeFrequency as MetadataRoute.Sitemap[number]["changeFrequency"],
     priority: entry.priority,
   }));
@@ -35,12 +47,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
     url: url(`/services/${slug}`),
+    lastModified,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
   const projectRoutes: MetadataRoute.Sitemap = projectSlugs.map((slug) => ({
     url: url(`/portfolio/${slug}`),
+    lastModified,
     changeFrequency: "monthly",
     priority: 0.6,
   }));

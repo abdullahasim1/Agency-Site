@@ -53,7 +53,7 @@ export function Technologies() {
         <Stagger
           as="ul"
           stagger={0.06}
-          className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:grid-cols-4"
         >
           {techCategories.map((category) => (
             <StaggerItem as="li" key={category.id} className="h-full">

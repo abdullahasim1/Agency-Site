@@ -19,6 +19,11 @@ export interface ServiceDeliverable {
   description: string;
 }
 
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
 export interface Service {
   id: string;
   slug: string;
@@ -37,6 +42,15 @@ export interface Service {
   deliverables: ServiceDeliverable[];
   /** Concrete situations this service is the right fit for. */
   useCases: string[];
+  /**
+   * Buying questions for this service, written in the Keystatic panel.
+   *
+   * Optional on purpose: an empty list renders no FAQ section and emits no
+   * FAQPage markup, so a service without real questions never ships invented
+   * ones. This is the surface answer engines quote from, which is why it is
+   * per-service rather than only on /faq.
+   */
+  faq?: ServiceFaq[];
   /** Slugs from projects.ts used to cross-link real work. */
   relatedProjects: string[];
   accent: "brand" | "violet" | "cyan";

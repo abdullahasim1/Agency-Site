@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { PortfolioHero } from "@/components/portfolio/PortfolioHero";
 import { ProjectGrid } from "@/components/portfolio/ProjectGrid";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { portfolioCopy } from "@/data/pages";
 import { getProjects, projectCategories } from "@/data/projects";
-import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { buildMetadata, pageGraph } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: portfolioCopy.seo.title,
@@ -35,16 +36,17 @@ export default async function PortfolioPage() {
         description={portfolioCopy.cta.description}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema([
-              { name: "Home", path: "/" },
-              { name: "Portfolio", path: "/portfolio" },
-            ]),
-          ),
-        }}
+      <JsonLd
+        data={pageGraph({
+          path: "/portfolio",
+          title: portfolioCopy.seo.title,
+          description: portfolioCopy.seo.description,
+          type: "CollectionPage",
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Portfolio", path: "/portfolio" },
+          ],
+        })}
       />
     </>
   );

@@ -37,7 +37,7 @@ export function Process() {
           <Stagger
             as="ol"
             stagger={0.1}
-            className="relative grid gap-10 lg:grid-cols-4 lg:gap-6"
+            className="relative grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-6"
           >
             {processSteps.map((step) => (
               <StaggerItem

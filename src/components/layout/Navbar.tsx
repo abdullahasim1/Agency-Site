@@ -94,7 +94,12 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2.5 rounded-lg"
+            /* py-2 lifts the hit area to 48px tall on touch without resizing the
+               mark. The horizontal pair does the same for width: below sm the
+               wordmark is hidden, so the link is only as wide as the 32px mark —
+               px-1.5 takes it to 44px and the matching -mx-1.5 cancels the
+               indent, leaving the mark exactly where it was. */
+            className="-mx-1.5 flex shrink-0 items-center gap-2.5 rounded-lg px-1.5 py-2 lg:py-0"
             aria-label={`${siteConfig.name} — home`}
           >
             <LogoMark
@@ -135,7 +140,14 @@ export function Navbar() {
             <Button
               href={PRIMARY_CTA.href}
               size="sm"
-              className="hidden lg:inline-flex"
+              /* max-lg:hidden, not `hidden lg:inline-flex`. Tailwind emits the
+                 display utilities in one fixed order — block, contents, flex,
+                 grid, hidden, inline, inline-flex, table — at equal specificity,
+                 so an unprefixed `hidden` from here loses to the unprefixed
+                 `inline-flex` in Button's own base classes and the button stays
+                 visible on mobile. A variant-prefixed utility is emitted after
+                 all the unprefixed ones, so this one actually wins. */
+              className="max-lg:hidden"
               trailingIcon={<ArrowUpRight className="size-4" aria-hidden />}
             >
               {PRIMARY_CTA.label}
@@ -148,7 +160,7 @@ export function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="inline-flex size-10 items-center justify-center rounded-lg border border-ink-200 bg-white/70 text-ink-800 transition-colors hover:bg-ink-50 lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-lg border border-ink-200 bg-white/70 text-ink-800 transition-colors hover:bg-ink-50 lg:hidden"
             >
               {open ? (
                 <X className="size-5" aria-hidden />

@@ -88,7 +88,7 @@ export function PageHero({
 
       <Container>
         {visual ? (
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16">
             <div className="max-w-3xl">{content}</div>
             <Reveal delay={0.2} y={20} className="lg:pl-2">
               {visual}

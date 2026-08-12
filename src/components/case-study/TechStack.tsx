@@ -16,7 +16,7 @@ export function TechStack({ project }: { project: Project }) {
           description={portfolioCopy.caseStudy.techStack.description}
         />
 
-        <Stagger as="ul" stagger={0.06} className="mt-10 grid gap-5 lg:grid-cols-2">
+        <Stagger as="ul" stagger={0.06} className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
           {project.techStack.map((group) => (
             <StaggerItem as="li" key={group.group} className="h-full">
               <div className="flex h-full flex-col rounded-card border border-ink-200 bg-white p-6">

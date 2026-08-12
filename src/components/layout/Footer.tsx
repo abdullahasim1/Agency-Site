@@ -48,7 +48,7 @@ export async function Footer() {
       <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-40" />
 
       <Container className="relative">
-        <div className="grid gap-12 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)] lg:gap-16 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)] lg:gap-16 lg:py-20">
           {/* Brand + contact */}
           <div className="max-w-sm">
             <Link

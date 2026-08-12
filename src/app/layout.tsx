@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
@@ -40,6 +40,16 @@ const jetBrainsMono = JetBrains_Mono({
  */
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+};
+
+/*
+ * Every route needs width=device-width, including the ones outside the (site)
+ * group — without it /keystatic renders at a desktop width on a phone. The
+ * (site) group overrides this with themeColor and colorScheme on top.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

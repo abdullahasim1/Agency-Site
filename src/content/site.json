@@ -26,5 +26,17 @@
     "x": "https://x.com/devrox"
   },
   "twitterHandle": "@devrox",
-  "foundedYear": 2016
+  "foundedYear": 2016,
+  "schema": {
+    "telephone": "",
+    "foundingDate": "",
+    "sameAs": [],
+    "address": {
+      "streetAddress": "",
+      "addressLocality": "",
+      "addressRegion": "",
+      "postalCode": "",
+      "addressCountry": ""
+    }
+  }
 }

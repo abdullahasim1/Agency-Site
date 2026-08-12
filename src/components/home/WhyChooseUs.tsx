@@ -32,7 +32,7 @@ export function WhyChooseUs() {
         <Stagger
           as="ul"
           stagger={0.07}
-          className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-6"
+          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-6"
         >
           {differentiators.map((item, index) => (
             <StaggerItem

@@ -93,6 +93,7 @@ export interface ServicesCopy {
     overview: SectionCopy;
     deliverables: SectionCopy;
     useCases: SectionCopy;
+    faq: SectionCopy;
     relatedWork: SectionCopy;
     relatedWorkAction: string;
     otherServices: SectionCopy;
