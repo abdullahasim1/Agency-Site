@@ -140,21 +140,47 @@ export default config({
 
   ui: {
     brand: { name: "DevRox" },
+    /*
+     * Grouped by PAGE, not by data type. Opening a page's group shows
+     * everything on that page in top-to-bottom order — a table of contents you
+     * can edit. Shared blocks (Technologies, Statistics, Process, the closing
+     * call to action…) are listed under every page they appear on: it is the
+     * same entry each time, so editing it in one place updates it everywhere.
+     * Keystatic renders each reference independently, which is why a key can
+     * repeat across groups.
+     */
     navigation: {
-      "Work": ["projects", "services"],
-      "Page copy": [
+      "🏠 Home page": [
         "homePage",
-        "aboutPage",
-        "servicesPage",
-        "portfolioPage",
-        "faqPage",
-        "contactPage",
-        "bookACallPage",
-        "sharedCopy",
+        "stats",
+        "services",
+        "technologies",
+        "process",
+        "projects",
+        "why",
+        "testimonials",
       ],
-      "Site content": ["site", "stats", "why", "process"],
-      "Page sections": ["about", "faq", "testimonials", "industries", "technologies"],
-      "Forms & legal": ["contact", "legal"],
+      "👤 About page": [
+        "aboutPage",
+        "about",
+        "why",
+        "stats",
+        "process",
+        "technologies",
+      ],
+      "🧰 Services page": [
+        "servicesPage",
+        "services",
+        "industries",
+        "process",
+        "technologies",
+      ],
+      "💼 Portfolio page": ["portfolioPage", "projects"],
+      "❓ FAQ page": ["faqPage", "faq", "technologies"],
+      "✉️ Contact page": ["contactPage", "contact", "site"],
+      "📞 Book-a-call page": ["bookACallPage", "contact", "site"],
+      "📄 Legal pages": ["legal"],
+      "⚙️ Site settings (affects every page)": ["site", "sharedCopy"],
     },
   },
 
