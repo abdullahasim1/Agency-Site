@@ -9,7 +9,9 @@
  * The one exception is `url`: the canonical site URL is overridden by the
  * NEXT_PUBLIC_SITE_URL environment variable when set (so preview and production
  * deploys resolve their own absolute URLs), falling back to the value in the
- * JSON. That override has to live in code, so it stays here.
+ * JSON. That override has to live in code, so it stays here. See `resolveUrl()`
+ * below for the two cases where the environment variable is deliberately
+ * ignored.
  */
 
 import raw from "@/content/site.json";
@@ -71,10 +73,43 @@ export interface SiteConfig {
 
 const data = raw as unknown as SiteConfig;
 
+/**
+ * Resolves the canonical origin.
+ *
+ * `NEXT_PUBLIC_SITE_URL` wins when it names a real site, because preview deploys
+ * need to resolve their own absolute URLs. Two things are stripped out first:
+ *
+ * 1. Surrounding whitespace. Pasting a value into the Vercel dashboard has
+ *    already smuggled a tab into one variable on this project; a stray tab here
+ *    would make `new URL()` throw during the build instead of at review time.
+ * 2. A `*.vercel.app` host, when the JSON names a real domain. The deploy alias
+ *    is not the site's identity: canonicalising to it tells Google the content
+ *    lives on a Public-Suffix-List hostname that accrues no authority, and
+ *    points every page on the real domain at a different origin. The panel's
+ *    value is the one an editor controls, so it is the one that should win — and
+ *    the check means a forgotten dashboard variable cannot quietly undo a domain
+ *    move.
+ */
+function resolveUrl(): string {
+  const override = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!override) return data.url;
+
+  const isAlias = (value: string) => {
+    try {
+      return new URL(value).hostname.endsWith(".vercel.app");
+    } catch {
+      return false;
+    }
+  };
+
+  if (isAlias(override) && !isAlias(data.url)) return data.url;
+  return override;
+}
+
 export const siteConfig: SiteConfig = {
   ...data,
   /** Used for metadataBase, canonical URLs, sitemap and Open Graph. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? data.url,
+  url: resolveUrl(),
 };
 
 /**
