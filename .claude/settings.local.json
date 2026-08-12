@@ -225,7 +225,10 @@
       "Bash(node -e 'console.log\\(JSON.stringify\\(require\\(\"./src/content/site.json\"\\).schema\\)\\)')",
       "Bash(curl -s http://localhost:3200/robots.txt)",
       "Bash(curl -s http://localhost:3200/sitemap.xml)",
-      "Bash(curl -s http://localhost:3200/llms.txt)"
+      "Bash(curl -s http://localhost:3200/llms.txt)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' --max-time 20 https://thedevrox.com/keystatic)",
+      "Bash(curl -s -o /dev/null -D - --max-time 20 https://thedevrox.com/api/keystatic/github/login)",
+      "Bash(gh auth *)"
     ]
   }
 }
