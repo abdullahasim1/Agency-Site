@@ -1,6 +1,9 @@
+import Image from "next/image";
+
 import { Container } from "@/components/ui/Container";
 import { sharedCopy } from "@/data/pages";
 import { allTechnologies } from "@/data/technologies";
+import { techLogo } from "@/data/tech-logos";
 import { cn } from "@/lib/utils";
 
 interface TechMarqueeProps {
@@ -59,28 +62,47 @@ export function TechMarquee({
               className="flex shrink-0 gap-3"
               aria-hidden={copy === 1 ? true : undefined}
             >
-              {allTechnologies.map((tech) => (
-                <li
-                  key={tech}
-                  className={cn(
-                    "flex shrink-0 items-center gap-2.5 rounded-pill border px-4 py-2",
-                    dark
-                      ? "border-white/10 bg-white/[0.04] text-ink-300"
-                      : "border-ink-200 bg-white text-ink-600",
-                  )}
-                >
-                  <span
-                    aria-hidden
+              {allTechnologies.map((tech) => {
+                const logo = techLogo(tech);
+                return (
+                  <li
+                    key={tech}
                     className={cn(
-                      "size-1.5 shrink-0 rounded-full",
-                      dark ? "bg-brand-400" : "bg-brand-500",
+                      "flex shrink-0 items-center gap-2.5 rounded-pill border px-4 py-2",
+                      dark
+                        ? "border-white/10 bg-white/[0.04] text-ink-300"
+                        : "border-ink-200 bg-white text-ink-600",
                     )}
-                  />
-                  <span className="font-mono text-[0.8125rem] whitespace-nowrap">
-                    {tech}
-                  </span>
-                </li>
-              ))}
+                  >
+                    {logo ? (
+                      <Image
+                        src={logo}
+                        alt=""
+                        width={18}
+                        height={18}
+                        aria-hidden
+                        className={cn(
+                          "size-[1.125rem] shrink-0 object-contain",
+                          // Vercel, OpenAI and ElevenLabs are black marks; invert
+                          // them on the dark band so they don't vanish.
+                          dark && "brightness-0 invert",
+                        )}
+                      />
+                    ) : (
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "size-1.5 shrink-0 rounded-full",
+                          dark ? "bg-brand-400" : "bg-brand-500",
+                        )}
+                      />
+                    )}
+                    <span className="font-mono text-[0.8125rem] whitespace-nowrap">
+                      {tech}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           ))}
         </div>
