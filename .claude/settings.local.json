@@ -228,7 +228,8 @@
       "Bash(curl -s http://localhost:3200/llms.txt)",
       "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' --max-time 20 https://thedevrox.com/keystatic)",
       "Bash(curl -s -o /dev/null -D - --max-time 20 https://thedevrox.com/api/keystatic/github/login)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' --max-time 8 \"https://cdn.simpleicons.org/react\")"
     ]
   }
 }
