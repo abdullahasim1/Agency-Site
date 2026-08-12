@@ -222,7 +222,10 @@
       "Bash(cp /tmp/ai-agents.backup.json src/content/services/ai-agents.json)",
       "Bash(node -e 'const j=require\\(\"./src/content/services/ai-agents.json\"\\); console.log\\(\"faq field:\", JSON.stringify\\(j.faq\\)\\);')",
       "Bash(node /tmp/grid-audit.mjs)",
-      "Bash(node -e 'console.log\\(JSON.stringify\\(require\\(\"./src/content/site.json\"\\).schema\\)\\)')"
+      "Bash(node -e 'console.log\\(JSON.stringify\\(require\\(\"./src/content/site.json\"\\).schema\\)\\)')",
+      "Bash(curl -s http://localhost:3200/robots.txt)",
+      "Bash(curl -s http://localhost:3200/sitemap.xml)",
+      "Bash(curl -s http://localhost:3200/llms.txt)"
     ]
   }
 }

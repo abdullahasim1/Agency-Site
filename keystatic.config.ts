@@ -1083,7 +1083,7 @@ export default config({
         url: fields.url({
           label: "Site URL",
           description:
-            "Canonical address, e.g. https://www.devrox.com. Overridden by NEXT_PUBLIC_SITE_URL on preview deploys.",
+            "Canonical address, e.g. https://thedevrox.com. Overridden by NEXT_PUBLIC_SITE_URL on preview deploys.",
           validation: { isRequired: true },
         }),
         contact: fields.object(
