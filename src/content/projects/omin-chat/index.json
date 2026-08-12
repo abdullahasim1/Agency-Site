@@ -1,0 +1,193 @@
+{
+  "title": "OminChat",
+  "id": "omin-chat",
+  "tagline": "A modern general-purpose conversational AI assistant",
+  "category": "AI / Conversational AI",
+  "categories": [
+    "AI"
+  ],
+  "shortDescription": "A modern conversational AI assistant with real-time streaming, multi-chat conversations, reusable prompt templates, rich AI responses, configurable generation settings, and a responsive user experience.",
+  "fullDescription": "OmniChat is a modern general-purpose conversational AI application designed to provide a polished, responsive experience for interacting with large language models. The platform combines real-time streaming conversations with multi-chat management, searchable conversation history, reusable prompt templates, configurable generation controls, Markdown and code rendering, and responsive support across desktop, tablet, and mobile.",
+  "image": "/images/projects/omin-chat/image.png",
+  "technologies": [
+    "Next.js",
+    "Geneartive AI",
+    "Google Gemini",
+    "React",
+    "TypeScript",
+    "React Markdown",
+    "Tailwind CSS"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "State Management",
+      "items": [
+        "React Context API"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "Large Language Model Integration",
+        "Streaming Generation",
+        "Multi-turn Conversations",
+        "Google Gemini API"
+      ]
+    },
+    {
+      "group": "UI & Rendering",
+      "items": [
+        "React Markdown",
+        "React Syntax HIghlighter",
+        "Lucid React"
+      ]
+    },
+    {
+      "group": "Storage",
+      "items": [
+        "Browser localStorage"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Real-Time AI Streaming",
+      "description": "AI responses are progressively streamed into the conversation to create a responsive, real-time interaction experience.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Multi-Conversation Management",
+      "description": "Users can create, switch between, search, and delete independent conversations.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Persistent Chat History",
+      "description": "Conversation data is automatically persisted locally so users can return to previous conversations.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Conversation data is automatically persisted locally so users can return to previous conversations.",
+      "description": "Users can configure supported model settings, temperature, maximum token limits, and streaming behavior.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Prompt Template Library",
+      "description": "A categorized collection of reusable prompts helps users quickly start common development, writing, learning, and creative workflows.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Rich AI Responses",
+      "description": "AI output supports Markdown formatting, structured content, syntax-highlighted code, and one-click code copying.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Responsive Interface",
+      "description": "The application adapts to desktop, tablet, and mobile screen sizes with responsive navigation and layouts.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Dark & Light Themes",
+      "description": "Users can switch between dark and light visual themes for a personalized experience.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Conversation Export",
+      "description": "Users can export conversations as text for external use or archiving.",
+      "icon": "Sparkles"
+    }
+  ],
+  "challenge": {
+    "summary": "Creating a useful conversational AI application requires more than connecting a frontend to an LLM API. The challenge was to build a complete and polished chat experience capable of handling real-time generation, multiple conversations, persistent state, configurable AI behavior, reusable prompts, rich content rendering, and responsive interaction.",
+    "points": [
+      "Design a modern conversational AI interface",
+      "Implement real-time streaming responses",
+      "Manage multiple independent conversations",
+      "Persist conversation state locally",
+      "Provide configurable AI generation settings",
+      "Create a reusable prompt template system",
+      "Render Markdown and syntax-highlighted code",
+      "Support responsive desktop, tablet, and mobile layouts",
+      "Provide reliable loading, error, and delete-confirmation states",
+      "Keep the architecture modular and extensible for future AI capabilities"
+    ]
+  },
+  "solution": {
+    "summary": "OmniChat was implemented as a modular Next.js application with centralized conversation state management, a dedicated AI service layer, reusable UI components, and client-side persistence. The architecture separates the chat interface, application state, AI integration, content rendering, and supporting functionality, providing a foundation that can be extended into more advanced AI systems.",
+    "points": [
+      "Created a dedicated AI service layer for LLM communication",
+      "Built the application with Next.js, React, TypeScript, and Tailwind CSS",
+      "Implemented streaming and non-streaming AI responses",
+      "Added multi-turn conversation history",
+      " Centralized chat and settings state using React Context",
+      "Implemented local conversation persistence",
+      "Added searchable conversation history",
+      "Built reusable categorized prompt templates",
+      "Added Markdown and syntax-highlighted code rendering",
+      "Added configurable generation controls",
+      "Implemented dark/light themes",
+      "Added responsive navigation and layouts",
+      "Added conversation export functionality",
+      "Structured the application for future RAG, tool-use, agentic workflows, and multi-model capabilities"
+    ]
+  },
+  "results": [
+    {
+      "value": "50+",
+      "label": "Features Implemented",
+      "detail": "A complete conversational AI experience covering real-time streaming, multi-chat management, searchable history, prompt templates, configurable AI settings, rich Markdown and code rendering, responsive layouts, themes, export, and more."
+    },
+    {
+      "value": "3000+",
+      "label": "Lines ofCode",
+      "detail": "A substantial full-stack implementation covering the conversational interface, reusable components, state management, AI integration, responsive UI, settings, templates, and supporting functionality."
+    },
+    {
+      "value": "12",
+      "label": "Prompt Templates",
+      "detail": "A reusable prompt library organized across development, writing, learning, and creative workflows to help users start common AI tasks quickly."
+    },
+    {
+      "value": "20+",
+      "label": "Project Files",
+      "detail": "A modular application structure separating pages, reusable UI components, state management, AI services, templates, types, configuration, and supporting assets."
+    },
+    {
+      "value": "3",
+      "label": "Responsive Platforms",
+      "detail": "The interface was designed and optimized for desktop, tablet, and mobile experiences with responsive navigation, layouts, and interaction patterns."
+    }
+  ],
+  "gallery": [],
+  "workflow": [],
+  "overview": {
+    "client": "Self-Initiated / Personal Project",
+    "industry": "Artificial Intelligence / Software Development",
+    "timeline": "Multiple development sessions",
+    "year": "2026",
+    "platforms": [
+      "Web ? Responsive Web Application"
+    ],
+    "services": [
+      "Generative AI Development",
+      "AI Chatbot Development",
+      "Conversational AI Development",
+      "Full-Stack Web Development",
+      "LLM Integration",
+      "AI Product Development",
+      "UI/UX Implementation"
+    ],
+    "team": "3 Developers — Collaborative AI Product Team"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 100
+}
