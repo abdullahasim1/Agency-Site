@@ -27,7 +27,7 @@ export function Hero() {
       />
 
       <Container>
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-20">
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 xl:gap-20">
           <div className="max-w-2xl">
             <Reveal y={12}>
               <Eyebrow>{siteConfig.tagline}</Eyebrow>
@@ -36,7 +36,7 @@ export function Hero() {
             <Reveal delay={0.08} y={14}>
               <h1 className="type-display mt-6">
                 {homeCopy.heroHeadline}{" "}
-                <span className="relative whitespace-nowrap">
+                <span className="relative">
                   <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-cyan bg-clip-text text-transparent">
                     {homeCopy.heroHeadlineAccent}
                   </span>
