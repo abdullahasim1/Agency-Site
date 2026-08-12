@@ -25,6 +25,7 @@ export const techLogos: Record<string, string> = {
   OpenAI: "/logos/openai.svg",
   Gemini: "/logos/gemini.svg",
   Claude: "/logos/claude.svg",
+  "Amazon Bedrock": "/logos/aws.svg",
   "Hugging Face": "/logos/huggingface.svg",
   n8n: "/logos/n8n.svg",
   Make: "/logos/make.svg",
@@ -34,6 +35,7 @@ export const techLogos: Record<string, string> = {
   Vercel: "/logos/vercel.svg",
   Docker: "/logos/docker.svg",
   "GitHub Actions": "/logos/githubactions.svg",
+  AWS: "/logos/aws.svg",
 };
 
 /** The logo path for a technology, or `undefined` when there is no mark for it. */

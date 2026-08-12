@@ -49,6 +49,7 @@
         { "name": "OpenAI", "note": "Reasoning, tool use and structured output" },
         { "name": "Gemini", "note": "Long-context and multimodal workloads" },
         { "name": "Claude", "note": "Agentic workflows and careful instruction following" },
+        { "name": "Amazon Bedrock", "note": "Managed foundation models on AWS with private data" },
         { "name": "Hugging Face", "note": "Open models, embeddings and fine-tuning" }
       ]
     },
@@ -83,6 +84,7 @@
       "description": "Reproducible environments and automated releases.",
       "accent": "brand",
       "items": [
+        { "name": "AWS", "note": "EC2, S3, Lambda and managed data services" },
         { "name": "Vercel", "note": "Edge delivery and preview deployments" },
         { "name": "Docker", "note": "Containerised, reproducible builds" },
         { "name": "GitHub Actions", "note": "CI checks, tests and release pipelines" }
