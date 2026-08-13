@@ -36,6 +36,14 @@ export const techLogos: Record<string, string> = {
   Docker: "/logos/docker.svg",
   "GitHub Actions": "/logos/githubactions.svg",
   AWS: "/logos/aws.svg",
+  "Amazon EC2": "/logos/aws.svg",
+  "Amazon S3": "/logos/aws.svg",
+  "AWS Lambda": "/logos/aws.svg",
+  "Amazon RDS": "/logos/aws.svg",
+  "Amazon ECS": "/logos/aws.svg",
+  "Amazon CloudFront": "/logos/aws.svg",
+  "AWS IAM": "/logos/aws.svg",
+  "Amazon CloudWatch": "/logos/aws.svg",
 };
 
 /** The logo path for a technology, or `undefined` when there is no mark for it. */

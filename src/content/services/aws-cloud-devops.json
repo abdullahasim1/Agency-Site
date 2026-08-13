@@ -1,0 +1,67 @@
+{
+  "id": "svc-aws-cloud-devops",
+  "order": 9,
+  "title": "AWS Cloud & DevOps",
+  "navLabel": "AWS Cloud",
+  "icon": "Cloud",
+  "shortDescription": "Design, deploy and operate secure AWS infrastructure for web apps, APIs, automation and AI workloads.",
+  "fullDescription": "AWS is powerful, but it gets expensive and fragile when accounts, networking, permissions and deployments grow without a plan. We set up production-ready AWS foundations: secure accounts, least-privilege IAM, repeatable infrastructure, automated deployments, observability, backups and cost controls. The goal is simple: your product runs reliably, scales when needed and stays maintainable for the team who owns it.",
+  "technologies": [
+    "AWS",
+    "EC2",
+    "S3",
+    "Lambda",
+    "RDS",
+    "ECS",
+    "CloudFront",
+    "IAM",
+    "CloudWatch",
+    "Docker",
+    "GitHub Actions"
+  ],
+  "deliverables": [
+    {
+      "title": "AWS account and security foundation",
+      "description": "Account structure, IAM roles, least-privilege access, secrets handling and baseline security controls."
+    },
+    {
+      "title": "Application infrastructure",
+      "description": "EC2, ECS, Lambda, RDS, S3, CloudFront and networking selected around the workload instead of overbuilding."
+    },
+    {
+      "title": "CI/CD and release automation",
+      "description": "Automated builds, deployments, environment variables, rollback paths and repeatable release steps."
+    },
+    {
+      "title": "Monitoring and cost control",
+      "description": "CloudWatch dashboards, alerts, logs, backups and budget visibility so issues are caught early."
+    }
+  ],
+  "useCases": [
+    "Deploying a Next.js, API or SaaS product on AWS",
+    "Moving a prototype into a secure production environment",
+    "Setting up Lambda jobs, queues, storage and managed databases",
+    "Improving reliability, monitoring and AWS monthly cost visibility"
+  ],
+  "faq": [
+    {
+      "question": "Which AWS services do you set up?",
+      "answer": "We commonly set up EC2, S3, Lambda, RDS, ECS, CloudFront, IAM, Route 53, CloudWatch and related networking. The final architecture depends on the product, traffic pattern, budget and team."
+    },
+    {
+      "question": "Can you deploy existing apps to AWS?",
+      "answer": "Yes. We can review the current app, containerise it where useful, create the AWS infrastructure, configure CI/CD and migrate it with a rollback plan."
+    },
+    {
+      "question": "Do you help reduce AWS costs?",
+      "answer": "Yes. We look for oversized compute, unused resources, storage lifecycle gaps, missing budgets and architecture choices that are more expensive than the workload needs."
+    }
+  ],
+  "relatedProjects": [
+    "workflow-automation-system",
+    "smart-crm",
+    "commerce-insights"
+  ],
+  "accent": "brand",
+  "featured": true
+}

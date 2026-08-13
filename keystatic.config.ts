@@ -47,9 +47,9 @@ const accentField = (label = "Accent colour") =>
 
 /** Stable machine key for an entry. Changing one can break links, so it is explained. */
 const idField = fields.text({
-  label: "ID",
+  label: "Internal ID",
   description:
-    "Stable internal key. Leave it alone unless you know it is unused — it is not shown on the site.",
+    "Developer field. Keep it stable; it is not shown on the site.",
   validation: { isRequired: true },
 });
 
@@ -141,46 +141,33 @@ export default config({
   ui: {
     brand: { name: "DevRox" },
     /*
-     * Grouped by PAGE, not by data type. Opening a page's group shows
-     * everything on that page in top-to-bottom order — a table of contents you
-     * can edit. Shared blocks (Technologies, Statistics, Process, the closing
-     * call to action…) are listed under every page they appear on: it is the
-     * same entry each time, so editing it in one place updates it everywhere.
-     * Keystatic renders each reference independently, which is why a key can
-     * repeat across groups.
+     * Grouped for easy CRUD first. Collections are at the top because they are
+     * the only content types editors add/delete often; the rest are one-form
+     * settings pages.
      */
     navigation: {
-      "🏠 Home page": [
+      "➕ CRUD: add, edit, delete": ["services", "projects"],
+      "✏️ Page text": [
         "homePage",
-        "stats",
-        "services",
-        "technologies",
-        "process",
-        "projects",
-        "why",
-        "testimonials",
-      ],
-      "👤 About page": [
         "aboutPage",
-        "about",
-        "why",
-        "stats",
-        "process",
-        "technologies",
-      ],
-      "🧰 Services page": [
         "servicesPage",
-        "services",
-        "industries",
+        "portfolioPage",
+        "faqPage",
+        "contactPage",
+        "bookACallPage",
+      ],
+      "♻️ Reusable sections": [
+        "stats",
+        "why",
         "process",
+        "about",
+        "faq",
+        "testimonials",
+        "industries",
         "technologies",
       ],
-      "💼 Portfolio page": ["portfolioPage", "projects"],
-      "❓ FAQ page": ["faqPage", "faq", "technologies"],
-      "✉️ Contact page": ["contactPage", "contact", "site"],
-      "📞 Book-a-call page": ["bookACallPage", "contact", "site"],
-      "📄 Legal pages": ["legal"],
-      "⚙️ Site settings (affects every page)": ["site", "sharedCopy"],
+      "📬 Forms & business info": ["contact", "site", "sharedCopy"],
+      "📄 Legal": ["legal"],
     },
   },
 
@@ -193,23 +180,23 @@ export default config({
    */
   collections: {
     projects: collection({
-      label: "Projects",
+      label: "Projects - add / edit / delete",
       path: "src/content/projects/*/",
       slugField: "title",
       format: { data: "json" },
-      columns: ["title", "category"],
+      columns: ["title", "category", "featured", "order"],
       entryLayout: "form",
       schema: {
         title: fields.slug({
           name: {
-            label: "Title",
+            label: "Project title",
             description: "Project name, shown on the card and case-study page.",
             validation: { isRequired: true },
           },
           slug: {
-            label: "Slug",
+            label: "URL slug",
             description:
-              "The URL segment, e.g. verivoice → /portfolio/verivoice. Changing it breaks existing links.",
+              "Developer field. This becomes /portfolio/slug. Avoid changing after publish.",
           },
         }),
         id: idField,
@@ -218,12 +205,12 @@ export default config({
           description: "Sub-title under the project name.",
         }),
         category: fields.text({
-          label: "Category line",
-          description: 'Human-readable, e.g. "AI / Voice".',
+          label: "Card category",
+          description: 'Short line on cards, e.g. "AI / Voice".',
         }),
         categories: fields.multiselect({
-          label: "Filter categories",
-          description: "Buckets driving the portfolio filters.",
+          label: "Portfolio filters",
+          description: "Choose where this project appears in the portfolio filters.",
           options: [
             { label: "AI", value: "AI" },
             { label: "Automation", value: "Automation" },
@@ -233,8 +220,8 @@ export default config({
           ],
         }),
         shortDescription: fields.text({
-          label: "Short description",
-          description: "Card copy.",
+          label: "Card description",
+          description: "Short copy shown on portfolio cards.",
           multiline: true,
         }),
         fullDescription: fields.text({
@@ -384,41 +371,41 @@ export default config({
         }),
         accent: accentField(),
         order: fields.integer({
-          label: "Order",
-          description: "Lower numbers come first in the portfolio grid.",
+          label: "Display order",
+          description: "Lower numbers show first.",
           defaultValue: 100,
         }),
       },
     }),
 
     services: collection({
-      label: "Services",
+      label: "Services - add / edit / delete",
       path: "src/content/services/*",
       slugField: "title",
       format: { data: "json" },
-      columns: ["title", "navLabel"],
+      columns: ["title", "navLabel", "featured", "order"],
       entryLayout: "form",
       schema: {
         title: fields.slug({
           name: {
-            label: "Title",
+            label: "Service title",
             description: "Card and page title.",
             validation: { isRequired: true },
           },
           slug: {
-            label: "Slug",
+            label: "URL slug",
             description:
-              "The URL segment, e.g. ai-agents → /services/ai-agents. Changing it breaks existing links.",
+              "Developer field. This becomes /services/slug. Avoid changing after publish.",
           },
         }),
         id: idField,
         navLabel: fields.text({
-          label: "Navigation label",
-          description: "Short form used in the footer and compact lists.",
+          label: "Short menu label",
+          description: "Short name used in footer links and compact lists.",
         }),
         icon: iconField(),
         shortDescription: fields.text({
-          label: "Short description",
+          label: "Card description",
           description: "One or two sentences for the card.",
           multiline: true,
         }),
@@ -475,7 +462,7 @@ export default config({
           {
             label: "Related projects",
             description:
-              "Project slugs used to cross-link real work, e.g. verivoice.",
+              "Developer field. Use project URL slugs, e.g. verivoice.",
             itemLabel: (props) => props.value || "Project slug",
           },
         ),
@@ -485,8 +472,8 @@ export default config({
           description: "Show this service on the home page.",
         }),
         order: fields.integer({
-          label: "Order",
-          description: "Lower numbers come first on the services page.",
+          label: "Display order",
+          description: "Lower numbers show first.",
           defaultValue: 100,
         }),
       },
