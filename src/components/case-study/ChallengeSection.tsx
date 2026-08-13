@@ -25,16 +25,27 @@ export function ChallengeSection({ project }: { project: Project }) {
               </p>
             </Reveal>
 
-            <Stagger as="ul" stagger={0.06} className="mt-8 space-y-3">
-              {project.challenge.points.map((point) => (
+            <Stagger
+              as="ul"
+              stagger={0.06}
+              className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
+            >
+              {project.challenge.points.map((point, index) => (
                 <StaggerItem as="li" key={point}>
-                  <div className="flex items-start gap-3.5 rounded-card border border-ink-200 bg-white p-4 sm:p-5">
-                    <AlertTriangle
-                      className="mt-0.5 size-[1.125rem] shrink-0 text-amber-500"
-                      strokeWidth={1.9}
-                      aria-hidden
-                    />
-                    <p className="text-[0.9375rem] leading-relaxed text-ink-700">
+                  <div className="group h-full rounded-card border border-ink-200 bg-white p-5 shadow-soft transition-[border-color,box-shadow] duration-300 hover:border-amber-200 hover:shadow-card">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="inline-flex size-10 items-center justify-center rounded-[0.75rem] bg-amber-50 text-amber-600 ring-1 ring-amber-100">
+                        <AlertTriangle
+                          className="size-5"
+                          strokeWidth={1.9}
+                          aria-hidden
+                        />
+                      </span>
+                      <span className="nums-tabular font-mono text-xs font-medium text-ink-300">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-700">
                       {point}
                     </p>
                   </div>

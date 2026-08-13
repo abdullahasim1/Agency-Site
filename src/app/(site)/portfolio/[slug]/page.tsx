@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ChallengeSection } from "@/components/case-study/ChallengeSection";
+import { EngagementObjectives } from "@/components/case-study/EngagementObjectives";
 import { FeaturesGrid } from "@/components/case-study/FeaturesGrid";
 import { ProjectCTA } from "@/components/case-study/ProjectCTA";
 import { ProjectGallery } from "@/components/case-study/ProjectGallery";
@@ -67,6 +68,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <ProjectHero project={project} />
       <ProjectOverview project={project} />
       <ChallengeSection project={project} />
+      <EngagementObjectives project={project} />
       <SolutionSection project={project} />
       <FeaturesGrid project={project} />
       <TechStack project={project} />

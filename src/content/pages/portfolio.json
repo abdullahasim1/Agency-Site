@@ -38,7 +38,7 @@
   "caseStudy": {
     "overview": {
       "eyebrow": "Overview",
-      "title": "Project Overview",
+      "title": "Client Overview",
       "description": ""
     },
     "overviewFacts": {
@@ -52,12 +52,12 @@
     },
     "challenge": {
       "eyebrow": "Challenge",
-      "title": "The Challenge",
+      "title": "Business Challenge",
       "description": ""
     },
     "solution": {
-      "eyebrow": "Solution",
-      "title": "What We Built",
+      "eyebrow": "Solution Design",
+      "title": "How We Solved It",
       "description": ""
     },
     "features": {
@@ -66,9 +66,9 @@
       "description": "What {project} does in day-to-day use."
     },
     "workflow": {
-      "eyebrow": "Architecture",
-      "title": "How It Works",
-      "description": "The path a single request takes through the system, end to end."
+      "eyebrow": "Solution Architecture",
+      "title": "Platform Architecture",
+      "description": "Key system elements across frontend, backend services, data, automation and monitoring."
     },
     "gallery": {
       "eyebrow": "Interface",
@@ -82,7 +82,7 @@
     },
     "results": {
       "eyebrow": "Outcome",
-      "title": "Results",
+      "title": "Results & Outcome",
       "description": "What changed for the business after launch."
     },
     "related": {
