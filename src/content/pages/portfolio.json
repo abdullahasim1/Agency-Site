@@ -85,6 +85,11 @@
       "title": "A Closer Look",
       "description": "Screens from the delivered system."
     },
+    "video": {
+      "eyebrow": "Demo",
+      "title": "See It In Action",
+      "description": "The system, in motion."
+    },
     "techStack": {
       "eyebrow": "Stack",
       "title": "Technology Stack",

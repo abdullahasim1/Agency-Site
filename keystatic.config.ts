@@ -522,6 +522,28 @@ export default config({
             itemLabel: (props) => props.fields.caption.value || "Image",
           },
         ),
+        video: fields.object(
+          {
+            file: fields.file({
+              label: "Video file",
+              description:
+                "Upload the project's own video (.mp4). Leave empty to hide the video section.",
+              directory: "public/videos/projects",
+              publicPath: "/videos/projects",
+              validation: { isRequired: false },
+            }),
+            caption: fields.text({
+              label: "Caption",
+              description: "Short line under the video.",
+              multiline: true,
+            }),
+          },
+          {
+            label: "Demo video",
+            description:
+              "Optional. Add a video to show a video section on the case-study page.",
+          },
+        ),
         workflow: fields.array(
           fields.object({
             id: fields.text({
