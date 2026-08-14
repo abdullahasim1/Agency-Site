@@ -44,6 +44,7 @@ jobs:
         if: startsWith(github.event.pull_request.head.ref, 'edit/')
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           PR_HEAD: ${{ github.event.pull_request.head.ref }}
           NEW_NAME: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
@@ -57,6 +58,7 @@ jobs:
         if: startsWith(github.event.pull_request.head.ref, 'edit/')
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           PR_NUM: ${{ github.event.pull_request.number }}
           NEW_NAME: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
@@ -72,6 +74,7 @@ jobs:
         if: contains(github.event.pull_request.head.ref, '/task/')
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           NEW_BRANCH: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
