@@ -1,8 +1,17 @@
 name: Auto-merge Keystatic edits
 
 # Keystatic saves land on `edit/*` branches (main is branch-protected) and the
-# panel offers a "Create pull request" button. This workflow merges those PRs
-# automatically so the editor never has to touch GitHub.
+# panel offers a "Create pull request" button. This workflow:
+#
+#  1. Renames the branch to `<editor-username>/task/<name>` so every CMS save
+#     is traceable to the developer who made it (e.g. abdullah/task/xyz).
+#  2. Merges the PR automatically (squash + delete branch) so the editor never
+#     has to touch GitHub.
+#
+# The rename happens before the merge inside the same run, so there is no race
+# between the two. After the rename the PR head is `<user>/task/<name>`, which
+# is why the job also matches that pattern — a PR whose branch was renamed in a
+# previous event (e.g. a new commit pushed by the panel) still gets merged.
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -12,10 +21,25 @@ permissions:
   pull-requests: write
 
 jobs:
-  auto-merge:
-    if: startsWith(github.event.pull_request.head.ref, 'edit/')
+  rename-and-merge:
+    if: >
+      startsWith(github.event.pull_request.head.ref, 'edit/') ||
+      contains(github.event.pull_request.head.ref, '/task/')
     runs-on: ubuntu-latest
     steps:
+      - name: Rename branch to <editor>/task/<name>
+        if: startsWith(github.event.pull_request.head.ref, 'edit/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          REPO: ${{ github.repository }}
+        run: |
+          suffix="${PR_HEAD#edit/}"
+          new_name="${PR_USER}/task/${suffix}"
+          echo "Renaming $PR_HEAD -> $new_name"
+          gh api -X POST "repos/${REPO}/branches/${PR_HEAD}/rename" \
+            -f new_name="$new_name" --jq .name
       - name: Merge PR
         env:
           GH_TOKEN: ${{ github.token }}
