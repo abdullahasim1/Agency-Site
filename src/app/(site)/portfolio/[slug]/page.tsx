@@ -8,10 +8,10 @@ import { ProjectCTA } from "@/components/case-study/ProjectCTA";
 import { ProjectGallery } from "@/components/case-study/ProjectGallery";
 import { ProjectHero } from "@/components/case-study/ProjectHero";
 import { ProjectOverview } from "@/components/case-study/ProjectOverview";
+import { ProjectShowcase } from "@/components/case-study/ProjectShowcase";
 import { ResultsSection } from "@/components/case-study/ResultsSection";
 import { SolutionSection } from "@/components/case-study/SolutionSection";
 import { TechStack } from "@/components/case-study/TechStack";
-import { WorkflowDiagram } from "@/components/case-study/WorkflowDiagram";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
 import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
@@ -72,7 +72,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <SolutionSection project={project} />
       <FeaturesGrid project={project} />
       <TechStack project={project} />
-      <WorkflowDiagram project={project} />
+      <ProjectShowcase project={project} />
       <ResultsSection project={project} />
       <ProjectGallery project={project} />
       <ProjectCTA project={project} />

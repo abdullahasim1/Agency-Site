@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   Briefcase,
@@ -156,29 +155,6 @@ export function ProjectHero({ project }: { project: Project }) {
             </aside>
           </Reveal>
         </div>
-
-        <Reveal delay={0.24} y={20} className="mt-10 lg:mt-14">
-          <figure className="relative overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card">
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_22rem]">
-              <div className="relative aspect-[16/9] min-h-[18rem] w-full lg:min-h-[30rem]">
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  priority
-                  sizes="(min-width: 1280px) 816px, (min-width: 1024px) 64vw, 96vw"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="flex flex-col justify-center border-t border-ink-200 bg-white p-6 lg:border-l lg:border-t-0 lg:p-8">
-                <p className="type-eyebrow text-brand-600">Case study focus</p>
-                <p className="mt-3 text-base leading-relaxed text-ink-700">
-                  {project.fullDescription}
-                </p>
-              </figcaption>
-            </div>
-          </figure>
-        </Reveal>
       </Container>
     </section>
   );
