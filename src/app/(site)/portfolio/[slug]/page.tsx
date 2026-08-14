@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
+import { ChallengeSection } from "@/components/case-study/ChallengeSection";
+import { EngagementObjectives } from "@/components/case-study/EngagementObjectives";
+import { FeaturesGrid } from "@/components/case-study/FeaturesGrid";
+import { ProjectCTA } from "@/components/case-study/ProjectCTA";
+import { ProjectGallery } from "@/components/case-study/ProjectGallery";
+import { ProjectHero } from "@/components/case-study/ProjectHero";
+import { ProjectOverview } from "@/components/case-study/ProjectOverview";
+import { ResultsSection } from "@/components/case-study/ResultsSection";
+import { SolutionSection } from "@/components/case-study/SolutionSection";
+import { TechStack } from "@/components/case-study/TechStack";
+import { WorkflowDiagram } from "@/components/case-study/WorkflowDiagram";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
 import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
@@ -55,7 +65,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <>
-      <CaseStudyLayout project={project} />
+      <ProjectHero project={project} />
+      <ProjectOverview project={project} />
+      <ChallengeSection project={project} />
+      <EngagementObjectives project={project} />
+      <SolutionSection project={project} />
+      <FeaturesGrid project={project} />
+      <TechStack project={project} />
+      <WorkflowDiagram project={project} />
+      <ResultsSection project={project} />
+      <ProjectGallery project={project} />
+      <ProjectCTA project={project} />
 
       <JsonLd
         data={pageGraph({
