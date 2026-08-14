@@ -267,3 +267,5 @@ place the origin needs updating.
 [`.github/dependabot.yml`](.github/dependabot.yml) opens weekly PRs for npm
 dependencies (minor/patch grouped into one) and for the GitHub Actions used in
 the workflows. These PRs run through the same CI before they can be merged.
+
+<!-- auto-merge workflow test -->
