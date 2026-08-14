@@ -105,20 +105,56 @@
   "challenge": {
     "summary": "Around two-thirds of tickets were repeat questions already answered in the documentation, but an earlier chatbot had damaged trust by confidently inventing answers.",
     "points": [
-      "Ticket volume was rising faster than the team could hire.",
-      "A previous chatbot produced plausible but wrong answers and had to be withdrawn.",
-      "Documentation existed but was fragmented across three systems.",
-      "Leadership required that no customer-facing answer could be unsourced."
+      {
+        "icon": "Timer",
+        "title": "Rising ticket volume",
+        "description": "Ticket volume was rising faster than the team could hire."
+      },
+      {
+        "icon": "Bot",
+        "title": "Broken trust in automation",
+        "description": "A previous chatbot produced plausible but wrong answers and had to be withdrawn."
+      },
+      {
+        "icon": "Layers",
+        "title": "Knowledge scattered across systems",
+        "description": "Documentation existed but was fragmented across three systems."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Every answer must be sourced",
+        "description": "Leadership required that no customer-facing answer could be unsourced."
+      }
     ]
   },
   "solution": {
     "summary": "We made grounding non-negotiable: if an answer cannot be traced to indexed documentation, the system does not send it.",
     "points": [
-      "Unified three documentation sources into a single index with freshness tracking.",
-      "Constrained generation to retrieved content and attached citations to every response.",
-      "Tuned a confidence threshold against a labelled evaluation set rather than by feel.",
-      "Made escalation the default for anything uncertain, with a pre-drafted reply for the agent.",
-      "Turned unanswerable questions into a ranked backlog so the knowledge base improves continuously."
+      {
+        "icon": "Database",
+        "title": "Unified knowledge index",
+        "description": "Unified three documentation sources into a single index with freshness tracking."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Grounded, cited answers",
+        "description": "Constrained generation to retrieved content and attached citations to every response."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Calibrated confidence threshold",
+        "description": "Tuned a confidence threshold against a labelled evaluation set rather than by feel."
+      },
+      {
+        "icon": "LifeBuoy",
+        "title": "Safe escalation by default",
+        "description": "Made escalation the default for anything uncertain, with a pre-drafted reply for the agent."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "A knowledge base that improves itself",
+        "description": "Turned unanswerable questions into a ranked backlog so the knowledge base improves continuously."
+      }
     ]
   },
   "results": [
@@ -211,5 +247,15 @@
   },
   "featured": true,
   "accent": "violet",
-  "order": 6
+  "order": 6,
+  "objectives": [
+    "Cut the volume of repeat questions handled by human agents",
+    "Answer only from approved, verifiable sources",
+    "Give agents ready-to-send replies with citations attached",
+    "Escalate anything uncertain instead of guessing",
+    "Measure accuracy against a labelled evaluation set"
+  ],
+  "clientOverview": "A customer support operation under growing pressure: ticket volume was climbing faster than the team could hire, and an earlier attempt at automation had been withdrawn after producing confident, unsourced answers. The organisation needed AI assistance it could stand behind — every customer-facing answer had to trace back to a documented source.",
+  "conclusion": "The platform now absorbs the repeat questions that previously consumed agent time, drafts replies that agents can send with one click, and escalates everything uncertain with full context attached. Because every answer carries a citation and unanswerable questions flow into a ranked backlog, the system gets measurably better at what it can handle — while the team stays firmly in control of anything it cannot.",
+  "workflowLayout": "linear"
 }

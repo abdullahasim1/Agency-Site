@@ -93,20 +93,56 @@
   "challenge": {
     "summary": "Nobody could answer what automation existed, where it ran or whether it had worked last night. Failures surfaced when a customer complained.",
     "points": [
-      "Automation was spread across four platforms, some of it in personal accounts.",
-      "No version history, so a broken change could not be identified or rolled back.",
-      "Failures were silent; the first signal was usually a customer or a missing record.",
-      "Retries were unsafe, so operators avoided them and fixed things by hand instead."
+      {
+        "icon": "Network",
+        "title": "Automation sprawl",
+        "description": "Automation was spread across four platforms, some of it in personal accounts."
+      },
+      {
+        "icon": "GitBranch",
+        "title": "No version history",
+        "description": "No version history, so a broken change could not be identified or rolled back."
+      },
+      {
+        "icon": "Radar",
+        "title": "Silent failures",
+        "description": "Failures were silent; the first signal was usually a customer or a missing record."
+      },
+      {
+        "icon": "Wrench",
+        "title": "Unsafe retries",
+        "description": "Retries were unsafe, so operators avoided them and fixed things by hand instead."
+      }
     ]
   },
   "solution": {
     "summary": "We inventoried everything, rebuilt it on one self-hosted orchestrator, and treated workflows as software: versioned, reviewed, deployed and monitored.",
     "points": [
-      "Audited and documented every existing automation before migrating any of it.",
-      "Consolidated onto self-hosted n8n with definitions in git and deployment through CI.",
-      "Made every step idempotent so retries and replays are safe by construction.",
-      "Added a dead-letter queue with full payload capture and one-click replay.",
-      "Wired alerting to the owning team with runbooks written for each failure mode."
+      {
+        "icon": "FileSearch",
+        "title": "Audit before migration",
+        "description": "Audited and documented every existing automation before migrating any of it."
+      },
+      {
+        "icon": "Server",
+        "title": "Consolidated, versioned platform",
+        "description": "Consolidated onto self-hosted n8n with definitions in git and deployment through CI."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Idempotent steps",
+        "description": "Made every step idempotent so retries and replays are safe by construction."
+      },
+      {
+        "icon": "Package",
+        "title": "Dead-letter queue with replay",
+        "description": "Added a dead-letter queue with full payload capture and one-click replay."
+      },
+      {
+        "icon": "Activity",
+        "title": "Alerting with runbooks",
+        "description": "Wired alerting to the owning team with runbooks written for each failure mode."
+      }
     ]
   },
   "results": [
@@ -196,5 +232,15 @@
   },
   "featured": true,
   "accent": "cyan",
-  "order": 5
+  "order": 5,
+  "objectives": [
+    "Document every existing automation before touching it",
+    "Bring all automation under version control",
+    "Make retries and replays safe by construction",
+    "Capture every failed payload for one-click replay",
+    "Alert the owning team with a runbook for each failure"
+  ],
+  "clientOverview": "An operations team whose automation had grown organically across four platforms — including personal accounts — with no version history, silent failures and unsafe retries. The first signal of a break was usually a customer or a missing record, and operators preferred fixing things by hand to touching a system they could not trust.",
+  "conclusion": "Every workflow now lives in one self-hosted, version-controlled platform, deployed through CI like the rest of their software. Steps are idempotent so retries and replays are safe, failed payloads sit in a dead-letter queue for one-click replay, and the owning team is alerted with a runbook written for each failure mode — silent breaks are a thing of the past.",
+  "workflowLayout": "loop"
 }

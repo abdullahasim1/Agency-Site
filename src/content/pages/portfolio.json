@@ -53,12 +53,22 @@
     "challenge": {
       "eyebrow": "Challenge",
       "title": "Business Challenge",
-      "description": ""
+      "description": "The situation before the engagement, in the client's terms."
     },
     "solution": {
       "eyebrow": "Solution Design",
       "title": "How We Solved It",
-      "description": ""
+      "description": "The approach that addressed each challenge above."
+    },
+    "objectives": {
+      "eyebrow": "Objectives",
+      "title": "Engagement Objectives",
+      "description": "What the build needed to achieve before implementation began."
+    },
+    "conclusion": {
+      "eyebrow": "Conclusion",
+      "title": "The Result",
+      "description": "What changed for the client after launch."
     },
     "features": {
       "eyebrow": "Capabilities",
@@ -78,7 +88,7 @@
     "techStack": {
       "eyebrow": "Stack",
       "title": "Technology Stack",
-      "description": "The tools this system runs on, grouped by the role they play."
+      "description": "The tools this system runs on."
     },
     "results": {
       "eyebrow": "Outcome",

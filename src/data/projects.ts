@@ -45,6 +45,13 @@ export interface ProjectFeature {
   icon: IconName;
 }
 
+/** An icon card — used by Business Challenge and Solution Design grids. */
+export interface ProjectCardItem {
+  icon: IconName;
+  title: string;
+  description: string;
+}
+
 export interface ProjectResult {
   /** Headline figure, e.g. "68%". */
   value: string;
@@ -101,11 +108,19 @@ export interface Project {
   /** Grouped stack shown on the case-study page. */
   techStack: TechStackGroup[];
   features: ProjectFeature[];
-  challenge: { summary: string; points: string[] };
-  solution: { summary: string; points: string[] };
+  challenge: { summary: string; points: ProjectCardItem[] };
+  solution: { summary: string; points: ProjectCardItem[] };
+  /** Checklist between challenge and solution, shown on the case study. */
+  objectives: string[];
+  /** Lead paragraph of the Client Overview section. */
+  clientOverview: string;
+  /** Closing paragraph shown at the end of the case study. */
+  conclusion: string;
   results: ProjectResult[];
   gallery: ProjectGalleryItem[];
   workflow: WorkflowNode[];
+  /** How the workflow diagram is drawn: linear steps or a looping cycle. */
+  workflowLayout: "linear" | "loop";
   overview: ProjectOverviewMeta;
   featured: boolean;
   accent: "brand" | "violet" | "cyan";

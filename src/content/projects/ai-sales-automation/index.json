@@ -99,20 +99,56 @@
   "challenge": {
     "summary": "Lead response time averaged over a day because every enquiry was triaged by hand, and no one could tell which acquisition channels were actually producing revenue.",
     "points": [
-      "Leads arrived through six disconnected channels with no shared format or deduplication.",
-      "Manual triage meant the average first response took more than 24 hours.",
-      "Scoring was intuition-based and varied by whoever happened to pick up the record.",
-      "Channel spend decisions were made without reliable attribution."
+      {
+        "icon": "Network",
+        "title": "Six disconnected channels",
+        "description": "Leads arrived through six disconnected channels with no shared format or deduplication."
+      },
+      {
+        "icon": "Timer",
+        "title": "First response over 24 hours",
+        "description": "Manual triage meant the average first response took more than 24 hours."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Scoring varied by person",
+        "description": "Scoring was intuition-based and varied by whoever happened to pick up the record."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Channel spend without attribution",
+        "description": "Channel spend decisions were made without reliable attribution."
+      }
     ]
   },
   "solution": {
     "summary": "We separated the deterministic work from the judgement work: rules handle routing and thresholds, models handle interpretation of unstructured text.",
     "points": [
-      "Built a single ingestion layer normalising every source into one validated schema.",
-      "Used models only for the genuinely fuzzy parts — reading free-text enquiries and summarising company context.",
-      "Encoded the scoring rubric as versioned configuration so sales leadership can change weightings without a deploy.",
-      "Added a review queue for borderline scores rather than forcing the system to guess.",
-      "Instrumented the full funnel so channel performance is measured against closed revenue, not lead count."
+      {
+        "icon": "Database",
+        "title": "One validated lead schema",
+        "description": "Built a single ingestion layer normalising every source into one validated schema."
+      },
+      {
+        "icon": "Brain",
+        "title": "AI only where it adds value",
+        "description": "Used models only for the genuinely fuzzy parts — reading free-text enquiries and summarising company context."
+      },
+      {
+        "icon": "GitBranch",
+        "title": "Scoring rules without deploys",
+        "description": "Encoded the scoring rubric as versioned configuration so sales leadership can change weightings without a deploy."
+      },
+      {
+        "icon": "Users",
+        "title": "A human review queue",
+        "description": "Added a review queue for borderline scores rather than forcing the system to guess."
+      },
+      {
+        "icon": "LineChart",
+        "title": "Funnel measured end to end",
+        "description": "Instrumented the full funnel so channel performance is measured against closed revenue, not lead count."
+      }
     ]
   },
   "results": [
@@ -204,5 +240,15 @@
   },
   "featured": true,
   "accent": "violet",
-  "order": 2
+  "order": 2,
+  "objectives": [
+    "Unify lead capture from all six channels into one clean record",
+    "Bring first response time down from days to minutes",
+    "Score every lead against a rubric sales leadership can change",
+    "Never guess on borderline leads — route them to a human review queue",
+    "Attribute channel performance to closed revenue"
+  ],
+  "clientOverview": "A sales organisation collecting leads through six separate channels with no shared format and no reliable scoring. Triage fell to whoever picked up the record first, first responses took more than a day, and the marketing budget was being steered by intuition rather than evidence.",
+  "conclusion": "Inbound leads are now qualified, enriched and routed to the right owner within minutes of arrival. Scoring is consistent, explainable, and controlled by sales leadership through versioned configuration, borderline cases go to a human review queue instead of a guess, and channel spend is measured against closed revenue — not lead counts.",
+  "workflowLayout": "linear"
 }

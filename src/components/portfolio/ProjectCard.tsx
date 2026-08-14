@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -18,12 +19,6 @@ interface ProjectCardProps {
   /** Passed to next/image for correct responsive candidates. */
   sizes?: string;
 }
-
-const badgeTones = {
-  brand: "brand",
-  violet: "violet",
-  cyan: "cyan",
-} as const;
 
 /**
  * Portfolio card, shared by the homepage Featured Work grid and the /portfolio
@@ -77,7 +72,7 @@ export function ProjectCard({
         >
           {project.technologies.slice(0, 4).map((tech) => (
             <li key={tech}>
-              <Badge tone={badgeTones[project.accent]}>{tech}</Badge>
+              <TechBadge name={tech} tone={project.accent} />
             </li>
           ))}
           {project.technologies.length > 4 ? (

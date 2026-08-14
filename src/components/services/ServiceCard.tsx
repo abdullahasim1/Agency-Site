@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Icon } from "@/components/ui/Icon";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
 import type { Service } from "@/data/services";
 import { cn } from "@/lib/utils";
@@ -19,12 +20,6 @@ const iconTones = {
   brand: "bg-brand-50 text-brand-600 ring-brand-100",
   violet: "bg-accent-violet/10 text-[#6d3fd4] ring-accent-violet/15",
   cyan: "bg-accent-cyan/10 text-[#0b7285] ring-accent-cyan/20",
-} as const;
-
-const badgeTones = {
-  brand: "brand",
-  violet: "violet",
-  cyan: "cyan",
 } as const;
 
 /**
@@ -70,7 +65,7 @@ export function ServiceCard({
       <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies used">
         {service.technologies.slice(0, 4).map((tech) => (
           <li key={tech}>
-            <Badge tone={badgeTones[service.accent]}>{tech}</Badge>
+            <TechBadge name={tech} tone={service.accent} />
           </li>
         ))}
         {service.technologies.length > 4 ? (

@@ -14,8 +14,20 @@ import { TechMarquee } from "@/components/ui/TechMarquee";
 import { industries } from "@/data/industries";
 import { servicesCopy } from "@/data/pages";
 import { getServices } from "@/data/services";
+import { techCategories } from "@/data/technologies";
 import { buildMetadata, pageGraph } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+
+/**
+ * The toolkit behind the services: AI, automation and communication tools only.
+ * The full registry stays on the home page, so the strip reads differently
+ * here instead of repeating the same wall of tools on every page.
+ */
+const serviceToolkit = techCategories
+  .filter((category) =>
+    ["ai", "automation", "communication"].includes(category.id),
+  )
+  .flatMap((category) => category.items.map((item) => item.name));
 
 /** Rotated across the industry grid so the tiles do not read as one block. */
 const industryTones = [
@@ -60,7 +72,7 @@ export default async function ServicesPage() {
         ]}
       />
 
-      <TechMarquee />
+      <TechMarquee items={serviceToolkit} label="The toolkit behind these services" />
 
       <section className="section-y">
         <Container>

@@ -101,20 +101,56 @@
   "challenge": {
     "summary": "Reception was saturated by scheduling calls, and late cancellations left slots empty because nobody had time to work the waitlist.",
     "points": [
-      "Call volume peaked far beyond what reception could answer, so patients waited or gave up.",
-      "Late cancellations frequently went unfilled, wasting clinician time.",
-      "Reminder calls were made manually and inconsistently.",
-      "Any automated system had to be unambiguous about not giving clinical advice."
+      {
+        "icon": "PhoneCall",
+        "title": "Reception overwhelmed",
+        "description": "Call volume peaked far beyond what reception could answer, so patients waited or gave up."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Unfilled late cancellations",
+        "description": "Late cancellations frequently went unfilled, wasting clinician time."
+      },
+      {
+        "icon": "Headphones",
+        "title": "Manual reminder calls",
+        "description": "Reminder calls were made manually and inconsistently."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "No clinical advice, ever",
+        "description": "Any automated system had to be unambiguous about not giving clinical advice."
+      }
     ]
   },
   "solution": {
     "summary": "We scoped the assistant tightly to scheduling, integrated directly with the practice management system, and made escalation immediate on anything clinical.",
     "points": [
-      "Constrained the assistant to scheduling intents, with hard transfer rules on clinical topics.",
-      "Integrated with the practice management API so availability and bookings are always real.",
-      "Provisionally held slots during the conversation to eliminate double-booking.",
-      "Automated reminders across voice and SMS with single-step responses.",
-      "Built waitlist backfill that dials candidates in priority order the moment a slot opens."
+      {
+        "icon": "Bot",
+        "title": "Scheduling-only intents",
+        "description": "Constrained the assistant to scheduling intents, with hard transfer rules on clinical topics."
+      },
+      {
+        "icon": "Database",
+        "title": "Live availability, always real",
+        "description": "Integrated with the practice management API so availability and bookings are always real."
+      },
+      {
+        "icon": "Lock",
+        "title": "No double-booking",
+        "description": "Provisionally held slots during the conversation to eliminate double-booking."
+      },
+      {
+        "icon": "Headphones",
+        "title": "Automated reminders",
+        "description": "Automated reminders across voice and SMS with single-step responses."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Waitlist backfill",
+        "description": "Built waitlist backfill that dials candidates in priority order the moment a slot opens."
+      }
     ]
   },
   "results": [
@@ -207,5 +243,15 @@
   },
   "featured": false,
   "accent": "cyan",
-  "order": 8
+  "order": 8,
+  "objectives": [
+    "Answer appointment calls beyond reception capacity",
+    "Fill slots released by late cancellations",
+    "Remind every patient reliably, on voice and SMS",
+    "Never give clinical advice through the assistant",
+    "Keep availability and bookings in sync with the practice system"
+  ],
+  "clientOverview": "A multi-site clinic group whose phone lines peaked far beyond what reception could answer. Patients waited on hold or gave up, late cancellations left clinician time unfilled, and reminder calls were made by hand, inconsistently. Any automation had to stay strictly within scheduling — clinical topics had to bounce to a person immediately.",
+  "conclusion": "Patients now book, reschedule and confirm appointments through a voice and messaging assistant that shares the practice's real availability, holds slots to prevent double-booking, and hands every clinical question straight to a person. Reminders go out automatically on voice and SMS, and released slots are backfilled by a waitlist that dials candidates the moment a slot opens.",
+  "workflowLayout": "loop"
 }

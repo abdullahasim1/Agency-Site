@@ -45,12 +45,37 @@ const accentField = (label = "Accent colour") =>
     defaultValue: "brand",
   });
 
+/**
+ * Shared validation for every machine key on the site (ids, slugs, references).
+ *
+ * The same pattern in `src/data/*.ts` selectors must match it, so keep them in
+ * sync when either changes: lowercase letters, digits and hyphens only.
+ */
+const KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+const keyPatternValidation = {
+  regex: KEY_PATTERN,
+  message:
+    "Use only lowercase letters, numbers and hyphens (e.g. my-project-1).",
+};
+
+/**
+ * Marks a field as developer-only and explains why it must stay stable.
+ * Every machine field on the site should be framed through this so editors
+ * learn the pattern in one place.
+ */
+const devOnly = (reason: string) => `Developer field — ${reason}`;
+
 /** Stable machine key for an entry. Changing one can break links, so it is explained. */
 const idField = fields.text({
   label: "Internal ID",
-  description:
-    "Developer field. Keep it stable; it is not shown on the site.",
-  validation: { isRequired: true },
+  description: devOnly(
+    "not shown on the site. Used as a stable key by the data layer — changing it breaks saved references.",
+  ),
+  validation: {
+    isRequired: true,
+    pattern: keyPatternValidation,
+  },
 });
 
 /**
@@ -123,6 +148,31 @@ const legalPageField = (label: string) =>
     { label },
   );
 
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * DEVELOPER GUIDE — adding or changing a field
+ *
+ * A field in this schema is half of a contract. The other half lives in
+ * `src/data/`. Before adding a field, trace the whole path:
+ *
+ *   1. Schema        — add the field here (label, description, validation).
+ *   2. Defaults      — existing entries load with the field's default value,
+ *                      so pick defaults that render a sensible page. Optional
+ *                      fields that can be empty should be handled gracefully
+ *                      by the component (early-return, fallback copy).
+ *   3. Type          — update the matching interface in `src/data/*.ts`
+ *                      (e.g. Project, Service) so pages see the new shape.
+ *   4. Component     — render the field where it belongs; follow the
+ *                      existing early-return / fallback patterns.
+ *
+ * For machine fields (ids, slugs, references) use `devOnly()` and the shared
+ * `KEY_PATTERN` above so every entry stays link-safe. Run `npm run typecheck`
+ * after any schema change — the reader will surface shape mismatches.
+ *
+ * Content lives in JSON under `src/content/`; the panel writes it straight to
+ * the working tree in local mode, and commits through GitHub in production.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 export default config({
   /*
    * `local` writes to the working tree and has no sign-in, so it is only ever
@@ -195,14 +245,20 @@ export default config({
           },
           slug: {
             label: "URL slug",
-            description:
-              "Developer field. This becomes /portfolio/slug. Avoid changing after publish.",
+            description: devOnly(
+              "This becomes /portfolio/slug. Avoid changing after publish — existing links break.",
+            ),
+            validation: {
+              pattern: keyPatternValidation,
+            },
           },
         }),
         id: idField,
         tagline: fields.text({
           label: "Tagline",
-          description: "Sub-title under the project name.",
+          description:
+            "Sub-title under the project name on the case-study page. A short promise, not a sentence.",
+          validation: { length: { max: 60 } },
         }),
         category: fields.text({
           label: "Card category",
@@ -223,10 +279,12 @@ export default config({
           label: "Card description",
           description: "Short copy shown on portfolio cards.",
           multiline: true,
+          validation: { length: { max: 220 } },
         }),
         fullDescription: fields.text({
           label: "Full description",
-          description: "Opening paragraph of the case study.",
+          description:
+            "Lead paragraph on the hero image panel. What the project is, in two or three sentences.",
           multiline: true,
         }),
         image: fields.image({
@@ -237,7 +295,10 @@ export default config({
           publicPath: "/images/projects",
           validation: { isRequired: true },
         }),
-        imageAlt: fields.text({ label: "Cover image alt text" }),
+        imageAlt: fields.text({
+          label: "Cover image alt text",
+          description: "Describes the image for screen readers and search engines.",
+        }),
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technology badges",
           description: "Flat list shown on the card.",
@@ -276,56 +337,141 @@ export default config({
         ),
         challenge: fields.object(
           {
-            summary: fields.text({ label: "Summary", multiline: true }),
-            points: fields.array(fields.text({ label: "Point" }), {
-              label: "Points",
-              itemLabel: (props) => props.value || "Point",
+            summary: fields.text({
+              label: "Summary",
+              description:
+                "One or two sentences on the situation before the engagement.",
+              multiline: true,
             }),
+            points: fields.array(
+              fields.object({
+                icon: iconField(),
+                title: fields.text({
+                  label: "Card title",
+                  description: "Short heading, e.g. \"Fragmented customer data\".",
+                  validation: { isRequired: true },
+                }),
+                description: fields.text({
+                  label: "Description",
+                  description: "One or two sentences expanding the card title.",
+                  multiline: true,
+                }),
+              }),
+              {
+                label: "Challenge cards",
+                description:
+                  "Each card appears in the Business Challenge grid. 3–5 cards is the sweet spot.",
+                itemLabel: (props) => props.fields.title.value || "Challenge card",
+              },
+            ),
           },
-          { label: "Challenge" },
+          { label: "Business Challenge", description: "The situation before the engagement, in the client's terms." },
         ),
         solution: fields.object(
           {
-            summary: fields.text({ label: "Summary", multiline: true }),
-            points: fields.array(fields.text({ label: "Point" }), {
-              label: "Points",
-              itemLabel: (props) => props.value || "Point",
+            summary: fields.text({
+              label: "Summary",
+              description: "One or two sentences on the approach taken.",
+              multiline: true,
             }),
+            points: fields.array(
+              fields.object({
+                icon: iconField(),
+                title: fields.text({
+                  label: "Card title",
+                  description: "Short heading, e.g. \"Schema modelled on the real pipeline\".",
+                  validation: { isRequired: true },
+                }),
+                description: fields.text({
+                  label: "Description",
+                  description: "One or two sentences expanding the card title.",
+                  multiline: true,
+                }),
+              }),
+              {
+                label: "Solution cards",
+                description:
+                  "Each card appears in the Solution Design grid. Keep the same count as the challenge cards so the two sections read as a story.",
+                itemLabel: (props) => props.fields.title.value || "Solution card",
+              },
+            ),
           },
-          { label: "Solution" },
+          { label: "Solution Design", description: "What we built, mirroring the challenge cards above it." },
         ),
+        objectives: fields.array(fields.text({ label: "Objective" }), {
+          label: "Engagement objectives",
+          description:
+            "The goals the build needed to achieve. Shown as the checklist between Business Challenge and Solution Design. 4–6 items.",
+          itemLabel: (props) => props.value || "Objective",
+        }),
+        clientOverview: fields.text({
+          label: "Client overview",
+          description:
+            "Lead paragraph of the Client Overview section — who the client is and what they do.",
+          multiline: true,
+        }),
+        conclusion: fields.text({
+          label: "Conclusion",
+          description:
+            "Closing paragraph shown at the end of the case study, before the related projects.",
+          multiline: true,
+        }),
         results: fields.array(
-          fields.object({
-            value: fields.text({
-              label: "Figure",
-              description: 'Headline number, e.g. "68%".',
-              validation: { isRequired: true },
-            }),
-            label: fields.text({ label: "Label" }),
-            detail: fields.text({ label: "Detail", multiline: true }),
-          }),
+          fields.object(
+            {
+              value: fields.text({
+                label: "Figure",
+                description: 'Headline number, e.g. "68%" or "3.4x".',
+                validation: { isRequired: true },
+              }),
+              label: fields.text({
+                label: "Label",
+                description: "What the figure measures, e.g. \"Faster onboarding\".",
+                validation: { isRequired: true },
+              }),
+              detail: fields.text({
+                label: "Detail",
+                description: "One or two sentences explaining the figure in context.",
+                multiline: true,
+              }),
+            },
+            {
+              layout: [4, 8],
+            },
+          ),
           {
             label: "Results",
             description:
               "Only publish figures the client has verified and agreed to. Never an estimate.",
-            itemLabel: (props) => props.fields.label.value || "Result",
+            itemLabel: (props) =>
+              props.fields.label.value || props.fields.value.value || "Result",
           },
         ),
         gallery: fields.array(
-          fields.object({
-            src: fields.image({
-              label: "Image",
-              description:
-                "Upload a screenshot. Stored under public/images/projects/<slug>/.",
-              directory: "public/images/projects",
-              publicPath: "/images/projects",
-              validation: { isRequired: true },
-            }),
-            alt: fields.text({ label: "Alt text" }),
-            caption: fields.text({ label: "Caption", multiline: true }),
-          }),
+          fields.object(
+            {
+              src: fields.image({
+                label: "Image",
+                description:
+                  "Upload a screenshot. Stored under public/images/projects/<slug>/.",
+                directory: "public/images/projects",
+                publicPath: "/images/projects",
+                validation: { isRequired: true },
+              }),
+              alt: fields.text({ label: "Alt text" }),
+              caption: fields.text({
+                label: "Caption",
+                description: "Short line under the image.",
+                multiline: true,
+              }),
+            },
+            {
+              layout: [8, 4],
+            },
+          ),
           {
             label: "Gallery",
+            description: "Interface screens. The first image spans the full width.",
             itemLabel: (props) => props.fields.caption.value || "Image",
           },
         ),
@@ -333,10 +479,23 @@ export default config({
           fields.object({
             id: fields.text({
               label: "ID",
+              description: devOnly(
+                'unique machine key, e.g. "INGEST-1". Used as the React key; not shown on the page.',
+              ),
+              validation: {
+                isRequired: true,
+                pattern: keyPatternValidation,
+              },
+            }),
+            title: fields.text({
+              label: "Title",
               validation: { isRequired: true },
             }),
-            title: fields.text({ label: "Title" }),
-            description: fields.text({ label: "Description", multiline: true }),
+            description: fields.text({
+              label: "Description",
+              description: "What happens at this step.",
+              multiline: true,
+            }),
             tag: fields.text({
               label: "Tag",
               description: 'Short mono label on the node, e.g. "INGEST".',
@@ -344,26 +503,54 @@ export default config({
           }),
           {
             label: "Workflow diagram nodes",
+            description: "The system flow, one node per step. 3–6 nodes reads best.",
             itemLabel: (props) => props.fields.title.value || "Node",
           },
         ),
+        workflowLayout: fields.select({
+          label: "Workflow diagram layout",
+          description:
+            "Linear: each step flows to the next. Loop: the final step returns to the first (daily cycles, retry loops, waitlist backfill).",
+          options: [
+            { label: "Linear — one step to the next", value: "linear" },
+            { label: "Loop — returns to the start", value: "loop" },
+          ],
+          defaultValue: "linear",
+        }),
         overview: fields.object(
           {
-            client: fields.text({ label: "Client" }),
+            client: fields.text({
+              label: "Client",
+              description: "Name, or \"Confidential\" if undisclosed.",
+              validation: { isRequired: true },
+            }),
             industry: fields.text({ label: "Industry" }),
-            timeline: fields.text({ label: "Timeline" }),
+            timeline: fields.text({
+              label: "Timeline",
+              description: 'e.g. "16 weeks".',
+            }),
             year: fields.text({ label: "Year" }),
             platforms: fields.array(fields.text({ label: "Platform" }), {
               label: "Platforms",
+              description: 'e.g. "Web application", "iOS + Android".',
               itemLabel: (props) => props.value || "Platform",
             }),
             services: fields.array(fields.text({ label: "Service" }), {
               label: "Services",
+              description:
+                "Use the service names from the Services pages so the lists match the rest of the site.",
               itemLabel: (props) => props.value || "Service",
             }),
-            team: fields.text({ label: "Team shape" }),
+            team: fields.text({
+              label: "Team shape",
+              description: 'e.g. "3 engineers, 1 designer, 1 delivery lead".',
+            }),
           },
-          { label: "Overview" },
+          {
+            label: "Project brief",
+            description: "The facts shown in the hero and the facts panel.",
+            layout: [6, 6, 6, 6],
+          },
         ),
         featured: fields.checkbox({
           label: "Featured",
@@ -394,8 +581,12 @@ export default config({
           },
           slug: {
             label: "URL slug",
-            description:
-              "Developer field. This becomes /services/slug. Avoid changing after publish.",
+            description: devOnly(
+              "This becomes /services/slug. Avoid changing after publish — existing links break.",
+            ),
+            validation: {
+              pattern: keyPatternValidation,
+            },
           },
         }),
         id: idField,
@@ -458,11 +649,15 @@ export default config({
           },
         ),
         relatedProjects: fields.array(
-          fields.text({ label: "Project slug" }),
+          fields.text({
+            label: "Project slug",
+            validation: { pattern: keyPatternValidation },
+          }),
           {
             label: "Related projects",
-            description:
-              "Developer field. Use project URL slugs, e.g. verivoice.",
+            description: devOnly(
+              "use project URL slugs, e.g. verivoice. A slug that does not match a project in the Work collection renders no card and is silently skipped.",
+            ),
             itemLabel: (props) => props.value || "Project slug",
           },
         ),
@@ -716,6 +911,14 @@ export default config({
             ),
             challenge: sectionField("Challenge section"),
             solution: sectionField("Solution section"),
+            objectives: sectionField(
+              "Engagement objectives section",
+              "The checklist between the challenge and the solution, set per project under the Work collection.",
+            ),
+            conclusion: sectionField(
+              "Conclusion section",
+              "Closing block of every case study, set per project under the Work collection.",
+            ),
             features: sectionField(
               "Key features section",
               "Use {project} where the project name should appear.",

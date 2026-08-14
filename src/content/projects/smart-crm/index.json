@@ -105,20 +105,56 @@
   "challenge": {
     "summary": "Their process spanned three tools and a large spreadsheet. Nobody trusted the data, and onboarding a new team member took weeks of tribal knowledge transfer.",
     "points": [
-      "Customer history was split across a generic CRM, a shared inbox and a spreadsheet of exceptions.",
-      "Duplicate records accumulated faster than anyone could clean them.",
-      "Reporting required manual export and reconciliation every month.",
-      "The existing CRM could not express their permission model, so everyone effectively saw everything."
+      {
+        "icon": "Boxes",
+        "title": "Fragmented customer history",
+        "description": "Customer history was split across a generic CRM, a shared inbox and a spreadsheet of exceptions."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Duplicate records piling up",
+        "description": "Duplicate records accumulated faster than anyone could clean them."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Monthly export ritual",
+        "description": "Reporting required manual export and reconciliation every month."
+      },
+      {
+        "icon": "Lock",
+        "title": "A permission model that could not hold",
+        "description": "The existing CRM could not express their permission model, so everyone effectively saw everything."
+      }
     ]
   },
   "solution": {
     "summary": "We modelled their real pipeline rather than a generic one, enforced isolation in the database, and put AI where it removes reading work instead of where it looks impressive.",
     "points": [
-      "Designed a schema around their actual stages, exceptions and role boundaries.",
-      "Enforced tenant and role isolation with row-level security, removing a whole class of access bugs.",
-      "Generated account summaries on write so reps stop reading months of history before a call.",
-      "Ran duplicate detection continuously at the point of creation with a human confirmation step.",
-      "Replaced the monthly export ritual with live reporting built on the same source of truth."
+      {
+        "icon": "GitBranch",
+        "title": "Schema built on the real pipeline",
+        "description": "Designed a schema around their actual stages, exceptions and role boundaries."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Row-level security",
+        "description": "Enforced tenant and role isolation with row-level security, removing a whole class of access bugs."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Account summaries on write",
+        "description": "Generated account summaries on write so reps stop reading months of history before a call."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Continuous deduplication",
+        "description": "Ran duplicate detection continuously at the point of creation with a human confirmation step."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Live reporting",
+        "description": "Replaced the monthly export ritual with live reporting built on the same source of truth."
+      }
     ]
   },
   "results": [
@@ -209,5 +245,15 @@
   },
   "featured": true,
   "accent": "cyan",
-  "order": 3
+  "order": 3,
+  "objectives": [
+    "Bring all customer history into one source of truth",
+    "Stop duplicate records accumulating",
+    "Enforce tenant and role isolation in the database",
+    "Give reps a ready account summary before every call",
+    "Replace monthly export with live reporting"
+  ],
+  "clientOverview": "A multi-brand professional services operator running on a generic CRM, a shared inbox and a spreadsheet of exceptions — nobody trusted the data, onboarding took weeks of tribal knowledge transfer, and the permission model could not express who should see what. A new CRM had to be built around their real pipeline, not a generic one.",
+  "conclusion": "The team now works from a single source of truth modelled on their actual stages, exceptions and role boundaries. Row-level security removed a whole class of access bugs, AI-generated account summaries save reps from reading months of history before a call, duplicates are caught at the point of creation, and the monthly export ritual is gone — live reporting runs on the same data reps work in every day.",
+  "workflowLayout": "loop"
 }

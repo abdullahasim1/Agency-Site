@@ -96,20 +96,56 @@
   "challenge": {
     "summary": "Merchandising decisions were made on revenue because margin was only known a month in arrears, after a manual reconciliation across five systems.",
     "points": [
-      "Cost, fee, advertising and return data lived in five separate systems.",
-      "Reconciliation was a multi-day manual process performed monthly.",
-      "Products that looked profitable on revenue were loss-making after returns and ad spend.",
-      "Existing reporting timed out on queries spanning more than a quarter."
+      {
+        "icon": "Database",
+        "title": "Data in five systems",
+        "description": "Cost, fee, advertising and return data lived in five separate systems."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Monthly manual reconciliation",
+        "description": "Reconciliation was a multi-day manual process performed monthly."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Hidden margin losses",
+        "description": "Products that looked profitable on revenue were loss-making after returns and ad spend."
+      },
+      {
+        "icon": "Timer",
+        "title": "Queries timed out",
+        "description": "Existing reporting timed out on queries spanning more than a quarter."
+      }
     ]
   },
   "solution": {
     "summary": "We built the margin model once, in the warehouse, and made every view read from it — so no team maintains its own version of the truth.",
     "points": [
-      "Built scheduled ingestion from each platform with schema validation and drift detection.",
-      "Modelled contribution margin explicitly, with each cost component traceable to its source.",
-      "Pre-computed rollups and materialised views to keep large queries interactive.",
-      "Replaced monthly reconciliation with a daily refresh and a visible data-freshness indicator.",
-      "Added saved views and threshold alerts so teams are notified rather than having to check."
+      {
+        "icon": "Cloud",
+        "title": "Scheduled, validated ingestion",
+        "description": "Built scheduled ingestion from each platform with schema validation and drift detection."
+      },
+      {
+        "icon": "LineChart",
+        "title": "A traceable margin model",
+        "description": "Modelled contribution margin explicitly, with each cost component traceable to its source."
+      },
+      {
+        "icon": "Zap",
+        "title": "Fast pre-computed rollups",
+        "description": "Pre-computed rollups and materialised views to keep large queries interactive."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Fresh data every day",
+        "description": "Replaced monthly reconciliation with a daily refresh and a visible data-freshness indicator."
+      },
+      {
+        "icon": "Activity",
+        "title": "Alerts instead of checking",
+        "description": "Added saved views and threshold alerts so teams are notified rather than having to check."
+      }
     ]
   },
   "results": [
@@ -199,5 +235,15 @@
   },
   "featured": false,
   "accent": "violet",
-  "order": 9
+  "order": 9,
+  "objectives": [
+    "Consolidate orders, inventory, advertising and returns into one view",
+    "Make true margin visible after returns and ad spend",
+    "Reconcile data daily instead of monthly",
+    "Keep quarter-spanning queries interactive",
+    "Push alerts to teams instead of asking them to check"
+  ],
+  "clientOverview": "An e-commerce operation whose profitability picture was scattered across five platforms — orders, fees, advertising and returns never lived in the same place. The monthly reconciliation ritual was multi-day, and products that looked healthy on revenue were quietly losing money once returns and ad spend were counted.",
+  "conclusion": "The business now sees a single, margin-accurate view of product performance that refreshes daily instead of monthly. Every cost component is traceable to its source, quarter-spanning questions run in seconds, and threshold alerts put the signal in front of the team instead of waiting for someone to go looking.",
+  "workflowLayout": "linear"
 }

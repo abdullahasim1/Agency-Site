@@ -97,20 +97,56 @@
   "challenge": {
     "summary": "Screening was the bottleneck. Strong candidates were being missed because their wording did not match the job description, and there was no record of why anyone was rejected.",
     "points": [
-      "Resumes arrived in every format, including scans, with no consistent structure.",
-      "Keyword filters rejected candidates whose equivalent experience was phrased differently.",
-      "Screening decisions were undocumented, which was a growing compliance concern.",
-      "Producing a tailored candidate summary for a client took a recruiter around 30 minutes."
+      {
+        "icon": "FileSearch",
+        "title": "Resumes in every format",
+        "description": "Resumes arrived in every format, including scans, with no consistent structure."
+      },
+      {
+        "icon": "Search",
+        "title": "Keywords miss equivalent skills",
+        "description": "Keyword filters rejected candidates whose equivalent experience was phrased differently."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Screening hard to audit",
+        "description": "Screening decisions were undocumented, which was a growing compliance concern."
+      },
+      {
+        "icon": "Timer",
+        "title": "Thirty minutes per summary",
+        "description": "Producing a tailored candidate summary for a client took a recruiter around 30 minutes."
+      }
     ]
   },
   "solution": {
     "summary": "We made the structured profile the product. Everything downstream — matching, search, document generation — reads from it, and every score is traceable back to the source text.",
     "points": [
-      "Built a parsing pipeline with OCR fallback that normalises any input into one profile schema.",
-      "Scored candidates per requirement rather than in aggregate, quoting the evidence for each.",
-      "Added vector search over experience so equivalent skills surface without exact keyword overlap.",
-      "Logged every screening decision, its rationale and its reviewer for auditability.",
-      "Generated client-ready summaries from structured data instead of rewriting documents by hand."
+      {
+        "icon": "Workflow",
+        "title": "Parse any format into one schema",
+        "description": "Built a parsing pipeline with OCR fallback that normalises any input into one profile schema."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Evidence-backed scoring",
+        "description": "Scored candidates per requirement rather than in aggregate, quoting the evidence for each."
+      },
+      {
+        "icon": "Search",
+        "title": "Semantic skill matching",
+        "description": "Added vector search over experience so equivalent skills surface without exact keyword overlap."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Every decision logged",
+        "description": "Logged every screening decision, its rationale and its reviewer for auditability."
+      },
+      {
+        "icon": "Wand2",
+        "title": "Client-ready summaries in seconds",
+        "description": "Generated client-ready summaries from structured data instead of rewriting documents by hand."
+      }
     ]
   },
   "results": [
@@ -200,5 +236,15 @@
   },
   "featured": true,
   "accent": "brand",
-  "order": 4
+  "order": 4,
+  "objectives": [
+    "Normalise any resume format, including scans, into one profile schema",
+    "Score candidates against each requirement with quoted evidence",
+    "Surface equivalent experience without exact keyword overlap",
+    "Keep a complete, auditable trail of screening decisions",
+    "Produce tailored client summaries without manual rewriting"
+  ],
+  "clientOverview": "A recruitment business whose screening pipeline had grown beyond what manual review could handle. Recruiters juggled CVs in every conceivable format, keyword filters that missed good candidates, and a growing compliance requirement to show exactly why each decision was made — all while client-ready summaries still took half an hour each to write.",
+  "conclusion": "Recruiters now work from one clean, searchable profile per candidate, with scores they can justify in a sentence because every number cites its evidence. Screening is fully auditable, equivalent skills surface without keyword gymnastics, and tailored client summaries are produced from structured data in seconds rather than half an hour of rewriting.",
+  "workflowLayout": "linear"
 }

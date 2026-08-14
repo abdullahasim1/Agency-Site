@@ -7,7 +7,6 @@ import { Container } from "@/components/ui/Container";
 import { FaqList } from "@/components/ui/FaqList";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
-import { TechMarquee } from "@/components/ui/TechMarquee";
 import { faqs, type FaqItem } from "@/data/faq";
 import { faqCopy } from "@/data/pages";
 import { buildMetadata, pageGraph } from "@/lib/seo";
@@ -61,8 +60,6 @@ export default function FaqPage() {
           ))}
         </Container>
       </section>
-
-      <TechMarquee />
 
       <FinalCTA
         eyebrow={faqCopy.cta.eyebrow}

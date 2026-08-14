@@ -21,12 +21,14 @@ export async function ProjectCTA({ project }: { project: Project }) {
       <section className="section-y-sm bg-ink-950" data-theme="dark">
         <Container width="prose">
           <Reveal>
-            <p className="type-eyebrow text-brand-300">Conclusion</p>
+            <p className="type-eyebrow text-brand-300">
+              {portfolioCopy.caseStudy.conclusion.eyebrow}
+            </p>
             <h2 className="type-h2 mt-3 text-white">
-              A focused build around the workflow that mattered most.
+              {portfolioCopy.caseStudy.conclusion.title}
             </h2>
             <p className="type-lead mt-5 text-ink-300">
-              {project.solution.summary}
+              {project.conclusion || project.solution.summary}
             </p>
             {project.results.length > 0 ? (
               <ul className="mt-8 space-y-3">

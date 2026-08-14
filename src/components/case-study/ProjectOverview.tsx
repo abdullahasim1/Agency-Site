@@ -31,7 +31,7 @@ export function ProjectOverview({ project }: { project: Project }) {
 
             <Reveal delay={0.08}>
               <p className="type-lead mt-6 text-ink-600">
-                {project.fullDescription}
+                {project.clientOverview || project.fullDescription}
               </p>
             </Reveal>
 

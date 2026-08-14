@@ -1,14 +1,18 @@
-import Image from "next/image";
-
 import { Container } from "@/components/ui/Container";
+import { TechLogo } from "@/components/ui/TechLogo";
 import { sharedCopy } from "@/data/pages";
 import { allTechnologies } from "@/data/technologies";
-import { techLogo } from "@/data/tech-logos";
 import { cn } from "@/lib/utils";
 
 interface TechMarqueeProps {
   /** Mono label above the strip. Say what the strip is, honestly. */
   label?: string;
+  /**
+   * The technologies to show. Defaults to the full registry — pass a subset
+   * (e.g. the categories a page is about) so the strip varies per page
+   * instead of repeating the same wall of tools everywhere.
+   */
+  items?: string[];
   tone?: "light" | "dark";
   className?: string;
 }
@@ -27,6 +31,7 @@ interface TechMarqueeProps {
  */
 export function TechMarquee({
   label = sharedCopy.techMarqueeLabel,
+  items = allTechnologies,
   tone = "light",
   className,
 }: TechMarqueeProps) {
@@ -35,7 +40,11 @@ export function TechMarquee({
   return (
     <section
       aria-labelledby="tech-marquee-heading"
-      className={cn("section-y-sm", dark && "bg-ink-950", className)}
+      className={cn(
+        "section-y-sm",
+        dark ? "bg-ink-950" : "bg-ink-25",
+        className,
+      )}
       data-theme={dark ? "dark" : undefined}
     >
       <h2 id="tech-marquee-heading" className="sr-only">
@@ -53,56 +62,39 @@ export function TechMarquee({
         </p>
       </Container>
 
-      <div className="marquee-track mask-fade-x mt-7 overflow-hidden">
-        <div className="animate-marquee flex w-max gap-3 pr-3">
+      <div className="marquee-track mask-fade-x relative mt-7 overflow-hidden">
+        {/* Glass sheen sweeping over the strip. */}
+        <span
+          aria-hidden
+          className={cn(
+            "animate-sheen pointer-events-none absolute inset-y-0 left-0 z-10 w-1/4 bg-gradient-to-r from-transparent to-transparent",
+            dark ? "via-white/[0.09]" : "via-brand-500/[0.08]",
+          )}
+        />
+        <div className="animate-marquee flex w-max gap-3.5 pr-3.5">
           {/* Second copy is decorative: the first already names every tool. */}
           {[0, 1].map((copy) => (
             <ul
               key={copy}
-              className="flex shrink-0 gap-3"
+              className="flex shrink-0 gap-3.5"
               aria-hidden={copy === 1 ? true : undefined}
             >
-              {allTechnologies.map((tech) => {
-                const logo = techLogo(tech);
-                return (
-                  <li
-                    key={tech}
-                    className={cn(
-                      "flex shrink-0 items-center gap-2.5 rounded-pill border px-4 py-2",
-                      dark
-                        ? "border-white/10 bg-white/[0.04] text-ink-300"
-                        : "border-ink-200 bg-white text-ink-600",
-                    )}
-                  >
-                    {logo ? (
-                      <Image
-                        src={logo}
-                        alt=""
-                        width={18}
-                        height={18}
-                        aria-hidden
-                        className={cn(
-                          "size-[1.125rem] shrink-0 object-contain",
-                          // Vercel, OpenAI and ElevenLabs are black marks; invert
-                          // them on the dark band so they don't vanish.
-                          dark && "brightness-0 invert",
-                        )}
-                      />
-                    ) : (
-                      <span
-                        aria-hidden
-                        className={cn(
-                          "size-1.5 shrink-0 rounded-full",
-                          dark ? "bg-brand-400" : "bg-brand-500",
-                        )}
-                      />
-                    )}
-                    <span className="font-mono text-[0.8125rem] whitespace-nowrap">
-                      {tech}
-                    </span>
-                  </li>
-                );
-              })}
+              {items.map((tech) => (
+                <li
+                  key={tech}
+                  className={cn(
+                    "flex shrink-0 items-center gap-3 rounded-pill border px-5 py-2.5",
+                    dark
+                      ? "border-white/15 bg-white/[0.07] text-ink-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]"
+                      : "border-ink-200/80 bg-white/70 text-ink-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_10px_24px_-14px_rgba(23,26,38,0.25)] backdrop-blur-sm",
+                  )}
+                >
+                  <TechLogo name={tech} size="sm" dark={dark} />
+                  <span className="font-mono text-sm whitespace-nowrap">
+                    {tech}
+                  </span>
+                </li>
+              ))}
             </ul>
           ))}
         </div>

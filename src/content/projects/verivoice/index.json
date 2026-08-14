@@ -104,20 +104,56 @@
   "challenge": {
     "summary": "The client was losing qualified enquiries outside office hours and burning senior time on calls that never needed a specialist. Earlier voice bots had been abandoned because callers found them slow and evasive.",
     "points": [
-      "Roughly a third of inbound calls arrived outside staffed hours and went to voicemail, where most were never returned.",
-      "Previous systems had latency long enough that callers spoke over the agent and the conversation collapsed.",
-      "Call outcomes were logged manually and inconsistently, so pipeline data could not be trusted.",
-      "Any automated system had to hand over to a person instantly on request, without the caller repeating themselves."
+      {
+        "icon": "PhoneCall",
+        "title": "Calls outside hours went nowhere",
+        "description": "Roughly a third of inbound calls arrived outside staffed hours and went to voicemail, where most were never returned."
+      },
+      {
+        "icon": "Timer",
+        "title": "Latency broke the call",
+        "description": "Previous systems had latency long enough that callers spoke over the agent and the conversation collapsed."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Untrusted call outcomes",
+        "description": "Call outcomes were logged manually and inconsistently, so pipeline data could not be trusted."
+      },
+      {
+        "icon": "Handshake",
+        "title": "Instant human handover",
+        "description": "Any automated system had to hand over to a person instantly on request, without the caller repeating themselves."
+      }
     ]
   },
   "solution": {
     "summary": "We built a multi-agent architecture where each agent has one job, a small set of tools and an explicit escalation path — then optimised the audio pipeline until conversations felt natural.",
     "points": [
-      "Split the conversation into discrete agent roles with typed handoff contracts carrying full context.",
-      "Streamed speech recognition and synthesis end to end, with barge-in detection so callers can interrupt naturally.",
-      "Gave each agent narrow, permissioned tool access — calendar, CRM, knowledge base — rather than open-ended system control.",
-      "Built an evaluation suite of recorded scenarios so prompt and model changes are measured against regressions before release.",
-      "Wrote structured outcomes back to the CRM on every call, removing manual logging entirely."
+      {
+        "icon": "Workflow",
+        "title": "Typed agent handoffs",
+        "description": "Split the conversation into discrete agent roles with typed handoff contracts carrying full context."
+      },
+      {
+        "icon": "Zap",
+        "title": "End-to-end streaming",
+        "description": "Streamed speech recognition and synthesis end to end, with barge-in detection so callers can interrupt naturally."
+      },
+      {
+        "icon": "Lock",
+        "title": "Narrow tool permissions",
+        "description": "Gave each agent narrow, permissioned tool access — calendar, CRM, knowledge base — rather than open-ended system control."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Regression-tested changes",
+        "description": "Built an evaluation suite of recorded scenarios so prompt and model changes are measured against regressions before release."
+      },
+      {
+        "icon": "Database",
+        "title": "Structured CRM writes",
+        "description": "Wrote structured outcomes back to the CRM on every call, removing manual logging entirely."
+      }
     ]
   },
   "results": [
@@ -209,5 +245,15 @@
   },
   "featured": true,
   "accent": "brand",
-  "order": 1
+  "order": 1,
+  "objectives": [
+    "Answer calls outside staffed hours with no voicemail graveyard",
+    "Keep latency low enough for natural conversation",
+    "Hand over to a person instantly without repetition",
+    "Log every call outcome as structured CRM data",
+    "Ship model changes only against measured regressions"
+  ],
+  "clientOverview": "A business losing about a third of its inbound calls to voicemail outside staffed hours — and most of those never returned. Earlier voice automation had failed badly: latency was long enough that callers spoke over the agent and conversations collapsed, and call outcomes were logged by hand so the pipeline data could not be trusted.",
+  "conclusion": "VeriVoice now carries the calls that previously went to voicemail through natural, low-latency conversations with barge-in interruption, handing over to a person instantly when asked — context included. Multi-agent design with narrow tool permissions keeps the automation contained and safe, structured outcomes land in the CRM on every call, and an evaluation suite means model changes ship only when they measure up.",
+  "workflowLayout": "linear"
 }

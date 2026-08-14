@@ -140,6 +140,8 @@ export interface PortfolioCopy {
     };
     challenge: SectionCopy;
     solution: SectionCopy;
+    objectives: SectionCopy;
+    conclusion: SectionCopy;
     /** `{project}` is the project title. */
     features: SectionCopy;
     workflow: SectionCopy;

@@ -2,15 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TechLogo } from "@/components/ui/TechLogo";
 import { homeCopy } from "@/data/pages";
-import { techCategories } from "@/data/technologies";
+import { techCategories, type TechCategory } from "@/data/technologies";
 import { cn } from "@/lib/utils";
-
-const accentDots = {
-  brand: "bg-brand-400",
-  violet: "bg-accent-violet-soft",
-  cyan: "bg-accent-cyan",
-} as const;
 
 const accentIcons = {
   brand: "bg-brand-500/12 text-brand-300 ring-brand-400/20",
@@ -18,15 +13,77 @@ const accentIcons = {
   cyan: "bg-accent-cyan/12 text-accent-cyan-soft ring-accent-cyan/25",
 } as const;
 
+/** One category card: icon + heading, note, and the tool list. */
+function CategoryCard({
+  category,
+  wide = false,
+}: {
+  category: TechCategory;
+  wide?: boolean;
+}) {
+  return (
+    <div className="group flex h-full flex-col rounded-card border border-white/10 bg-white/[0.035] p-6 transition-[border-color,background-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]">
+      <div className="flex items-center gap-3">
+        <span
+          className={cn(
+            "inline-flex size-9 shrink-0 items-center justify-center rounded-[0.75rem] ring-1",
+            accentIcons[category.accent],
+          )}
+        >
+          <Icon name={category.icon} className="size-[1.125rem]" />
+        </span>
+        <h3 className="type-h4 text-white">{category.title}</h3>
+      </div>
+
+      <p className="mt-3.5 text-sm leading-relaxed text-ink-400">
+        {category.description}
+      </p>
+
+      <ul
+        className={cn(
+          "mt-5 border-t border-white/10 pt-5",
+          wide
+            ? "grid gap-x-8 gap-y-2.5 sm:grid-cols-2"
+            : "space-y-2.5",
+        )}
+      >
+        {category.items.map((item) => (
+          <li key={item.name} className="flex items-start gap-2.5">
+            <span
+              aria-hidden
+              className="mt-[0.3125rem] flex size-5 shrink-0 items-center justify-center"
+            >
+              <TechLogo name={item.name} size="xs" dark />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm font-medium text-ink-100">
+                {item.name}
+              </span>
+              <span className="block text-xs leading-relaxed text-ink-500">
+                {item.note}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /**
  * Technologies grid.
  *
  * A dark band, which gives the page a structural break and lets the accent
- * colours carry the grouping. Cloud providers appear here only as ordinary
- * tools — there is no partner, marketplace or certification content anywhere on
- * this site.
+ * colours carry the grouping. Cards are paired so every row is balanced, and
+ * the large Cloud / Deployment category is pulled out as a full-width card so
+ * it never forces empty space into smaller neighbours. Cloud providers appear
+ * here only as ordinary tools — there is no partner, marketplace or
+ * certification content anywhere on this site.
  */
 export function Technologies() {
+  const cloud = techCategories.find((category) => category.id === "cloud");
+  const groups = techCategories.filter((category) => category.id !== "cloud");
+
   return (
     <section
       data-theme="dark"
@@ -53,51 +110,19 @@ export function Technologies() {
         <Stagger
           as="ul"
           stagger={0.06}
-          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14"
         >
-          {techCategories.map((category) => (
+          {groups.map((category) => (
             <StaggerItem as="li" key={category.id} className="h-full">
-              <div className="group flex h-full flex-col rounded-card border border-white/10 bg-white/[0.035] p-6 transition-[border-color,background-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]">
-                <div className="flex items-center gap-3">
-                  <span
-                    className={cn(
-                      "inline-flex size-9 shrink-0 items-center justify-center rounded-[0.75rem] ring-1",
-                      accentIcons[category.accent],
-                    )}
-                  >
-                    <Icon name={category.icon} className="size-[1.125rem]" />
-                  </span>
-                  <h3 className="type-h4 text-white">{category.title}</h3>
-                </div>
-
-                <p className="mt-3.5 text-sm leading-relaxed text-ink-400">
-                  {category.description}
-                </p>
-
-                <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
-                  {category.items.map((item) => (
-                    <li key={item.name} className="flex items-start gap-2.5">
-                      <span
-                        aria-hidden
-                        className={cn(
-                          "mt-[0.4375rem] size-1.5 shrink-0 rounded-full",
-                          accentDots[category.accent],
-                        )}
-                      />
-                      <span className="min-w-0">
-                        <span className="block text-sm font-medium text-ink-100">
-                          {item.name}
-                        </span>
-                        <span className="block text-xs leading-relaxed text-ink-500">
-                          {item.note}
-                        </span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <CategoryCard category={category} />
             </StaggerItem>
           ))}
+
+          {cloud && (
+            <StaggerItem as="li" className="h-full sm:col-span-2">
+              <CategoryCard category={cloud} wide />
+            </StaggerItem>
+          )}
         </Stagger>
       </Container>
     </section>

@@ -2,13 +2,24 @@ import { CheckCircle2, Target } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
-/** Objective checkpoint between the problem statement and the delivered solution. */
+/**
+ * Engagement objectives — the checklist between the problem statement and the
+ * delivered solution. Content is editable per project; when it is left empty
+ * the section falls back to the solution card titles so the page never looks
+ * unfinished.
+ */
 export function EngagementObjectives({ project }: { project: Project }) {
-  const objectives = project.solution.points.slice(0, 6);
+  const objectives =
+    project.objectives.length > 0
+      ? project.objectives
+      : project.solution.points.map((point) => point.title).slice(0, 6);
 
   if (objectives.length === 0) return null;
+
+  const copy = portfolioCopy.caseStudy.objectives;
 
   return (
     <section className="section-y-sm bg-ink-25">
@@ -20,12 +31,11 @@ export function EngagementObjectives({ project }: { project: Project }) {
                 <Target className="size-6" aria-hidden />
               </span>
               <p className="type-eyebrow mt-5 text-brand-600">
-                Engagement objectives
+                {copy.eyebrow}
               </p>
-              <h2 className="type-h2 mt-3">What the build needed to achieve</h2>
+              <h2 className="type-h2 mt-3">{copy.title}</h2>
               <p className="mt-4 text-sm leading-relaxed text-ink-600">
-                Before implementation, the work was reduced to clear objectives
-                the team could validate during delivery.
+                {copy.description}
               </p>
             </div>
           </Reveal>

@@ -9,10 +9,10 @@ import {
   Layers,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
@@ -121,9 +121,7 @@ export function ProjectHero({ project }: { project: Project }) {
               >
                 {project.technologies.map((tech) => (
                   <li key={tech}>
-                    <Badge tone="neutral" size="md">
-                      {tech}
-                    </Badge>
+                    <TechBadge name={tech} tone="neutral" />
                   </li>
                 ))}
               </ul>

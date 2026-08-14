@@ -93,20 +93,56 @@
   "challenge": {
     "summary": "Crews worked in basements, rural sites and industrial buildings with no reliable signal. Two previous applications had been rejected by the field team.",
     "points": [
-      "Connectivity was absent or intermittent for most of a typical working day.",
-      "Earlier apps lost work when a submission failed, so crews reverted to paper.",
-      "Paper job sheets were re-keyed in the office, adding a day of lag and transcription errors.",
-      "Proof of work was inconsistent, which caused billing disputes."
+      {
+        "icon": "Network",
+        "title": "No connectivity in the field",
+        "description": "Connectivity was absent or intermittent for most of a typical working day."
+      },
+      {
+        "icon": "Zap",
+        "title": "Work lost on failure",
+        "description": "Earlier apps lost work when a submission failed, so crews reverted to paper."
+      },
+      {
+        "icon": "FileSearch",
+        "title": "Paper re-keying lag",
+        "description": "Paper job sheets were re-keyed in the office, adding a day of lag and transcription errors."
+      },
+      {
+        "icon": "CreditCard",
+        "title": "Billing disputes over proof",
+        "description": "Proof of work was inconsistent, which caused billing disputes."
+      }
     ]
   },
   "solution": {
     "summary": "We designed for the disconnected case first and treated connectivity as an optimisation, not a requirement.",
     "points": [
-      "Made the device the source of truth for an in-progress job, with a local database as primary storage.",
-      "Defined explicit per-field conflict resolution rules rather than last-write-wins.",
-      "Queued evidence uploads with resumable transfer and background retry.",
-      "Delivered form definitions from the server so new job types ship without an app store review.",
-      "Ran a two-week pilot with the crews who had rejected earlier apps, and changed the interaction model based on it."
+      {
+        "icon": "Smartphone",
+        "title": "The device is the source of truth",
+        "description": "Made the device the source of truth for an in-progress job, with a local database as primary storage."
+      },
+      {
+        "icon": "GitBranch",
+        "title": "Explicit conflict rules",
+        "description": "Defined explicit per-field conflict resolution rules rather than last-write-wins."
+      },
+      {
+        "icon": "Cloud",
+        "title": "Resumable evidence uploads",
+        "description": "Queued evidence uploads with resumable transfer and background retry."
+      },
+      {
+        "icon": "Package",
+        "title": "Forms shipped from the server",
+        "description": "Delivered form definitions from the server so new job types ship without an app store review."
+      },
+      {
+        "icon": "Users",
+        "title": "Built with the crews",
+        "description": "Ran a two-week pilot with the crews who had rejected earlier apps, and changed the interaction model based on it."
+      }
     ]
   },
   "results": [
@@ -198,5 +234,15 @@
   },
   "featured": false,
   "accent": "brand",
-  "order": 7
+  "order": 7,
+  "objectives": [
+    "Keep a whole job usable with no connectivity at all",
+    "Never lose completed work, even on a failed submission",
+    "Sync proof of work reliably to the office",
+    "Ship new job types without an app store review",
+    "Win over the crews who rejected earlier apps"
+  ],
+  "clientOverview": "A field services operation whose crews spend most of the working day without connectivity. Earlier mobile attempts had lost work on failed submissions and been abandoned in favour of paper — which pushed a day of lag and transcription errors into the office and kept billing disputes alive over inconsistent proof of work.",
+  "conclusion": "Crews now run entire jobs offline with the device as the source of truth, and completed work syncs reliably — including photographic proof, with resumable uploads that survive poor coverage. New job types ship from the server without app store reviews, and the interaction model, shaped by a two-week pilot with the crews themselves, was adopted where earlier apps had been rejected.",
+  "workflowLayout": "loop"
 }

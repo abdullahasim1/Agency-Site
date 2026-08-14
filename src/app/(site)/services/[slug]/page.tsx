@@ -8,7 +8,7 @@ import { Process } from "@/components/home/Process";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceHeroVisual } from "@/components/services/ServiceHeroVisual";
-import { Badge } from "@/components/ui/Badge";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -142,9 +142,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               <ul className="mt-7 flex flex-wrap gap-1.5" aria-label="Technologies">
                 {service.technologies.map((tech) => (
                   <li key={tech}>
-                    <Badge tone="outline" size="md">
-                      {tech}
-                    </Badge>
+                    <TechBadge name={tech} />
                   </li>
                 ))}
               </ul>

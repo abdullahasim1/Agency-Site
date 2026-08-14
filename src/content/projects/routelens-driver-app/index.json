@@ -94,20 +94,56 @@
   "challenge": {
     "summary": "Dispatch had no visibility into a run until the driver called in, and proof of delivery was a paper sheet photographed at the end of the day.",
     "points": [
-      "Delivery status was unknown between depot departure and return.",
-      "Customer arrival estimates were guesses relayed by the office.",
-      "Paper proof of delivery meant disputes were resolved days later, if at all.",
-      "Failed deliveries were reported inconsistently, so root causes were invisible."
+      {
+        "icon": "Route",
+        "title": "Delivery status unknown",
+        "description": "Delivery status was unknown between depot departure and return."
+      },
+      {
+        "icon": "Timer",
+        "title": "Arrival estimates were guesses",
+        "description": "Customer arrival estimates were guesses relayed by the office."
+      },
+      {
+        "icon": "FileSearch",
+        "title": "Paper proof of delivery",
+        "description": "Paper proof of delivery meant disputes were resolved days later, if at all."
+      },
+      {
+        "icon": "Search",
+        "title": "Invisible failure causes",
+        "description": "Failed deliveries were reported inconsistently, so root causes were invisible."
+      }
     ]
   },
   "solution": {
     "summary": "We designed the app around what a driver can safely do in ten seconds at a doorstep, and streamed everything else to the office automatically.",
     "points": [
-      "Reduced each stop to a single primary action with structured, tappable outcomes.",
-      "Captured proof of delivery as a bundled artefact with signature, photo and geotag.",
-      "Streamed position and progress so dispatch and customer notifications need no phone calls.",
-      "Queued completions locally so poor coverage never blocks a driver.",
-      "Standardised exception reasons, making failure causes measurable for the first time."
+      {
+        "icon": "Target",
+        "title": "One primary action per stop",
+        "description": "Reduced each stop to a single primary action with structured, tappable outcomes."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Bundled proof of delivery",
+        "description": "Captured proof of delivery as a bundled artefact with signature, photo and geotag."
+      },
+      {
+        "icon": "Activity",
+        "title": "Live progress streaming",
+        "description": "Streamed position and progress so dispatch and customer notifications need no phone calls."
+      },
+      {
+        "icon": "Cloud",
+        "title": "Offline-safe queuing",
+        "description": "Queued completions locally so poor coverage never blocks a driver."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Standardised exception reasons",
+        "description": "Standardised exception reasons, making failure causes measurable for the first time."
+      }
     ]
   },
   "results": [
@@ -199,5 +235,15 @@
   },
   "featured": false,
   "accent": "brand",
-  "order": 10
+  "order": 10,
+  "objectives": [
+    "Keep dispatch informed from depot departure to return",
+    "Give customers real arrival estimates without phone calls",
+    "Capture provable proof of delivery at every stop",
+    "Work seamlessly in poor connectivity",
+    "Make delivery failure causes measurable"
+  ],
+  "clientOverview": "A delivery operation flying blind between depot and return: status was unknown until drivers phoned in, arrival estimates were office guesses, and proof of delivery was paper that settled disputes days later — if at all. Failed deliveries were logged inconsistently, so the reasons behind them were effectively invisible.",
+  "conclusion": "Drivers now work through one clear action per stop, capture bundled proof of delivery — signature, photo and geotag — and stream their progress live so dispatch and customer notifications need no phone calls. Completions queue locally through poor coverage, and standardised exception reasons have made the causes of failed deliveries measurable for the first time.",
+  "workflowLayout": "linear"
 }

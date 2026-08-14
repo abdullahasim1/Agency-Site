@@ -11,7 +11,7 @@
   "image": "/images/projects/omin-chat/image.png",
   "technologies": [
     "Next.js",
-    "Geneartive AI",
+    "Generative AI",
     "Google Gemini",
     "React",
     "TypeScript",
@@ -108,35 +108,131 @@
   "challenge": {
     "summary": "Creating a useful conversational AI application requires more than connecting a frontend to an LLM API. The challenge was to build a complete and polished chat experience capable of handling real-time generation, multiple conversations, persistent state, configurable AI behavior, reusable prompts, rich content rendering, and responsive interaction.",
     "points": [
-      "Design a modern conversational AI interface",
-      "Implement real-time streaming responses",
-      "Manage multiple independent conversations",
-      "Persist conversation state locally",
-      "Provide configurable AI generation settings",
-      "Create a reusable prompt template system",
-      "Render Markdown and syntax-highlighted code",
-      "Support responsive desktop, tablet, and mobile layouts",
-      "Provide reliable loading, error, and delete-confirmation states",
-      "Keep the architecture modular and extensible for future AI capabilities"
+      {
+        "icon": "Sparkles",
+        "title": "A modern conversational interface",
+        "description": "Design a polished, responsive interface for interacting with large language models."
+      },
+      {
+        "icon": "Zap",
+        "title": "Real-time streaming responses",
+        "description": "Implement progressive streaming so answers appear as they are generated."
+      },
+      {
+        "icon": "Layers",
+        "title": "Multi-conversation management",
+        "description": "Create, switch between, search, and delete independent conversations."
+      },
+      {
+        "icon": "Database",
+        "title": "Persistent local state",
+        "description": "Keep conversation history available across sessions without a backend."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Configurable generation settings",
+        "description": "Let users control model, temperature, token limits, and streaming behaviour."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Reusable prompt templates",
+        "description": "Provide a categorised library of reusable prompts for common workflows."
+      },
+      {
+        "icon": "Code2",
+        "title": "Rich content rendering",
+        "description": "Render Markdown, structured content, and syntax-highlighted code."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "Responsive layouts",
+        "description": "Adapt navigation and layout across desktop, tablet, and mobile."
+      },
+      {
+        "icon": "LifeBuoy",
+        "title": "Reliable states",
+        "description": "Handle loading, error, and delete-confirmation states consistently."
+      },
+      {
+        "icon": "GitBranch",
+        "title": "Extensible architecture",
+        "description": "Keep the architecture modular for future AI capabilities."
+      }
     ]
   },
   "solution": {
     "summary": "OmniChat was implemented as a modular Next.js application with centralized conversation state management, a dedicated AI service layer, reusable UI components, and client-side persistence. The architecture separates the chat interface, application state, AI integration, content rendering, and supporting functionality, providing a foundation that can be extended into more advanced AI systems.",
     "points": [
-      "Created a dedicated AI service layer for LLM communication",
-      "Built the application with Next.js, React, TypeScript, and Tailwind CSS",
-      "Implemented streaming and non-streaming AI responses",
-      "Added multi-turn conversation history",
-      " Centralized chat and settings state using React Context",
-      "Implemented local conversation persistence",
-      "Added searchable conversation history",
-      "Built reusable categorized prompt templates",
-      "Added Markdown and syntax-highlighted code rendering",
-      "Added configurable generation controls",
-      "Implemented dark/light themes",
-      "Added responsive navigation and layouts",
-      "Added conversation export functionality",
-      "Structured the application for future RAG, tool-use, agentic workflows, and multi-model capabilities"
+      {
+        "icon": "Bot",
+        "title": "Dedicated AI service layer",
+        "description": "Separated LLM communication into its own service module."
+      },
+      {
+        "icon": "Code2",
+        "title": "Modern full-stack foundation",
+        "description": "Built with Next.js, React, TypeScript, and Tailwind CSS."
+      },
+      {
+        "icon": "Zap",
+        "title": "Streaming and non-streaming",
+        "description": "Support both streaming and complete-response generation."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Multi-turn context",
+        "description": "Carry full conversation context across turns."
+      },
+      {
+        "icon": "Boxes",
+        "title": "Centralised state",
+        "description": "Chat and settings state centralised with React Context."
+      },
+      {
+        "icon": "Database",
+        "title": "Local persistence",
+        "description": "Conversations persisted automatically on the client."
+      },
+      {
+        "icon": "Search",
+        "title": "Searchable history",
+        "description": "Find past conversations instantly."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Categorised prompt library",
+        "description": "Reusable templates organised by workflow."
+      },
+      {
+        "icon": "Wand2",
+        "title": "Dark and light themes",
+        "description": "Personalised visual themes switchable per user."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "Responsive navigation",
+        "description": "Layouts and navigation that adapt to any screen size."
+      },
+      {
+        "icon": "Package",
+        "title": "Conversation export",
+        "description": "Export conversations as text for external use or archiving."
+      },
+      {
+        "icon": "Rocket",
+        "title": "Future-ready architecture",
+        "description": "Structured for RAG, tool-use, agentic workflows, and multi-model support."
+      },
+      {
+        "icon": "Code2",
+        "title": "Markdown and code rendering",
+        "description": "Rendered Markdown and syntax-highlighted code with one-click copying."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Configurable generation controls",
+        "description": "Model settings, temperature, token limits and streaming behaviour, all user-configurable."
+      }
     ]
   },
   "results": [
@@ -189,5 +285,16 @@
   },
   "featured": false,
   "accent": "brand",
-  "order": 100
+  "order": 100,
+  "objectives": [
+    "Stream AI responses progressively into the conversation",
+    "Manage multiple independent conversations with search",
+    "Persist everything locally without a backend",
+    "Make model behaviour configurable by the user",
+    "Render rich Markdown, code and structured content",
+    "Keep the architecture ready for advanced agentic capabilities"
+  ],
+  "clientOverview": "OminChat is a self-initiated product by the DevRox team: a general-purpose conversational AI assistant that needed to be more than a frontend bolted onto an LLM API. The brief was a complete, polished chat experience — real-time generation, multi-chat management, persistent state, configurable model behaviour, reusable prompts, rich content rendering and a fully responsive interface.",
+  "conclusion": "OminChat delivers the complete conversational experience the brief demanded: streaming answers, searchable multi-chat management, local persistence, user-configurable generation, a categorised prompt library, and polished Markdown and code rendering across every screen size. Its modular architecture — a dedicated AI service layer with centralised state — leaves the door open for RAG, tool use, agentic workflows and multi-model support next.",
+  "workflowLayout": "linear"
 }
