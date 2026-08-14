@@ -14,9 +14,15 @@ const cspHeader = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://avatars.githubusercontent.com",
   "font-src 'self'",
-  "connect-src 'self'",
+  /*
+   * The Keystatic panel (GitHub mode) talks to GitHub straight from the
+   * browser: GraphQL + contents API on api.github.com and raw files on
+   * raw.githubusercontent.com. Without these, the panel renders
+   * "Failed to load shell". The public site never fetches them.
+   */
+  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com",
   "frame-src https:",
   "object-src 'none'",
   "base-uri 'self'",
