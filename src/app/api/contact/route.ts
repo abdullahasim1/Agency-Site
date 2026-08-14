@@ -173,11 +173,37 @@ function escapeHtml(value: string): string {
 }
 
 function enquiryEmail(payload: ContactPayload): { text: string; html: string } {
-  const detail = (label: string, value: string) => `
-      <tr>
-        <td style="padding:10px 0;vertical-align:top;white-space:nowrap;color:#6b7280;font-size:13px;letter-spacing:0.02em;text-transform:uppercase;">${escapeHtml(label)}</td>
-        <td style="padding:10px 0 10px 24px;vertical-align:top;color:#111827;font-size:15px;line-height:1.5;">${escapeHtml(value) || '<span style="color:#9ca3af;">—</span>'}</td>
-      </tr>`;
+  const field = (label: string, value: string) => `
+        <td style="padding:0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;">
+            <tr>
+              <td style="padding:14px 16px;">
+                <p style="margin:0 0 4px;font-size:11px;color:#6b7280;letter-spacing:0.08em;text-transform:uppercase;">${escapeHtml(label)}</p>
+                <p style="margin:0;font-size:15px;font-weight:600;color:#111827;">${escapeHtml(value) || '<span style="color:#9ca3af;font-weight:400;">—</span>'}</p>
+              </td>
+            </tr>
+          </table>
+        </td>`;
+
+  const badge = (label: string, value: string) => `
+        <td style="padding:0;">
+          <table role="presentation" cellpadding="0" cellspacing="0" style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;width:100%;">
+            <tr>
+              <td style="padding:14px 16px;">
+                <p style="margin:0 0 4px;font-size:11px;color:#6b7280;letter-spacing:0.08em;text-transform:uppercase;">${escapeHtml(label)}</p>
+                <span style="display:inline-block;margin:0;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:600;color:#5b21b6;background-color:#ede9fe;">${escapeHtml(value) || "—"}</span>
+              </td>
+            </tr>
+          </table>
+        </td>`;
+
+  const initials = payload.fullName
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0] ?? "")
+    .join("")
+    .toUpperCase();
 
   const text = [
     `New enquiry from ${payload.fullName}`,
@@ -192,51 +218,84 @@ function enquiryEmail(payload: ContactPayload): { text: string; html: string } {
     "",
     "Message:",
     payload.message,
+    "",
+    `Reply to: ${payload.email}`,
   ].join("\n");
 
   const html = `
   <div style="margin:0;padding:0;background-color:#f3f4f6;font-family:Arial,Helvetica,sans-serif;">
-    <div style="max-width:560px;margin:0 auto;padding:32px 16px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+    <div style="max-width:600px;margin:0 auto;padding:32px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;">
         <tr>
-          <td style="background-color:#111827;padding:24px 28px;">
+          <td style="background-color:#111827;background-image:linear-gradient(135deg,#8b5cf6 0%,#22d3ee 100%);padding:28px 32px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:0.02em;">thedevrox<span style="color:#8b5cf6;">.</span></td>
-                <td align="right" style="font-size:12px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;">New enquiry</td>
+                <td>
+                  <table role="presentation" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="background-color:rgba(255,255,255,0.16);border-radius:10px;padding:8px 14px;">
+                        <span style="font-size:16px;font-weight:800;color:#ffffff;letter-spacing:0.02em;">thedevrox<span style="opacity:0.7;">.</span></span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td align="right" style="font-size:12px;color:rgba(255,255,255,0.85);letter-spacing:0.12em;text-transform:uppercase;vertical-align:middle;">New enquiry</td>
               </tr>
             </table>
           </td>
         </tr>
         <tr>
-          <td style="padding:32px 28px 8px;">
-            <h1 style="margin:0 0 6px;font-size:22px;color:#111827;font-weight:700;">New enquiry from ${escapeHtml(payload.fullName)}</h1>
-            <p style="margin:0;font-size:13px;color:#9ca3af;">${new Date().toLocaleString()}</p>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:8px 28px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e5e7eb;margin-top:8px;">
-              ${detail("Name", payload.fullName)}
-              ${detail("Email", payload.email)}
-              ${detail("Phone", payload.phone)}
-              ${detail("Company", payload.company)}
-              ${detail("Project type", payload.projectType)}
-              ${detail("Budget", payload.budget)}
+          <td style="padding:36px 32px 10px;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="width:56px;height:56px;border-radius:50%;background-color:#8b5cf6;color:#ffffff;font-size:20px;font-weight:700;text-align:center;vertical-align:middle;">${escapeHtml(initials || "?")}</td>
+                <td style="padding-left:16px;vertical-align:middle;">
+                  <h1 style="margin:0 0 4px;font-size:22px;color:#111827;font-weight:700;">New enquiry</h1>
+                  <p style="margin:0;font-size:13px;color:#9ca3af;">${new Date().toLocaleString()}</p>
+                </td>
+              </tr>
             </table>
           </td>
         </tr>
         <tr>
-          <td style="padding:24px 28px 32px;">
-            <div style="background-color:#f9fafb;border-left:3px solid #8b5cf6;border-radius:0 8px 8px 0;padding:16px 20px;">
-              <p style="margin:0 0 8px;font-size:12px;color:#6b7280;letter-spacing:0.08em;text-transform:uppercase;">Message</p>
-              <p style="margin:0;font-size:15px;line-height:1.6;color:#111827;white-space:pre-line;">${escapeHtml(payload.message)}</p>
+          <td style="padding:18px 32px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 6px 12px 0;">${field("Name", payload.fullName)}</td>
+                <td style="padding:0 0 12px 6px;">${field("Email", payload.email)}</td>
+              </tr>
+              <tr>
+                <td style="padding:0 6px 12px 0;">${field("Phone", payload.phone)}</td>
+                <td style="padding:0 0 12px 6px;">${field("Company", payload.company)}</td>
+              </tr>
+              <tr>
+                <td style="padding:0 6px 0 0;">${badge("Project type", payload.projectType)}</td>
+                <td style="padding:0 0 0 6px;">${badge("Budget", payload.budget)}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:24px 32px 0;">
+            <div style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:18px 22px;">
+              <p style="margin:0 0 8px;font-size:11px;color:#6b7280;letter-spacing:0.08em;text-transform:uppercase;">Message</p>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#111827;white-space:pre-line;">${escapeHtml(payload.message)}</p>
             </div>
-            <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;">Reply to <a href="mailto:${escapeHtml(payload.email)}" style="color:#8b5cf6;text-decoration:none;">${escapeHtml(payload.email)}</a> to get in touch.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:24px 32px 36px;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background-color:#111827;background-image:linear-gradient(135deg,#8b5cf6 0%,#22d3ee 100%);border-radius:999px;padding:12px 24px;">
+                  <a href="mailto:${escapeHtml(payload.email)}" style="display:inline-block;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">Reply to ${escapeHtml(payload.email)}</a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:18px 0 0;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;">This enquiry came from the contact form on <span style="color:#6b7280;font-weight:600;">thedevrox.com</span></p>
           </td>
         </tr>
       </table>
-      <p style="margin:16px 0 0;text-align:center;font-size:12px;color:#9ca3af;">Sent via thedevrox.com contact form</p>
     </div>
   </div>`;
 
