@@ -40,8 +40,6 @@ export interface SiteConfig {
   };
   social: {
     linkedin: string;
-    github: string;
-    x: string;
   };
   twitterHandle: string;
   foundedYear: number;
