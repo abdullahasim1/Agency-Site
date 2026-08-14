@@ -31,12 +31,12 @@ import type { Project } from "@/data/projects";
 const briefIcons = [Building2, Briefcase, Calendar, Layers] as const;
 
 /**
- * Layout Option A — "Split Sidebar".
+ * Case-study template — "Split Sidebar".
  *
  * A dark editorial hero, then a persistent sticky brief column that scrolls
  * with the reader while the story sections flow beside it. Agency-style.
  */
-export function LayoutSplit({ project }: { project: Project }) {
+export function CaseStudyLayout({ project }: { project: Project }) {
   const brief = [
     { label: "Client", value: project.overview.client },
     { label: "Industry", value: project.overview.industry },
