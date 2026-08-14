@@ -172,6 +172,77 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function enquiryEmail(payload: ContactPayload): { text: string; html: string } {
+  const detail = (label: string, value: string) => `
+      <tr>
+        <td style="padding:10px 0;vertical-align:top;white-space:nowrap;color:#6b7280;font-size:13px;letter-spacing:0.02em;text-transform:uppercase;">${escapeHtml(label)}</td>
+        <td style="padding:10px 0 10px 24px;vertical-align:top;color:#111827;font-size:15px;line-height:1.5;">${escapeHtml(value) || '<span style="color:#9ca3af;">—</span>'}</td>
+      </tr>`;
+
+  const text = [
+    `New enquiry from ${payload.fullName}`,
+    `Date: ${new Date().toLocaleString()}`,
+    "",
+    `Name: ${payload.fullName}`,
+    `Email: ${payload.email}`,
+    `Phone: ${payload.phone}`,
+    `Company: ${payload.company}`,
+    `Project type: ${payload.projectType}`,
+    `Budget: ${payload.budget}`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+
+  const html = `
+  <div style="margin:0;padding:0;background-color:#f3f4f6;font-family:Arial,Helvetica,sans-serif;">
+    <div style="max-width:560px;margin:0 auto;padding:32px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+        <tr>
+          <td style="background-color:#111827;padding:24px 28px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:0.02em;">thedevrox<span style="color:#8b5cf6;">.</span></td>
+                <td align="right" style="font-size:12px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;">New enquiry</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px 28px 8px;">
+            <h1 style="margin:0 0 6px;font-size:22px;color:#111827;font-weight:700;">New enquiry from ${escapeHtml(payload.fullName)}</h1>
+            <p style="margin:0;font-size:13px;color:#9ca3af;">${new Date().toLocaleString()}</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:8px 28px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e5e7eb;margin-top:8px;">
+              ${detail("Name", payload.fullName)}
+              ${detail("Email", payload.email)}
+              ${detail("Phone", payload.phone)}
+              ${detail("Company", payload.company)}
+              ${detail("Project type", payload.projectType)}
+              ${detail("Budget", payload.budget)}
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:24px 28px 32px;">
+            <div style="background-color:#f9fafb;border-left:3px solid #8b5cf6;border-radius:0 8px 8px 0;padding:16px 20px;">
+              <p style="margin:0 0 8px;font-size:12px;color:#6b7280;letter-spacing:0.08em;text-transform:uppercase;">Message</p>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#111827;white-space:pre-line;">${escapeHtml(payload.message)}</p>
+            </div>
+            <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;">Reply to <a href="mailto:${escapeHtml(payload.email)}" style="color:#8b5cf6;text-decoration:none;">${escapeHtml(payload.email)}</a> to get in touch.</p>
+          </td>
+        </tr>
+      </table>
+      <p style="margin:16px 0 0;text-align:center;font-size:12px;color:#9ca3af;">Sent via thedevrox.com contact form</p>
+    </div>
+  </div>`;
+
+  return { text, html };
+}
+
 async function deliver(payload: ContactPayload): Promise<void> {
   const enquiryId = randomUUID();
 
@@ -180,23 +251,7 @@ async function deliver(payload: ContactPayload): Promise<void> {
     throw new Error("SMTP not configured");
   }
 
-  const row = (label: string, value: string) => `
-    <tr>
-      <td style="padding:8px 12px;font-weight:600;vertical-align:top;white-space:nowrap;border-bottom:1px solid #eee;">${escapeHtml(label)}</td>
-      <td style="padding:8px 12px;vertical-align:top;border-bottom:1px solid #eee;">${escapeHtml(value).replace(/\n/g, "<br>")}</td>
-    </tr>`;
-
-  const text = [
-    `Name: ${payload.fullName}`,
-    `Email: ${payload.email}`,
-    `Company: ${payload.company}`,
-    `Phone: ${payload.phone}`,
-    `Project type: ${payload.projectType}`,
-    `Budget: ${payload.budget}`,
-    "",
-    "Message:",
-    payload.message,
-  ].join("\n");
+  const { text, html } = enquiryEmail(payload);
 
   await mailTransport.sendMail({
     from: smtpConfig.user,
@@ -204,19 +259,7 @@ async function deliver(payload: ContactPayload): Promise<void> {
     replyTo: payload.email,
     subject: `New enquiry from ${payload.fullName} — ${payload.projectType}`,
     text,
-    html: `
-      <table style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#222;">
-        ${row("Name", payload.fullName)}
-        ${row("Email", payload.email)}
-        ${row("Company", payload.company)}
-        ${row("Phone", payload.phone)}
-        ${row("Project type", payload.projectType)}
-        ${row("Budget", payload.budget)}
-        <tr>
-          <td style="padding:8px 12px;font-weight:600;vertical-align:top;border-bottom:1px solid #eee;">Message</td>
-          <td style="padding:8px 12px;vertical-align:top;border-bottom:1px solid #eee;">${escapeHtml(payload.message).replace(/\n/g, "<br>")}</td>
-        </tr>
-      </table>`,
+    html,
   });
 
   console.info("[contact] enquiry delivered", { enquiryId });
