@@ -118,6 +118,8 @@ export interface Project {
   conclusion: string;
   results: ProjectResult[];
   gallery: ProjectGalleryItem[];
+  /** Optional demo video file. When `file` is empty the section is hidden. */
+  video?: { file: string; caption: string } | null;
   workflow: WorkflowNode[];
   /** How the workflow diagram is drawn: linear steps or a looping cycle. */
   workflowLayout: "linear" | "loop";

@@ -8,6 +8,7 @@ import { ProjectCTA } from "@/components/case-study/ProjectCTA";
 import { ProjectGallery } from "@/components/case-study/ProjectGallery";
 import { ProjectHero } from "@/components/case-study/ProjectHero";
 import { ProjectOverview } from "@/components/case-study/ProjectOverview";
+import { ProjectVideo } from "@/components/case-study/ProjectVideo";
 import { ResultsSection } from "@/components/case-study/ResultsSection";
 import { SolutionSection } from "@/components/case-study/SolutionSection";
 import { TechStack } from "@/components/case-study/TechStack";
@@ -73,6 +74,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <TechStack project={project} />
       <ResultsSection project={project} />
       <ProjectGallery project={project} />
+      <ProjectVideo project={project} />
       <ProjectCTA project={project} />
 
       <JsonLd

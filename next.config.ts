@@ -15,6 +15,7 @@ const cspHeader = [
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://avatars.githubusercontent.com",
+  "media-src 'self' https:",
   "font-src 'self'",
   /*
    * The Keystatic panel (GitHub mode) talks to GitHub straight from the

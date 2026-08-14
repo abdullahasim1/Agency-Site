@@ -146,6 +146,7 @@ export interface PortfolioCopy {
     features: SectionCopy;
     workflow: SectionCopy;
     gallery: SectionCopy;
+    video: SectionCopy;
     techStack: SectionCopy;
     results: SectionCopy;
     related: SectionCopy;
