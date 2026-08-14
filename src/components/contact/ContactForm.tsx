@@ -86,6 +86,9 @@ export function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  /* Honeypot: invisible to humans, auto-filled by bots. Sent with the payload
+     and silently dropped server-side when non-empty. */
+  const [website, setWebsite] = useState("");
 
   const isSubmitting = status === "submitting";
   const fieldId = (name: FieldName) => `${uid}-${name}`;
@@ -134,7 +137,7 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, website }),
       });
 
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
@@ -179,6 +182,21 @@ export function ContactForm() {
         {copy.heading}
       </h2>
       <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{copy.intro}</p>
+
+      {/* Honeypot — hidden from humans and screen readers, kept out of the
+          tab order. Bots that fill it are silently dropped by the API. */}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor={`${uid}-website`}>Leave this field empty</label>
+        <input
+          id={`${uid}-website`}
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(event) => setWebsite(event.target.value)}
+        />
+      </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label={copy.fullNameLabel} htmlFor={fieldId("fullName")} required error={errors.fullName} errorId={errorId("fullName")}>

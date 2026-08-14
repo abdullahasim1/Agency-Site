@@ -1,5 +1,30 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
+/*
+ * Static-site CSP, the documented approach for sites that are not dynamically
+ * rendered (nonces would force every page through the server). It blocks
+ * off-origin scripts, objects and framing, and pins forms/frames to self.
+ * `'unsafe-inline'` is required by Next's own inline bootstrapping; the
+ * neutralised JSON-LD sink in JsonLd.tsx is what makes that safe in practice.
+ * `frame-src https:` covers the env-configured booking scheduler iframe.
+ */
+const cspHeader = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "frame-src https:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   /*
@@ -34,6 +59,22 @@ const nextConfig: NextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-DNS-Prefetch-Control", value: "on" },
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader.replace(/\s{2,}/g, " ").trim(),
+          },
+          /* Belt and braces with frame-ancestors 'none' above: this site and
+             the /keystatic panel must never be frameable. */
+          { key: "X-Frame-Options", value: "DENY" },
+          /* HTTPS-only deployment (Vercel). */
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=()",
+          },
         ],
       },
     ];

@@ -28,7 +28,11 @@ export function BookingEmbed() {
           title={copy.calendarTitle}
           loading="lazy"
           className="h-[44rem] w-full border-0"
-          allow="camera; microphone; fullscreen"
+          allow="fullscreen"
+          /* Sandboxed so the third-party scheduler gets script and forms but
+             no camera, microphone or top-navigation powers; the site-wide
+             Permissions-Policy also denies camera/mic. */
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
         />
       </div>
     );
