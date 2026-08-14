@@ -338,7 +338,8 @@ export default config({
         ),
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technology badges",
-          description: "Flat list shown on the card.",
+          description:
+            "Technologies are drawn from the master list (Frontend, Backend, Database, AI, Automation, Communication, Cloud / Deployment). Type the exact name as it appears, e.g. “React”, “OpenAI”, “PostgreSQL”.",
           itemLabel: (props) => props.value || "Technology",
         }),
         techStack: fields.array(
@@ -695,6 +696,8 @@ export default config({
         ),
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technology badges",
+          description:
+            "Technologies are drawn from the master list (Frontend, Backend, Database, AI, Automation, Communication, Cloud / Deployment). Type the exact name as it appears, e.g. “React”, “OpenAI”, “PostgreSQL”.",
           itemLabel: (props) => props.value || "Technology",
         }),
         deliverables: fields.array(
