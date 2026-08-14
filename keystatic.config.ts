@@ -185,7 +185,16 @@ export default config({
    */
   storage:
     keystaticMode === "github"
-      ? { kind: "github", repo: keystaticRepo }
+      ? {
+          kind: "github",
+          repo: keystaticRepo,
+          /*
+           * main is branch-protected (PR required), so Keystatic prompts for a
+           * new branch on every save instead of committing to main directly.
+           * This prefix keeps those panel-created branches recognisable.
+           */
+          branchPrefix: "edit/",
+        }
       : { kind: "local" },
 
   ui: {
