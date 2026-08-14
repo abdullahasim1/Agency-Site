@@ -1420,8 +1420,6 @@ export default config({
         social: fields.object(
           {
             linkedin: fields.text({ label: "LinkedIn URL" }),
-            github: fields.text({ label: "GitHub URL" }),
-            x: fields.text({ label: "X URL" }),
           },
           { label: "Social links" },
         ),
