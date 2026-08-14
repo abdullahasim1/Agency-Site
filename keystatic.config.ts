@@ -436,7 +436,7 @@ export default config({
               }),
             },
             {
-              layout: [4, 8],
+              layout: [4, 8, 12],
             },
           ),
           {
@@ -466,7 +466,7 @@ export default config({
               }),
             },
             {
-              layout: [8, 4],
+              layout: [8, 4, 12],
             },
           ),
           {
@@ -549,7 +549,7 @@ export default config({
           {
             label: "Project brief",
             description: "The facts shown in the hero and the facts panel.",
-            layout: [6, 6, 6, 6],
+            layout: [6, 6, 6, 6, 6, 6, 12],
           },
         ),
         featured: fields.checkbox({
