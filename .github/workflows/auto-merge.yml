@@ -5,13 +5,16 @@ name: Auto-merge Keystatic edits
 #
 #  1. Renames the branch to `<editor-username>/task/<name>` so every CMS save
 #     is traceable to the developer who made it (e.g. abdullah/task/xyz).
-#  2. Merges the PR automatically (squash) and deletes the branch, so the
+#  2. Closes the panel's PR (its head ref name goes stale when the branch is
+#     renamed — GitHub does not retarget it) and opens a fresh PR from the
+#     renamed branch.
+#  3. Merges that PR automatically (squash) and deletes the branch, so the
 #     editor never has to touch GitHub.
 #
-# The rename happens before the merge inside the same run, so there is no race
-# between the two. A later `synchronize` event re-runs this on a branch that is
-# already `<user>/task/<name>`, which is why the job also matches that pattern
-# and skips the rename step for it.
+# The fresh PR's `opened` event re-triggers this workflow with a head that is
+# already `<user>/task/<name>`: those runs skip the rename and replace steps
+# and go straight to merging. A `synchronize` event on the new PR after the
+# merge is a no-op (already-merged guard).
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -45,16 +48,37 @@ jobs:
           NEW_NAME: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
         run: |
+          # A previous run may have left a stale ref with this name behind.
+          gh api -X DELETE "repos/${REPO}/git/refs/heads/${NEW_NAME}" >/dev/null 2>&1 || true
           echo "Renaming $PR_HEAD -> $NEW_NAME"
           gh api -X POST "repos/${REPO}/branches/${PR_HEAD}/rename" \
             -f new_name="$NEW_NAME" --jq .name
+      - name: Replace PR on the renamed branch
+        if: startsWith(github.event.pull_request.head.ref, 'edit/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          NEW_NAME: ${{ steps.branch.outputs.name }}
+          REPO: ${{ github.repository }}
+        run: |
+          title="$(gh pr view "$PR_NUM" --json title --jq '.title')"
+          body="$(gh pr view "$PR_NUM" --json body --jq '.body')"
+          gh pr close "$PR_NUM" --comment "Branch renamed to ${NEW_NAME} — continuing as a new PR."
+          new_url="$(gh pr create --head "$NEW_NAME" --base main --title "$title" --body "$body")"
+          echo "Replaced with $new_url"
       - name: Merge PR
+        if: contains(github.event.pull_request.head.ref, '/task/')
         env:
           GH_TOKEN: ${{ github.token }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           NEW_BRANCH: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
         run: |
+          state="$(gh pr view "$PR_URL" --json state --jq '.state')"
+          if [ "$state" = "MERGED" ]; then
+            echo "PR already merged — nothing to do"
+            exit 0
+          fi
           for attempt in {1..10}; do
             if gh pr merge "$PR_URL" --squash 2>/dev/null; then
               echo "Merged $PR_URL"
