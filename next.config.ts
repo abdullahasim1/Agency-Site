@@ -25,6 +25,20 @@ const cspHeader = [
   "upgrade-insecure-requests",
 ].join("; ");
 
+/*
+ * SVG files served straight from /public (the generated project artwork).
+ * A direct navigation to such a file renders it as a *document*, where the
+ * site-wide policy above — which needs 'unsafe-inline' for Next's own
+ * bootstrapping — would allow inline scripts. This rule overrides the CSP for
+ * every `.svg` path (later rules win for the same key, per the headers docs):
+ * `default-src 'none'` forbids all resource loads including scripts, and
+ * `sandbox` puts the document in a restricted origin. Inline styles stay
+ * allowed because generated SVGs carry their own `<style>` blocks. `<img>`
+ * tags are unaffected — they never execute SVG scripts anyway.
+ */
+const svgCspHeader =
+  "default-src 'none'; style-src 'unsafe-inline'; sandbox";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   /*
@@ -75,6 +89,15 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), payment=()",
           },
+        ],
+      },
+      /* Last, so it wins for the same header key (see headers docs on
+         overriding behavior). Neutralises scripting inside any SVG served
+         from /public when someone navigates to the file directly. */
+      {
+        source: "/:path*.svg",
+        headers: [
+          { key: "Content-Security-Policy", value: svgCspHeader },
         ],
       },
     ];

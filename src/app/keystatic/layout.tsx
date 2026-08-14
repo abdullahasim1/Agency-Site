@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { isKeystaticEnabled } from "@/lib/keystatic-enabled";
@@ -19,12 +20,15 @@ export const metadata: Metadata = {
  * The admin panel UI.
  *
  * This is a Server Component, which is what lets it read the server-only
- * GitHub App variables; the panel itself is a client component. When the panel
- * is not configured the route 404s rather than rendering a UI whose saves
- * would fail — or, worse, an unauthenticated one.
+ * GitHub App variables; the panel itself is a client component. The gate is
+ * evaluated per request: production needs the GitHub mode plus all three
+ * secrets, and development answers 404 to any host that is not the local
+ * machine — see `isKeystaticEnabled` for the full reasoning.
  */
-export default function Layout() {
-  if (!isKeystaticEnabled) notFound();
+export default async function Layout() {
+  if (!isKeystaticEnabled((await headers()).get("host") ?? undefined)) {
+    notFound();
+  }
 
   return <KeystaticApp />;
 }
