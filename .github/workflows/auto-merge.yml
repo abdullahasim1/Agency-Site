@@ -1,0 +1,33 @@
+name: Auto-merge Keystatic edits
+
+# Keystatic saves land on `edit/*` branches (main is branch-protected) and the
+# panel offers a "Create pull request" button. This workflow merges those PRs
+# automatically so the editor never has to touch GitHub.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: startsWith(github.event.pull_request.head.ref, 'edit/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          for attempt in {1..10}; do
+            if gh pr merge "$PR_URL" --squash --delete-branch 2>/dev/null; then
+              echo "Merged $PR_URL"
+              exit 0
+            fi
+            echo "Attempt $attempt failed, retrying in 15s"
+            sleep 15
+          done
+          echo "Could not merge $PR_URL (conflict or failed check?)" >&2
+          exit 1
