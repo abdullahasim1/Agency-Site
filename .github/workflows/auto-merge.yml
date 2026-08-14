@@ -64,7 +64,9 @@ jobs:
           title="$(gh pr view "$PR_NUM" --json title --jq '.title')"
           body="$(gh pr view "$PR_NUM" --json body --jq '.body')"
           gh pr close "$PR_NUM" --comment "Branch renamed to ${NEW_NAME} — continuing as a new PR."
-          new_url="$(gh pr create --head "$NEW_NAME" --base main --title "$title" --body "$body")"
+          new_url="$(gh api -X POST "repos/${REPO}/pulls" \
+            -f title="$title" -f head="$NEW_NAME" -f base=main -f body="$body" \
+            --jq .html_url)"
           echo "Replaced with $new_url"
       - name: Merge PR
         if: contains(github.event.pull_request.head.ref, '/task/')
