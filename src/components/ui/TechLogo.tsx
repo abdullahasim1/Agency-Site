@@ -111,7 +111,7 @@ export function TechLogo({
       className={cn(
         "shrink-0 object-contain",
         sizes[size],
-        dark && "brightness-0 invert",
+        dark && !logo.startsWith("/logos/aws/") && "brightness-0 invert",
         className,
       )}
     />

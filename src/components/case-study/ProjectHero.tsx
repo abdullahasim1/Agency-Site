@@ -1,12 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import {
-  Briefcase,
-  Building2,
-  Calendar,
-  CheckCircle2,
-  ChevronRight,
-  Layers,
-} from "lucide-react";
+import { CheckCircle2, ChevronRight } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -15,21 +9,13 @@ import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
-const briefIcons = [Building2, Briefcase, Calendar, Layers] as const;
-
 /**
  * Case-study hero.
  *
- * Shared by all ten projects — nothing here is project-specific beyond the data
- * passed in, which is what keeps /portfolio/[slug] a single template.
+ * Shared by all eleven projects — nothing here is project-specific beyond the
+ * data passed in, which is what keeps /portfolio/[slug] a single template.
  */
 export function ProjectHero({ project }: { project: Project }) {
-  const brief = [
-    { label: "Client", value: project.overview.client },
-    { label: "Industry", value: project.overview.industry },
-    { label: "Timeline", value: project.overview.timeline },
-    { label: "Platform", value: project.overview.platforms.join(", ") },
-  ];
   const outcomes = project.results.slice(0, 3);
 
   return (
@@ -127,32 +113,17 @@ export function ProjectHero({ project }: { project: Project }) {
             </Reveal>
           </div>
 
-          <Reveal delay={0.18} y={18}>
-            <aside className="overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card">
-              <div className="border-b border-ink-200 bg-ink-25 px-5 py-4 sm:px-6">
-                <p className="type-eyebrow text-ink-400">Project brief</p>
-              </div>
-              <dl className="grid grid-cols-1 divide-y divide-ink-200">
-                {brief.map((item, index) => {
-                  const BriefIcon = briefIcons[index] ?? Building2;
-                  return (
-                    <div key={item.label} className="flex gap-4 px-5 py-4 sm:px-6">
-                      <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-[0.75rem] bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-                        <BriefIcon className="size-4.5" aria-hidden />
-                      </span>
-                      <div>
-                        <dt className="type-eyebrow text-ink-400">
-                          {item.label}
-                        </dt>
-                        <dd className="mt-1 text-sm font-medium leading-relaxed text-ink-900">
-                          {item.value}
-                        </dd>
-                      </div>
-                    </div>
-                  );
-                })}
-              </dl>
-            </aside>
+          <Reveal delay={0.18} y={18} className="lg:sticky lg:top-28">
+            <figure className="relative aspect-[4/3] w-full overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card">
+              <Image
+                src={project.image}
+                alt={project.imageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 96vw"
+                className="object-cover"
+              />
+            </figure>
           </Reveal>
         </div>
       </Container>
