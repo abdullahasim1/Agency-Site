@@ -10,8 +10,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Git workflow
 
-After finishing any task that changes files, commit the work and push to
-`origin/main` immediately — the user has asked not to be asked each time. Write
-a short, descriptive commit message in the repo's style, and only stage files
-that belong to the task (no secrets, no unrelated changes).
+`main` is branch-protected (pull request required — set up so CMS saves from
+the Keystatic panel land on `edit/` branches instead of touching main
+directly). So after finishing any task that changes files:
+
+1. Commit locally with a short, descriptive message in the repo's style, and
+   stage only files that belong to the task (no secrets, no unrelated changes).
+2. Push to a new branch: `git push -u origin <short-name>`.
+3. Open and merge the pull request: `gh pr create --fill && gh pr merge --merge --delete-branch`.
+4. Never try to push to `main` directly — the remote rejects it.
 
