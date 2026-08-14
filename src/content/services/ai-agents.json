@@ -1,11 +1,15 @@
 {
-  "id": "svc-ai-agents",
-  "order": 2,
   "title": "AI Agents",
-  "navLabel": "AI Agents",
-  "icon": "Bot",
-  "shortDescription": "Build intelligent agents that can reason, communicate, perform tasks and interact with business systems.",
-  "fullDescription": "An agent is only useful when it can act. We build agents with a narrow, well-defined remit, real tool access into your systems, and hard guardrails around what they are permitted to do. Every agent ships with evaluation cases, structured logging of its reasoning and tool calls, and a fallback path to a human. We favour several focused agents over one that tries to do everything, because focused agents are testable.",
+  "basics": {
+    "id": "svc-ai-agents",
+    "navLabel": "AI Agents",
+    "icon": "Bot"
+  },
+  "listing": {
+    "shortDescription": "Build intelligent agents that can reason, communicate, perform tasks and interact with business systems.",
+    "fullDescription": "An agent is only useful when it can act. We build agents with a narrow, well-defined remit, real tool access into your systems, and hard guardrails around what they are permitted to do. Every agent ships with evaluation cases, structured logging of its reasoning and tool calls, and a fallback path to a human. We favour several focused agents over one that tries to do everything, because focused agents are testable."
+  },
+  "order": 2,
   "technologies": [
     "OpenAI",
     "Claude",

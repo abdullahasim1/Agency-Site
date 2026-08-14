@@ -139,11 +139,31 @@ export interface Project {
 
 let projectsPromise: Promise<Project[]> | undefined;
 
+/**
+ * The Keystatic form groups the flat project fields into collapsible sections
+ * (`basics`, `listing`, `cover`, `closing`) so the panel stays manageable. The
+ * stored JSON is nested accordingly, so it is flattened back here — pages and
+ * components only ever see the flat `Project` shape.
+ */
+const flatten = (entry: Record<string, unknown>): Omit<Project, "slug"> => {
+  const { basics, listing, cover, closing, ...rest } = entry as Record<
+    string,
+    Record<string, unknown>
+  >;
+  return {
+    ...rest,
+    ...basics,
+    ...listing,
+    ...cover,
+    ...closing,
+  } as unknown as Omit<Project, "slug">;
+};
+
 /** All projects in portfolio order (lowest `order` first). */
 export function getProjects(): Promise<Project[]> {
   projectsPromise ??= reader.collections.projects.all().then((entries) =>
     entries
-      .map(({ slug, entry }) => ({ ...entry, slug }) as unknown as Project)
+      .map(({ slug, entry }) => ({ ...flatten(entry), slug }) as unknown as Project)
       .sort((a, b) => a.order - b.order),
   );
   return projectsPromise;

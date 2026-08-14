@@ -1,16 +1,26 @@
 {
-  "id": "prj-medisync-scheduling",
   "title": "MediSync Scheduling Assistant",
-  "tagline": "Voice-Led Appointment Coordination",
+  "basics": {
+    "id": "prj-medisync-scheduling",
+    "tagline": "Voice-Led Appointment Coordination"
+  },
+  "listing": {
+    "shortDescription": "A voice and messaging assistant that handles appointment booking, rescheduling and reminders for a multi-site clinic group.",
+    "fullDescription": "Reception teams across several clinics spent most of their day on the phone rearranging appointments. MediSync answers those calls, confirms identity against the practice system, offers genuinely available slots and books them — while routing anything clinical straight to a person. Reminder and waitlist handling run automatically, which measurably reduced empty chairs."
+  },
+  "cover": {
+    "image": "/images/projects/medisync-scheduling/cover.svg",
+    "imageAlt": "Abstract scheduling diagram showing appointment slots and voice interaction paths"
+  },
+  "closing": {
+    "clientOverview": "A multi-site clinic group whose phone lines peaked far beyond what reception could answer. Patients waited on hold or gave up, late cancellations left clinician time unfilled, and reminder calls were made by hand, inconsistently. Any automation had to stay strictly within scheduling — clinical topics had to bounce to a person immediately.",
+    "conclusion": "Patients now book, reschedule and confirm appointments through a voice and messaging assistant that shares the practice's real availability, holds slots to prevent double-booking, and hands every clinical question straight to a person. Reminders go out automatically on voice and SMS, and released slots are backfilled by a waitlist that dials candidates the moment a slot opens."
+  },
   "category": "AI / Voice / Automation",
   "categories": [
     "AI",
     "Automation"
   ],
-  "shortDescription": "A voice and messaging assistant that handles appointment booking, rescheduling and reminders for a multi-site clinic group.",
-  "fullDescription": "Reception teams across several clinics spent most of their day on the phone rearranging appointments. MediSync answers those calls, confirms identity against the practice system, offers genuinely available slots and books them — while routing anything clinical straight to a person. Reminder and waitlist handling run automatically, which measurably reduced empty chairs.",
-  "image": "/images/projects/medisync-scheduling/cover.svg",
-  "imageAlt": "Abstract scheduling diagram showing appointment slots and voice interaction paths",
   "technologies": [
     "Twilio",
     "ElevenLabs",
@@ -251,7 +261,5 @@
     "Never give clinical advice through the assistant",
     "Keep availability and bookings in sync with the practice system"
   ],
-  "clientOverview": "A multi-site clinic group whose phone lines peaked far beyond what reception could answer. Patients waited on hold or gave up, late cancellations left clinician time unfilled, and reminder calls were made by hand, inconsistently. Any automation had to stay strictly within scheduling — clinical topics had to bounce to a person immediately.",
-  "conclusion": "Patients now book, reschedule and confirm appointments through a voice and messaging assistant that shares the practice's real availability, holds slots to prevent double-booking, and hands every clinical question straight to a person. Reminders go out automatically on voice and SMS, and released slots are backfilled by a waitlist that dials candidates the moment a slot opens.",
   "workflowLayout": "loop"
 }

@@ -1,16 +1,26 @@
 {
-  "id": "prj-commerce-insights",
   "title": "Commerce Insights Dashboard",
-  "tagline": "Unified Merchandising & Margin Analytics",
+  "basics": {
+    "id": "prj-commerce-insights",
+    "tagline": "Unified Merchandising & Margin Analytics"
+  },
+  "listing": {
+    "shortDescription": "An analytics platform consolidating orders, inventory, advertising and returns into one margin-accurate view of product performance.",
+    "fullDescription": "A multi-channel retailer was making buying decisions on revenue because true margin was spread across five systems and reconciled by hand each month. We built a warehouse-backed analytics platform that consolidates orders, cost of goods, advertising spend, fees and returns into a single contribution-margin figure per product — updated daily rather than monthly."
+  },
+  "cover": {
+    "image": "/images/projects/commerce-insights/cover.svg",
+    "imageAlt": "Abstract analytics dashboard layout with charts and product performance panels"
+  },
+  "closing": {
+    "clientOverview": "An e-commerce operation whose profitability picture was scattered across five platforms — orders, fees, advertising and returns never lived in the same place. The monthly reconciliation ritual was multi-day, and products that looked healthy on revenue were quietly losing money once returns and ad spend were counted.",
+    "conclusion": "The business now sees a single, margin-accurate view of product performance that refreshes daily instead of monthly. Every cost component is traceable to its source, quarter-spanning questions run in seconds, and threshold alerts put the signal in front of the team instead of waiting for someone to go looking."
+  },
   "category": "Web Apps / SaaS",
   "categories": [
     "Web Apps",
     "SaaS"
   ],
-  "shortDescription": "An analytics platform consolidating orders, inventory, advertising and returns into one margin-accurate view of product performance.",
-  "fullDescription": "A multi-channel retailer was making buying decisions on revenue because true margin was spread across five systems and reconciled by hand each month. We built a warehouse-backed analytics platform that consolidates orders, cost of goods, advertising spend, fees and returns into a single contribution-margin figure per product — updated daily rather than monthly.",
-  "image": "/images/projects/commerce-insights/cover.svg",
-  "imageAlt": "Abstract analytics dashboard layout with charts and product performance panels",
   "technologies": [
     "Next.js",
     "TypeScript",
@@ -243,7 +253,5 @@
     "Keep quarter-spanning queries interactive",
     "Push alerts to teams instead of asking them to check"
   ],
-  "clientOverview": "An e-commerce operation whose profitability picture was scattered across five platforms — orders, fees, advertising and returns never lived in the same place. The monthly reconciliation ritual was multi-day, and products that looked healthy on revenue were quietly losing money once returns and ad spend were counted.",
-  "conclusion": "The business now sees a single, margin-accurate view of product performance that refreshes daily instead of monthly. Every cost component is traceable to its source, quarter-spanning questions run in seconds, and threshold alerts put the signal in front of the team instead of waiting for someone to go looking.",
   "workflowLayout": "linear"
 }

@@ -1,11 +1,15 @@
 {
-  "id": "svc-aws-cloud-devops",
-  "order": 9,
   "title": "AWS Cloud & DevOps",
-  "navLabel": "AWS Cloud",
-  "icon": "Cloud",
-  "shortDescription": "Design, deploy and operate secure AWS infrastructure for web apps, APIs, automation and AI workloads.",
-  "fullDescription": "AWS is powerful, but it gets expensive and fragile when accounts, networking, permissions and deployments grow without a plan. We set up production-ready AWS foundations: secure accounts, least-privilege IAM, repeatable infrastructure, automated deployments, observability, backups and cost controls. The goal is simple: your product runs reliably, scales when needed and stays maintainable for the team who owns it.",
+  "basics": {
+    "id": "svc-aws-cloud-devops",
+    "navLabel": "AWS Cloud",
+    "icon": "Cloud"
+  },
+  "listing": {
+    "shortDescription": "Design, deploy and operate secure AWS infrastructure for web apps, APIs, automation and AI workloads.",
+    "fullDescription": "AWS is powerful, but it gets expensive and fragile when accounts, networking, permissions and deployments grow without a plan. We set up production-ready AWS foundations: secure accounts, least-privilege IAM, repeatable infrastructure, automated deployments, observability, backups and cost controls. The goal is simple: your product runs reliably, scales when needed and stays maintainable for the team who owns it."
+  },
+  "order": 9,
   "technologies": [
     "AWS",
     "EC2",

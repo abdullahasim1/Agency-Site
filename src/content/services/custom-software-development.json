@@ -1,11 +1,15 @@
 {
-  "id": "svc-custom-software-development",
-  "order": 8,
   "title": "Custom Software Development",
-  "navLabel": "Custom Software",
-  "icon": "Code2",
-  "shortDescription": "Build custom digital products around specific business requirements.",
-  "fullDescription": "Sometimes the process is the competitive advantage and off-the-shelf software cannot express it. We build bespoke platforms for those cases — starting from the real workflow rather than a feature list, shipping a usable slice early, and expanding from there. You own the code, the infrastructure and the roadmap.",
+  "basics": {
+    "id": "svc-custom-software-development",
+    "navLabel": "Custom Software",
+    "icon": "Code2"
+  },
+  "listing": {
+    "shortDescription": "Build custom digital products around specific business requirements.",
+    "fullDescription": "Sometimes the process is the competitive advantage and off-the-shelf software cannot express it. We build bespoke platforms for those cases — starting from the real workflow rather than a feature list, shipping a usable slice early, and expanding from there. You own the code, the infrastructure and the roadmap."
+  },
+  "order": 8,
   "technologies": [
     "TypeScript",
     "Next.js",

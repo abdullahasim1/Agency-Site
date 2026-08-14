@@ -1,11 +1,15 @@
 {
-  "id": "svc-web-application-development",
-  "order": 4,
   "title": "Web Application Development",
-  "navLabel": "Web Development",
-  "icon": "Globe",
-  "shortDescription": "Build scalable and high-performance web applications using modern technologies.",
-  "fullDescription": "We build web applications that stay fast as they grow: typed end to end, server-rendered where it matters, and structured so a new engineer can find their way around in an afternoon. Performance, accessibility and observability are part of the definition of done rather than a later cleanup pass.",
+  "basics": {
+    "id": "svc-web-application-development",
+    "navLabel": "Web Development",
+    "icon": "Globe"
+  },
+  "listing": {
+    "shortDescription": "Build scalable and high-performance web applications using modern technologies.",
+    "fullDescription": "We build web applications that stay fast as they grow: typed end to end, server-rendered where it matters, and structured so a new engineer can find their way around in an afternoon. Performance, accessibility and observability are part of the definition of done rather than a later cleanup pass."
+  },
+  "order": 4,
   "technologies": [
     "React",
     "Next.js",

@@ -1,11 +1,15 @@
 {
-  "id": "svc-ai-voice-agents",
-  "order": 3,
   "title": "AI Voice Agents",
-  "navLabel": "Voice AI",
-  "icon": "PhoneCall",
-  "shortDescription": "Build AI-powered voice systems for inbound calls, outbound calls, lead qualification, support and appointment booking.",
-  "fullDescription": "Voice is the hardest interface to get right: latency, interruptions, accents and background noise all show up immediately. We build voice agents around a real telephony stack, tune for sub-second turn-taking, and design conversations that fail gracefully — confirming details, handling silence, and handing off to a person the moment the caller asks. Every call is transcribed, scored and pushed into your CRM.",
+  "basics": {
+    "id": "svc-ai-voice-agents",
+    "navLabel": "Voice AI",
+    "icon": "PhoneCall"
+  },
+  "listing": {
+    "shortDescription": "Build AI-powered voice systems for inbound calls, outbound calls, lead qualification, support and appointment booking.",
+    "fullDescription": "Voice is the hardest interface to get right: latency, interruptions, accents and background noise all show up immediately. We build voice agents around a real telephony stack, tune for sub-second turn-taking, and design conversations that fail gracefully — confirming details, handling silence, and handing off to a person the moment the caller asks. Every call is transcribed, scored and pushed into your CRM."
+  },
+  "order": 3,
   "technologies": [
     "Twilio",
     "ElevenLabs",

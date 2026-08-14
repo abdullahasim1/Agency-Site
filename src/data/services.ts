@@ -68,11 +68,29 @@ export interface Service {
 
 let servicesPromise: Promise<Service[]> | undefined;
 
+/**
+ * The Keystatic form groups the flat service fields into collapsible sections
+ * (`basics`, `listing`) so the panel stays manageable. The stored JSON is
+ * nested accordingly, so it is flattened back here — pages and components only
+ * ever see the flat `Service` shape.
+ */
+const flatten = (entry: Record<string, unknown>): Omit<Service, "slug"> => {
+  const { basics, listing, ...rest } = entry as Record<
+    string,
+    Record<string, unknown>
+  >;
+  return {
+    ...rest,
+    ...basics,
+    ...listing,
+  } as unknown as Omit<Service, "slug">;
+};
+
 /** All services in catalogue order (lowest `order` first). */
 export function getServices(): Promise<Service[]> {
   servicesPromise ??= reader.collections.services.all().then((entries) =>
     entries
-      .map(({ slug, entry }) => ({ ...entry, slug }) as unknown as Service)
+      .map(({ slug, entry }) => ({ ...flatten(entry), slug }) as unknown as Service)
       .sort((a, b) => a.order - b.order),
   );
   return servicesPromise;

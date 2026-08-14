@@ -1,11 +1,15 @@
 {
-  "id": "svc-workflow-automation",
-  "order": 6,
   "title": "Workflow Automation",
-  "navLabel": "Workflow Automation",
-  "icon": "Workflow",
-  "shortDescription": "Connect business tools and automate repetitive processes using intelligent workflows.",
-  "fullDescription": "Your tools already hold the data — the work is getting them to agree with each other. We design workflows that move information between systems reliably, with idempotent steps, dead-letter handling and alerting when something breaks. Where a no-code platform is the right answer we use one; where it would become a liability we write code.",
+  "basics": {
+    "id": "svc-workflow-automation",
+    "navLabel": "Workflow Automation",
+    "icon": "Workflow"
+  },
+  "listing": {
+    "shortDescription": "Connect business tools and automate repetitive processes using intelligent workflows.",
+    "fullDescription": "Your tools already hold the data — the work is getting them to agree with each other. We design workflows that move information between systems reliably, with idempotent steps, dead-letter handling and alerting when something breaks. Where a no-code platform is the right answer we use one; where it would become a liability we write code."
+  },
+  "order": 6,
   "technologies": [
     "n8n",
     "Make",

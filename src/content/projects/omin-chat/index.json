@@ -1,14 +1,24 @@
 {
   "title": "OminChat",
-  "id": "omin-chat",
-  "tagline": "A modern general-purpose conversational AI assistant",
+  "basics": {
+    "id": "omin-chat",
+    "tagline": "A modern general-purpose conversational AI assistant"
+  },
+  "listing": {
+    "shortDescription": "A modern conversational AI assistant with real-time streaming, multi-chat conversations, reusable prompt templates, rich AI responses, configurable generation settings, and a responsive user experience.",
+    "fullDescription": "OmniChat is a modern general-purpose conversational AI application designed to provide a polished, responsive experience for interacting with large language models. The platform combines real-time streaming conversations with multi-chat management, searchable conversation history, reusable prompt templates, configurable generation controls, Markdown and code rendering, and responsive support across desktop, tablet, and mobile."
+  },
+  "cover": {
+    "image": "/images/projects/omin-chat/image.png"
+  },
+  "closing": {
+    "clientOverview": "OminChat is a self-initiated product by the DevRox team: a general-purpose conversational AI assistant that needed to be more than a frontend bolted onto an LLM API. The brief was a complete, polished chat experience — real-time generation, multi-chat management, persistent state, configurable model behaviour, reusable prompts, rich content rendering and a fully responsive interface.",
+    "conclusion": "OminChat delivers the complete conversational experience the brief demanded: streaming answers, searchable multi-chat management, local persistence, user-configurable generation, a categorised prompt library, and polished Markdown and code rendering across every screen size. Its modular architecture — a dedicated AI service layer with centralised state — leaves the door open for RAG, tool use, agentic workflows and multi-model support next."
+  },
   "category": "AI / Conversational AI",
   "categories": [
     "AI"
   ],
-  "shortDescription": "A modern conversational AI assistant with real-time streaming, multi-chat conversations, reusable prompt templates, rich AI responses, configurable generation settings, and a responsive user experience.",
-  "fullDescription": "OmniChat is a modern general-purpose conversational AI application designed to provide a polished, responsive experience for interacting with large language models. The platform combines real-time streaming conversations with multi-chat management, searchable conversation history, reusable prompt templates, configurable generation controls, Markdown and code rendering, and responsive support across desktop, tablet, and mobile.",
-  "image": "/images/projects/omin-chat/image.png",
   "technologies": [
     "Next.js",
     "Generative AI",
@@ -294,7 +304,5 @@
     "Render rich Markdown, code and structured content",
     "Keep the architecture ready for advanced agentic capabilities"
   ],
-  "clientOverview": "OminChat is a self-initiated product by the DevRox team: a general-purpose conversational AI assistant that needed to be more than a frontend bolted onto an LLM API. The brief was a complete, polished chat experience — real-time generation, multi-chat management, persistent state, configurable model behaviour, reusable prompts, rich content rendering and a fully responsive interface.",
-  "conclusion": "OminChat delivers the complete conversational experience the brief demanded: streaming answers, searchable multi-chat management, local persistence, user-configurable generation, a categorised prompt library, and polished Markdown and code rendering across every screen size. Its modular architecture — a dedicated AI service layer with centralised state — leaves the door open for RAG, tool use, agentic workflows and multi-model support next.",
   "workflowLayout": "linear"
 }

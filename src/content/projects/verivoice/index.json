@@ -1,17 +1,27 @@
 {
-  "id": "prj-verivoice",
   "title": "VeriVoice",
-  "tagline": "AI Multi-Agent Voice Platform",
+  "basics": {
+    "id": "prj-verivoice",
+    "tagline": "AI Multi-Agent Voice Platform"
+  },
+  "listing": {
+    "shortDescription": "An intelligent multi-agent voice platform designed to automate business conversations and workflows.",
+    "fullDescription": "VeriVoice is an intelligent voice automation platform that enables businesses to deploy specialised AI agents for customer conversations, qualification and task execution. Rather than one general-purpose bot, each agent owns a narrow remit — reception, qualification, booking, follow-up — and hands off to the next with full context. Every call is transcribed, scored and written back to the customer's CRM, and any caller can reach a human by asking."
+  },
+  "cover": {
+    "image": "/images/projects/verivoice/cover.svg",
+    "imageAlt": "Abstract diagram of a multi-agent voice routing system with connected conversation nodes"
+  },
+  "closing": {
+    "clientOverview": "A business losing about a third of its inbound calls to voicemail outside staffed hours — and most of those never returned. Earlier voice automation had failed badly: latency was long enough that callers spoke over the agent and conversations collapsed, and call outcomes were logged by hand so the pipeline data could not be trusted.",
+    "conclusion": "VeriVoice now carries the calls that previously went to voicemail through natural, low-latency conversations with barge-in interruption, handing over to a person instantly when asked — context included. Multi-agent design with narrow tool permissions keeps the automation contained and safe, structured outcomes land in the CRM on every call, and an evaluation suite means model changes ship only when they measure up."
+  },
   "category": "AI / Voice / Multi-Agent",
   "categories": [
     "AI",
     "SaaS",
     "Automation"
   ],
-  "shortDescription": "An intelligent multi-agent voice platform designed to automate business conversations and workflows.",
-  "fullDescription": "VeriVoice is an intelligent voice automation platform that enables businesses to deploy specialised AI agents for customer conversations, qualification and task execution. Rather than one general-purpose bot, each agent owns a narrow remit — reception, qualification, booking, follow-up — and hands off to the next with full context. Every call is transcribed, scored and written back to the customer's CRM, and any caller can reach a human by asking.",
-  "image": "/images/projects/verivoice/cover.svg",
-  "imageAlt": "Abstract diagram of a multi-agent voice routing system with connected conversation nodes",
   "technologies": [
     "React",
     "Next.js",
@@ -253,7 +263,5 @@
     "Log every call outcome as structured CRM data",
     "Ship model changes only against measured regressions"
   ],
-  "clientOverview": "A business losing about a third of its inbound calls to voicemail outside staffed hours — and most of those never returned. Earlier voice automation had failed badly: latency was long enough that callers spoke over the agent and conversations collapsed, and call outcomes were logged by hand so the pipeline data could not be trusted.",
-  "conclusion": "VeriVoice now carries the calls that previously went to voicemail through natural, low-latency conversations with barge-in interruption, handing over to a person instantly when asked — context included. Multi-agent design with narrow tool permissions keeps the automation contained and safe, structured outcomes land in the CRM on every call, and an evaluation suite means model changes ship only when they measure up.",
   "workflowLayout": "linear"
 }

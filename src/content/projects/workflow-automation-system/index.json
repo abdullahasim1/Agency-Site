@@ -1,15 +1,25 @@
 {
-  "id": "prj-workflow-automation-system",
   "title": "Workflow Automation System",
-  "tagline": "Unified Operations Orchestration",
+  "basics": {
+    "id": "prj-workflow-automation-system",
+    "tagline": "Unified Operations Orchestration"
+  },
+  "listing": {
+    "shortDescription": "A consolidated orchestration layer replacing scattered scripts and disconnected no-code scenarios with monitored, recoverable workflows.",
+    "fullDescription": "Automation had grown organically across four platforms, several personal accounts and a handful of scheduled scripts. Nothing was versioned, failures were silent, and the person who built most of it had left. We rebuilt the estate as one orchestrated system with version control, retries, dead-letter handling and alerting — and documented every workflow so the team can maintain it themselves."
+  },
+  "cover": {
+    "image": "/images/projects/workflow-automation-system/cover.svg",
+    "imageAlt": "Abstract orchestration diagram showing branching workflow paths and retry loops"
+  },
+  "closing": {
+    "clientOverview": "An operations team whose automation had grown organically across four platforms — including personal accounts — with no version history, silent failures and unsafe retries. The first signal of a break was usually a customer or a missing record, and operators preferred fixing things by hand to touching a system they could not trust.",
+    "conclusion": "Every workflow now lives in one self-hosted, version-controlled platform, deployed through CI like the rest of their software. Steps are idempotent so retries and replays are safe, failed payloads sit in a dead-letter queue for one-click replay, and the owning team is alerted with a runbook written for each failure mode — silent breaks are a thing of the past."
+  },
   "category": "Automation",
   "categories": [
     "Automation"
   ],
-  "shortDescription": "A consolidated orchestration layer replacing scattered scripts and disconnected no-code scenarios with monitored, recoverable workflows.",
-  "fullDescription": "Automation had grown organically across four platforms, several personal accounts and a handful of scheduled scripts. Nothing was versioned, failures were silent, and the person who built most of it had left. We rebuilt the estate as one orchestrated system with version control, retries, dead-letter handling and alerting — and documented every workflow so the team can maintain it themselves.",
-  "image": "/images/projects/workflow-automation-system/cover.svg",
-  "imageAlt": "Abstract orchestration diagram showing branching workflow paths and retry loops",
   "technologies": [
     "n8n",
     "Node.js",
@@ -240,7 +250,5 @@
     "Capture every failed payload for one-click replay",
     "Alert the owning team with a runbook for each failure"
   ],
-  "clientOverview": "An operations team whose automation had grown organically across four platforms — including personal accounts — with no version history, silent failures and unsafe retries. The first signal of a break was usually a customer or a missing record, and operators preferred fixing things by hand to touching a system they could not trust.",
-  "conclusion": "Every workflow now lives in one self-hosted, version-controlled platform, deployed through CI like the rest of their software. Steps are idempotent so retries and replays are safe, failed payloads sit in a dead-letter queue for one-click replay, and the owning team is alerted with a runbook written for each failure mode — silent breaks are a thing of the past.",
   "workflowLayout": "loop"
 }

@@ -1,16 +1,26 @@
 {
-  "id": "prj-ai-sales-automation",
   "title": "AI Sales Automation",
-  "tagline": "Intelligent Lead Qualification & Pipeline Engine",
+  "basics": {
+    "id": "prj-ai-sales-automation",
+    "tagline": "Intelligent Lead Qualification & Pipeline Engine"
+  },
+  "listing": {
+    "shortDescription": "An automated qualification and outreach engine that scores inbound leads, enriches them and routes each to the right owner within minutes.",
+    "fullDescription": "A revenue team was drowning in inbound volume of wildly uneven quality. We built an engine that ingests every lead from every source, enriches it against public and internal data, scores it against a rubric agreed with the sales leadership, and either routes it to an owner with a briefing or places it into a nurture sequence. Reps stopped triaging and started selling."
+  },
+  "cover": {
+    "image": "/images/projects/ai-sales-automation/cover.svg",
+    "imageAlt": "Abstract diagram of a lead scoring and routing pipeline with branching decision paths"
+  },
+  "closing": {
+    "clientOverview": "A sales organisation collecting leads through six separate channels with no shared format and no reliable scoring. Triage fell to whoever picked up the record first, first responses took more than a day, and the marketing budget was being steered by intuition rather than evidence.",
+    "conclusion": "Inbound leads are now qualified, enriched and routed to the right owner within minutes of arrival. Scoring is consistent, explainable, and controlled by sales leadership through versioned configuration, borderline cases go to a human review queue instead of a guess, and channel spend is measured against closed revenue — not lead counts."
+  },
   "category": "AI / Automation",
   "categories": [
     "AI",
     "Automation"
   ],
-  "shortDescription": "An automated qualification and outreach engine that scores inbound leads, enriches them and routes each to the right owner within minutes.",
-  "fullDescription": "A revenue team was drowning in inbound volume of wildly uneven quality. We built an engine that ingests every lead from every source, enriches it against public and internal data, scores it against a rubric agreed with the sales leadership, and either routes it to an owner with a briefing or places it into a nurture sequence. Reps stopped triaging and started selling.",
-  "image": "/images/projects/ai-sales-automation/cover.svg",
-  "imageAlt": "Abstract diagram of a lead scoring and routing pipeline with branching decision paths",
   "technologies": [
     "Python",
     "OpenAI",
@@ -248,7 +258,5 @@
     "Never guess on borderline leads — route them to a human review queue",
     "Attribute channel performance to closed revenue"
   ],
-  "clientOverview": "A sales organisation collecting leads through six separate channels with no shared format and no reliable scoring. Triage fell to whoever picked up the record first, first responses took more than a day, and the marketing budget was being steered by intuition rather than evidence.",
-  "conclusion": "Inbound leads are now qualified, enriched and routed to the right owner within minutes of arrival. Scoring is consistent, explainable, and controlled by sales leadership through versioned configuration, borderline cases go to a human review queue instead of a guess, and channel spend is measured against closed revenue — not lead counts.",
   "workflowLayout": "linear"
 }

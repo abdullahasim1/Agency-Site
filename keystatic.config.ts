@@ -253,13 +253,23 @@ export default config({
             },
           },
         }),
-        id: idField,
-        tagline: fields.text({
-          label: "Tagline",
-          description:
-            "Sub-title under the project name on the case-study page. A short promise, not a sentence.",
-          validation: { length: { max: 60 } },
-        }),
+        basics: fields.object(
+          {
+            id: idField,
+            tagline: fields.text({
+              label: "Tagline",
+              description:
+                "Sub-title under the project name on the case-study page. A short promise, not a sentence.",
+              validation: { length: { max: 60 } },
+            }),
+          },
+          {
+            label: "Basics",
+            description:
+              "The project's stable machine key and the tagline under the title.",
+            layout: [6, 6],
+          },
+        ),
         category: fields.text({
           label: "Card category",
           description: 'Short line on cards, e.g. "AI / Voice".',
@@ -275,30 +285,48 @@ export default config({
             { label: "SaaS", value: "SaaS" },
           ],
         }),
-        shortDescription: fields.text({
-          label: "Card description",
-          description: "Short copy shown on portfolio cards.",
-          multiline: true,
-          validation: { length: { max: 220 } },
-        }),
-        fullDescription: fields.text({
-          label: "Full description",
-          description:
-            "Lead paragraph on the hero image panel. What the project is, in two or three sentences.",
-          multiline: true,
-        }),
-        image: fields.image({
-          label: "Cover image",
-          description:
-            "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
-          directory: "public/images/projects",
-          publicPath: "/images/projects",
-          validation: { isRequired: true },
-        }),
-        imageAlt: fields.text({
-          label: "Cover image alt text",
-          description: "Describes the image for screen readers and search engines.",
-        }),
+        listing: fields.object(
+          {
+            shortDescription: fields.text({
+              label: "Card description",
+              description: "Short copy shown on portfolio cards.",
+              multiline: true,
+              validation: { length: { max: 220 } },
+            }),
+            fullDescription: fields.text({
+              label: "Full description",
+              description:
+                "Lead paragraph on the hero image panel. What the project is, in two or three sentences.",
+              multiline: true,
+            }),
+          },
+          {
+            label: "Card & hero copy",
+            description: "The short card text and the lead paragraph of the case study.",
+            layout: [6, 6],
+          },
+        ),
+        cover: fields.object(
+          {
+            image: fields.image({
+              label: "Cover image",
+              description:
+                "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
+              directory: "public/images/projects",
+              publicPath: "/images/projects",
+              validation: { isRequired: true },
+            }),
+            imageAlt: fields.text({
+              label: "Cover image alt text",
+              description: "Describes the image for screen readers and search engines.",
+            }),
+          },
+          {
+            label: "Cover image",
+            description: "The artwork shown on the portfolio card and the case-study hero.",
+            layout: [12, 12],
+          },
+        ),
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technology badges",
           description: "Flat list shown on the card.",
@@ -404,18 +432,28 @@ export default config({
             "The goals the build needed to achieve. Shown as the checklist between Business Challenge and Solution Design. 4–6 items.",
           itemLabel: (props) => props.value || "Objective",
         }),
-        clientOverview: fields.text({
-          label: "Client overview",
-          description:
-            "Lead paragraph of the Client Overview section — who the client is and what they do.",
-          multiline: true,
-        }),
-        conclusion: fields.text({
-          label: "Conclusion",
-          description:
-            "Closing paragraph shown at the end of the case study, before the related projects.",
-          multiline: true,
-        }),
+        closing: fields.object(
+          {
+            clientOverview: fields.text({
+              label: "Client overview",
+              description:
+                "Lead paragraph of the Client Overview section — who the client is and what they do.",
+              multiline: true,
+            }),
+            conclusion: fields.text({
+              label: "Conclusion",
+              description:
+                "Closing paragraph shown at the end of the case study, before the related projects.",
+              multiline: true,
+            }),
+          },
+          {
+            label: "Story opening & closing",
+            description:
+              "The lead-in paragraph before the challenge, and the closing paragraph of the case study.",
+            layout: [12, 12],
+          },
+        ),
         results: fields.array(
           fields.object(
             {
@@ -570,7 +608,7 @@ export default config({
       path: "src/content/services/*",
       slugField: "title",
       format: { data: "json" },
-      columns: ["title", "navLabel", "featured", "order"],
+      columns: ["title", "featured", "order"],
       entryLayout: "form",
       schema: {
         title: fields.slug({
@@ -589,22 +627,41 @@ export default config({
             },
           },
         }),
-        id: idField,
-        navLabel: fields.text({
-          label: "Short menu label",
-          description: "Short name used in footer links and compact lists.",
-        }),
-        icon: iconField(),
-        shortDescription: fields.text({
-          label: "Card description",
-          description: "One or two sentences for the card.",
-          multiline: true,
-        }),
-        fullDescription: fields.text({
-          label: "Full description",
-          description: "Opening paragraph on the service page.",
-          multiline: true,
-        }),
+        basics: fields.object(
+          {
+            id: idField,
+            navLabel: fields.text({
+              label: "Short menu label",
+              description: "Short name used in footer links and compact lists.",
+            }),
+            icon: iconField(),
+          },
+          {
+            label: "Basics",
+            description:
+              "The service's stable machine key, the short menu label and the icon.",
+            layout: [4, 4, 4],
+          },
+        ),
+        listing: fields.object(
+          {
+            shortDescription: fields.text({
+              label: "Card description",
+              description: "One or two sentences for the card.",
+              multiline: true,
+            }),
+            fullDescription: fields.text({
+              label: "Full description",
+              description: "Opening paragraph on the service page.",
+              multiline: true,
+            }),
+          },
+          {
+            label: "Descriptions",
+            description: "The short card text and the opening paragraph of the service page.",
+            layout: [6, 6],
+          },
+        ),
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technology badges",
           itemLabel: (props) => props.value || "Technology",

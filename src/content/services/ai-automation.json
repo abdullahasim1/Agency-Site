@@ -1,11 +1,15 @@
 {
-  "id": "svc-ai-automation",
-  "order": 1,
   "title": "AI Automation",
-  "navLabel": "AI Automation",
-  "icon": "Wand2",
-  "shortDescription": "Automate repetitive business operations using intelligent workflows and AI-powered systems.",
-  "fullDescription": "Most teams lose hours every week to work that follows a predictable pattern: copying data between tools, triaging inbound requests, chasing approvals, producing the same report. We map those patterns, then replace them with automations that use AI only where judgement is genuinely required — classification, extraction, summarisation, drafting — and deterministic logic everywhere else. The result is a system you can audit, not a black box.",
+  "basics": {
+    "id": "svc-ai-automation",
+    "navLabel": "AI Automation",
+    "icon": "Wand2"
+  },
+  "listing": {
+    "shortDescription": "Automate repetitive business operations using intelligent workflows and AI-powered systems.",
+    "fullDescription": "Most teams lose hours every week to work that follows a predictable pattern: copying data between tools, triaging inbound requests, chasing approvals, producing the same report. We map those patterns, then replace them with automations that use AI only where judgement is genuinely required — classification, extraction, summarisation, drafting — and deterministic logic everywhere else. The result is a system you can audit, not a black box."
+  },
+  "order": 1,
   "technologies": [
     "OpenAI",
     "Claude",

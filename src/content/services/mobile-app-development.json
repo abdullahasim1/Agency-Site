@@ -1,11 +1,15 @@
 {
-  "id": "svc-mobile-app-development",
-  "order": 5,
   "title": "Mobile App Development",
-  "navLabel": "Mobile Development",
-  "icon": "Smartphone",
-  "shortDescription": "Create modern iOS and Android applications from a single, maintainable codebase.",
-  "fullDescription": "Mobile work lives or dies on the details: offline behaviour, background sync, push permissions, battery use and store review. We build cross-platform apps that share business logic across iOS and Android while respecting each platform's conventions, and we handle the release pipeline so shipping an update is routine.",
+  "basics": {
+    "id": "svc-mobile-app-development",
+    "navLabel": "Mobile Development",
+    "icon": "Smartphone"
+  },
+  "listing": {
+    "shortDescription": "Create modern iOS and Android applications from a single, maintainable codebase.",
+    "fullDescription": "Mobile work lives or dies on the details: offline behaviour, background sync, push permissions, battery use and store review. We build cross-platform apps that share business logic across iOS and Android while respecting each platform's conventions, and we handle the release pipeline so shipping an update is routine."
+  },
+  "order": 5,
   "technologies": [
     "React Native",
     "TypeScript",

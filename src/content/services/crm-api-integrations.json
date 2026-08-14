@@ -1,10 +1,14 @@
 {
   "title": "CRM & API Integrations",
-  "id": "svc-crm-api-integrations",
-  "navLabel": "CRM & Integrations",
-  "icon": "PlugZap",
-  "shortDescription": "Connect CRMs, APIs, databases, communication platforms and third-party services.",
-  "fullDescription": "Integrations are where most systems quietly break. We build them defensively: contracts validated at the boundary, webhooks verified and replayable, pagination and rate limits handled properly, and every sync observable. When a third-party API changes, you find out from an alert rather than from a customer.",
+  "basics": {
+    "id": "svc-crm-api-integrations",
+    "navLabel": "CRM & Integrations",
+    "icon": "PlugZap"
+  },
+  "listing": {
+    "shortDescription": "Connect CRMs, APIs, databases, communication platforms and third-party services.",
+    "fullDescription": "Integrations are where most systems quietly break. We build them defensively: contracts validated at the boundary, webhooks verified and replayable, pagination and rate limits handled properly, and every sync observable. When a third-party API changes, you find out from an alert rather than from a customer."
+  },
   "technologies": [
     "GoHighLevel",
     "Twilio",

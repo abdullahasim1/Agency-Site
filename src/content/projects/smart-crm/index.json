@@ -1,17 +1,27 @@
 {
-  "id": "prj-smart-crm",
   "title": "Smart CRM",
-  "tagline": "AI-Assisted Customer Relationship Platform",
+  "basics": {
+    "id": "prj-smart-crm",
+    "tagline": "AI-Assisted Customer Relationship Platform"
+  },
+  "listing": {
+    "shortDescription": "A multi-tenant CRM with AI assistance built into the record, summarising history and surfacing the next action for every account.",
+    "fullDescription": "Built for an operator whose process did not fit any off-the-shelf CRM, Smart CRM models their actual pipeline stages and permissions rather than approximating them. AI sits inside the record, not beside it: every account carries a rolling summary of its history, a suggested next action with the reasoning shown, and deduplication that runs continuously rather than as an occasional cleanup."
+  },
+  "cover": {
+    "image": "/images/projects/smart-crm/cover.svg",
+    "imageAlt": "Abstract layout of a customer relationship platform with linked record panels"
+  },
+  "closing": {
+    "clientOverview": "A multi-brand professional services operator running on a generic CRM, a shared inbox and a spreadsheet of exceptions — nobody trusted the data, onboarding took weeks of tribal knowledge transfer, and the permission model could not express who should see what. A new CRM had to be built around their real pipeline, not a generic one.",
+    "conclusion": "The team now works from a single source of truth modelled on their actual stages, exceptions and role boundaries. Row-level security removed a whole class of access bugs, AI-generated account summaries save reps from reading months of history before a call, duplicates are caught at the point of creation, and the monthly export ritual is gone — live reporting runs on the same data reps work in every day."
+  },
   "category": "SaaS / AI",
   "categories": [
     "SaaS",
     "AI",
     "Web Apps"
   ],
-  "shortDescription": "A multi-tenant CRM with AI assistance built into the record, summarising history and surfacing the next action for every account.",
-  "fullDescription": "Built for an operator whose process did not fit any off-the-shelf CRM, Smart CRM models their actual pipeline stages and permissions rather than approximating them. AI sits inside the record, not beside it: every account carries a rolling summary of its history, a suggested next action with the reasoning shown, and deduplication that runs continuously rather than as an occasional cleanup.",
-  "image": "/images/projects/smart-crm/cover.svg",
-  "imageAlt": "Abstract layout of a customer relationship platform with linked record panels",
   "technologies": [
     "Next.js",
     "TypeScript",
@@ -253,7 +263,5 @@
     "Give reps a ready account summary before every call",
     "Replace monthly export with live reporting"
   ],
-  "clientOverview": "A multi-brand professional services operator running on a generic CRM, a shared inbox and a spreadsheet of exceptions — nobody trusted the data, onboarding took weeks of tribal knowledge transfer, and the permission model could not express who should see what. A new CRM had to be built around their real pipeline, not a generic one.",
-  "conclusion": "The team now works from a single source of truth modelled on their actual stages, exceptions and role boundaries. Row-level security removed a whole class of access bugs, AI-generated account summaries save reps from reading months of history before a call, duplicates are caught at the point of creation, and the monthly export ritual is gone — live reporting runs on the same data reps work in every day.",
   "workflowLayout": "loop"
 }

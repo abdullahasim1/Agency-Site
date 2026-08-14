@@ -1,16 +1,26 @@
 {
-  "id": "prj-fieldops-mobile",
   "title": "FieldOps Mobile",
-  "tagline": "Offline-First Field Service Application",
+  "basics": {
+    "id": "prj-fieldops-mobile",
+    "tagline": "Offline-First Field Service Application"
+  },
+  "listing": {
+    "shortDescription": "An iOS and Android application for field crews working without connectivity, with conflict-safe sync and photographic proof of work.",
+    "fullDescription": "Field crews were completing jobs on paper because every previous app assumed a connection. FieldOps treats offline as the normal case: the entire day's work is available on the device, evidence is captured locally, and synchronisation resolves conflicts deterministically when signal returns. Dispatch sees progress as it syncs rather than at the end of the day."
+  },
+  "cover": {
+    "image": "/images/projects/fieldops-mobile/cover.svg",
+    "imageAlt": "Abstract mobile application layout showing job cards and synchronisation states"
+  },
+  "closing": {
+    "clientOverview": "A field services operation whose crews spend most of the working day without connectivity. Earlier mobile attempts had lost work on failed submissions and been abandoned in favour of paper — which pushed a day of lag and transcription errors into the office and kept billing disputes alive over inconsistent proof of work.",
+    "conclusion": "Crews now run entire jobs offline with the device as the source of truth, and completed work syncs reliably — including photographic proof, with resumable uploads that survive poor coverage. New job types ship from the server without app store reviews, and the interaction model, shaped by a two-week pilot with the crews themselves, was adopted where earlier apps had been rejected."
+  },
   "category": "Mobile / Custom Software",
   "categories": [
     "Mobile",
     "Automation"
   ],
-  "shortDescription": "An iOS and Android application for field crews working without connectivity, with conflict-safe sync and photographic proof of work.",
-  "fullDescription": "Field crews were completing jobs on paper because every previous app assumed a connection. FieldOps treats offline as the normal case: the entire day's work is available on the device, evidence is captured locally, and synchronisation resolves conflicts deterministically when signal returns. Dispatch sees progress as it syncs rather than at the end of the day.",
-  "image": "/images/projects/fieldops-mobile/cover.svg",
-  "imageAlt": "Abstract mobile application layout showing job cards and synchronisation states",
   "technologies": [
     "React Native",
     "TypeScript",
@@ -242,7 +252,5 @@
     "Ship new job types without an app store review",
     "Win over the crews who rejected earlier apps"
   ],
-  "clientOverview": "A field services operation whose crews spend most of the working day without connectivity. Earlier mobile attempts had lost work on failed submissions and been abandoned in favour of paper — which pushed a day of lag and transcription errors into the office and kept billing disputes alive over inconsistent proof of work.",
-  "conclusion": "Crews now run entire jobs offline with the device as the source of truth, and completed work syncs reliably — including photographic proof, with resumable uploads that survive poor coverage. New job types ship from the server without app store reviews, and the interaction model, shaped by a two-week pilot with the crews themselves, was adopted where earlier apps had been rejected.",
   "workflowLayout": "loop"
 }

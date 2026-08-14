@@ -1,17 +1,27 @@
 {
-  "id": "prj-ai-resume-platform",
   "title": "AI Resume Platform",
-  "tagline": "Resume Intelligence & Candidate Matching",
+  "basics": {
+    "id": "prj-ai-resume-platform",
+    "tagline": "Resume Intelligence & Candidate Matching"
+  },
+  "listing": {
+    "shortDescription": "A web platform that parses resumes into structured data, matches candidates to roles with an explainable score, and generates tailored documents.",
+    "fullDescription": "Recruiters were reading hundreds of inconsistently formatted resumes to fill a handful of roles. The platform parses any document into a structured candidate profile, evaluates fit against a role's stated requirements, and shows exactly which requirement each part of the score came from. Because the scoring is explainable, recruiters can override it — and their overrides feed back into calibration."
+  },
+  "cover": {
+    "image": "/images/projects/ai-resume-platform/cover.svg",
+    "imageAlt": "Abstract representation of document parsing into structured candidate profiles"
+  },
+  "closing": {
+    "clientOverview": "A recruitment business whose screening pipeline had grown beyond what manual review could handle. Recruiters juggled CVs in every conceivable format, keyword filters that missed good candidates, and a growing compliance requirement to show exactly why each decision was made — all while client-ready summaries still took half an hour each to write.",
+    "conclusion": "Recruiters now work from one clean, searchable profile per candidate, with scores they can justify in a sentence because every number cites its evidence. Screening is fully auditable, equivalent skills surface without keyword gymnastics, and tailored client summaries are produced from structured data in seconds rather than half an hour of rewriting."
+  },
   "category": "AI / Web Application",
   "categories": [
     "AI",
     "Web Apps",
     "SaaS"
   ],
-  "shortDescription": "A web platform that parses resumes into structured data, matches candidates to roles with an explainable score, and generates tailored documents.",
-  "fullDescription": "Recruiters were reading hundreds of inconsistently formatted resumes to fill a handful of roles. The platform parses any document into a structured candidate profile, evaluates fit against a role's stated requirements, and shows exactly which requirement each part of the score came from. Because the scoring is explainable, recruiters can override it — and their overrides feed back into calibration.",
-  "image": "/images/projects/ai-resume-platform/cover.svg",
-  "imageAlt": "Abstract representation of document parsing into structured candidate profiles",
   "technologies": [
     "Next.js",
     "Python",
@@ -244,7 +254,5 @@
     "Keep a complete, auditable trail of screening decisions",
     "Produce tailored client summaries without manual rewriting"
   ],
-  "clientOverview": "A recruitment business whose screening pipeline had grown beyond what manual review could handle. Recruiters juggled CVs in every conceivable format, keyword filters that missed good candidates, and a growing compliance requirement to show exactly why each decision was made — all while client-ready summaries still took half an hour each to write.",
-  "conclusion": "Recruiters now work from one clean, searchable profile per candidate, with scores they can justify in a sentence because every number cites its evidence. Screening is fully auditable, equivalent skills surface without keyword gymnastics, and tailored client summaries are produced from structured data in seconds rather than half an hour of rewriting.",
   "workflowLayout": "linear"
 }
