@@ -1,17 +1,22 @@
 import { randomUUID } from "node:crypto";
 
+import { createTransport } from "nodemailer";
+
 import { NextResponse } from "next/server";
 
 /**
- * Contact form endpoint — INTEGRATION POINT.
+ * Contact form endpoint — delivers enquiries by email over SMTP (Zoho Mail
+ * defaults, overridable).
  *
- * It currently validates the payload and logs it server-side, then returns 200
- * so the UI can be exercised end to end. Replace the `deliver` function with a
- * real destination (transactional email, CRM, webhook) and the rest of the
- * route, including validation, limits and the response shape, stays as it is.
+ * Env vars:
+ *   SMTP_HOST           default smtp.zoho.com
+ *   SMTP_PORT           default 465 (SSL); use 587 for STARTTLS
+ *   SMTP_USER           the sending mailbox, e.g. hello@thedevrox.com
+ *   SMTP_PASSWORD       mailbox password or app-specific password
+ *   CONTACT_INBOX_EMAIL where enquiries are delivered (defaults to SMTP_USER)
  *
- * Suggested env vars for whichever provider is chosen:
- *   CONTACT_INBOX_EMAIL, RESEND_API_KEY / SENDGRID_API_KEY, CRM_WEBHOOK_URL
+ * If SMTP_USER/SMTP_PASSWORD are missing the route fails loudly (502) so a
+ * misconfigured deploy is obvious instead of silently logging.
  *
  * Hardening built in:
  *  - Honeypot: a hidden `website` field real humans never fill; bots that do
@@ -21,8 +26,8 @@ import { NextResponse } from "next/server";
  *  - Size caps: per-field max lengths and a request-body ceiling, so a bot
  *    cannot push unbounded data through `request.json()`.
  *  - No PII in logs: delivery logs an opaque id only.
- *  - CR/LF stripped from every field, so when `deliver` is wired to email the
- *    values cannot inject extra headers.
+ *  - CR/LF stripped from every field, so email headers cannot be injected.
+ *  - All user values HTML-escaped before they go into the email body.
  */
 
 interface ContactPayload {
@@ -140,11 +145,81 @@ function validate(body: unknown): {
 }
 
 /** Swap this for the real destination. Throw to signal a delivery failure. */
-async function deliver(_payload: ContactPayload): Promise<void> {
-  console.info("[contact] enquiry accepted", {
-    enquiryId: randomUUID(),
-    receivedAt: new Date().toISOString(),
+const smtpConfig = {
+  host: process.env.SMTP_HOST ?? "smtp.zoho.com",
+  port: Number(process.env.SMTP_PORT ?? 465),
+  user: process.env.SMTP_USER ?? "",
+  pass: process.env.SMTP_PASSWORD ?? "",
+  inbox: process.env.CONTACT_INBOX_EMAIL ?? process.env.SMTP_USER ?? "",
+};
+
+const mailTransport =
+  smtpConfig.user && smtpConfig.pass
+    ? createTransport({
+        host: smtpConfig.host,
+        port: smtpConfig.port,
+        secure: smtpConfig.port === 465,
+        auth: { user: smtpConfig.user, pass: smtpConfig.pass },
+      })
+    : null;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+async function deliver(payload: ContactPayload): Promise<void> {
+  const enquiryId = randomUUID();
+
+  if (!mailTransport) {
+    console.error("[contact] SMTP not configured — set SMTP_USER and SMTP_PASSWORD");
+    throw new Error("SMTP not configured");
+  }
+
+  const row = (label: string, value: string) => `
+    <tr>
+      <td style="padding:8px 12px;font-weight:600;vertical-align:top;white-space:nowrap;border-bottom:1px solid #eee;">${escapeHtml(label)}</td>
+      <td style="padding:8px 12px;vertical-align:top;border-bottom:1px solid #eee;">${escapeHtml(value).replace(/\n/g, "<br>")}</td>
+    </tr>`;
+
+  const text = [
+    `Name: ${payload.fullName}`,
+    `Email: ${payload.email}`,
+    `Company: ${payload.company}`,
+    `Phone: ${payload.phone}`,
+    `Project type: ${payload.projectType}`,
+    `Budget: ${payload.budget}`,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+
+  await mailTransport.sendMail({
+    from: smtpConfig.user,
+    to: smtpConfig.inbox,
+    replyTo: payload.email,
+    subject: `New enquiry from ${payload.fullName} — ${payload.projectType}`,
+    text,
+    html: `
+      <table style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#222;">
+        ${row("Name", payload.fullName)}
+        ${row("Email", payload.email)}
+        ${row("Company", payload.company)}
+        ${row("Phone", payload.phone)}
+        ${row("Project type", payload.projectType)}
+        ${row("Budget", payload.budget)}
+        <tr>
+          <td style="padding:8px 12px;font-weight:600;vertical-align:top;border-bottom:1px solid #eee;">Message</td>
+          <td style="padding:8px 12px;vertical-align:top;border-bottom:1px solid #eee;">${escapeHtml(payload.message).replace(/\n/g, "<br>")}</td>
+        </tr>
+      </table>`,
   });
+
+  console.info("[contact] enquiry delivered", { enquiryId });
 }
 
 export async function POST(request: Request) {
