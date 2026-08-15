@@ -1,0 +1,243 @@
+{
+  "title": "Recruitment Module",
+  "basics": {
+    "id": "prj-recruitment-module",
+    "tagline": "Job Posting, Applicant Tracking & Interview Scheduling"
+  },
+  "listing": {
+    "shortDescription": "An internal recruitment frontend with separate admin and candidate workspaces — job posting, applicant review, interview scheduling and application tracking in one interface.",
+    "fullDescription": "Recruiting teams were juggling job postings, applicant emails and interview bookings across different tools, with no shared view of the pipeline. The module gives the recruitment operation two focused workspaces in one app: admins publish structured job listings, review each applicant's full dossier — personal information, resume, cover letter and screening answers — and schedule interviews with a meeting link in a couple of clicks. Candidates browse jobs, apply through a guided multi-step form and track their applications and upcoming interviews from their own dashboard."
+  },
+  "cover": {
+    "image": "/images/projects/recruitment-module/cover.svg",
+    "imageAlt": "Abstract representation of the recruitment pipeline — from application through screening to hiring"
+  },
+  "closing": {
+    "clientOverview": "An in-house recruitment operation whose hiring workflow had outgrown its tooling. Postings lived in one place, applications arrived by email with no single home, and booking an interview meant back-and-forth messages and manually pasted meeting links. Nothing could answer the basic question — how many candidates are in screening right now?",
+    "conclusion": "Recruiters now run the whole cycle from one workspace: publish a job, review a complete applicant dossier, attach a meeting link and move the candidate through the pipeline. Candidates get a guided application flow and a dashboard that shows exactly where they stand — no more chasing status by email."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Formik",
+    "Recharts"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js app router",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Forms & validation",
+      "items": [
+        "Formik",
+        "Yup",
+        "OTP inputs"
+      ]
+    },
+    {
+      "group": "Data visualisation",
+      "items": [
+        "Recharts",
+        "Bar & pie charts"
+      ]
+    },
+    {
+      "group": "Design system",
+      "items": [
+        "Shared UI primitives",
+        "lucide-react icons",
+        "Theme tokens"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Dual workspaces",
+      "description": "Separate admin and candidate interfaces under one codebase, built from the same UI primitives.",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "title": "Job publishing",
+      "description": "Create, edit and close listings with department, location, employment type and salary bands.",
+      "icon": "Briefcase"
+    },
+    {
+      "title": "Applicant pipeline",
+      "description": "Every candidate tracked through New → Interviewing → Hired → Rejected, with a full dossier per applicant.",
+      "icon": "Users"
+    },
+    {
+      "title": "Interview scheduling",
+      "description": "Book interviews with meeting-platform selection and a link, recorded against the applicant.",
+      "icon": "Calendar"
+    },
+    {
+      "title": "Structured applications",
+      "description": "Guided multi-step apply flow: personal info, resume upload, screening questions, review and submit.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Reports & analytics",
+      "description": "Hiring dashboards with applicant, job and hire figures plus status breakdowns.",
+      "icon": "LineChart"
+    }
+  ],
+  "challenge": {
+    "summary": "Recruitment operations ran on inboxes and spreadsheets — postings lived in one tool, applications in another, and interview booking was email ping-pong.",
+    "points": [
+      {
+        "icon": "ClipboardList",
+        "title": "Applications scattered",
+        "description": "CVs and cover letters arrived by email with no single place to review a candidate."
+      },
+      {
+        "icon": "Users",
+        "title": "No shared pipeline",
+        "description": "Nobody could see how many candidates sat in screening, interview or offer stages."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Booking by email",
+        "description": "Scheduling interviews meant back-and-forth messages and manually pasted meeting links."
+      },
+      {
+        "icon": "FileSearch",
+        "title": "Inconsistent submissions",
+        "description": "Free-form applications made it hard to compare candidates against the same questions."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "One product, two workspaces. The admin side owns the hiring pipeline end to end; the candidate side makes applying and tracking progress a structured, guided flow.",
+    "points": [
+      {
+        "icon": "Workflow",
+        "title": "Workspace separation",
+        "description": "Route groups split admin and candidate experiences while sharing the same UI primitives."
+      },
+      {
+        "icon": "Briefcase",
+        "title": "Structured job postings",
+        "description": "Jobs carry department, location, type and salary, so listings stay consistent and searchable."
+      },
+      {
+        "icon": "Users",
+        "title": "Dossier-per-applicant review",
+        "description": "Each applicant opens to tabs for personal information, resume, cover letter, screening answers and notes."
+      },
+      {
+        "icon": "Calendar",
+        "title": "One-flow scheduling",
+        "description": "Interviews scheduled with platform selection and a meeting link, all recorded against the applicant."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "2",
+      "label": "Workspaces, one app",
+      "detail": "Separate admin and candidate interfaces built from shared components."
+    },
+    {
+      "value": "10+",
+      "label": "Routed screens",
+      "detail": "Auth, admin and dashboard route groups cover the full hiring journey."
+    },
+    {
+      "value": "4",
+      "label": "Pipeline stages",
+      "detail": "Every applicant moves through a consistent New → Interviewing → Hired → Rejected flow."
+    },
+    {
+      "value": "5",
+      "label": "Dossier tabs per applicant",
+      "detail": "Personal info, resume, cover letter, screening answers and notes in one view."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/recruitment-module/shot-1.svg",
+      "alt": "Admin applicants pipeline view",
+      "caption": "The applicant pipeline — every candidate tracked with a clear status."
+    },
+    {
+      "src": "/images/projects/recruitment-module/shot-2.svg",
+      "alt": "Hiring analytics dashboard",
+      "caption": "Hiring analytics — applicant, job and hire figures at a glance."
+    },
+    {
+      "src": "/images/projects/recruitment-module/shot-3.svg",
+      "alt": "Application lifecycle from posting to hire",
+      "caption": "The hiring lifecycle — from job posted to decision recorded."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "POST",
+      "title": "Job published",
+      "description": "Admins create listings with department, location, type and salary."
+    },
+    {
+      "id": "w2",
+      "tag": "APPLY",
+      "title": "Candidate applies",
+      "description": "Structured multi-step form with resume upload and screening questions."
+    },
+    {
+      "id": "w3",
+      "tag": "SCREEN",
+      "title": "Application reviewed",
+      "description": "Applicant opens into a full dossier with status tracking."
+    },
+    {
+      "id": "w4",
+      "tag": "INTERVIEW",
+      "title": "Interview scheduled",
+      "description": "Meeting platform and link attached; countdown shown to the candidate."
+    },
+    {
+      "id": "w5",
+      "tag": "DECIDE",
+      "title": "Decision recorded",
+      "description": "Status moves to hired or rejected; reports reflect the pipeline."
+    }
+  ],
+  "overview": {
+    "client": "Internal product — in-house recruitment operations",
+    "industry": "Human Resources & Staffing",
+    "timeline": "8 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "UI/UX Implementation"
+    ],
+    "team": "1 engineer, 1 designer"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 11,
+  "objectives": [
+    "Give admins and candidates two distinct, focused workspaces in one app",
+    "Keep every applicant's materials in a single reviewable dossier",
+    "Make scheduling an interview a two-click task with a meeting link",
+    "Turn applications into a structured flow so candidates can be compared fairly",
+    "Show the whole pipeline at a glance in reports and dashboards"
+  ],
+  "workflowLayout": "linear"
+}
