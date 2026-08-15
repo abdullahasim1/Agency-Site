@@ -7,6 +7,7 @@ import { Stats } from "@/components/home/Stats";
 import { Technologies } from "@/components/home/Technologies";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { OurTeam } from "@/components/services/OurTeam";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/ui/TechMarquee";
 import { siteConfig, siteTitle } from "@/data/site";
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Stats />
       <Services />
       <Technologies />
+      <OurTeam />
       <Process />
       <FeaturedProjects />
       <WhyChooseUs />
