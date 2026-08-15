@@ -29,8 +29,8 @@ export default function HomePage() {
       <TechMarquee />
       <Stats />
       <Services />
+      <OurTeam tone="light" />
       <Technologies />
-      <OurTeam />
       <Process />
       <FeaturedProjects />
       <WhyChooseUs />
