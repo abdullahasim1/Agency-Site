@@ -26,8 +26,6 @@ export interface SiteConfig {
   contact: {
     email: string;
     salesEmail: string;
-    phone: string;
-    phoneHref: string;
     whatsapp: string;
     whatsappHref: string;
     location: string;
