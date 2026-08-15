@@ -1,0 +1,268 @@
+{
+  "title": "NexusOps",
+  "basics": {
+    "id": "prj-nexusops",
+    "tagline": "Enterprise Autonomous Multi-Agent Orchestrator"
+  },
+  "listing": {
+    "shortDescription": "A multi-agent operations platform that triages support, qualifies sales leads and governs high-risk actions across omnichannel inbound traffic — with human sign-off on everything that matters.",
+    "fullDescription": "Inbound customer operations were drowning in manual work: tickets routed by hand, sales inquiries sitting in inboxes, and production incidents escalating slowly across fragmented tools. We built a four-agent orchestration platform — triage, technical support, BANT sales qualification and governance — that classifies every inbound event semantically, resolves what it safely can, and pauses anything risky in a human approval queue with full audit trail."
+  },
+  "cover": {
+    "image": "/images/projects/nexusops/cover.svg",
+    "imageAlt": "Abstract multi-agent orchestration diagram showing a triage core branching to support and sales specialists and a governance gate"
+  },
+  "closing": {
+    "clientOverview": "An enterprise B2B SaaS platform serving high-stakes customers across Standard, Growth and Enterprise tiers with guaranteed SLAs. Support and sales engineering teams were overwhelmed by manual ticket routing and lead qualification, while every external integration failure silently dropped customer interactions until an engineer manually replayed them.",
+    "conclusion": "NexusOps now runs every inbound event through a deterministic four-agent DAG: Aegis routes semantically, Vanguard resolves technical issues against the knowledge base, Meridian qualifies and sizes sales leads into the CRM pipeline, and Apex enforces governance — pausing any action with low confidence or high risk in a human approval queue. Every tool call is logged, every failure retries with exponential backoff, and the platform can be fault-tested live from its own connector hub."
+  },
+  "category": "AI / Automation",
+  "categories": [
+    "AI",
+    "Automation",
+    "SaaS",
+    "Web Apps"
+  ],
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Claude",
+    "Node.js",
+    "Zendesk",
+    "HubSpot"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React 18",
+        "TypeScript",
+        "Tailwind CSS",
+        "Lucide React",
+        "Recharts"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "Express",
+        "Vite"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "Claude Code",
+        "Structured JSON inference",
+        "Deterministic fallback classifier"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Zendesk",
+        "HubSpot",
+        "AWS Bedrock",
+        "Slack"
+      ]
+    },
+    {
+      "group": "Resilience",
+      "items": [
+        "Circuit breakers",
+        "Exponential backoff retries",
+        "React Error Boundary"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Four-agent DAG orchestration",
+      "description": "Aegis, Vanguard, Meridian and Apex hand off execution state across a verified directed acyclic graph.",
+      "icon": "Workflow"
+    },
+    {
+      "title": "Semantic triage & routing",
+      "description": "Intent, confidence, sentiment and entity extraction decide the branch before any tool runs.",
+      "icon": "Brain"
+    },
+    {
+      "title": "Human-in-the-loop gates",
+      "description": "Low confidence, large concessions and production changes pause in an operator approval queue.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Self-healing integration engine",
+      "description": "Exponential backoff retries and circuit breakers recover from rate limits and timeouts automatically.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "BANT sales qualification",
+      "description": "Budget, authority, need and timeline scored with live ARR sizing and CRM pipeline provisioning.",
+      "icon": "Target"
+    },
+    {
+      "title": "Tamper-evident audit trail",
+      "description": "Every prompt, tool invocation, payload change and operator decision recorded with resource IDs.",
+      "icon": "FileSearch"
+    }
+  ],
+  "challenge": {
+    "summary": "Manual triage, fragmented tools and unenforced governance meant slow escalations, unattended leads and silent integration failures for a high-SLA enterprise support operation.",
+    "points": [
+      {
+        "icon": "Layers",
+        "title": "Context scattered across silos",
+        "description": "Zendesk, HubSpot, internal wikis and Slack each held part of the customer picture, copied by hand."
+      },
+      {
+        "icon": "Timer",
+        "title": "Slow escalation",
+        "description": "Standard bots either hallucinated actions or failed on anything beyond keyword matching."
+      },
+      {
+        "icon": "Lock",
+        "title": "No structured authorization",
+        "description": "Refunds, patches and custom SLA terms had no formal approval mechanism before execution."
+      },
+      {
+        "icon": "Cloud",
+        "title": "Silent integration failures",
+        "description": "Rate limits and webhook drops failed workflows silently, dropping customer interactions."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "A deterministic multi-agent pipeline where every inbound event is classified semantically, resolved autonomously within hard safety boundaries, and paused for human sign-off the moment a boundary is approached.",
+    "points": [
+      {
+        "icon": "GitBranch",
+        "title": "Verified DAG execution",
+        "description": "A serialized step executor with promise barriers prevents race conditions between concurrent agents."
+      },
+      {
+        "icon": "Cpu",
+        "title": "Dual-tier reasoning",
+        "description": "Claude Code structured inference with a deterministic local classifier as a crash-free fallback."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Hard HITL safety gates",
+        "description": "Confidence below 0.80, discounts above $1,000 and Sev-1 incidents pause until operator sign-off."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Resilient connector layer",
+        "description": "Three exponential-backoff retries per connector before a circuit breaker trips and alerts."
+      },
+      {
+        "icon": "Activity",
+        "title": "Full observability",
+        "description": "Live DAG topology, step-level telemetry traces and an immutable audit log for every action."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "78.4%",
+      "label": "Autonomous containment rate",
+      "detail": "Inbound events resolved end-to-end without a human in the loop."
+    },
+    {
+      "value": "< 0.80",
+      "label": "Confidence floor",
+      "detail": "Anything below the threshold pauses in the HITL approval queue."
+    },
+    {
+      "value": "4",
+      "label": "Specialized agents",
+      "detail": "Triage, technical support, BANT sales and governance in one DAG."
+    },
+    {
+      "value": "3",
+      "label": "Automated retries",
+      "detail": "Exponential backoff before a connector's circuit breaker trips."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/nexusops/shot-1.svg",
+      "alt": "NexusOps operations overview",
+      "caption": "System health, active executions and the live multi-agent DAG graph."
+    },
+    {
+      "src": "/images/projects/nexusops/shot-2.svg",
+      "alt": "Containment and latency analytics",
+      "caption": "Containment rates, agent latency and self-healing metrics."
+    },
+    {
+      "src": "/images/projects/nexusops/shot-3.svg",
+      "alt": "Execution lifecycle with HITL gate",
+      "caption": "Every execution traced from queue through triage to resolution or human approval."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "QUEUED",
+      "title": "Event ingested",
+      "description": "Inbound message accepted from web chat, email, Slack or WhatsApp."
+    },
+    {
+      "id": "w2",
+      "tag": "TRIAGE",
+      "title": "Aegis routes",
+      "description": "Intent, confidence, sentiment and tier extracted before any tool runs."
+    },
+    {
+      "id": "w3",
+      "tag": "EXECUTE",
+      "title": "Specialist acts",
+      "description": "Vanguard resolves technical issues; Meridian qualifies and sizes sales leads."
+    },
+    {
+      "id": "w4",
+      "tag": "GATE",
+      "title": "Apex governs",
+      "description": "Policy check — high risk or low confidence pauses for operator sign-off."
+    },
+    {
+      "id": "w5",
+      "tag": "RESOLVE",
+      "title": "Close & notify",
+      "description": "Ticket or deal updated, customer notified and audit log sealed."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — enterprise SaaS platform",
+    "industry": "SaaS & Technology",
+    "timeline": "14 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application",
+      "Slack",
+      "Email",
+      "WhatsApp",
+      "Web chat"
+    ],
+    "services": [
+      "AI Agents",
+      "Workflow Automation",
+      "Web Application Development",
+      "CRM & API Integrations"
+    ],
+    "team": "3 engineers, 1 delivery lead"
+  },
+  "featured": true,
+  "accent": "brand",
+  "order": 7,
+  "objectives": [
+    "Route every inbound event by semantic intent instead of manual triage",
+    "Qualify sales leads with BANT scoring and live ARR sizing",
+    "Enforce human sign-off on every high-risk autonomous action",
+    "Survive connector failures with retry, backoff and circuit breaking",
+    "Keep a tamper-evident audit trail of every agent action"
+  ],
+  "workflowLayout": "linear"
+}
