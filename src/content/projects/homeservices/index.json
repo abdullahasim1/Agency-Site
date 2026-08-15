@@ -1,0 +1,202 @@
+{
+  "title": "HomeServices",
+  "basics": {
+    "id": "prj-homeservices",
+    "tagline": "Local Services Business Website"
+  },
+  "listing": {
+    "shortDescription": "A clean, credible marketing site for a local services business — home, about and services pages with a consistent look and easy contact paths.",
+    "fullDescription": "HomeServices is a focused marketing website for a local services business. Three pages — home, about and services — present the offering clearly, build trust through the about page, and steer visitors toward contact. Plain HTML, CSS and JavaScript keep it fast, accessible and trivially easy to host."
+  },
+  "cover": {
+    "image": "/images/projects/homeservices/cover.png",
+    "imageAlt": "HomeServices — Local Services Business Website"
+  },
+  "closing": {
+    "clientOverview": "Personal project — local business website",
+    "conclusion": "HomeServices gave the business a clean, credible web presence — three focused pages that explain the services and make it easy for local customers to get in touch."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps"
+  ],
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JavaScript"
+      ]
+    },
+    {
+      "group": "Hosting",
+      "items": [
+        "Any static host",
+        "Zero build step"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Home page",
+      "description": "A first impression that explains what the business does.",
+      "icon": "Building2"
+    },
+    {
+      "title": "About page",
+      "description": "The story and trust signals behind the business.",
+      "icon": "Users"
+    },
+    {
+      "title": "Services page",
+      "description": "Each service laid out clearly with its value.",
+      "icon": "Wrench"
+    },
+    {
+      "title": "Fast by design",
+      "description": "No frameworks, no build step — plain static assets.",
+      "icon": "Zap"
+    }
+  ],
+  "challenge": {
+    "summary": "A local services business needed a web presence that looks credible, loads instantly and is simple to maintain — no heavy tooling, no dependency treadmill.",
+    "points": [
+      {
+        "icon": "Gauge",
+        "title": "Instant load",
+        "description": "Static assets with no build step or framework overhead."
+      },
+      {
+        "icon": "Search",
+        "title": "Clear messaging",
+        "description": "Visitors understand the offering within seconds."
+      },
+      {
+        "icon": "Wrench",
+        "title": "Service clarity",
+        "description": "Each service explained on its own terms."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Three pages, one consistent design system. Every page earns its place and every visitor is one step from contact.",
+    "points": [
+      {
+        "icon": "Building2",
+        "title": "Strong first page",
+        "description": "Home sets the offer and the tone immediately."
+      },
+      {
+        "icon": "Users",
+        "title": "Trust page",
+        "description": "About builds credibility for a local business."
+      },
+      {
+        "icon": "Wrench",
+        "title": "Service catalogue",
+        "description": "Services presented with clarity and value."
+      },
+      {
+        "icon": "Zap",
+        "title": "Zero dependencies",
+        "description": "Pure HTML, CSS and JS from day one."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "3",
+      "label": "Focused pages",
+      "detail": "Home, about and services — nothing more."
+    },
+    {
+      "value": "0",
+      "label": "Dependencies",
+      "detail": "Plain HTML, CSS and JavaScript."
+    },
+    {
+      "value": "Instant",
+      "label": "Everywhere",
+      "detail": "Hostable on any static host with no build step."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/homeservices/shot-1.png",
+      "alt": "HomeServices home",
+      "caption": "The landing page with the core offer."
+    },
+    {
+      "src": "/images/projects/homeservices/shot-2.png",
+      "alt": "About page",
+      "caption": "The story behind the business."
+    },
+    {
+      "src": "/images/projects/homeservices/shot-3.png",
+      "alt": "Services page",
+      "caption": "Services laid out for clarity."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "ARRIVE",
+      "title": "Visitor lands",
+      "description": "Home page sets the offer."
+    },
+    {
+      "id": "w2",
+      "tag": "LEARN",
+      "title": "Story shared",
+      "description": "About builds credibility."
+    },
+    {
+      "id": "w3",
+      "tag": "EXPLORE",
+      "title": "Services read",
+      "description": "Each service explained."
+    },
+    {
+      "id": "w4",
+      "tag": "CONTACT",
+      "title": "Next step",
+      "description": "Visitor reaches out."
+    },
+    {
+      "id": "w5",
+      "tag": "SERVE",
+      "title": "Job delivered",
+      "description": "The business does the rest."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — local business website",
+    "industry": "Local Services",
+    "timeline": "2 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "UI/UX Implementation"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 19,
+  "objectives": [
+    "Explain the business clearly in seconds",
+    "Keep load times instant with zero dependencies",
+    "Make contact the natural next step on every page",
+    "Stay trivially maintainable with plain static assets"
+  ],
+  "workflowLayout": "linear"
+}

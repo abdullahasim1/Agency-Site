@@ -1,0 +1,240 @@
+{
+  "title": "Four AI",
+  "basics": {
+    "id": "prj-four-ai",
+    "tagline": "AI Voice & Image Generation Platform"
+  },
+  "listing": {
+    "shortDescription": "A full-stack platform for AI voice generation, text-to-speech, voice changing and image generation — React and Vite frontend, serverless API and PostgreSQL.",
+    "fullDescription": "Four AI is a complete AI content platform. Users generate natural-sounding speech from text, convert text to speech in multiple voices and languages, apply studio effects to uploaded audio, and create images from prompts with Hugging Face FLUX.1 models. Accounts, profiles, usage history, a voice library and an admin panel with ban/unban complete the product loop."
+  },
+  "cover": {
+    "image": "/images/projects/four-ai/cover.png",
+    "imageAlt": "Four AI — AI Voice & Image Generation Platform"
+  },
+  "closing": {
+    "clientOverview": "Personal project — full-stack AI product built end to end",
+    "conclusion": "Four AI ships as a working product: users can generate speech, change voices, and create images from prompts, with accounts, usage history, and admin moderation — all behind a polished glassmorphic UI."
+  },
+  "category": "AI / Web Application",
+  "categories": [
+    "AI",
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "React",
+    "Vite",
+    "Hugging Face",
+    "Neon PostgreSQL",
+    "Vercel Serverless"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "GSAP",
+        "Framer Motion"
+      ]
+    },
+    {
+      "group": "AI tools",
+      "items": [
+        "Web Speech API",
+        "Hugging Face FLUX.1",
+        "Audio effects engine"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Vercel Serverless Functions",
+        "Node.js"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "Neon PostgreSQL",
+        "Usage history",
+        "User management"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Voice generator",
+      "description": "Natural-sounding speech generated from any text via the Web Speech API.",
+      "icon": "Mic"
+    },
+    {
+      "title": "Text to speech",
+      "description": "Multiple voices and languages, with language selection per conversion.",
+      "icon": "Headphones"
+    },
+    {
+      "title": "Voice changer",
+      "description": "Robot, echo, reverb, distortion, tremolo and lowpass effects on uploaded audio.",
+      "icon": "Wand2"
+    },
+    {
+      "title": "Image generation",
+      "description": "Text-prompt image generation with Hugging Face FLUX.1 models.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Accounts & history",
+      "description": "Sign-up, login, password reset, profile management and usage tracking.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Admin moderation",
+      "description": "Admin login via environment password with user list and ban/unban.",
+      "icon": "ShieldCheck"
+    }
+  ],
+  "challenge": {
+    "summary": "Building AI tools is one thing; packaging them as a product is another. The platform needed accounts, usage tracking and moderation alongside genuinely useful generation tools.",
+    "points": [
+      {
+        "icon": "Cpu",
+        "title": "Model wiring",
+        "description": "Voice, TTS and image models each needed clean integration and error handling."
+      },
+      {
+        "icon": "Users",
+        "title": "User management",
+        "description": "Sign-up, login, password reset and profile management end to end."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Moderation",
+        "description": "Admins needed visibility into users and the power to ban."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Smooth UI",
+        "description": "Generation tools had to feel instant, with glassmorphic polish."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Four tools, one product. Each generator got a dedicated studio screen, and the account system wraps them into a single product with history and moderation.",
+    "points": [
+      {
+        "icon": "Mic",
+        "title": "Dedicated studios",
+        "description": "Separate screens for voice, TTS, voice change and image generation."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "FLUX image engine",
+        "description": "Hugging Face FLUX.1 models generate images from text prompts."
+      },
+      {
+        "icon": "Lock",
+        "title": "Full account loop",
+        "description": "Auth, profiles, settings and per-user usage history."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Admin panel",
+        "description": "Environment-gated admin login with ban and unban controls."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "4",
+      "label": "AI tools in one product",
+      "detail": "Voice generation, TTS, voice changing and image generation."
+    },
+    {
+      "value": "6+",
+      "label": "Audio effects",
+      "detail": "Robot, echo, reverb, distortion, tremolo and lowpass."
+    },
+    {
+      "value": "Live",
+      "label": "Deployed on Vercel",
+      "detail": "Serverless API with Neon PostgreSQL at four-ai-dev.vercel.app."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/four-ai/shot-1.png",
+      "alt": "Four AI home page",
+      "caption": "The dark, glassmorphic landing page for the platform."
+    },
+    {
+      "src": "/images/projects/four-ai/shot-2.png",
+      "alt": "Sign-up screen",
+      "caption": "Account creation with the platform's visual style."
+    },
+    {
+      "src": "/images/projects/four-ai/shot-3.png",
+      "alt": "Voice generator studio",
+      "caption": "The voice generation tool in action."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "AUTH",
+      "title": "Account created",
+      "description": "Sign-up, login or password reset gates the tools."
+    },
+    {
+      "id": "w2",
+      "tag": "PICK",
+      "title": "Tool chosen",
+      "description": "Voice, TTS, voice change or image generation."
+    },
+    {
+      "id": "w3",
+      "tag": "INPUT",
+      "title": "Prompt or upload",
+      "description": "Text, voice selection or an audio file to transform."
+    },
+    {
+      "id": "w4",
+      "tag": "GENERATE",
+      "title": "AI output",
+      "description": "Speech, transformed audio or a generated image."
+    },
+    {
+      "id": "w5",
+      "tag": "TRACK",
+      "title": "History saved",
+      "description": "Usage recorded against the user's profile."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — full-stack AI product built end to end",
+    "industry": "Software / AI",
+    "timeline": "10 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "AI Product Development",
+      "Web Application Development",
+      "Full-Stack Web Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 13,
+  "objectives": [
+    "Package four AI generation tools into one coherent product",
+    "Make the full account loop work — sign-up through usage history",
+    "Give admins moderation controls without exposing them publicly",
+    "Keep the UI fast and polished across every studio screen"
+  ],
+  "workflowLayout": "linear"
+}

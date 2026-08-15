@@ -1,0 +1,233 @@
+{
+  "title": "Adnois API",
+  "basics": {
+    "id": "prj-adnois",
+    "tagline": "AdonisJS REST API Backend"
+  },
+  "listing": {
+    "shortDescription": "A typed, tested API foundation on AdonisJS — authentication, mail, validation and a MySQL data layer, with a Postman collection ready for integration.",
+    "fullDescription": "Adnois is a backend built the way backends should be: typed, tested and ready to integrate against. Built on AdonisJS with Lucid ORM, it provides authentication, role handling, MJML-powered email and VineJS validation, backed by MySQL and Redis with SMTP mail. A Postman collection ships with the repo so any frontend team can start consuming the API immediately."
+  },
+  "cover": {
+    "image": "/images/projects/adnois/cover.svg",
+    "imageAlt": "Adnois API — AdonisJS REST API Backend"
+  },
+  "closing": {
+    "clientOverview": "Personal project — API backend build",
+    "conclusion": "Adnois delivered a typed, tested API foundation — authentication, mail and validation built on AdonisJS with a Postman collection ready for the frontend team to integrate against."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "AdonisJS",
+    "Node.js",
+    "MySQL",
+    "Redis",
+    "MJML"
+  ],
+  "techStack": [
+    {
+      "group": "Framework",
+      "items": [
+        "AdonisJS",
+        "TypeScript",
+        "Lucid ORM"
+      ]
+    },
+    {
+      "group": "Auth & data",
+      "items": [
+        "Adonis auth",
+        "MySQL",
+        "Redis"
+      ]
+    },
+    {
+      "group": "Mail",
+      "items": [
+        "SMTP",
+        "MJML templates",
+        "Adonis mail"
+      ]
+    },
+    {
+      "group": "Quality",
+      "items": [
+        "VineJS validation",
+        "Tests",
+        "CSPELL",
+        "Postman collection"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Typed API",
+      "description": "AdonisJS with TypeScript and VineJS-validated routes.",
+      "icon": "Server"
+    },
+    {
+      "title": "Authentication",
+      "description": "Full auth with guards and role handling.",
+      "icon": "Lock"
+    },
+    {
+      "title": "MJML email",
+      "description": "Responsive email templates rendered from MJML.",
+      "icon": "Send"
+    },
+    {
+      "title": "MySQL & Redis",
+      "description": "Lucid ORM over MySQL with Redis for sessions or cache.",
+      "icon": "Database"
+    },
+    {
+      "title": "Postman collection",
+      "description": "A ready-made collection for frontend integration.",
+      "icon": "PlugZap"
+    },
+    {
+      "title": "Tested",
+      "description": "Automated tests and linting in the pipeline.",
+      "icon": "ShieldCheck"
+    }
+  ],
+  "challenge": {
+    "summary": "A backend is only as good as its contract. Adnois had to give a frontend team a typed, validated API with mail and auth — and prove it with tests.",
+    "points": [
+      {
+        "icon": "Server",
+        "title": "Clear contract",
+        "description": "Typed routes with validation on every payload."
+      },
+      {
+        "icon": "Lock",
+        "title": "Auth built in",
+        "description": "Guards and roles ready from the start."
+      },
+      {
+        "icon": "PlugZap",
+        "title": "Integratable",
+        "description": "A Postman collection for the consuming team."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "AdonisJS provided the structure; the work was in the details — VineJS validation, MJML mail, Redis-backed services and a test suite.",
+    "points": [
+      {
+        "icon": "Server",
+        "title": "Typed routes",
+        "description": "VineJS validates every request."
+      },
+      {
+        "icon": "Send",
+        "title": "Mail done right",
+        "description": "MJML templates render everywhere."
+      },
+      {
+        "icon": "Database",
+        "title": "Solid data layer",
+        "description": "Lucid ORM over MySQL, Redis for services."
+      },
+      {
+        "icon": "PlugZap",
+        "title": "Ready to consume",
+        "description": "Postman collection ships in the repo."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "Typed",
+      "label": "End-to-end",
+      "detail": "TypeScript routes validated by VineJS."
+    },
+    {
+      "value": "1",
+      "label": "Postman collection",
+      "detail": "Integration-ready API surface."
+    },
+    {
+      "value": "Full",
+      "label": "Mail & auth",
+      "detail": "MJML templates and auth guards included."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/adnois/shot-1.svg",
+      "alt": "REST API surface",
+      "caption": "AdonisJS routes, typed and validated."
+    },
+    {
+      "src": "/images/projects/adnois/shot-2.svg",
+      "alt": "Auth & mail services",
+      "caption": "Guards, roles and MJML email."
+    },
+    {
+      "src": "/images/projects/adnois/shot-3.svg",
+      "alt": "Data layer",
+      "caption": "Lucid ORM, MySQL and Redis."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "REQUEST",
+      "title": "Route hits",
+      "description": "Typed route receives the request."
+    },
+    {
+      "id": "w2",
+      "tag": "VALIDATE",
+      "title": "VineJS checks",
+      "description": "Payload validated on the way in."
+    },
+    {
+      "id": "w3",
+      "tag": "AUTH",
+      "title": "Guard passes",
+      "description": "Authentication and roles enforced."
+    },
+    {
+      "id": "w4",
+      "tag": "SERVE",
+      "title": "Logic runs",
+      "description": "Services and ORM do the work."
+    },
+    {
+      "id": "w5",
+      "tag": "RESPOND",
+      "title": "Contract kept",
+      "description": "A clean typed response goes back."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — API backend build",
+    "industry": "Software",
+    "timeline": "5 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Custom Software Development",
+      "Full-Stack Web Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 24,
+  "objectives": [
+    "Deliver a typed, validated API contract",
+    "Include auth, mail and a solid data layer",
+    "Ship a Postman collection for consumers",
+    "Back it with tests and linting"
+  ],
+  "workflowLayout": "linear"
+}

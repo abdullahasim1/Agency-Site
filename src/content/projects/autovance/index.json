@@ -1,0 +1,232 @@
+{
+  "title": "AutoVance",
+  "basics": {
+    "id": "prj-autovance",
+    "tagline": "AI Workflow Automation Platform"
+  },
+  "listing": {
+    "shortDescription": "An AI-themed workflow automation platform — animated landing experience, a React Flow workflow editor, and webhook, cron and email plumbing.",
+    "fullDescription": "AutoVance packages business-process automation with an AI narrative. The landing page sells the story with a typing headline and particle canvas, while the app behind it gets concrete: a React Flow workflow editor, dashboard, cron and webhook endpoints, email automation, team pages and login. Next.js 13 keeps it all in one deployable app."
+  },
+  "cover": {
+    "image": "/images/projects/autovance/cover.svg",
+    "imageAlt": "AutoVance — AI Workflow Automation Platform"
+  },
+  "closing": {
+    "clientOverview": "Personal project — automation platform build",
+    "conclusion": "AutoVance showed how far a landing page plus workflow tooling can go: AI-themed marketing, a React Flow workflow editor, and webhook, cron and email plumbing in one app."
+  },
+  "category": "AI / Web Application",
+  "categories": [
+    "AI",
+    "Automation",
+    "Web Apps"
+  ],
+  "technologies": [
+    "Next.js",
+    "React Flow",
+    "React",
+    "Webhooks",
+    "Cron"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Workflow editor",
+      "items": [
+        "React Flow",
+        "Node-based editing"
+      ]
+    },
+    {
+      "group": "Automation",
+      "items": [
+        "Webhooks",
+        "Cron jobs",
+        "Email triggers"
+      ]
+    },
+    {
+      "group": "App shell",
+      "items": [
+        "Dashboard",
+        "Team pages",
+        "Login"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Animated landing",
+      "description": "Typing headline and particle canvas sell the automation story.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Workflow editor",
+      "description": "React Flow-powered visual workflow building.",
+      "icon": "Workflow"
+    },
+    {
+      "title": "Dashboard",
+      "description": "A command centre for the automation platform.",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "title": "Webhook & cron",
+      "description": "Inbound hooks and scheduled jobs as automation triggers.",
+      "icon": "PlugZap"
+    },
+    {
+      "title": "Email automation",
+      "description": "Email delivery wired into the automation flow.",
+      "icon": "Send"
+    },
+    {
+      "title": "Team & auth",
+      "description": "Login, team and form pages around the core.",
+      "icon": "Users"
+    }
+  ],
+  "challenge": {
+    "summary": "Workflow automation is a crowded market — the product had to look ambitious on the landing page and be genuinely useful behind it.",
+    "points": [
+      {
+        "icon": "Sparkles",
+        "title": "First impression",
+        "description": "The landing page had to sell the automation story."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Real editing",
+        "description": "Workflows needed a visual, node-based editor."
+      },
+      {
+        "icon": "PlugZap",
+        "title": "Concrete triggers",
+        "description": "Webhooks and cron had to be real endpoints."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "The marketing front meets the product behind it: a polished landing experience, a React Flow editor for workflows, and real automation plumbing in the same app.",
+    "points": [
+      {
+        "icon": "Sparkles",
+        "title": "Selling the story",
+        "description": "Typing effect and particles make automation feel alive."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Visual building",
+        "description": "React Flow turns workflows into editable graphs."
+      },
+      {
+        "icon": "PlugZap",
+        "title": "Automation plumbing",
+        "description": "Webhook, cron and email endpoints under the hood."
+      },
+      {
+        "icon": "LayoutDashboard",
+        "title": "Command centre",
+        "description": "Dashboard and team pages complete the app."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "Next.js",
+      "label": "One deployable app",
+      "detail": "Landing, editor and API plumbing in one codebase."
+    },
+    {
+      "value": "React Flow",
+      "label": "Visual editor",
+      "detail": "Node-based workflow building."
+    },
+    {
+      "value": "3+",
+      "label": "Automation surfaces",
+      "detail": "Webhooks, cron and email triggers."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/autovance/shot-1.svg",
+      "alt": "AutoVance landing",
+      "caption": "The animated AI automation landing page."
+    },
+    {
+      "src": "/images/projects/autovance/shot-2.svg",
+      "alt": "Workflow editor",
+      "caption": "React Flow workflow building."
+    },
+    {
+      "src": "/images/projects/autovance/shot-3.svg",
+      "alt": "Dashboard",
+      "caption": "The automation command centre."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "LAND",
+      "title": "Story told",
+      "description": "The animated landing page sells the platform."
+    },
+    {
+      "id": "w2",
+      "tag": "AUTH",
+      "title": "Team signs in",
+      "description": "Login gates the workspace."
+    },
+    {
+      "id": "w3",
+      "tag": "BUILD",
+      "title": "Workflows drawn",
+      "description": "React Flow editor composes steps."
+    },
+    {
+      "id": "w4",
+      "tag": "TRIGGER",
+      "title": "Hooks & cron",
+      "description": "Webhooks and schedules fire runs."
+    },
+    {
+      "id": "w5",
+      "tag": "DELIVER",
+      "title": "Automation runs",
+      "description": "Email and endpoints carry the work."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — automation platform build",
+    "industry": "Software / Automation",
+    "timeline": "6 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "Workflow Automation"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 22,
+  "objectives": [
+    "Make the landing page sell the automation story",
+    "Ship a real visual workflow editor",
+    "Wire concrete triggers — webhooks, cron, email",
+    "Keep it all in one deployable Next.js app"
+  ],
+  "workflowLayout": "linear"
+}

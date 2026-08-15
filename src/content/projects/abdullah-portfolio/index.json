@@ -1,0 +1,218 @@
+{
+  "title": "Portfolio Website",
+  "basics": {
+    "id": "prj-abdullah-portfolio",
+    "tagline": "Animated Developer Portfolio with GSAP"
+  },
+  "listing": {
+    "shortDescription": "A modern, animated personal portfolio built with React 19, Vite and GSAP — glowing cards, magnetic buttons, particle backgrounds and micro-interactions throughout.",
+    "fullDescription": "A developer's personal portfolio is a portfolio page, a motion showcase and a brand statement all at once. Built with React 19, Vite and Tailwind CSS v4, this site layers GSAP-driven reveals, gradient text with flipping words, 3D tilt glow cards, a magnetic call-to-action button and a cursor follower — every scroll and hover is a deliberate micro-interaction."
+  },
+  "cover": {
+    "image": "/images/projects/abdullah-portfolio/cover.png",
+    "imageAlt": "Portfolio Website — Animated Developer Portfolio with GSAP"
+  },
+  "closing": {
+    "clientOverview": "Personal project — the developer's own showcase site",
+    "conclusion": "The portfolio became a live, animated showcase that visitors remember — the developer's own site, rebuilt with the same motion and polish it sells to clients."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps"
+  ],
+  "technologies": [
+    "React",
+    "Vite",
+    "GSAP",
+    "Tailwind CSS",
+    "Framer Motion"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React 19",
+        "Vite 7",
+        "TypeScript"
+      ]
+    },
+    {
+      "group": "Motion",
+      "items": [
+        "GSAP",
+        "Framer Motion",
+        "Scroll-triggered reveals"
+      ]
+    },
+    {
+      "group": "Styling",
+      "items": [
+        "Tailwind CSS v4",
+        "Custom animations",
+        "Responsive layout"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Word-flip hero",
+      "description": "Gradient text with flipping words that re-key the headline as you watch.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Split-text reveals",
+      "description": "GSAP stagger animations reveal headings line by line on scroll.",
+      "icon": "Wand2"
+    },
+    {
+      "title": "3D tilt glow cards",
+      "description": "Project cards tilt toward the cursor with a spotlight that follows it.",
+      "icon": "Layers"
+    },
+    {
+      "title": "Magnetic CTA",
+      "description": "The call-to-action button pulls toward the cursor with a sheen sweep.",
+      "icon": "Zap"
+    },
+    {
+      "title": "Cursor follower",
+      "description": "A custom cursor overlay that scales over interactive elements.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Particle background",
+      "description": "Canvas particles and floating decorative icons behind the hero.",
+      "icon": "Sparkles"
+    }
+  ],
+  "challenge": {
+    "summary": "A portfolio has to prove its own hype. The site had to feel as polished as the work it showcases — and it had to load fast and stay accessible while doing it.",
+    "points": [
+      {
+        "icon": "Gauge",
+        "title": "Performance budget",
+        "description": "Heavy animation libraries can wreck load time on a showcase site."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "Mobile-first motion",
+        "description": "Effects that feel great on desktop must degrade gracefully on phones."
+      },
+      {
+        "icon": "Search",
+        "title": "Content that sells",
+        "description": "Projects, skills and services had to be presented in an order that convinces."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Every animation was built with a performance budget in mind — GPU-friendly transforms, scroll-triggered reveals and motion that enhances, never obstructs.",
+    "points": [
+      {
+        "icon": "Wand2",
+        "title": "Layered reveals",
+        "description": "GSAP split and stagger text reveals give the page a signature rhythm."
+      },
+      {
+        "icon": "Radar",
+        "title": "Spotlight cards",
+        "description": "3D tilt with a follow-the-cursor glow makes project cards tactile."
+      },
+      {
+        "icon": "Zap",
+        "title": "Micro-interactions",
+        "description": "Magnetic buttons, cursor scaling and sheen effects reward every hover."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "100%",
+      "label": "GSAP-driven motion",
+      "detail": "Every reveal, tilt and follower effect built with GSAP."
+    },
+    {
+      "value": "4+",
+      "label": "Signature effects",
+      "detail": "Word flipper, split text, tilt cards, magnetic CTA and cursor follower."
+    },
+    {
+      "value": "Live",
+      "label": "Deployed on Vercel",
+      "detail": "Ships and iterates continuously at abdullah-asim-dev.vercel.app."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/abdullah-portfolio/shot-1.png",
+      "alt": "Portfolio hero with animated headline",
+      "caption": "The hero — gradient text, particle background and magnetic CTA."
+    },
+    {
+      "src": "/images/projects/abdullah-portfolio/shot-2.png",
+      "alt": "Projects section with tilt cards",
+      "caption": "Project cards with 3D tilt and spotlight glow."
+    },
+    {
+      "src": "/images/projects/abdullah-portfolio/shot-3.png",
+      "alt": "Services and contact sections",
+      "caption": "Skills, services and contact with split-text reveals."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "DESIGN",
+      "title": "Motion language",
+      "description": "Define the reveal, tilt and hover choreography."
+    },
+    {
+      "id": "w2",
+      "tag": "BUILD",
+      "title": "Component library",
+      "description": "GlowCard, MagneticButton and WordFlipper as reusable pieces."
+    },
+    {
+      "id": "w3",
+      "tag": "TUNE",
+      "title": "Performance pass",
+      "description": "GPU transforms, scroll triggers and mobile fallbacks."
+    },
+    {
+      "id": "w4",
+      "tag": "SHIP",
+      "title": "Deploy",
+      "description": "Vercel build with continuous iteration."
+    },
+    {
+      "id": "w5",
+      "tag": "GROW",
+      "title": "Content updates",
+      "description": "Projects and copy swap in without touching motion."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — the developer's own showcase site",
+    "industry": "Professional Services",
+    "timeline": "6 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "UI/UX Implementation"
+    ],
+    "team": "1 engineer, 1 designer"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 12,
+  "objectives": [
+    "Prove the developer's motion and UI skills with the site itself",
+    "Keep every effect performant on mobile as well as desktop",
+    "Present projects, skills and services in a convincing order",
+    "Make the whole thing easy to update as the portfolio grows"
+  ],
+  "workflowLayout": "linear"
+}

@@ -1,0 +1,229 @@
+{
+  "title": "LendingPad Console",
+  "basics": {
+    "id": "prj-lendingpad",
+    "tagline": "Mortgage Index Management Dashboard"
+  },
+  "listing": {
+    "shortDescription": "A dense data dashboard for managing loan index updates — sign-in, dashboard views, index search, lists, audit trails and logs, built with MUI and AG Grid.",
+    "fullDescription": "LendingPad is an internal-style console for mortgage index management. Built with React, Material UI and AG Grid, it delivers the kind of dense, keyboard-friendly data screens the lending industry expects: an authenticated dashboard, index search with filters, list views, a full audit trail and log browsing — all wired with Formik forms and React Router."
+  },
+  "cover": {
+    "image": "/images/projects/lendingpad/cover.png",
+    "imageAlt": "LendingPad Console — Mortgage Index Management Dashboard"
+  },
+  "closing": {
+    "clientOverview": "Personal project — industry-style internal console",
+    "conclusion": "The index-management console gave the lending team a fast, familiar way to search, audit and track loan indexes — a dense data UI that feels like the desktop tools the industry already trusts."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "React",
+    "Material UI",
+    "AG Grid",
+    "Formik",
+    "React Router"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React",
+        "Material UI",
+        "React Router"
+      ]
+    },
+    {
+      "group": "Data grid",
+      "items": [
+        "AG Grid Community",
+        "Sorting, filters, columns"
+      ]
+    },
+    {
+      "group": "Forms",
+      "items": [
+        "Formik",
+        "Validation"
+      ]
+    },
+    {
+      "group": "Styling",
+      "items": [
+        "Emotion",
+        "MUI theming"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Secure sign-in",
+      "description": "Authenticated entry into the console before any data is visible.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Dashboard overview",
+      "description": "Key index metrics and activity at a glance after login.",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "title": "Index search",
+      "description": "Search across loan indexes with filters and structured results.",
+      "icon": "Search"
+    },
+    {
+      "title": "List views",
+      "description": "AG Grid-powered lists with sorting, grouping and column control.",
+      "icon": "Database"
+    },
+    {
+      "title": "Audit trail",
+      "description": "A recorded history of changes for compliance review.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Log browser",
+      "description": "System and job logs surfaced in a browsable interface.",
+      "icon": "LineChart"
+    }
+  ],
+  "challenge": {
+    "summary": "Loan index data is dense, compliance-sensitive and unforgiving of UI friction. The console had to feel like the desktop tools the industry already trusts — not another web app.",
+    "points": [
+      {
+        "icon": "Database",
+        "title": "Dense data",
+        "description": "Hundreds of rows with many columns, needing grids that handle it."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Auditability",
+        "description": "Every change needed a trail for compliance review."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Speed of use",
+        "description": "Analysts need search and filters without page reloads."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "The answer was the pattern the industry knows: a tight grid at the centre, powerful search on top, and an audit trail underneath.",
+    "points": [
+      {
+        "icon": "Database",
+        "title": "AG Grid at the core",
+        "description": "Sortable, filterable grids that handle dense index data."
+      },
+      {
+        "icon": "Search",
+        "title": "Structured search",
+        "description": "Index search across the full dataset with instant results."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Audit everywhere",
+        "description": "Changes and logs recorded and browsable."
+      },
+      {
+        "icon": "Lock",
+        "title": "Gated entry",
+        "description": "Sign-in before any index data renders."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "6",
+      "label": "Console screens",
+      "detail": "Sign-in, dashboard, search, list, audit and logs."
+    },
+    {
+      "value": "Dense",
+      "label": "Grid-first design",
+      "detail": "AG Grid handles the high-row-count views lenders work in."
+    },
+    {
+      "value": "Full",
+      "label": "Audit coverage",
+      "detail": "Changes and logs surfaced in dedicated screens."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/lendingpad/shot-1.png",
+      "alt": "Console dashboard",
+      "caption": "The post-sign-in dashboard overview."
+    },
+    {
+      "src": "/images/projects/lendingpad/shot-2.png",
+      "alt": "Index audit trail",
+      "caption": "The audit screen with recorded changes."
+    },
+    {
+      "src": "/images/projects/lendingpad/shot-3.png",
+      "alt": "Index search",
+      "caption": "Structured search across loan indexes."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "SIGN-IN",
+      "title": "Authenticate",
+      "description": "Credentials gate the console."
+    },
+    {
+      "id": "w2",
+      "tag": "OVERVIEW",
+      "title": "Dashboard",
+      "description": "Key index metrics and recent activity."
+    },
+    {
+      "id": "w3",
+      "tag": "SEARCH",
+      "title": "Find indexes",
+      "description": "Structured search across the dataset."
+    },
+    {
+      "id": "w4",
+      "tag": "REVIEW",
+      "title": "Lists & audit",
+      "description": "Grid views and compliance trail."
+    },
+    {
+      "id": "w5",
+      "tag": "TRACK",
+      "title": "Logs",
+      "description": "System activity browsed in one place."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — industry-style internal console",
+    "industry": "Financial Services",
+    "timeline": "7 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "UI/UX Implementation"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 14,
+  "objectives": [
+    "Build a console that handles dense, high-row-count index data",
+    "Make search, audit and logs first-class screens, not afterthoughts",
+    "Keep the grid at the centre of every data view",
+    "Gate everything behind authentication"
+  ],
+  "workflowLayout": "linear"
+}

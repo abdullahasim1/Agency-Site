@@ -1,0 +1,232 @@
+{
+  "title": "FoodFiesta",
+  "basics": {
+    "id": "prj-foodfiesta",
+    "tagline": "Food Ordering Platform"
+  },
+  "listing": {
+    "shortDescription": "A food ordering app with menu browsing, cart, profiles and map context — React and MUI frontend with an Express, session-auth and MySQL backend.",
+    "fullDescription": "FoodFiesta is a food ordering platform that treats the whole experience as one flow. Customers explore a menu, build a cart, manage their profile and order — with Leaflet maps adding location context and Material UI giving the app a familiar, polished feel. The Express backend handles sessions, uploads and the MySQL data layer."
+  },
+  "cover": {
+    "image": "/images/projects/foodfiesta/cover.png",
+    "imageAlt": "FoodFiesta — Food Ordering Platform"
+  },
+  "closing": {
+    "clientOverview": "Personal project — full-stack food ordering build",
+    "conclusion": "FoodFiesta lets customers explore a menu, build a cart and order, with map-based context and profile management — a complete food-ordering experience in one codebase."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "React",
+    "Material UI",
+    "Express",
+    "MySQL",
+    "Leaflet"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React",
+        "Vite",
+        "Material UI",
+        "Tailwind CSS",
+        "Framer Motion"
+      ]
+    },
+    {
+      "group": "Maps",
+      "items": [
+        "Leaflet",
+        "Location context"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Express",
+        "Session auth",
+        "Multer uploads"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "MySQL",
+        "Axios client"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Menu browsing",
+      "description": "A browsable menu with categories and item details.",
+      "icon": "Search"
+    },
+    {
+      "title": "Cart management",
+      "description": "Add items, adjust quantities and review before ordering.",
+      "icon": "ShoppingCart"
+    },
+    {
+      "title": "Profile & accounts",
+      "description": "Sign-up, login and an editable user profile.",
+      "icon": "Users"
+    },
+    {
+      "title": "Map context",
+      "description": "Leaflet maps bring location into the ordering flow.",
+      "icon": "Globe"
+    },
+    {
+      "title": "Session auth",
+      "description": "Server-side sessions keep the ordering flow secure.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Media uploads",
+      "description": "Multer-backed image uploads on the API.",
+      "icon": "Package"
+    }
+  ],
+  "challenge": {
+    "summary": "Food ordering is a short, emotional journey — browse, crave, order. Every screen had to stay frictionless while the backend quietly handled sessions, uploads and data.",
+    "points": [
+      {
+        "icon": "Gauge",
+        "title": "Zero friction",
+        "description": "From craving to cart in as few taps as possible."
+      },
+      {
+        "icon": "Lock",
+        "title": "Session security",
+        "description": "Orders and profiles behind server-side sessions."
+      },
+      {
+        "icon": "Globe",
+        "title": "Location",
+        "description": "Map context that helps users place orders with confidence."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Material UI gave the product the familiar feel users expect from food apps, while the Express backend kept auth and data clean.",
+    "points": [
+      {
+        "icon": "Search",
+        "title": "Menu first",
+        "description": "Browsing is the hero — categories and details lead."
+      },
+      {
+        "icon": "ShoppingCart",
+        "title": "Cart as hub",
+        "description": "Quantities, review and ordering from one place."
+      },
+      {
+        "icon": "Users",
+        "title": "Profiles",
+        "description": "Sign-up, login and editable user details."
+      },
+      {
+        "icon": "Globe",
+        "title": "Map context",
+        "description": "Leaflet brings location into the flow."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "6+",
+      "label": "Product screens",
+      "detail": "Home, menu, cart, profile, sign-up and login."
+    },
+    {
+      "value": "MUI",
+      "label": "Familiar design system",
+      "detail": "Material UI keeps the app feeling native."
+    },
+    {
+      "value": "Full",
+      "label": "Session-backed flow",
+      "detail": "Express sessions secure the ordering experience."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/foodfiesta/shot-1.png",
+      "alt": "FoodFiesta home",
+      "caption": "The ordering platform home screen."
+    },
+    {
+      "src": "/images/projects/foodfiesta/shot-2.png",
+      "alt": "Menu view",
+      "caption": "Category-based menu browsing."
+    },
+    {
+      "src": "/images/projects/foodfiesta/shot-3.png",
+      "alt": "Cart view",
+      "caption": "Review and adjust before ordering."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "BROWSE",
+      "title": "Menu explored",
+      "description": "Categories and item details lead the way."
+    },
+    {
+      "id": "w2",
+      "tag": "CART",
+      "title": "Items collected",
+      "description": "Quantities adjusted as the order builds."
+    },
+    {
+      "id": "w3",
+      "tag": "AUTH",
+      "title": "Session checked",
+      "description": "Login or sign-up gates the order."
+    },
+    {
+      "id": "w4",
+      "tag": "ORDER",
+      "title": "Order placed",
+      "description": "Details confirmed through the flow."
+    },
+    {
+      "id": "w5",
+      "tag": "PROFILE",
+      "title": "Account kept",
+      "description": "Profile and history managed for return orders."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — full-stack food ordering build",
+    "industry": "Food & Hospitality",
+    "timeline": "9 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Full-Stack Web Development",
+      "Web Application Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 17,
+  "objectives": [
+    "Keep the browse-to-order journey frictionless",
+    "Secure ordering with server-side sessions",
+    "Use Material UI for a familiar product feel",
+    "Add map context without complicating the flow"
+  ],
+  "workflowLayout": "linear"
+}

@@ -1,0 +1,228 @@
+{
+  "title": "SecureAuth",
+  "basics": {
+    "id": "prj-nextjs-auth",
+    "tagline": "Next.js Auth Without an ORM"
+  },
+  "listing": {
+    "shortDescription": "A production-grade authentication starter for Next.js — NextAuth sessions, bcrypt-hashed credentials and a Postgres schema, with no ORM in sight.",
+    "fullDescription": "SecureAuth is the authentication foundation most Next.js apps need but rarely build cleanly: sign-up, login and session management wired to Postgres through NextAuth — without an ORM. Passwords are hashed with bcryptjs, the database schema ships as plain SQL, and framer-motion plus lucide keep the auth screens as polished as the rest of the app."
+  },
+  "cover": {
+    "image": "/images/projects/nextjs-auth/cover.svg",
+    "imageAlt": "SecureAuth — Next.js Auth Without an ORM"
+  },
+  "closing": {
+    "clientOverview": "Personal project — reusable auth starter",
+    "conclusion": "The auth starter proved that a production-grade authentication flow can run without an ORM — NextAuth sessions, hashed credentials and a Postgres schema that any team can pick up."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "Next.js",
+    "NextAuth",
+    "PostgreSQL",
+    "bcrypt",
+    "Neon"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Framer Motion",
+        "lucide-react"
+      ]
+    },
+    {
+      "group": "Auth",
+      "items": [
+        "NextAuth",
+        "bcryptjs",
+        "Session handling"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "Neon PostgreSQL",
+        "@vercel/postgres",
+        "pg"
+      ]
+    },
+    {
+      "group": "Setup",
+      "items": [
+        "Plain SQL schema",
+        "Setup guide"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "NextAuth sessions",
+      "description": "Battle-tested session management without an ORM.",
+      "icon": "Fingerprint"
+    },
+    {
+      "title": "Hashed credentials",
+      "description": "bcryptjs password hashing out of the box.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Plain SQL schema",
+      "description": "A hand-written Postgres schema with setup script.",
+      "icon": "Database"
+    },
+    {
+      "title": "Polished auth screens",
+      "description": "Sign-up and login with motion and icon polish.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Startup guide",
+      "description": "SETUP.md and SQL walk any team through booting it.",
+      "icon": "Lightbulb"
+    }
+  ],
+  "challenge": {
+    "summary": "Most Next.js auth tutorials lean on Prisma. This starter deliberately does not — proving that sessions, hashing and Postgres can be wired cleanly by hand.",
+    "points": [
+      {
+        "icon": "Repeat2",
+        "title": "ORM-free",
+        "description": "NextAuth and plain SQL instead of a generated client."
+      },
+      {
+        "icon": "Lock",
+        "title": "Security basics",
+        "description": "Hashing and sessions done properly from line one."
+      },
+      {
+        "icon": "Lightbulb",
+        "title": "Onboarding",
+        "description": "A setup guide any team can follow."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "The starter walks the boring path correctly: NextAuth for sessions, bcryptjs for credentials, and a hand-written schema for Postgres.",
+    "points": [
+      {
+        "icon": "Fingerprint",
+        "title": "Proven sessions",
+        "description": "NextAuth handles the session lifecycle."
+      },
+      {
+        "icon": "Lock",
+        "title": "Safe credentials",
+        "description": "Passwords hashed with bcryptjs."
+      },
+      {
+        "icon": "Database",
+        "title": "Plain SQL",
+        "description": "Schema and setup script ship with the repo."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Good-looking screens",
+        "description": "Auth UI that matches the product, not a tutorial."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "0",
+      "label": "ORM dependencies",
+      "detail": "NextAuth + plain SQL for the whole auth layer."
+    },
+    {
+      "value": "Postgres",
+      "label": "Serverless-ready",
+      "detail": "Works with Neon and @vercel/postgres."
+    },
+    {
+      "value": "Full",
+      "label": "Setup documentation",
+      "detail": "SETUP.md walks through schema and environment."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/nextjs-auth/shot-1.svg",
+      "alt": "Auth flow",
+      "caption": "NextAuth session management without an ORM."
+    },
+    {
+      "src": "/images/projects/nextjs-auth/shot-2.svg",
+      "alt": "Session handling",
+      "caption": "bcrypt-hashed credentials end to end."
+    },
+    {
+      "src": "/images/projects/nextjs-auth/shot-3.svg",
+      "alt": "Postgres schema",
+      "caption": "Plain SQL schema with setup guide."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "SETUP",
+      "title": "Schema applied",
+      "description": "Plain SQL creates the user tables."
+    },
+    {
+      "id": "w2",
+      "tag": "SIGN-UP",
+      "title": "Credentials hashed",
+      "description": "bcryptjs stores a safe hash."
+    },
+    {
+      "id": "w3",
+      "tag": "LOGIN",
+      "title": "Session created",
+      "description": "NextAuth issues the session."
+    },
+    {
+      "id": "w4",
+      "tag": "PROTECT",
+      "title": "Routes gated",
+      "description": "Authenticated access enforced."
+    },
+    {
+      "id": "w5",
+      "tag": "EXTEND",
+      "title": "Product grows",
+      "description": "Any team extends from the starter."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — reusable auth starter",
+    "industry": "Software",
+    "timeline": "3 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Full-Stack Web Development",
+      "Custom Software Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 23,
+  "objectives": [
+    "Prove production auth is possible without an ORM",
+    "Hash credentials and manage sessions properly",
+    "Ship the schema and setup guide with the repo",
+    "Keep the auth screens as polished as the product"
+  ],
+  "workflowLayout": "linear"
+}

@@ -1,0 +1,195 @@
+{
+  "title": "Birthday Site",
+  "basics": {
+    "id": "prj-birthday-site",
+    "tagline": "Animated Birthday Celebration Site"
+  },
+  "listing": {
+    "shortDescription": "A multi-page animated birthday experience — greeting, cake and celebration screens that turn a birthday message into a moment.",
+    "fullDescription": "A birthday should feel like an event, not an email. This site turns a birthday wish into a multi-page experience: a greeting screen, an animated cake page and a celebration finale. Plain HTML, CSS and JavaScript keep it effortless to host and share, while the animation does the emotional work."
+  },
+  "cover": {
+    "image": "/images/projects/birthday-site/cover.png",
+    "imageAlt": "Birthday Site — Animated Birthday Celebration Site"
+  },
+  "closing": {
+    "clientOverview": "Personal project — celebratory micro-site",
+    "conclusion": "The birthday site turned a celebration into a moment — an animated multi-page experience from greeting to cake that made the day feel special."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps"
+  ],
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JavaScript"
+      ]
+    },
+    {
+      "group": "Animation",
+      "items": [
+        "CSS keyframes",
+        "Timed transitions"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Greeting screen",
+      "description": "A warm opening that sets the tone.",
+      "icon": "Heart"
+    },
+    {
+      "title": "Cake page",
+      "description": "An animated cake as the centrepiece.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Celebration finale",
+      "description": "A closing screen that lands the moment.",
+      "icon": "Rocket"
+    },
+    {
+      "title": "Shareable by design",
+      "description": "Static pages that host anywhere and load instantly.",
+      "icon": "Globe"
+    }
+  ],
+  "challenge": {
+    "summary": "A birthday wish deserved more than a message. The goal was a tiny web experience with real emotional payoff — built simply enough to host anywhere.",
+    "points": [
+      {
+        "icon": "Heart",
+        "title": "Emotional design",
+        "description": "The tone had to land from the first screen."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Playful animation",
+        "description": "Motion that delights without being heavy."
+      },
+      {
+        "icon": "Globe",
+        "title": "Easy sharing",
+        "description": "Static pages, hostable anywhere."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Three scenes, one journey. Each page hands over to the next, and the animation carries the celebration from greeting to finale.",
+    "points": [
+      {
+        "icon": "Heart",
+        "title": "Warm opening",
+        "description": "The greeting screen sets the mood."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Cake moment",
+        "description": "An animated cake holds the centre."
+      },
+      {
+        "icon": "Rocket",
+        "title": "Big finish",
+        "description": "The finale lands the celebration."
+      },
+      {
+        "icon": "Globe",
+        "title": "Effortless hosting",
+        "description": "Plain assets deploy anywhere."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "3",
+      "label": "Celebration scenes",
+      "detail": "Greeting, cake and finale."
+    },
+    {
+      "value": "0",
+      "label": "Dependencies",
+      "detail": "Pure HTML, CSS and JavaScript."
+    },
+    {
+      "value": "Anywhere",
+      "label": "Hostable",
+      "detail": "Static pages that load instantly."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/birthday-site/shot-1.png",
+      "alt": "Birthday greeting",
+      "caption": "The opening screen of the celebration."
+    },
+    {
+      "src": "/images/projects/birthday-site/shot-2.png",
+      "alt": "Animated cake",
+      "caption": "The cake page centrepiece."
+    },
+    {
+      "src": "/images/projects/birthday-site/shot-3.png",
+      "alt": "Celebration finale",
+      "caption": "The closing screen."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "GREET",
+      "title": "Warm opening",
+      "description": "First screen sets the mood."
+    },
+    {
+      "id": "w2",
+      "tag": "CAKE",
+      "title": "Centre moment",
+      "description": "The animated cake page."
+    },
+    {
+      "id": "w3",
+      "tag": "CELEBRATE",
+      "title": "Finale",
+      "description": "The closing celebration."
+    },
+    {
+      "id": "w4",
+      "tag": "SHARE",
+      "title": "Pass it on",
+      "description": "Static pages are effortless to share."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — celebratory micro-site",
+    "industry": "Personal / Celebrations",
+    "timeline": "1 week",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development",
+      "UI/UX Implementation"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 21,
+  "objectives": [
+    "Turn a birthday wish into a multi-page moment",
+    "Use animation to carry the emotional arc",
+    "Keep it hostable anywhere with plain assets"
+  ],
+  "workflowLayout": "linear"
+}
