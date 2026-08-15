@@ -67,8 +67,8 @@ export function TechMarquee({
         <span
           aria-hidden
           className={cn(
-            "animate-sheen pointer-events-none absolute inset-y-0 left-0 z-10 w-1/4 bg-gradient-to-r from-transparent to-transparent",
-            dark ? "via-white/[0.09]" : "via-brand-500/[0.08]",
+            "animate-sheen pointer-events-none absolute inset-y-0 left-0 z-10 w-1/4 bg-linear-to-r from-transparent to-transparent",
+            dark ? "via-white/9" : "via-brand-500/8",
           )}
         />
         <div className="animate-marquee flex w-full gap-3.5 pr-3.5">

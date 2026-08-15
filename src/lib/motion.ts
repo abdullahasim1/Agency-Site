@@ -42,8 +42,16 @@ export function staggerContainer(stagger = 0.07, delay = 0): Variants {
   };
 }
 
-/** Viewport config used for every scroll reveal, so timing feels consistent. */
-export const revealViewport = { once: true, amount: 0.25 } as const;
+/**
+ * Viewport config used for every scroll reveal, so timing feels consistent.
+ *
+ * `amount: 0` fires as soon as any part of the element enters the viewport.
+ * A percentage threshold (e.g. 0.25) is dangerous on mobile: tall sections
+ * like the Services grid can be taller than the viewport itself, so 25% of
+ * the element may never be visible at once and the reveal never triggers —
+ * leaving the content permanently invisible.
+ */
+export const revealViewport = { once: true, amount: 0 } as const;
 
 /** Grid item entrance used by portfolio filtering and card grids. */
 export const gridItem: Variants = {
