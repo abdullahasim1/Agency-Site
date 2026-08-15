@@ -56,11 +56,11 @@ export default function ContactPage() {
       <section className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-24">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-blueprint mask-fade-b opacity-60"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-136 bg-blueprint mask-fade-b opacity-60"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-40 -top-40 -z-10 size-[34rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
+          className="pointer-events-none absolute -left-40 -top-40 -z-10 size-136 rounded-full bg-brand-500/[0.07] blur-[130px]"
         />
 
         <Container>
@@ -95,13 +95,13 @@ export default function ContactPage() {
                       className="flex items-start gap-3.5 bg-white p-5"
                     >
                       <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-[0.625rem] bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-                        <detail.icon className="size-[1.0625rem]" aria-hidden />
+                        <detail.icon className="size-4.25" aria-hidden />
                       </span>
                       <div className="min-w-0">
                         <dt className="type-eyebrow text-ink-400">
                           {detail.label}
                         </dt>
-                        <dd className="mt-1.5 text-[0.9375rem] leading-relaxed break-words text-ink-800">
+                        <dd className="mt-1.5 text-[0.9375rem] leading-relaxed wrap-break-word text-ink-800">
                           {detail.href ? (
                             <a
                               href={detail.href}
