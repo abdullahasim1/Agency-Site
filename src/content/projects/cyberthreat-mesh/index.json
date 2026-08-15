@@ -1,0 +1,314 @@
+{
+  "title": "CyberThreat Mesh",
+  "basics": {
+    "id": "prj-cyberthreat-mesh",
+    "tagline": "Autonomous AI red-teaming, attack surface & containment"
+  },
+  "category": "SaaS / Security",
+  "categories": [
+    "SaaS",
+    "Web Apps"
+  ],
+  "listing": {
+    "shortDescription": "A 20-screen interactive security SaaS that renders a cloud attack surface as a living SVG attack graph — agent control, vulnerability feeds, temporal replay, compliance briefs, RBAC and audit trails.",
+    "fullDescription": "CyberThreat Mesh is a 20-page interactive SaaS-style application for visualizing and reasoning about cloud attack surfaces. It renders a cloud estate (AWS IAM roles, EC2 instances, S3 buckets, Kubernetes pods, RDS databases, Azure AD service principals) as an interactive SVG attack graph, alongside operational screens: autonomous agent control panels, vulnerability feeds, blast-radius analytics, temporal replay, compliance report generation, RBAC governance, integration health, and audit trails. The engineering center of gravity is a front-end architecture problem — how to make a data-dense, graph-heavy security product feel instant, theme-correct, and navigable across 20 screens — answered with a dual-theme design-token system, a deterministic SVG graph engine guaranteeing ≥146px minimum node spacing with curved bezier edges, a strict layout architecture (sticky header / fixed collapsible sidebar / isolated scroll viewport), a motion budget of ≤150ms on all 70+ animation calls, and theme-aware chart rendering using CSS variables so every Recharts visualization adapts to the active theme without re-rendering."
+  },
+  "cover": {
+    "image": "/images/projects/cyberthreat-mesh/cover.svg",
+    "imageAlt": "Abstract security mesh diagram with cloud assets flowing into an attack graph engine and out to alert triage"
+  },
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Recharts",
+    "Lucide",
+    "ESLint"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js 16 (App Router)",
+        "React 19",
+        "TypeScript 5",
+        "Tailwind CSS v4",
+        "next-themes"
+      ]
+    },
+    {
+      "group": "Data Visualization",
+      "items": [
+        "Recharts 3",
+        "Custom SVG Graph Engine",
+        "Deterministic Graph Layout",
+        "Framer Motion 13"
+      ]
+    },
+    {
+      "group": "UI & Theming",
+      "items": [
+        "Lucide Icons",
+        "CSS Design Tokens",
+        "Dual-Theme Engine",
+        "Reusable UI Kit"
+      ]
+    },
+    {
+      "group": "Quality",
+      "items": [
+        "ESLint 9",
+        "Static Prerendering",
+        "Type-Safe Mock Data Layer",
+        "HTTP-200 Route Verification"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Interactive SVG attack graph",
+      "description": "Every cloud asset is a node, every IAM trust, network route and data flow an edge — with risk status encoded by color, glow and label.",
+      "icon": "Network"
+    },
+    {
+      "title": "Guaranteed node spacing",
+      "description": "A deterministic seeded grid layout guarantees ≥146px minimum node distance (spec ≥140px) while still looking organic.",
+      "icon": "Target"
+    },
+    {
+      "title": "Curved bezier edges",
+      "description": "Quadratic bezier paths with a 26px perpendicular bend keep parallel edges separate from labels.",
+      "icon": "GitBranch"
+    },
+    {
+      "title": "Dual-theme engine",
+      "description": "Class-based dark mode with the same risk color tokens WCAG-compliant in both tactical dark and high-contrast light themes.",
+      "icon": "Layers"
+    },
+    {
+      "title": "Theme-aware charts",
+      "description": "20+ Recharts visualizations reference CSS variables, so charts re-color on theme switch without a re-render.",
+      "icon": "BarChart3"
+    },
+    {
+      "title": "Node inspector",
+      "description": "A 150ms Framer Motion drawer shows CVSS, exploitability, edge count, MITRE techniques and tags for any node.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Agent control panels",
+      "description": "Four autonomous agent cards with workload gauges, token counters, latency stats and thought-process execution trees.",
+      "icon": "Bot"
+    },
+    {
+      "title": "Temporal replay",
+      "description": "A scrubber replays T-30 → T-0; the visible graph is re-sliced from the node and edge datasets per interval.",
+      "icon": "Timer"
+    },
+    {
+      "title": "Investigation workspace",
+      "description": "BFS-based 2-hop sub-graph extraction around any selectable node with lateral chain forensics.",
+      "icon": "Search"
+    },
+    {
+      "title": "Compliance brief generator",
+      "description": "Framework selector (SOC 2 / ISO 27001 / MITRE / custom) toggles a generated readiness brief with gauges and coverage charts.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Vulnerability feed",
+      "description": "A 35-day exploit heatmap generated deterministically from a seeded PRNG, with CVE backlog cards and threat-intel news.",
+      "icon": "Activity"
+    },
+    {
+      "title": "Pricing calculator",
+      "description": "Three live sliders (instances, IAM identities, simulations) recompute a monthly subscription estimate and savings donut.",
+      "icon": "Gauge"
+    }
+  ],
+  "challenge": {
+    "summary": "Security products that visualize attack graphs and threat telemetry share a recurring failure pattern: they are visually dense, slow to render, and hard to navigate. The project set out to fix the five pain points that typically make these products unusable for triage.",
+    "points": [
+      {
+        "icon": "Network",
+        "title": "Cluttered graph canvases",
+        "description": "Naive graph layouts overlap nodes, let edge lines collide with labels, and require constant pan/zoom to read — unusable for triage."
+      },
+      {
+        "icon": "Layers",
+        "title": "Theme-split visual language",
+        "description": "Many dashboards force a dark theme or bolt on a light one with washed-out neon colors that fail WCAG contrast on light backgrounds."
+      },
+      {
+        "icon": "LayoutDashboard",
+        "title": "Z-index and scroll architecture failures",
+        "description": "Fixed sidebars that overlap sticky headers, or headers that scroll away, are common layout defects in dashboard UIs."
+      },
+      {
+        "icon": "Timer",
+        "title": "Skeleton-slow perceived performance",
+        "description": "Long animation delays and blocking loading states make data-dense dashboards feel sluggish even when data is local."
+      },
+      {
+        "icon": "Puzzle",
+        "title": "20-screen scope",
+        "description": "A product with this many distinct workflows needs a reusable component and design system or implementation cost multiplies per screen."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "We built a single-page-product shell: a living attack graph where risk is encoded by color, glow and label, operational screens built from the same dataset, and a dual-theme design system so the same product works in tactical dark mode and high-contrast light mode without layout changes.",
+    "points": [
+      {
+        "icon": "Target",
+        "title": "Deterministic graph layout",
+        "description": "A seeded mulberry32 PRNG on a 3-column grid (170px cells, ±12px jitter) guarantees ≥146px node separation by construction — provable, and identical on server and client."
+      },
+      {
+        "icon": "Route",
+        "title": "Bezier edge separation",
+        "description": "Quadratic Q-bezier paths with a 26px perpendicular bend keep parallel edges apart from labels, which render as bordered pills offset alternately top and bottom."
+      },
+      {
+        "icon": "Layers",
+        "title": "CSS-variable risk tokens",
+        "description": "Deep WCAG risk colors in light mode (#9F1239 critical, #B45309 high, #0369A1 medium, #065F46 low) and neon equivalents in dark mode, derived via color-mix() for badges and borders."
+      },
+      {
+        "icon": "LayoutDashboard",
+        "title": "Z-index-disciplined layout",
+        "description": "Sticky header at z-40, fixed sidebar at z-30 below it (top-16, h-[calc(100vh-4rem)]), and an isolated main scroll viewport — no overlap, no scroll-away."
+      },
+      {
+        "icon": "Zap",
+        "title": "150ms motion budget",
+        "description": "All 70+ Framer Motion calls capped at ≤0.15s with ease-out easing; no blocking skeletons, panels render instantly."
+      },
+      {
+        "icon": "Workflow",
+        "title": "One graph engine, five screens",
+        "description": "The attack graph component powers the landing hero, public explorer, main canvas, temporal timeline, and investigation workspace — parameterized with filters, highlights and dimming."
+      },
+      {
+        "icon": "Database",
+        "title": "Typed simulated data layer",
+        "description": "UI code written against real contracts from lib/types.ts; mockData.ts implements them (~120+ records), so a live API swap later is a data-module replacement."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Theme-aware charts via CSS vars",
+        "description": "Recharts SVG attributes reference var(--risk-*) tokens — every chart flips theme-correct with zero re-render logic."
+      }
+    ]
+  },
+  "objectives": [
+    "Implement 20 fully populated product screens across four navigation categories",
+    "Ship a dual-theme engine where the same risk color tokens are WCAG-compliant in both themes",
+    "Build a reusable SVG attack graph with guaranteed minimum node spacing (spec ≥140px, implemented ≥146px)",
+    "Enforce a strict layout architecture: sticky header, fixed sidebar, isolated scrolling viewport",
+    "Cap every animation at ≤0.15s with ease-out easing and eliminate skeleton blocking",
+    "Make every chart, filter, slider and scrubber genuinely interactive against the dataset",
+    "Verify clean lint, passing production build, and all routes serving HTTP 200",
+    "Design a typed data layer that can absorb a live backend later without structural changes"
+  ],
+  "closing": {
+    "clientOverview": "The brief asked for a complete, navigable security-product surface: a 20-screen application that demonstrates what an autonomous AI red-teaming platform looks like — attack surface mapping, blast radius analytics, agent control, and governance — implemented with honest front-end engineering. The product context is enterprise cloud security operations: SOC analysts, threat hunters, cloud security architects, and GRC auditors triage identities, workloads, and data stores continuously, and time-to-visualization plus clarity of the attack graph are core differentiators.",
+    "conclusion": "CyberThreat Mesh delivers a complete 20-screen, dual-themed, statically generated security-product UI. Its durable engineering value: a reusable deterministic SVG attack-graph engine with a provable minimum-spacing guarantee, a CSS-variable design-token system that keeps risk semantics correct in light and dark themes, a z-index-disciplined layout architecture with isolated scroll, a 150ms motion budget across 70+ animations, and a typed simulated data layer that stands in for a future backend. The build is green, lint is clean, and every route was verified serving HTTP 200. Everything inside is implemented; everything the product represents — AI agents, telemetry, integrations, governance — is a labeled simulation of what such a product would show."
+  },
+  "results": [
+    {
+      "value": "20",
+      "label": "Routes live",
+      "detail": "All 20 product routes statically prerendered and verified HTTP 200."
+    },
+    {
+      "value": "≥146px",
+      "label": "Node spacing",
+      "detail": "Deterministic graph layout guarantees minimum separation by construction."
+    },
+    {
+      "value": "0",
+      "label": "ESLint problems",
+      "detail": "Lint clean after fixing 2 React-hooks violations and 6 unused symbols."
+    },
+    {
+      "value": "≤150ms",
+      "label": "Motion budget",
+      "detail": "70+ animation calls capped at 0.15s — instant dashboard feel, no skeletons."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/cyberthreat-mesh/shot-1.svg",
+      "alt": "Attack graph canvas with status-colored nodes and bezier edges",
+      "caption": "Graph canvas — cloud assets as nodes with risk status encoded by color, glow and label."
+    },
+    {
+      "src": "/images/projects/cyberthreat-mesh/shot-2.svg",
+      "alt": "Agent control panel with workload gauges and execution trees",
+      "caption": "Agent control — four autonomous agents with workload gauges and thought-process execution trees."
+    },
+    {
+      "src": "/images/projects/cyberthreat-mesh/shot-3.svg",
+      "alt": "Analytics dashboard with centrality charts and vulnerability heatmap",
+      "caption": "Analytics — centrality ranking, density charts and the 35-day exploit heatmap."
+    }
+  ],
+  "video": {},
+  "workflow": [
+    {
+      "id": "w1",
+      "title": "Route requested",
+      "description": "Next.js statically prerenders the initial HTML for instant first paint on any of the 20 routes.",
+      "tag": "PRERENDER"
+    },
+    {
+      "id": "w2",
+      "title": "Client hydrates",
+      "description": "ThemeProvider and AppLayout mount; interactive screens become state-driven client components.",
+      "tag": "HYDRATE"
+    },
+    {
+      "id": "w3",
+      "title": "Graph lays out",
+      "description": "lib/graph.ts places visible nodes deterministically (≥146px apart) and computes bezier edge paths.",
+      "tag": "LAYOUT"
+    },
+    {
+      "id": "w4",
+      "title": "User interacts",
+      "description": "Filters, sliders, scrubbers and drawers recompute sub-graphs and charts from the single dataset.",
+      "tag": "INTERACT"
+    },
+    {
+      "id": "w5",
+      "title": "Inspect & act",
+      "description": "The node inspector, investigation workspace and compliance briefs close the triage loop.",
+      "tag": "RESOLVE"
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Confidential — security product brief",
+    "industry": "Cybersecurity / Cloud Security SaaS",
+    "timeline": "10 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Product UI Engineering",
+      "Design Systems",
+      "Data Visualization",
+      "SVG Graph Engine",
+      "Dual-Theme Architecture",
+      "Interactive Prototyping"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 15
+}
