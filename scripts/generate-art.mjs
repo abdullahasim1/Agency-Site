@@ -41,6 +41,7 @@ const PROJECTS = [
   { slug: "medisync-scheduling", accent: "cyan", tag: "SAAS · HEALTH", io: ["Request", "Match", "Confirm"] },
   { slug: "commerce-insights", accent: "violet", tag: "SAAS · DATA", io: ["Events", "Model", "Insight"] },
   { slug: "routelens-driver-app", accent: "brand", tag: "MOBILE · AI", io: ["Route", "Detect", "Alert"] },
+  { slug: "recruitment-module", accent: "cyan", tag: "SAAS · RECRUIT", io: ["Apply", "Screen", "Hire"] },
 ];
 
 /** Deterministic PRNG so output never changes between runs. */
