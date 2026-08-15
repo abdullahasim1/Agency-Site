@@ -168,19 +168,24 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/recruitment-module/shot-1.svg",
-      "alt": "Admin applicants pipeline view",
+      "src": "/images/projects/recruitment-module/shot-1.png",
+      "alt": "Admin hiring analytics dashboard",
+      "caption": "Hiring analytics — applicant, job and hire figures with charts at a glance."
+    },
+    {
+      "src": "/images/projects/recruitment-module/shot-2.png",
+      "alt": "Applicants pipeline table with status badges",
       "caption": "The applicant pipeline — every candidate tracked with a clear status."
     },
     {
-      "src": "/images/projects/recruitment-module/shot-2.svg",
-      "alt": "Hiring analytics dashboard",
-      "caption": "Hiring analytics — applicant, job and hire figures at a glance."
+      "src": "/images/projects/recruitment-module/shot-3.png",
+      "alt": "Candidate job board with search and filters",
+      "caption": "The candidate job board — search, filter and apply from one place."
     },
     {
-      "src": "/images/projects/recruitment-module/shot-3.svg",
-      "alt": "Application lifecycle from posting to hire",
-      "caption": "The hiring lifecycle — from job posted to decision recorded."
+      "src": "/images/projects/recruitment-module/shot-4.png",
+      "alt": "Candidate dashboard with applications and interviews",
+      "caption": "The candidate workspace — applications, upcoming interviews and countdowns."
     }
   ],
   "workflow": [
