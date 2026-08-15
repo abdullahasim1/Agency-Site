@@ -71,7 +71,7 @@ export function TechMarquee({
             dark ? "via-white/[0.09]" : "via-brand-500/[0.08]",
           )}
         />
-        <div className="animate-marquee flex w-max gap-3.5 pr-3.5">
+        <div className="animate-marquee flex w-full gap-3.5 pr-3.5">
           {/* Second copy is decorative: the first already names every tool. */}
           {[0, 1].map((copy) => (
             <ul

@@ -120,7 +120,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 alt={project.imageAlt}
                 fill
                 priority
-                sizes="(min-width: 1024px) 40vw, 96vw"
+                sizes="(min-width: 1024px) 30vw, 80vw"
                 className="object-cover"
               />
             </figure>

@@ -29,7 +29,7 @@ export function ProjectCard({
   priority = false,
   as: Tag = "h3",
   className,
-  sizes = "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw",
+  sizes = "(min-width: 1024px) 25vw, (min-width: 640px) 35vw, 80vw",
 }: ProjectCardProps) {
   return (
     <GlowCard
