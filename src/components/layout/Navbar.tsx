@@ -8,6 +8,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { GithubIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { BrandLogo } from "@/components/ui/LogoMark";
 import { PRIMARY_CTA, primaryNav } from "@/data/navigation";
 import { sharedCopy } from "@/data/pages";
@@ -133,6 +134,27 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 lg:flex">
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${siteConfig.name} on GitHub`}
+                className="inline-flex size-9 items-center justify-center rounded-lg text-ink-600 transition-colors hover:bg-ink-50 hover:text-ink-950"
+              >
+                <GithubIcon className="size-4.5" aria-hidden />
+              </a>
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${siteConfig.name} on WhatsApp`}
+                className="inline-flex size-9 items-center justify-center rounded-lg text-ink-600 transition-colors hover:bg-ink-50 hover:text-ink-950"
+              >
+                <WhatsAppIcon className="size-4.5" aria-hidden />
+              </a>
+            </div>
+
             <Button
               href={PRIMARY_CTA.href}
               size="sm"
@@ -224,6 +246,27 @@ export function Navbar() {
                 >
                   {PRIMARY_CTA.label}
                 </Button>
+
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <a
+                    href={siteConfig.social.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
+                  >
+                    <GithubIcon className="size-4" aria-hidden />
+                    GitHub
+                  </a>
+                  <a
+                    href={siteConfig.contact.whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
+                  >
+                    <WhatsAppIcon className="size-4" aria-hidden />
+                    WhatsApp
+                  </a>
+                </div>
 
                 <p className="mt-4 text-center text-xs text-ink-500">
                   {siteConfig.contact.responseTime}
