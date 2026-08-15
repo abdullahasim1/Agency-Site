@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Globe, Mail, MapPin } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
@@ -77,15 +77,6 @@ export async function Footer() {
                 >
                   <Mail className="size-4 text-ink-500 transition-colors group-hover:text-brand-300" aria-hidden />
                   {siteConfig.contact.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.contact.phoneHref}
-                  className="group inline-flex items-center gap-2.5 text-ink-300 transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 text-ink-500 transition-colors group-hover:text-brand-300" aria-hidden />
-                  {siteConfig.contact.phone}
                 </a>
               </li>
               <li>

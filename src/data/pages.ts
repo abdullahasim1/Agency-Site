@@ -215,7 +215,6 @@ export interface ContactCopy {
   /** Labels for the details list; the values come from site settings. */
   details: {
     emailLabel: string;
-    phoneLabel: string;
     whatsappLabel: string;
     locationLabel: string;
     hoursLabel: string;

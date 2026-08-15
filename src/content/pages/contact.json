@@ -19,7 +19,6 @@
     },
     "details": {
         "emailLabel": "Email",
-        "phoneLabel": "Phone",
         "locationLabel": "Location",
         "hoursLabel": "Hours",
         "whatsappLabel": "WhatsApp"

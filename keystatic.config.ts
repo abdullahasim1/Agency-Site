@@ -1451,14 +1451,6 @@ export default config({
           {
             email: fields.text({ label: "Email" }),
             salesEmail: fields.text({ label: "Sales email" }),
-            phone: fields.text({
-              label: "Phone",
-              description: "As displayed, e.g. +1 (415) 555-0142",
-            }),
-            phoneHref: fields.text({
-              label: "Phone link",
-              description: "Dial link, e.g. tel:+14155550142",
-            }),
             whatsapp: fields.text({
               label: "WhatsApp number",
               description: "As displayed, e.g. +92 301 6297433",
