@@ -4,23 +4,19 @@
     "id": "prj-reportai",
     "tagline": "AI-Powered Due Diligence & Compliance Automation Platform"
   },
-  "listing": {
-    "shortDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI.",
-    "fullDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI. A company request enters through Amazon API Gateway, is validated and placed onto Amazon SQS, and is then processed by a dedicated Lambda worker. The worker gathers information from multiple external intelligence sources, normalizes the evidence, invokes Amazon Bedrock for AI-assisted analysis and report generation, stores the resulting report in Amazon S3, and records the report metadata and status in DynamoDB."
-  },
-  "cover": {
-    "image": "/images/projects/reportai/cover.svg",
-    "imageAlt": "Abstract diagram of an event-driven AWS due diligence pipeline with queue-based workers and AI report generation"
-  },
-  "closing": {
-    "clientOverview": "The project required a scalable due diligence platform capable of collecting information about companies from multiple external sources, validating and normalizing the collected data, performing AI-assisted analysis, and producing comprehensive integrity due diligence reports. Traditional manual due diligence requires analysts to search multiple registries, sanctions databases, news sources, corporate records, and other public datasets before manually consolidating the findings into a report. The objective was to turn that fragmented process into a reliable, asynchronous and AI-powered workflow where a user submits a company once and the platform handles the research, processing, analysis and report generation automatically.",
-    "conclusion": "ReportAI / ForensicReports transforms a fragmented due diligence process into a serverless, event-driven and AI-powered intelligence platform. The architecture combines AWS serverless infrastructure, asynchronous processing, external intelligence APIs and generative AI to create a scalable foundation for automated corporate due diligence — automated research across multiple intelligence and regulatory sources from one company request, Amazon Bedrock converting aggregated evidence into structured reports, SQS and Lambda decoupling user requests from long-running processing, retries and a Dead Letter Queue providing controlled failure handling, and S3 with DynamoDB providing durable reporting and lifecycle tracking."
-  },
   "category": "AI / Compliance",
   "categories": [
     "AI",
     "Automation"
   ],
+  "listing": {
+    "shortDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI.",
+    "fullDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI. A company request enters through Amazon API Gateway, is validated and placed onto Amazon SQS, and is then processed by a dedicated Lambda worker. The worker gathers information from multiple external intelligence sources, normalizes the evidence, invokes Amazon Bedrock for AI-assisted analysis and report generation, stores the resulting report in Amazon S3, and records the report metadata and status in DynamoDB."
+  },
+  "cover": {
+    "image": "/images/projects/reportai/cover/image.png",
+    "imageAlt": "Abstract diagram of an event-driven AWS due diligence pipeline with queue-based workers and AI report generation"
+  },
   "technologies": [
     "AWS",
     "Amazon Bedrock",
@@ -216,6 +212,21 @@
       }
     ]
   },
+  "objectives": [
+    "Automate the collection of company and regulatory information",
+    "Integrate multiple external intelligence and registry APIs",
+    "Decouple long-running processing from the user-facing API",
+    "Generate structured due diligence reports using generative AI",
+    "Store generated reports securely and durably",
+    "Track report status throughout the complete processing lifecycle",
+    "Handle failed jobs through retries and a dead-letter queue",
+    "Build an architecture capable of scaling as report volume increases",
+    "Provide a foundation for Level 1, Level 2 and Level 3 due diligence workflows"
+  ],
+  "closing": {
+    "clientOverview": "The project required a scalable due diligence platform capable of collecting information about companies from multiple external sources, validating and normalizing the collected data, performing AI-assisted analysis, and producing comprehensive integrity due diligence reports. Traditional manual due diligence requires analysts to search multiple registries, sanctions databases, news sources, corporate records, and other public datasets before manually consolidating the findings into a report. The objective was to turn that fragmented process into a reliable, asynchronous and AI-powered workflow where a user submits a company once and the platform handles the research, processing, analysis and report generation automatically.",
+    "conclusion": "ReportAI / ForensicReports transforms a fragmented due diligence process into a serverless, event-driven and AI-powered intelligence platform. The architecture combines AWS serverless infrastructure, asynchronous processing, external intelligence APIs and generative AI to create a scalable foundation for automated corporate due diligence — automated research across multiple intelligence and regulatory sources from one company request, Amazon Bedrock converting aggregated evidence into structured reports, SQS and Lambda decoupling user requests from long-running processing, retries and a Dead Letter Queue providing controlled failure handling, and S3 with DynamoDB providing durable reporting and lifecycle tracking."
+  },
   "results": [
     {
       "value": "Serverless",
@@ -240,53 +251,72 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/reportai/shot-1.svg",
+      "src": "/images/projects/reportai/gallery/0/src.svg",
       "alt": "Report generation request form",
       "caption": "Report generation — company details, jurisdiction, entity type, report level, data sources and instructions."
     },
     {
-      "src": "/images/projects/reportai/shot-2.svg",
+      "src": "/images/projects/reportai/gallery/1/src.svg",
       "alt": "Report dashboard overview",
       "caption": "Dashboard — report activity, risk distributions, recent reports and AI-generated insights."
     },
     {
-      "src": "/images/projects/reportai/shot-3.svg",
+      "src": "/images/projects/reportai/gallery/2/src.svg",
       "alt": "Reports workspace with searchable records",
       "caption": "Reports workspace — searchable records with level, status, risk score, report ID and actions."
+    },
+    {
+      "src": "/images/projects/reportai/gallery/3/src.png",
+      "alt": "AI , AUtomation , AI Sevices ",
+      "caption": "AWS Architecture"
+    },
+    {
+      "src": "/images/projects/reportai/gallery/4/src.png",
+      "alt": "AI , web , Automation , ai services"
+    },
+    {
+      "src": "/images/projects/reportai/gallery/5/src.png",
+      "alt": "AI, web , app"
+    },
+    {
+      "src": "/images/projects/reportai/gallery/6/src.png",
+      "alt": "web , ai services"
     }
   ],
+  "video": {},
   "workflow": [
     {
       "id": "w1",
-      "tag": "SUBMIT",
       "title": "Request accepted",
-      "description": "Client posts company data via API Gateway; the request handler validates, creates the report record and enqueues to SQS."
+      "description": "Client posts company data via API Gateway; the request handler validates, creates the report record and enqueues to SQS.",
+      "tag": "SUBMIT"
     },
     {
       "id": "w2",
-      "tag": "RESEARCH",
       "title": "Worker gathers evidence",
-      "description": "A Lambda worker consumes the message and queries external intelligence and registry sources."
+      "description": "A Lambda worker consumes the message and queries external intelligence and registry sources.",
+      "tag": "RESEARCH"
     },
     {
       "id": "w3",
-      "tag": "ANALYZE",
       "title": "AI report generation",
-      "description": "Amazon Bedrock converts normalized evidence into a structured due diligence report."
+      "description": "Amazon Bedrock converts normalized evidence into a structured due diligence report.",
+      "tag": "ANALYZE"
     },
     {
       "id": "w4",
-      "tag": "STORE",
       "title": "Durable storage",
-      "description": "Report artifacts land in S3; metadata and processing status are recorded in DynamoDB."
+      "description": "Report artifacts land in S3; metadata and processing status are recorded in DynamoDB.",
+      "tag": "STORE"
     },
     {
       "id": "w5",
-      "tag": "RETRIEVE",
       "title": "Status & retrieval",
-      "description": "Clients query status from DynamoDB and fetch completed reports via pre-signed S3 URLs."
+      "description": "Clients query status from DynamoDB and fetch completed reports via pre-signed S3 URLs.",
+      "tag": "RETRIEVE"
     }
   ],
+  "workflowLayout": "linear",
   "overview": {
     "client": "Confidential — compliance intelligence engagement",
     "industry": "Compliance / Risk Management / Corporate Intelligence",
@@ -310,17 +340,5 @@
   },
   "featured": false,
   "accent": "violet",
-  "order": 14,
-  "objectives": [
-    "Automate the collection of company and regulatory information",
-    "Integrate multiple external intelligence and registry APIs",
-    "Decouple long-running processing from the user-facing API",
-    "Generate structured due diligence reports using generative AI",
-    "Store generated reports securely and durably",
-    "Track report status throughout the complete processing lifecycle",
-    "Handle failed jobs through retries and a dead-letter queue",
-    "Build an architecture capable of scaling as report volume increases",
-    "Provide a foundation for Level 1, Level 2 and Level 3 due diligence workflows"
-  ],
-  "workflowLayout": "linear"
+  "order": 14
 }
