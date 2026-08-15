@@ -1,64 +1,65 @@
 {
-  "seo": {
-    "title": "Contact Us",
-    "description": "Tell us what you are building or automating. {responseTime}",
-    "keywords": [
-      "contact AI agency",
-      "software development enquiry",
-      "automation consultation"
-    ]
-  },
-  "eyebrow": "Contact",
-  "title": "Let's Build Something Great",
-  "lead": "Send us the problem, not a polished brief. Describe the process you want to automate or the product you want built, and we will come back with a straight assessment: what is worth doing, what it takes, and whether we are the right team for it.",
-  "secondaryParagraph": "Every enquiry is read by an engineer. There is no qualification script and no obligation — plenty of first conversations end with us pointing someone at a simpler answer.",
-  "callout": {
-    "before": "Prefer to talk it through?",
-    "linkLabel": "Book a free 30-minute consultation",
-    "after": "and pick a slot that suits you."
-  },
-  "details": {
-    "emailLabel": "Email",
-    "phoneLabel": "Phone",
-    "locationLabel": "Location",
-    "hoursLabel": "Hours"
-  },
-  "form": {
-    "heading": "Tell Us About Your Project",
-    "intro": "The more context you give, the more specific our first reply can be. Fields marked with an asterisk are required.",
-    "fullNameLabel": "Full Name",
-    "fullNamePlaceholder": "Jordan Ellis",
-    "emailLabel": "Business Email",
-    "emailPlaceholder": "jordan@company.com",
-    "companyLabel": "Company",
-    "companyPlaceholder": "Company name",
-    "phoneLabel": "Phone",
-    "phonePlaceholder": "+1 (555) 000-0000",
-    "projectTypeLabel": "Project Type",
-    "projectTypePlaceholder": "Select a project type",
-    "budgetLabel": "Budget",
-    "budgetPlaceholder": "Select a range",
-    "messageLabel": "Message",
-    "messagePlaceholder": "What are you trying to build or automate? What does the process look like today?",
-    "requiredHint": "(required)",
-    "submitLabel": "Send Inquiry",
-    "submittingLabel": "Sending…",
-    "errors": {
-      "fullName": "Please enter your full name.",
-      "emailMissing": "Please enter your business email.",
-      "emailInvalid": "That email address does not look right.",
-      "phone": "Please enter a reachable phone number.",
-      "projectType": "Please choose the closest project type.",
-      "message": "A little more detail helps us reply usefully — 20 characters or more."
+    "seo": {
+        "title": "Contact Us",
+        "description": "Tell us what you are building or automating. {responseTime}",
+        "keywords": [
+            "contact AI agency",
+            "software development enquiry",
+            "automation consultation"
+        ]
     },
-    "success": {
-      "heading": "Enquiry received",
-      "description": "Thanks for reaching out. We read every enquiry ourselves and reply within one business day.",
-      "resetLabel": "Send another enquiry"
+    "eyebrow": "Contact",
+    "title": "Let's Build Something Great",
+    "lead": "Send us the problem, not a polished brief. Describe the process you want to automate or the product you want built, and we will come back with a straight assessment: what is worth doing, what it takes, and whether we are the right team for it.",
+    "secondaryParagraph": "Every enquiry is read by an engineer. There is no qualification script and no obligation — plenty of first conversations end with us pointing someone at a simpler answer.",
+    "callout": {
+        "before": "Prefer to talk it through?",
+        "linkLabel": "Book a free 30-minute consultation",
+        "after": "and pick a slot that suits you."
     },
-    "failure": {
-      "before": "We could not send your message. Please try again, or email us directly at",
-      "after": "."
+    "details": {
+        "emailLabel": "Email",
+        "phoneLabel": "Phone",
+        "locationLabel": "Location",
+        "hoursLabel": "Hours",
+        "whatsappLabel": "WhatsApp"
+    },
+    "form": {
+        "heading": "Tell Us About Your Project",
+        "intro": "The more context you give, the more specific our first reply can be. Fields marked with an asterisk are required.",
+        "fullNameLabel": "Full Name",
+        "fullNamePlaceholder": "Jordan Ellis",
+        "emailLabel": "Business Email",
+        "emailPlaceholder": "jordan@company.com",
+        "companyLabel": "Company",
+        "companyPlaceholder": "Company name",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+1 (555) 000-0000",
+        "projectTypeLabel": "Project Type",
+        "projectTypePlaceholder": "Select a project type",
+        "budgetLabel": "Budget",
+        "budgetPlaceholder": "Select a range",
+        "messageLabel": "Message",
+        "messagePlaceholder": "What are you trying to build or automate? What does the process look like today?",
+        "requiredHint": "(required)",
+        "submitLabel": "Send Inquiry",
+        "submittingLabel": "Sending…",
+        "errors": {
+            "fullName": "Please enter your full name.",
+            "emailMissing": "Please enter your business email.",
+            "emailInvalid": "That email address does not look right.",
+            "phone": "Please enter a reachable phone number.",
+            "projectType": "Please choose the closest project type.",
+            "message": "A little more detail helps us reply usefully — 20 characters or more."
+        },
+        "success": {
+            "heading": "Enquiry received",
+            "description": "Thanks for reaching out. We read every enquiry ourselves and reply within one business day.",
+            "resetLabel": "Send another enquiry"
+        },
+        "failure": {
+            "before": "We could not send your message. Please try again, or email us directly at",
+            "after": "."
+        }
     }
-  }
 }

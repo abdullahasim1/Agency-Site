@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Globe, Mail, MapPin, Phone } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
+import { GithubIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { LogoMark, Wordmark } from "@/components/ui/LogoMark";
 import {
   footerCompanyLinks,
@@ -87,6 +88,17 @@ export async function Footer() {
                   {siteConfig.contact.phone}
                 </a>
               </li>
+              <li>
+                <a
+                  href={siteConfig.contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2.5 text-ink-300 transition-colors hover:text-white"
+                >
+                  <WhatsAppIcon className="size-4 text-ink-500 transition-colors group-hover:text-brand-300" />
+                  {siteConfig.contact.whatsapp}
+                </a>
+              </li>
               <li className="inline-flex items-start gap-2.5 text-ink-400">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-ink-500" aria-hidden />
                 {siteConfig.contact.location}
@@ -99,6 +111,12 @@ export async function Footer() {
                 label={`${siteConfig.name} on LinkedIn`}
               >
                 <Globe className="size-4" aria-hidden />
+              </SocialLink>
+              <SocialLink
+                href={siteConfig.social.github}
+                label={`${siteConfig.name} on GitHub`}
+              >
+                <GithubIcon className="size-4" />
               </SocialLink>
             </div>
           </div>

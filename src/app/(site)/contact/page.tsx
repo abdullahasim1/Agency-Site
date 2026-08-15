@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/contact/ContactForm";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
@@ -34,6 +35,12 @@ const details = [
     label: contactCopy.details.phoneLabel,
     value: siteConfig.contact.phone,
     href: siteConfig.contact.phoneHref,
+  },
+  {
+    icon: WhatsAppIcon,
+    label: contactCopy.details.whatsappLabel,
+    value: siteConfig.contact.whatsapp,
+    href: siteConfig.contact.whatsappHref,
   },
   {
     icon: MapPin,
