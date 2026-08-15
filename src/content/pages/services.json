@@ -38,15 +38,15 @@
     "description": "A senior team with hands-on, production experience across the platforms most of our work runs on — from cloud infrastructure to AI and automation.",
     "platforms": [
       {
-        "name": "AWS",
+        "name": "AWS Certified",
         "capability": "Cloud infrastructure, serverless and DevOps — the backbone we deploy and scale on."
       },
       {
-        "name": "Microsoft Azure",
+        "name": "Microsoft Certified",
         "capability": "Enterprise cloud, identity and app services for teams already invested in Microsoft."
       },
       {
-        "name": "Claude",
+        "name": "Claude Certified",
         "capability": "Production AI agents and assistants built on Anthropic's Claude models."
       },
       {
