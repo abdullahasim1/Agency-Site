@@ -295,18 +295,18 @@
   }
 
   .animate-marquee {
-    animation: marquee-x 46s linear infinite;
+    animation: marquee-x 28s linear infinite;
     will-change: transform;
   }
 
   /* Card-sized strips (case-study tech stack): shorter loop, can run reversed. */
   .animate-marquee-sm {
-    animation: marquee-x 24s linear infinite;
+    animation: marquee-x 18s linear infinite;
     will-change: transform;
   }
 
   .animate-marquee-sm-reverse {
-    animation: marquee-x 24s linear infinite reverse;
+    animation: marquee-x 18s linear infinite reverse;
     will-change: transform;
   }
 
