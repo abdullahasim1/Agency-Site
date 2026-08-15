@@ -115,3 +115,29 @@ export function Wordmark({ name, className, tone = "default" }: WordmarkProps) {
     </span>
   );
 }
+
+interface BrandLogoProps {
+  className?: string;
+  /** `inverse` picks the white mark for dark backgrounds (footer). */
+  tone?: "default" | "inverse";
+}
+
+/**
+ * The full DevRox wordmark logo as a static asset. Two variants live in
+ * `public/logos/weblogo/`: the colored mark (`devrox-color.svg`) on light
+ * surfaces and the white mark (`devrox-white.svg`) on dark surfaces.
+ */
+export function BrandLogo({ className, tone = "default" }: BrandLogoProps) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={
+        tone === "inverse"
+          ? "/logos/weblogo/devrox-white.svg"
+          : "/logos/weblogo/devrox-color.svg"
+      }
+      alt="DevRox"
+      className={cn("h-9 w-auto", className)}
+    />
+  );
+}

@@ -8,7 +8,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { LogoMark, Wordmark } from "@/components/ui/LogoMark";
+import { BrandLogo } from "@/components/ui/LogoMark";
 import { PRIMARY_CTA, primaryNav } from "@/data/navigation";
 import { sharedCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
@@ -102,11 +102,7 @@ export function Navbar() {
             className="-mx-1.5 flex shrink-0 items-center gap-2.5 rounded-lg px-1.5 py-2 lg:py-0"
             aria-label={`${siteConfig.name} — home`}
           >
-            <LogoMark
-              gradientId="devrox-mark-nav"
-              className="size-8 lg:size-9"
-            />
-            <Wordmark name={siteConfig.name} className="hidden sm:block" />
+            <BrandLogo className="h-8 lg:h-9" />
           </Link>
 
           {/* Desktop navigation */}

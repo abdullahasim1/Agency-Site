@@ -3,7 +3,7 @@ import { ArrowUpRight, Globe, Mail, MapPin } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
-import { LogoMark, Wordmark } from "@/components/ui/LogoMark";
+import { BrandLogo } from "@/components/ui/LogoMark";
 import {
   footerCompanyLinks,
   footerLegalLinks,
@@ -57,12 +57,7 @@ export async function Footer() {
               className="inline-flex items-center gap-2.5"
               aria-label={`${siteConfig.name} — home`}
             >
-              <LogoMark
-                tone="inverse"
-                gradientId="devrox-mark-footer"
-                className="size-9"
-              />
-              <Wordmark name={siteConfig.name} tone="inverse" />
+              <BrandLogo tone="inverse" className="h-9" />
             </Link>
 
             <p className="mt-5 text-sm leading-relaxed text-ink-400">
