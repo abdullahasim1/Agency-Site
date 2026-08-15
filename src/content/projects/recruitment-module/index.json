@@ -9,8 +9,8 @@
     "fullDescription": "Recruiting teams were juggling job postings, applicant emails and interview bookings across different tools, with no shared view of the pipeline. The module gives the recruitment operation two focused workspaces in one app: admins publish structured job listings, review each applicant's full dossier — personal information, resume, cover letter and screening answers — and schedule interviews with a meeting link in a couple of clicks. Candidates browse jobs, apply through a guided multi-step form and track their applications and upcoming interviews from their own dashboard."
   },
   "cover": {
-    "image": "/images/projects/recruitment-module/cover.svg",
-    "imageAlt": "Abstract representation of the recruitment pipeline — from application through screening to hiring"
+    "image": "/images/projects/recruitment-module/shot-1.png",
+    "imageAlt": "Recruitment Module admin dashboard showing hiring analytics"
   },
   "closing": {
     "clientOverview": "An in-house recruitment operation whose hiring workflow had outgrown its tooling. Postings lived in one place, applications arrived by email with no single home, and booking an interview meant back-and-forth messages and manually pasted meeting links. Nothing could answer the basic question — how many candidates are in screening right now?",
