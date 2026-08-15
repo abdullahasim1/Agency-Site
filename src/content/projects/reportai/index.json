@@ -1,0 +1,326 @@
+{
+  "title": "ReportAI / ForensicReports",
+  "basics": {
+    "id": "prj-reportai",
+    "tagline": "AI-Powered Due Diligence & Compliance Automation Platform"
+  },
+  "listing": {
+    "shortDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI.",
+    "fullDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI. A company request enters through Amazon API Gateway, is validated and placed onto Amazon SQS, and is then processed by a dedicated Lambda worker. The worker gathers information from multiple external intelligence sources, normalizes the evidence, invokes Amazon Bedrock for AI-assisted analysis and report generation, stores the resulting report in Amazon S3, and records the report metadata and status in DynamoDB."
+  },
+  "cover": {
+    "image": "/images/projects/reportai/cover.svg",
+    "imageAlt": "Abstract diagram of an event-driven AWS due diligence pipeline with queue-based workers and AI report generation"
+  },
+  "closing": {
+    "clientOverview": "The project required a scalable due diligence platform capable of collecting information about companies from multiple external sources, validating and normalizing the collected data, performing AI-assisted analysis, and producing comprehensive integrity due diligence reports. Traditional manual due diligence requires analysts to search multiple registries, sanctions databases, news sources, corporate records, and other public datasets before manually consolidating the findings into a report. The objective was to turn that fragmented process into a reliable, asynchronous and AI-powered workflow where a user submits a company once and the platform handles the research, processing, analysis and report generation automatically.",
+    "conclusion": "ReportAI / ForensicReports transforms a fragmented due diligence process into a serverless, event-driven and AI-powered intelligence platform. The architecture combines AWS serverless infrastructure, asynchronous processing, external intelligence APIs and generative AI to create a scalable foundation for automated corporate due diligence — automated research across multiple intelligence and regulatory sources from one company request, Amazon Bedrock converting aggregated evidence into structured reports, SQS and Lambda decoupling user requests from long-running processing, retries and a Dead Letter Queue providing controlled failure handling, and S3 with DynamoDB providing durable reporting and lifecycle tracking."
+  },
+  "category": "AI / Compliance",
+  "categories": [
+    "AI",
+    "Automation"
+  ],
+  "technologies": [
+    "AWS",
+    "Amazon Bedrock",
+    "Lambda",
+    "SQS",
+    "S3",
+    "DynamoDB",
+    "API Gateway",
+    "Node.js"
+  ],
+  "techStack": [
+    {
+      "group": "Cloud & Infrastructure",
+      "items": [
+        "Amazon Web Services",
+        "Amazon API Gateway",
+        "AWS Lambda",
+        "Amazon SQS",
+        "Amazon S3",
+        "Amazon DynamoDB",
+        "Amazon CloudWatch",
+        "AWS IAM",
+        "AWS X-Ray"
+      ]
+    },
+    {
+      "group": "Artificial Intelligence",
+      "items": [
+        "Amazon Bedrock",
+        "Foundation Models",
+        "Generative AI",
+        "AI-assisted Risk Analysis",
+        "Structured Report Generation"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js 20.x",
+        "REST APIs",
+        "Event-Driven Architecture",
+        "Asynchronous Processing"
+      ]
+    },
+    {
+      "group": "External Data",
+      "items": [
+        "News APIs",
+        "NewsData.io",
+        "MediaStack",
+        "Companies House",
+        "OpenSanctions",
+        "OFAC Trade API",
+        "SerpAPI",
+        "Registry & Intelligence APIs"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Automated company research",
+      "description": "A single company request can trigger research across multiple external intelligence and regulatory sources.",
+      "icon": "Search"
+    },
+    {
+      "title": "Multi-source data aggregation",
+      "description": "Information from different APIs is collected, normalized and prepared for analysis within a unified processing workflow.",
+      "icon": "Boxes"
+    },
+    {
+      "title": "AI-powered due diligence",
+      "description": "Amazon Bedrock analyzes the collected evidence and generates a structured forensic report.",
+      "icon": "Brain"
+    },
+    {
+      "title": "Risk assessment",
+      "description": "Findings are organized into risk categories with an overall risk assessment suitable for review.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Entity matching",
+      "description": "Evaluates whether information from different sources belongs to the same underlying entity, with confidence surfaced when evidence supports it.",
+      "icon": "Fingerprint"
+    },
+    {
+      "title": "Sanctions & PEP screening",
+      "description": "Sanctions and politically exposed person information incorporated through connected intelligence sources.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Adverse media analysis",
+      "description": "News and media sources collected and analyzed to identify potentially relevant adverse information.",
+      "icon": "FileSearch"
+    },
+    {
+      "title": "Ownership analysis",
+      "description": "Ownership and related-entity information represented where reliable source data is available.",
+      "icon": "Building2"
+    },
+    {
+      "title": "Asynchronous processing",
+      "description": "Long-running workflows execute outside the request-response cycle through SQS and Lambda.",
+      "icon": "Workflow"
+    },
+    {
+      "title": "Retry & dead-letter handling",
+      "description": "Failed attempts retried automatically; messages exceeding retry limits routed to an SQS Dead Letter Queue.",
+      "icon": "Repeat2"
+    },
+    {
+      "title": "Secure report storage",
+      "description": "Generated reports stored in Amazon S3 rather than inside the application server.",
+      "icon": "Cloud"
+    },
+    {
+      "title": "Report retrieval",
+      "description": "Completed reports retrieved through dedicated APIs without rerunning the research workflow.",
+      "icon": "Send"
+    }
+  ],
+  "challenge": {
+    "summary": "The platform needed to solve a fundamental problem in corporate due diligence: relevant information is distributed across many sources, while the final report needs to present that information as one coherent, evidence-based assessment.",
+    "points": [
+      {
+        "icon": "Network",
+        "title": "Fragmented information sources",
+        "description": "Company information can be distributed across corporate registries, sanctions databases, PEP sources, adverse-media providers, news APIs and other third-party services."
+      },
+      {
+        "icon": "Timer",
+        "title": "Long-running research workflows",
+        "description": "Due diligence requests can require multiple external API calls and substantial AI processing. Running everything inside a synchronous HTTP request could lead to timeouts, poor reliability and a poor user experience."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Manual report preparation",
+        "description": "Raw research data is difficult to consume directly. The system needed to transform structured and unstructured evidence into a consistent, professional due diligence report."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Reliability and failure handling",
+        "description": "External APIs can fail, respond slowly or become unavailable. The architecture needed retries, queue-based processing, status tracking and a dead-letter mechanism."
+      },
+      {
+        "icon": "Route",
+        "title": "Traceability of generated reports",
+        "description": "Every report needed a reliable lifecycle: Request → Processing → Research → AI Analysis → Storage → Status → Retrieval."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "We designed the platform as an event-driven AWS serverless architecture. Instead of keeping the user request open while the entire research and AI pipeline executes, the platform immediately creates a report request, places the work onto Amazon SQS, and processes the request asynchronously through Lambda workers — separating the API layer from the heavy processing layer so the system scales independently.",
+    "points": [
+      {
+        "icon": "Send",
+        "title": "API-driven report requests",
+        "description": "Amazon API Gateway provides the public API layer. A client submits company information through POST /companyData, a Node.js 20.x Lambda request handler validates it, creates the report record and sends the message to SQS — the client receives an immediate response with the report ID."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Queue-based async processing",
+        "description": "Amazon SQS acts as the processing buffer between the request layer and worker layer, providing decoupling, reliable delivery, retries, traffic buffering, independent scaling and fault tolerance."
+      },
+      {
+        "icon": "Server",
+        "title": "Dedicated worker processor",
+        "description": "A separate Lambda worker consumes messages from SQS and orchestrates the research workflow — retrieving the request, calling external data sources, aggregating and normalizing the evidence."
+      },
+      {
+        "icon": "Database",
+        "title": "Multi-source intelligence gathering",
+        "description": "The worker integrates News APIs, NewsData.io, MediaStack, Companies House, OpenSanctions, OFAC Trade API, SerpAPI and other registry and intelligence APIs, querying relevant sources selectively by entity and jurisdiction."
+      },
+      {
+        "icon": "Brain",
+        "title": "AI-powered report generation",
+        "description": "Once research data is normalized, the worker passes evidence to Amazon Bedrock, which converts it into a structured forensic report — executive summary, company identification, business operations, entity matching, ownership, risk assessment, sanctions & PEP, adverse media and appendices."
+      },
+      {
+        "icon": "Cloud",
+        "title": "Durable report storage",
+        "description": "Generated reports are stored in Amazon S3, providing durable access to report artifacts including HTML/PDF outputs and a clean separation between report generation and retrieval."
+      },
+      {
+        "icon": "LayoutDashboard",
+        "title": "Metadata & status management",
+        "description": "Amazon DynamoDB maintains report metadata and processing state — report ID, company information, processing status, report location, timestamps and lifecycle data — so the frontend can query status without touching the worker."
+      },
+      {
+        "icon": "Route",
+        "title": "Report retrieval APIs",
+        "description": "A separate retrieval flow queries DynamoDB, generates pre-signed S3 URLs where required, and returns the report information or document location — keeping generation independent from consumption."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "Serverless",
+      "label": "Event-driven pipeline",
+      "detail": "SQS decouples the request lifecycle from research and AI processing."
+    },
+    {
+      "value": "Multi-source",
+      "label": "Intelligence aggregation",
+      "detail": "Registries, sanctions, PEP and news sources queried per request."
+    },
+    {
+      "value": "Bedrock",
+      "label": "AI report generation",
+      "detail": "Structured due diligence reports from aggregated evidence."
+    },
+    {
+      "value": "DLQ",
+      "label": "Controlled failure handling",
+      "detail": "Retries and a Dead Letter Queue isolate failed jobs for investigation."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/reportai/shot-1.svg",
+      "alt": "Report generation request form",
+      "caption": "Report generation — company details, jurisdiction, entity type, report level, data sources and instructions."
+    },
+    {
+      "src": "/images/projects/reportai/shot-2.svg",
+      "alt": "Report dashboard overview",
+      "caption": "Dashboard — report activity, risk distributions, recent reports and AI-generated insights."
+    },
+    {
+      "src": "/images/projects/reportai/shot-3.svg",
+      "alt": "Reports workspace with searchable records",
+      "caption": "Reports workspace — searchable records with level, status, risk score, report ID and actions."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "SUBMIT",
+      "title": "Request accepted",
+      "description": "Client posts company data via API Gateway; the request handler validates, creates the report record and enqueues to SQS."
+    },
+    {
+      "id": "w2",
+      "tag": "RESEARCH",
+      "title": "Worker gathers evidence",
+      "description": "A Lambda worker consumes the message and queries external intelligence and registry sources."
+    },
+    {
+      "id": "w3",
+      "tag": "ANALYZE",
+      "title": "AI report generation",
+      "description": "Amazon Bedrock converts normalized evidence into a structured due diligence report."
+    },
+    {
+      "id": "w4",
+      "tag": "STORE",
+      "title": "Durable storage",
+      "description": "Report artifacts land in S3; metadata and processing status are recorded in DynamoDB."
+    },
+    {
+      "id": "w5",
+      "tag": "RETRIEVE",
+      "title": "Status & retrieval",
+      "description": "Clients query status from DynamoDB and fetch completed reports via pre-signed S3 URLs."
+    }
+  ],
+  "overview": {
+    "client": "Confidential — compliance intelligence engagement",
+    "industry": "Compliance / Risk Management / Corporate Intelligence",
+    "timeline": "12 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application",
+      "REST APIs"
+    ],
+    "services": [
+      "AI & Generative AI",
+      "Due Diligence Automation",
+      "AWS Serverless Architecture",
+      "Data Aggregation",
+      "Risk Analysis",
+      "External API Integrations",
+      "Report Generation",
+      "Cloud Infrastructure"
+    ],
+    "team": "2 engineers, 1 cloud architect"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 14,
+  "objectives": [
+    "Automate the collection of company and regulatory information",
+    "Integrate multiple external intelligence and registry APIs",
+    "Decouple long-running processing from the user-facing API",
+    "Generate structured due diligence reports using generative AI",
+    "Store generated reports securely and durably",
+    "Track report status throughout the complete processing lifecycle",
+    "Handle failed jobs through retries and a dead-letter queue",
+    "Build an architecture capable of scaling as report volume increases",
+    "Provide a foundation for Level 1, Level 2 and Level 3 due diligence workflows"
+  ],
+  "workflowLayout": "linear"
+}
