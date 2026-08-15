@@ -92,7 +92,7 @@ export default async function ServicesPage() {
         </Container>
       </section>
 
-      <OurTeam />
+      <OurTeam tone="light" />
 
       <section className="section-y-sm bg-ink-25">
         <Container>
