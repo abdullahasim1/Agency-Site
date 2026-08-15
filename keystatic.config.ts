@@ -200,33 +200,49 @@ export default config({
   ui: {
     brand: { name: "DevRox" },
     /*
-     * Grouped for easy CRUD first. Collections are at the top because they are
-     * the only content types editors add/delete often; the rest are one-form
-     * settings pages.
+     * Grouped by PAGE, not by data type. Open a page's group and everything on
+     * that page is listed in the order it appears — a table of contents you can
+     * edit. To add a project, open "Portfolio page" → Projects → New; to add a
+     * service, open "Services page" → Services → New.
+     *
+     * A block that appears on several pages (Technologies, Process, Statistics,
+     * the projects/services lists…) is listed under EVERY page it shows on. It
+     * is the same entry each time, so editing it in one place updates it on all
+     * of those pages at once. Keystatic renders each reference independently,
+     * which is why a key can repeat across groups.
      */
     navigation: {
-      "➕ CRUD: add, edit, delete": ["services", "projects"],
-      "✏️ Page text": [
+      "🏠 Home page": [
         "homePage",
-        "aboutPage",
-        "servicesPage",
-        "portfolioPage",
-        "faqPage",
-        "contactPage",
-        "bookACallPage",
-      ],
-      "♻️ Reusable sections": [
         "stats",
-        "why",
+        "services",
+        "technologies",
         "process",
-        "about",
-        "faq",
+        "projects",
+        "why",
         "testimonials",
-        "industries",
+      ],
+      "👤 About page": [
+        "aboutPage",
+        "about",
+        "why",
+        "stats",
+        "process",
         "technologies",
       ],
-      "📬 Forms & business info": ["contact", "site", "sharedCopy"],
-      "📄 Legal": ["legal"],
+      "🧰 Services page": [
+        "servicesPage",
+        "services",
+        "industries",
+        "process",
+        "technologies",
+      ],
+      "💼 Portfolio page": ["portfolioPage", "projects"],
+      "❓ FAQ page": ["faqPage", "faq", "technologies"],
+      "✉️ Contact page": ["contactPage", "contact", "site"],
+      "📞 Book a call page": ["bookACallPage", "contact", "site"],
+      "📄 Legal pages (Privacy & Terms)": ["legal"],
+      "⚙️ Site-wide settings & footer": ["site", "sharedCopy"],
     },
   },
 
@@ -890,6 +906,47 @@ export default config({
             "Read aloud by screen readers before the grid of services; not shown on screen.",
         }),
         industries: sectionField("Industries section"),
+        team: fields.object(
+          {
+            eyebrow: fields.text({
+              label: "Label",
+              description: "Small line above the heading.",
+            }),
+            title: fields.text({
+              label: "Heading",
+              validation: { isRequired: true },
+            }),
+            description: fields.text({
+              label: "Supporting text",
+              multiline: true,
+            }),
+            platforms: fields.array(
+              fields.object({
+                name: fields.text({
+                  label: "Platform name",
+                  description:
+                    "Brand name — the logo is matched automatically (e.g. AWS, Microsoft Azure, Claude, n8n). An unknown name shows a lettered chip instead.",
+                  validation: { isRequired: true },
+                }),
+                capability: fields.text({
+                  label: "What the team does with it",
+                  multiline: true,
+                }),
+              }),
+              {
+                label: "Platforms",
+                description:
+                  "The platforms your team specialises in. Each one shows its logo, name and a short line.",
+                itemLabel: (props) => props.fields.name.value || "Platform",
+              },
+            ),
+          },
+          {
+            label: "Our team section",
+            description:
+              "The band under the services grid — the platforms your team works across.",
+          },
+        ),
         cta: sectionField("Closing call to action"),
         detailCta: sectionField(
           "Single service — closing call to action",
@@ -1402,6 +1459,14 @@ export default config({
               label: "Phone link",
               description: "Dial link, e.g. tel:+14155550142",
             }),
+            whatsapp: fields.text({
+              label: "WhatsApp number",
+              description: "As displayed, e.g. +92 301 6297433",
+            }),
+            whatsappHref: fields.text({
+              label: "WhatsApp link",
+              description: "Chat link, e.g. https://wa.me/923016297433",
+            }),
             location: fields.text({ label: "Location line" }),
             address: fields.object(
               {
@@ -1420,6 +1485,7 @@ export default config({
         social: fields.object(
           {
             linkedin: fields.text({ label: "LinkedIn URL" }),
+            github: fields.text({ label: "GitHub URL" }),
           },
           { label: "Social links" },
         ),

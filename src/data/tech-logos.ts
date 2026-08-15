@@ -55,6 +55,8 @@ export const techLogos: Record<string, string> = {
   "GitHub Actions": "/logos/githubactions.svg",
   Lucid: "/logos/lucid.svg",
   AWS: "/logos/aws.svg",
+  "Microsoft Azure": "/logos/azure.svg",
+  Azure: "/logos/azure.svg",
   "Amazon EC2": "/logos/aws/ec2.svg",
   EC2: "/logos/aws/ec2.svg",
   "Amazon S3": "/logos/aws/amazon-s3.svg",

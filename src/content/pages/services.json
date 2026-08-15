@@ -32,6 +32,29 @@
     "title": "Where We Work",
     "description": "Sector experience shapes the questions we ask in discovery, not the technology we reach for."
   },
+  "team": {
+    "eyebrow": "Our Team",
+    "title": "The Specialists Behind Your Build",
+    "description": "A senior team with hands-on, production experience across the platforms most of our work runs on — from cloud infrastructure to AI and automation.",
+    "platforms": [
+      {
+        "name": "AWS",
+        "capability": "Cloud infrastructure, serverless and DevOps — the backbone we deploy and scale on."
+      },
+      {
+        "name": "Microsoft Azure",
+        "capability": "Enterprise cloud, identity and app services for teams already invested in Microsoft."
+      },
+      {
+        "name": "Claude",
+        "capability": "Production AI agents and assistants built on Anthropic's Claude models."
+      },
+      {
+        "name": "n8n",
+        "capability": "Workflow automation that connects your tools and removes repetitive manual work."
+      }
+    ]
+  },
   "cta": {
     "eyebrow": "Start a project",
     "title": "Not Sure Which Service You Need?",

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { AutomationRunVisual } from "@/components/home/AutomationRunVisual";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Process } from "@/components/home/Process";
+import { OurTeam } from "@/components/services/OurTeam";
 import { ServiceCard } from "@/components/services/ServiceCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
@@ -90,6 +91,8 @@ export default async function ServicesPage() {
           </Stagger>
         </Container>
       </section>
+
+      <OurTeam />
 
       <section className="section-y-sm bg-ink-25">
         <Container>
