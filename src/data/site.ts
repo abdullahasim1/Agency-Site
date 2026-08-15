@@ -28,6 +28,8 @@ export interface SiteConfig {
     salesEmail: string;
     phone: string;
     phoneHref: string;
+    whatsapp: string;
+    whatsappHref: string;
     location: string;
     address: {
       line1: string;
@@ -40,6 +42,7 @@ export interface SiteConfig {
   };
   social: {
     linkedin: string;
+    github: string;
   };
   twitterHandle: string;
   foundedYear: number;

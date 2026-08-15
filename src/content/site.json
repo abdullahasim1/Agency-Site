@@ -18,10 +18,13 @@
       "country": "United States"
     },
     "hours": "Mon – Fri · 9:00 – 18:00 (CT)",
-    "responseTime": "We reply to every enquiry within one business day."
+    "responseTime": "We reply to every enquiry within one business day.",
+    "whatsapp": "+92 301 6297433",
+    "whatsappHref": "https://wa.me/923016297433"
   },
   "social": {
-    "linkedin": "https://www.linkedin.com/company/devrox"
+    "linkedin": "https://www.linkedin.com/company/devrox",
+    "github": "https://github.com/thedevrox"
   },
   "twitterHandle": "@devrox",
   "foundedYear": 2016,

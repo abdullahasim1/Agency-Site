@@ -85,6 +85,13 @@ export interface ServicesCopy {
   /** Screen-reader heading above the grid. */
   listHeading: string;
   industries: SectionCopy;
+  /** "Our team" band: the platforms the team specialises in. */
+  team: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    platforms: { name: string; capability: string }[];
+  };
   cta: SectionCopy;
   /** Closing CTA on a single service page; `{service}` is the service title. */
   detailCta: SectionCopy;
@@ -209,6 +216,7 @@ export interface ContactCopy {
   details: {
     emailLabel: string;
     phoneLabel: string;
+    whatsappLabel: string;
     locationLabel: string;
     hoursLabel: string;
   };
