@@ -42,6 +42,9 @@ const PROJECTS = [
   { slug: "commerce-insights", accent: "violet", tag: "SAAS · DATA", io: ["Events", "Model", "Insight"] },
   { slug: "routelens-driver-app", accent: "brand", tag: "MOBILE · AI", io: ["Route", "Detect", "Alert"] },
   { slug: "recruitflow", accent: "cyan", tag: "SAAS · RECRUIT", io: ["Apply", "Screen", "Hire"] },
+  { slug: "autovance", accent: "violet", tag: "AI · AUTOMATION", io: ["Trigger", "Orchestrate", "Deliver"] },
+  { slug: "nextjs-auth", accent: "brand", tag: "SAAS · AUTH", io: ["Sign-up", "Verify", "Session"] },
+  { slug: "adnois", accent: "violet", tag: "API · BACKEND", io: ["Request", "Auth", "Respond"] },
 ];
 
 /** Deterministic PRNG so output never changes between runs. */

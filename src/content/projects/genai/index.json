@@ -1,0 +1,235 @@
+{
+  "title": "HireGen AI",
+  "basics": {
+    "id": "prj-genai",
+    "tagline": "AI Hiring Assistant Platform"
+  },
+  "listing": {
+    "shortDescription": "A generative-AI hiring platform that parses resumes, drafts job content and screens candidates — Next.js with Gemini, OpenAI and Hugging Face, on Neon PostgreSQL.",
+    "fullDescription": "HireGen AI is a full-stack hiring platform built around generative AI. The Next.js app signs users in, manages jobs and candidates, and layers AI across the workflow: resume parsing via PDF extraction, AI-generated job content and screening questions, and an analytics dashboard over the pipeline. Google Gemini, OpenAI and Hugging Face models sit behind a typed Next.js API with Neon PostgreSQL storage."
+  },
+  "cover": {
+    "image": "/images/projects/genai/cover.png",
+    "imageAlt": "HireGen AI — AI Hiring Assistant Platform"
+  },
+  "closing": {
+    "clientOverview": "Personal project — AI product built end to end",
+    "conclusion": "HireGen AI put generative AI directly into the hiring workflow — parsing resumes, drafting job content and screening candidates with a dashboard that shows the pipeline at a glance."
+  },
+  "category": "AI / Web Application",
+  "categories": [
+    "AI",
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "Next.js",
+    "Gemini",
+    "OpenAI",
+    "Hugging Face",
+    "Neon PostgreSQL"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ]
+    },
+    {
+      "group": "AI",
+      "items": [
+        "Google Gemini",
+        "OpenAI",
+        "Hugging Face Inference"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "Neon PostgreSQL",
+        "Serverless database"
+      ]
+    },
+    {
+      "group": "Services",
+      "items": [
+        "PDF parsing",
+        "Nodemailer",
+        "Next.js API routes"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Resume parsing",
+      "description": "PDF uploads parsed into structured candidate data.",
+      "icon": "FileSearch"
+    },
+    {
+      "title": "AI job content",
+      "description": "Job descriptions and screening questions drafted with generative AI.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Candidate pipeline",
+      "description": "Candidates tracked through the hiring workflow.",
+      "icon": "Users"
+    },
+    {
+      "title": "Analytics",
+      "description": "Dashboard views over the hiring pipeline.",
+      "icon": "BarChart3"
+    },
+    {
+      "title": "Auth",
+      "description": "Sign-up, login and gated dashboard routes.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Email automation",
+      "description": "Nodemailer-driven email for candidate communication.",
+      "icon": "Send"
+    }
+  ],
+  "challenge": {
+    "summary": "Hiring teams drown in resumes and repetitive writing. The platform set out to automate the reading and the drafting, while keeping humans in control of decisions.",
+    "points": [
+      {
+        "icon": "FileSearch",
+        "title": "Resume overload",
+        "description": "PDFs in every format needing structured parsing."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Repetitive drafting",
+        "description": "Job posts and screening questions rewritten every time."
+      },
+      {
+        "icon": "Users",
+        "title": "Pipeline visibility",
+        "description": "Candidates scattered with no shared dashboard."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Generative AI went where it earns its place — parsing, drafting and screening support — while typed APIs and a serverless database kept the platform solid.",
+    "points": [
+      {
+        "icon": "FileSearch",
+        "title": "Parsed candidates",
+        "description": "Resume PDFs become structured candidate profiles."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "AI drafting",
+        "description": "Job content and questions generated from model calls."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Analytics",
+        "description": "Dashboard views over the pipeline."
+      },
+      {
+        "icon": "Lock",
+        "title": "Gated product",
+        "description": "Auth-protected routes for the whole platform."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "3+",
+      "label": "AI providers wired",
+      "detail": "Gemini, OpenAI and Hugging Face behind one API."
+    },
+    {
+      "value": "5+",
+      "label": "API route groups",
+      "detail": "Auth, candidates, jobs, questions and tools."
+    },
+    {
+      "value": "Serverless",
+      "label": "Neon data layer",
+      "detail": "PostgreSQL without server management."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/genai/shot-1.png",
+      "alt": "HireGen home",
+      "caption": "The platform's AI-first landing page."
+    },
+    {
+      "src": "/images/projects/genai/shot-2.png",
+      "alt": "Login screen",
+      "caption": "Gated entry into the hiring workspace."
+    },
+    {
+      "src": "/images/projects/genai/shot-3.png",
+      "alt": "Hiring dashboard",
+      "caption": "Pipeline analytics in one view."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "AUTH",
+      "title": "Team signs in",
+      "description": "Users enter the gated workspace."
+    },
+    {
+      "id": "w2",
+      "tag": "CREATE",
+      "title": "Job drafted",
+      "description": "AI helps write the posting and questions."
+    },
+    {
+      "id": "w3",
+      "tag": "INGEST",
+      "title": "Resumes parsed",
+      "description": "Uploaded PDFs become structured profiles."
+    },
+    {
+      "id": "w4",
+      "tag": "SCREEN",
+      "title": "Candidates ranked",
+      "description": "AI surfaces fit against the role."
+    },
+    {
+      "id": "w5",
+      "tag": "DECIDE",
+      "title": "Humans decide",
+      "description": "The dashboard supports, never overrides."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — AI product built end to end",
+    "industry": "Software / HR Tech",
+    "timeline": "9 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "AI Product Development",
+      "Web Application Development",
+      "Full-Stack Web Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "violet",
+  "order": 18,
+  "objectives": [
+    "Automate resume parsing and content drafting with AI",
+    "Keep a human in the loop on every hiring decision",
+    "Ship auth and dashboards around the AI features",
+    "Run on serverless infrastructure with typed APIs"
+  ],
+  "workflowLayout": "linear"
+}

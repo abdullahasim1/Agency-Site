@@ -1,0 +1,196 @@
+{
+  "title": "Age Calculator",
+  "basics": {
+    "id": "prj-age-calculator",
+    "tagline": "Precise Age in Years, Months & Days"
+  },
+  "listing": {
+    "shortDescription": "A precise, lightweight age calculator — enter a date of birth and get exact years, months and days instantly, with a clean interface.",
+    "fullDescription": "A small tool with a precise job. The Age Calculator takes a date of birth and returns the exact age broken into years, months and days — instantly, with validation for future dates and a clean, focused interface. Built with plain HTML, CSS and JavaScript, it loads instantly and runs anywhere."
+  },
+  "cover": {
+    "image": "/images/projects/age-calculator/cover.png",
+    "imageAlt": "Age Calculator — Precise Age in Years, Months & Days"
+  },
+  "closing": {
+    "clientOverview": "Personal project — small utility tool",
+    "conclusion": "A small tool with a precise job — the age calculator answers instantly, breaking the result into years, months and days with a clean, usable interface."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps"
+  ],
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JavaScript"
+      ]
+    },
+    {
+      "group": "Logic",
+      "items": [
+        "Date arithmetic",
+        "Input validation"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Instant calculation",
+      "description": "Exact age in years, months and days on submit.",
+      "icon": "Calendar"
+    },
+    {
+      "title": "Date validation",
+      "description": "Future dates and invalid input caught cleanly.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Clean interface",
+      "description": "A single focused form with a clear result.",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "title": "Zero dependencies",
+      "description": "Plain HTML, CSS and JavaScript.",
+      "icon": "Zap"
+    }
+  ],
+  "challenge": {
+    "summary": "The requirement was absurdly simple and absurdly precise: give an exact age — years, months and days — with no ambiguity and no dependencies.",
+    "points": [
+      {
+        "icon": "Calendar",
+        "title": "Precision",
+        "description": "Age must be exact to the day, including months."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Validation",
+        "description": "Future or impossible dates must be rejected."
+      },
+      {
+        "icon": "Zap",
+        "title": "Simplicity",
+        "description": "One input, one button, one answer."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "The answer is a single focused screen: pick a date, get an answer. Correct date arithmetic and clear validation make the tool trustworthy.",
+    "points": [
+      {
+        "icon": "Calendar",
+        "title": "Correct arithmetic",
+        "description": "Years, months and days computed exactly."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Edge cases handled",
+        "description": "Validation covers future dates and bad input."
+      },
+      {
+        "icon": "Zap",
+        "title": "Instant and portable",
+        "description": "No dependencies, loads anywhere instantly."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "3",
+      "label": "Breakdown units",
+      "detail": "Years, months and days shown separately."
+    },
+    {
+      "value": "0",
+      "label": "Dependencies",
+      "detail": "Plain HTML, CSS and JavaScript."
+    },
+    {
+      "value": "Instant",
+      "label": "Result on submit",
+      "detail": "No round trips, no waiting."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/age-calculator/shot-1.png",
+      "alt": "Age calculator form",
+      "caption": "The single-input calculator interface."
+    },
+    {
+      "src": "/images/projects/age-calculator/shot-2.png",
+      "alt": "Result view",
+      "caption": "Exact age broken into years, months and days."
+    },
+    {
+      "src": "/images/projects/age-calculator/shot-3.png",
+      "alt": "Calculator detail",
+      "caption": "The clean, focused layout."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "OPEN",
+      "title": "Page loads",
+      "description": "One form, one question."
+    },
+    {
+      "id": "w2",
+      "tag": "PICK",
+      "title": "Date chosen",
+      "description": "Date of birth selected."
+    },
+    {
+      "id": "w3",
+      "tag": "SUBMIT",
+      "title": "Calculated",
+      "description": "Age computed in three units."
+    },
+    {
+      "id": "w4",
+      "tag": "READ",
+      "title": "Answer shown",
+      "description": "Years, months and days displayed."
+    },
+    {
+      "id": "w5",
+      "tag": "REPEAT",
+      "title": "Try another",
+      "description": "New dates recalculate instantly."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — small utility tool",
+    "industry": "Software / Utilities",
+    "timeline": "1 week",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Web Application Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "cyan",
+  "order": 20,
+  "objectives": [
+    "Return the exact age in years, months and days",
+    "Validate impossible and future dates",
+    "Ship with zero dependencies",
+    "Keep the interface to a single focused screen"
+  ],
+  "workflowLayout": "linear"
+}

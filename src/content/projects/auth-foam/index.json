@@ -1,0 +1,220 @@
+{
+  "title": "AuthFoam",
+  "basics": {
+    "id": "prj-auth-foam",
+    "tagline": "Full-Stack Authentication System"
+  },
+  "listing": {
+    "shortDescription": "A complete authentication starter — React client with sign-up, login and protected pages, backed by an Express and MySQL API.",
+    "fullDescription": "AuthFoam is a full-stack authentication system that any product can grow from. The React client provides a reusable auth form, sign-up, login and protected home, about and contact pages, wired to an Express API with a MySQL store. It is the unglamorous foundation every app needs, built properly once."
+  },
+  "cover": {
+    "image": "/images/projects/auth-foam/cover.png",
+    "imageAlt": "AuthFoam — Full-Stack Authentication System"
+  },
+  "closing": {
+    "clientOverview": "Personal project — reusable auth foundation",
+    "conclusion": "AuthFoam delivered a complete, reusable authentication stack — sign-up, login and protected pages wired end to end — ready to be the starting point for any product that needs accounts."
+  },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps",
+    "SaaS"
+  ],
+  "technologies": [
+    "React",
+    "Express",
+    "MySQL",
+    "Axios",
+    "React Router"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React",
+        "React Router",
+        "Bootstrap",
+        "Axios"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Express",
+        "Node.js",
+        "Body parsing",
+        "CORS"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "MySQL",
+        "User store"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Auth form",
+      "description": "A single reusable form component handling sign-in and sign-up modes.",
+      "icon": "ClipboardList"
+    },
+    {
+      "title": "Protected routes",
+      "description": "Home, about and contact pages that require a session.",
+      "icon": "Lock"
+    },
+    {
+      "title": "Express API",
+      "description": "Clean REST endpoints for registration and login.",
+      "icon": "Server"
+    },
+    {
+      "title": "MySQL storage",
+      "description": "Users persisted in MySQL with hashed credentials.",
+      "icon": "Database"
+    },
+    {
+      "title": "Token sessions",
+      "description": "Client-side session state wired through React context or state.",
+      "icon": "Fingerprint"
+    }
+  ],
+  "challenge": {
+    "summary": "Every product needs accounts, and most auth codebases are copy-paste chaos. AuthFoam set out to be the clean, reusable foundation — one repo with client and server working together.",
+    "points": [
+      {
+        "icon": "Repeat2",
+        "title": "Reusable client",
+        "description": "One auth form component serving both modes."
+      },
+      {
+        "icon": "Server",
+        "title": "Clean API",
+        "description": "Registration and login endpoints with consistent responses."
+      },
+      {
+        "icon": "Database",
+        "title": "Persistent users",
+        "description": "Credentials stored safely in MySQL."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Client and server split cleanly: the React app owns the UI and session state; the Express API owns credentials and the user store.",
+    "points": [
+      {
+        "icon": "Lock",
+        "title": "Gated pages",
+        "description": "Protected routes redirect unauthenticated visitors."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Dual-mode form",
+        "description": "Sign-in and sign-up share one validated component."
+      },
+      {
+        "icon": "Server",
+        "title": "Express API",
+        "description": "REST endpoints with CORS configured for the client."
+      },
+      {
+        "icon": "Database",
+        "title": "MySQL store",
+        "description": "Users and credentials persisted server-side."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "2",
+      "label": "Apps, one repo",
+      "detail": "React client and Express server in a single codebase."
+    },
+    {
+      "value": "3+",
+      "label": "Protected pages",
+      "detail": "Home, about and contact behind authentication."
+    },
+    {
+      "value": "Reusable",
+      "label": "Starter-grade foundation",
+      "detail": "Designed to be the auth layer of the next product."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/auth-foam/shot-1.png",
+      "alt": "Auth form",
+      "caption": "The dual-mode sign-in / sign-up form."
+    },
+    {
+      "src": "/images/projects/auth-foam/shot-2.png",
+      "alt": "Home page",
+      "caption": "Protected home after authentication."
+    },
+    {
+      "src": "/images/projects/auth-foam/shot-3.png",
+      "alt": "About page",
+      "caption": "Another gated route in the client."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "REGISTER",
+      "title": "Account created",
+      "description": "New users sign up via the shared form."
+    },
+    {
+      "id": "w2",
+      "tag": "LOGIN",
+      "title": "Session started",
+      "description": "Credentials exchanged for an authenticated state."
+    },
+    {
+      "id": "w3",
+      "tag": "GATE",
+      "title": "Routes protected",
+      "description": "Unauthenticated visits redirect to auth."
+    },
+    {
+      "id": "w4",
+      "tag": "USE",
+      "title": "Product pages",
+      "description": "Home, about and contact behind the session."
+    },
+    {
+      "id": "w5",
+      "tag": "LOGOUT",
+      "title": "Session ended",
+      "description": "Clean return to the auth screen."
+    }
+  ],
+  "overview": {
+    "client": "Personal project — reusable auth foundation",
+    "industry": "Software",
+    "timeline": "4 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application"
+    ],
+    "services": [
+      "Full-Stack Web Development",
+      "Custom Software Development"
+    ],
+    "team": "1 engineer"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 15,
+  "objectives": [
+    "Build client and server auth in one clean codebase",
+    "Make the auth form genuinely reusable across modes",
+    "Protect every page that needs a session",
+    "Persist users safely in MySQL"
+  ],
+  "workflowLayout": "linear"
+}
