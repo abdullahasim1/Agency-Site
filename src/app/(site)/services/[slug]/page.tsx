@@ -117,47 +117,47 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
             <div className="max-w-3xl">
-            <Reveal y={12}>
-              <span
-                className={cn(
-                  "inline-flex size-14 items-center justify-center rounded-[1rem] ring-1",
-                  iconTones[service.accent],
-                )}
-              >
-                <Icon name={service.icon} className="size-7" />
-              </span>
-            </Reveal>
+              <Reveal y={12}>
+                <span
+                  className={cn(
+                    "inline-flex size-14 items-center justify-center rounded-[1rem] ring-1",
+                    iconTones[service.accent],
+                  )}
+                >
+                  <Icon name={service.icon} className="size-7" />
+                </span>
+              </Reveal>
 
-            <Reveal delay={0.08} y={14}>
-              <h1 className="type-display mt-6">{service.title}</h1>
-            </Reveal>
+              <Reveal delay={0.08} y={14}>
+                <h1 className="type-display mt-6">{service.title}</h1>
+              </Reveal>
 
-            <Reveal delay={0.16} y={14}>
-              <p className="type-lead mt-5 text-ink-600">
-                {service.shortDescription}
-              </p>
-            </Reveal>
+              <Reveal delay={0.16} y={14}>
+                <p className="type-lead mt-5 text-ink-600">
+                  {service.shortDescription}
+                </p>
+              </Reveal>
 
-            <Reveal delay={0.24} y={14}>
-              <ul className="mt-7 flex flex-wrap gap-1.5" aria-label="Technologies">
-                {service.technologies.map((tech) => (
-                  <li key={tech}>
-                    <TechBadge name={tech} />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+              <Reveal delay={0.24} y={14}>
+                <ul className="mt-7 flex flex-wrap gap-1.5" aria-label="Technologies">
+                  {service.technologies.map((tech) => (
+                    <li key={tech}>
+                      <TechBadge name={tech} />
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
 
-            <Reveal delay={0.32} y={14}>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Button href={PRIMARY_CTA.href} size="lg">
-                  {PRIMARY_CTA.label}
-                </Button>
-                <Button href="/portfolio" size="lg" variant="secondary">
-                  {sharedCopy.actions.viewOurWork}
-                </Button>
-              </div>
-            </Reveal>
+              <Reveal delay={0.32} y={14}>
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <Button href={PRIMARY_CTA.href} size="lg">
+                    {PRIMARY_CTA.label}
+                  </Button>
+                  <Button href="/portfolio" size="lg" variant="secondary">
+                    {sharedCopy.actions.viewOurWork}
+                  </Button>
+                </div>
+              </Reveal>
             </div>
 
             <Reveal delay={0.18} y={18} className="min-w-0">
