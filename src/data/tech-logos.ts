@@ -13,7 +13,7 @@
  * (self-hosted)" → "n8n"), and unknown names fall through to the dot.
  */
 
-export const techLogos: Record<string, string> = {
+const techLogos: Record<string, string> = {
   React: "/logos/react.svg",
   "React Native": "/logos/react.svg",
   "React Context API": "/logos/react.svg",
@@ -45,6 +45,12 @@ export const techLogos: Record<string, string> = {
   "Firebase Cloud Messaging": "/logos/firebase.svg",
   GraphQL: "/logos/graphql.svg",
   OpenAI: "/logos/openai.svg",
+  Anthropic: "/logos/anthropic.svg",
+  DeepSeek: "/logos/deepseek.svg",
+  LangChain: "/logos/langchain.svg",
+  "Mistral AI": "/logos/mistralai.svg",
+  Ollama: "/logos/ollama.svg",
+  vLLM: "/logos/vllm.svg",
   Gemini: "/logos/gemini.svg",
   "Google Gemini": "/logos/gemini.svg",
   "Google Gemini API": "/logos/gemini.svg",

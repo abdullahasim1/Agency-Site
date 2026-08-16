@@ -9,7 +9,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/process.json";
 
-export interface ProcessStep {
+interface ProcessStep {
   id: string;
   /** Two-digit index rendered in mono type. */
   number: string;

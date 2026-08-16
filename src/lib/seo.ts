@@ -196,8 +196,8 @@ export function siteGraph() {
   };
 }
 
-/** Breadcrumb node. Exported for the pages that build their own trail. */
-export function breadcrumbSchema(
+/** Breadcrumb node, joined into the page graph. */
+function breadcrumbSchema(
   crumbs: Array<{ name: string; path: string }>,
   path = crumbs[crumbs.length - 1]?.path ?? "/",
 ): Node {
@@ -213,8 +213,8 @@ export function breadcrumbSchema(
   };
 }
 
-/** FAQ node. Used on /faq and on any service page whose FAQ list is filled in. */
-export function faqSchema(
+/** FAQ node, joined into the page graph. */
+function faqSchema(
   items: Array<{ question: string; answer: string }>,
   path = "/faq",
 ): Node {

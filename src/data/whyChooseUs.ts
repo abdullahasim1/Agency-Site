@@ -9,7 +9,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/why.json";
 
-export interface Differentiator {
+interface Differentiator {
   id: string;
   number: string;
   title: string;

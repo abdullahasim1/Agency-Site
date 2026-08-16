@@ -39,38 +39,38 @@ export const projectCategories: readonly ProjectCategory[] = [
   "SaaS",
 ] as const;
 
-export interface ProjectFeature {
+interface ProjectFeature {
   title: string;
   description: string;
   icon: IconName;
 }
 
 /** An icon card — used by Business Challenge and Solution Design grids. */
-export interface ProjectCardItem {
+interface ProjectCardItem {
   icon: IconName;
   title: string;
   description: string;
 }
 
-export interface ProjectResult {
+interface ProjectResult {
   /** Headline figure, e.g. "68%". */
   value: string;
   label: string;
   detail: string;
 }
 
-export interface ProjectGalleryItem {
+interface ProjectGalleryItem {
   src: string;
   alt: string;
   caption: string;
 }
 
-export interface TechStackGroup {
+interface TechStackGroup {
   group: string;
   items: string[];
 }
 
-export interface WorkflowNode {
+interface WorkflowNode {
   id: string;
   title: string;
   description: string;
@@ -78,7 +78,7 @@ export interface WorkflowNode {
   tag: string;
 }
 
-export interface ProjectOverviewMeta {
+interface ProjectOverviewMeta {
   client: string;
   industry: string;
   timeline: string;
@@ -129,7 +129,6 @@ export interface Project {
   /** Controls ordering in the grid; lower comes first. */
   order: number;
 }
-
 
 /* ---------------------------------------------------------------------------
    Selectors — components read through these rather than filtering inline.

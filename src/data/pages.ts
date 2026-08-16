@@ -21,19 +21,19 @@ import servicesRaw from "@/content/pages/services.json";
 import sharedRaw from "@/content/pages/shared.json";
 
 /** A section intro: small label above, heading, supporting line. */
-export interface SectionCopy {
+interface SectionCopy {
   eyebrow: string;
   title: string;
   description: string;
 }
 
-export interface SeoCopy {
+interface SeoCopy {
   title: string;
   description: string;
   keywords: string[];
 }
 
-export interface HomeCopy {
+interface HomeCopy {
   heroHeadline: string;
   /** Rendered as the gradient second line of the h1. */
   heroHeadlineAccent: string;
@@ -48,7 +48,7 @@ export interface HomeCopy {
   testimonials: SectionCopy;
 }
 
-export interface AboutCopy {
+interface AboutCopy {
   seo: SeoCopy;
   hero: SectionCopy;
   /** Labels for the facts strip; the figures themselves are counted. */
@@ -70,7 +70,7 @@ export interface AboutCopy {
   cta: SectionCopy;
 }
 
-export interface ServicesCopy {
+interface ServicesCopy {
   seo: SeoCopy;
   hero: SectionCopy;
   /** Labels for the facts strip; the counts themselves are derived. */
@@ -107,7 +107,7 @@ export interface ServicesCopy {
   };
 }
 
-export interface PortfolioCopy {
+interface PortfolioCopy {
   seo: SeoCopy;
   hero: SectionCopy;
   /** Labels for the facts strip; the counts themselves are derived. */
@@ -162,14 +162,14 @@ export interface PortfolioCopy {
   };
 }
 
-export interface FaqCopy {
+interface FaqCopy {
   seo: SeoCopy;
   hero: SectionCopy;
   cta: SectionCopy;
 }
 
 /** Every label, placeholder and message in the enquiry form. */
-export interface ContactFormCopy {
+interface ContactFormCopy {
   heading: string;
   intro: string;
   fullNameLabel: string;
@@ -204,7 +204,7 @@ export interface ContactFormCopy {
   failure: { before: string; after: string };
 }
 
-export interface ContactCopy {
+interface ContactCopy {
   seo: SeoCopy;
   eyebrow: string;
   title: string;
@@ -222,7 +222,7 @@ export interface ContactCopy {
   form: ContactFormCopy;
 }
 
-export interface BookACallCopy {
+interface BookACallCopy {
   seo: SeoCopy;
   eyebrow: string;
   title: string;
@@ -241,7 +241,7 @@ export interface BookACallCopy {
   };
 }
 
-export interface SharedCopy {
+interface SharedCopy {
   finalCta: {
     eyebrow: string;
     title: string;

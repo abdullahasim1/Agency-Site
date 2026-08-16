@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export type CardAccent = "brand" | "violet" | "cyan" | "none";
+type CardAccent = "brand" | "violet" | "cyan" | "none";
 
 interface GlowCardProps {
   children: ReactNode;

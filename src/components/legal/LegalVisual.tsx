@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
  * JavaScript and is neutralised under prefers-reduced-motion.
  */
 
-export interface LegalVisualProps {
+interface LegalVisualProps {
   kind: "privacy" | "terms";
   className?: string;
 }

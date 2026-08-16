@@ -14,7 +14,7 @@
 
 import raw from "@/content/testimonials.json";
 
-export interface Testimonial {
+interface Testimonial {
   id: string;
   quote: string;
   name: string;

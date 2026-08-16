@@ -11,37 +11,6 @@ import type { Transition, Variants } from "framer-motion";
 
 export const EASE_OUT_SOFT: Transition["ease"] = [0.22, 1, 0.36, 1];
 
-export const baseTransition: Transition = {
-  duration: 0.55,
-  ease: EASE_OUT_SOFT,
-};
-
-/** Standard scroll-reveal: fade with a small rise. */
-export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: baseTransition },
-};
-
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: baseTransition },
-};
-
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.97 },
-  visible: { opacity: 1, scale: 1, transition: baseTransition },
-};
-
-/** Parent wrapper that staggers its children's reveal. */
-export function staggerContainer(stagger = 0.07, delay = 0): Variants {
-  return {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: stagger, delayChildren: delay },
-    },
-  };
-}
-
 /**
  * Viewport config used for every scroll reveal, so timing feels consistent.
  *

@@ -96,26 +96,6 @@ export function LogoMark({
   );
 }
 
-interface WordmarkProps {
-  name: string;
-  className?: string;
-  tone?: "default" | "inverse";
-}
-
-export function Wordmark({ name, className, tone = "default" }: WordmarkProps) {
-  return (
-    <span
-      className={cn(
-        "font-display text-[1.0625rem] font-semibold tracking-[-0.02em]",
-        tone === "inverse" ? "text-white" : "text-ink-950",
-        className,
-      )}
-    >
-      {name}
-    </span>
-  );
-}
-
 interface BrandLogoProps {
   className?: string;
   /** `inverse` picks the white mark for dark backgrounds (footer). */

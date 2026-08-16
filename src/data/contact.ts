@@ -9,7 +9,7 @@
 
 import raw from "@/content/contact.json";
 
-export interface ConsultationPoint {
+interface ConsultationPoint {
   title: string;
   description: string;
 }

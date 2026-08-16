@@ -11,7 +11,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/stats.json";
 
-export interface Stat {
+interface Stat {
   id: string;
   /** Numeric target the counter animates towards. */
   value: number;
