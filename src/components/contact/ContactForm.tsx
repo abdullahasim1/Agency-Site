@@ -199,7 +199,13 @@ export function ContactForm() {
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <Field label={copy.fullNameLabel} htmlFor={fieldId("fullName")} required error={errors.fullName} errorId={errorId("fullName")}>
+        <Field
+          label={copy.fullNameLabel}
+          htmlFor={fieldId("fullName")}
+          required
+          error={errors.fullName}
+          errorId={errorId("fullName")}
+        >
           <input
             {...controlProps("fullName")}
             type="text"
@@ -209,7 +215,13 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label={copy.emailLabel} htmlFor={fieldId("email")} required error={errors.email} errorId={errorId("email")}>
+        <Field
+          label={copy.emailLabel}
+          htmlFor={fieldId("email")}
+          required
+          error={errors.email}
+          errorId={errorId("email")}
+        >
           <input
             {...controlProps("email")}
             type="email"
@@ -220,7 +232,12 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label={copy.companyLabel} htmlFor={fieldId("company")} error={errors.company} errorId={errorId("company")}>
+        <Field
+          label={copy.companyLabel}
+          htmlFor={fieldId("company")}
+          error={errors.company}
+          errorId={errorId("company")}
+        >
           <input
             {...controlProps("company")}
             type="text"
@@ -230,7 +247,12 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label={copy.phoneLabel} htmlFor={fieldId("phone")} error={errors.phone} errorId={errorId("phone")}>
+        <Field
+          label={copy.phoneLabel}
+          htmlFor={fieldId("phone")}
+          error={errors.phone}
+          errorId={errorId("phone")}
+        >
           <input
             {...controlProps("phone")}
             type="tel"
@@ -241,7 +263,13 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label={copy.projectTypeLabel} htmlFor={fieldId("projectType")} required error={errors.projectType} errorId={errorId("projectType")}>
+        <Field
+          label={copy.projectTypeLabel}
+          htmlFor={fieldId("projectType")}
+          required
+          error={errors.projectType}
+          errorId={errorId("projectType")}
+        >
           <select
             {...controlProps("projectType")}
             onChange={(event) => update("projectType", event.target.value)}
@@ -255,7 +283,12 @@ export function ContactForm() {
           </select>
         </Field>
 
-        <Field label={copy.budgetLabel} htmlFor={fieldId("budget")} error={errors.budget} errorId={errorId("budget")}>
+        <Field
+          label={copy.budgetLabel}
+          htmlFor={fieldId("budget")}
+          error={errors.budget}
+          errorId={errorId("budget")}
+        >
           <select
             {...controlProps("budget")}
             onChange={(event) => update("budget", event.target.value)}

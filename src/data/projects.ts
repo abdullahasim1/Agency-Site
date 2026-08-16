@@ -210,15 +210,17 @@ export async function getRelatedProjects(
   const current = projects.find((project) => project.slug === slug);
   if (!current) return projects.slice(0, limit);
 
-  const scored = projects
-    .filter((project) => project.slug !== slug)
-    .map((project) => ({
-      project,
-      overlap: project.categories.filter((category) =>
-        current.categories.includes(category),
-      ).length,
-    }))
-    .sort((a, b) => b.overlap - a.overlap || a.project.order - b.project.order);
+  const others = projects.filter((project) => project.slug !== slug);
 
-  return scored.slice(0, limit).map((entry) => entry.project);
+  const sharedCategories = (project: Project) =>
+    project.categories.filter((category) =>
+      current.categories.includes(category),
+    ).length;
+
+  const ranked = others.sort(
+    (a, b) =>
+      sharedCategories(b) - sharedCategories(a) || a.order - b.order,
+  );
+
+  return ranked.slice(0, limit);
 }
