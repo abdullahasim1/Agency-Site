@@ -19,7 +19,7 @@ export interface LegalSection {
 }
 
 /** The header and search listing for one legal route. */
-export interface LegalPageCopy {
+interface LegalPageCopy {
   eyebrow: string;
   title: string;
   description: string;

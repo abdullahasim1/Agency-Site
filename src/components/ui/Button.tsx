@@ -37,7 +37,7 @@ type AsButton = BaseProps &
     external?: never;
   };
 
-export type ButtonProps = AsLink | AsButton;
+type ButtonProps = AsLink | AsButton;
 
 const base =
   "group/btn relative inline-flex items-center justify-center gap-2 rounded-pill font-medium " +

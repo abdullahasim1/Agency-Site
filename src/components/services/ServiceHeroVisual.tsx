@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
  * under prefers-reduced-motion.
  */
 
-export interface ServiceHeroVisualProps {
+interface ServiceHeroVisualProps {
   slug: string;
   accent: "brand" | "violet" | "cyan";
   className?: string;

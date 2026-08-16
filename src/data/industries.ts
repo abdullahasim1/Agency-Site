@@ -9,7 +9,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/industries.json";
 
-export interface Industry {
+interface Industry {
   id: string;
   name: string;
   icon: IconName;

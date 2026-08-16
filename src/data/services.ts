@@ -14,12 +14,12 @@
 import type { IconName } from "./icons";
 import { reader } from "./reader";
 
-export interface ServiceDeliverable {
+interface ServiceDeliverable {
   title: string;
   description: string;
 }
 
-export interface ServiceFaq {
+interface ServiceFaq {
   question: string;
   answer: string;
 }

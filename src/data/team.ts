@@ -16,7 +16,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/about.json";
 
-export interface TeamMember {
+interface TeamMember {
   id: string;
   name: string;
   role: string;
@@ -27,14 +27,14 @@ export interface TeamMember {
   avatar?: string;
 }
 
-export interface Pillar {
+interface Pillar {
   id: string;
   title: string;
   body: string;
   icon: IconName;
 }
 
-export interface Capability {
+interface Capability {
   id: string;
   title: string;
   description: string;
