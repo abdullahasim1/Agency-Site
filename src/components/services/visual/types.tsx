@@ -58,7 +58,7 @@ export function VisualPanel({
         <span className="size-2.5 rounded-full bg-ink-200" aria-hidden />
         <span className="size-2.5 rounded-full bg-ink-200" aria-hidden />
         <span className="size-2.5 rounded-full bg-ink-200" aria-hidden />
-        <p className="type-eyebrow ml-2 text-ink-400">{label}</p>
+        <p className="type-eyebrow ml-2 text-ink-500">{label}</p>
         <span className="ml-auto inline-flex items-center gap-1.5 text-[0.6875rem] font-medium text-ink-500">
           <span
             className="animate-node size-1.5 rounded-full bg-emerald-500"

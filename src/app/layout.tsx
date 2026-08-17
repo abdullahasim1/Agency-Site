@@ -26,6 +26,7 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
+  preload: false,
 });
 
 /*

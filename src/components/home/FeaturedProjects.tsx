@@ -40,9 +40,9 @@ export async function FeaturedProjects() {
           stagger={0.07}
           className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <StaggerItem as="li" key={project.id} className="h-full">
-              <ProjectCard project={project} priority={index < 3} />
+              <ProjectCard project={project} />
             </StaggerItem>
           ))}
         </Stagger>
