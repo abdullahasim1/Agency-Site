@@ -117,6 +117,8 @@ export function BrandLogo({ className, tone = "default" }: BrandLogoProps) {
           : "/logos/weblogo/devrox-color.svg"
       }
       alt="DevRox"
+      width={1304}
+      height={432}
       className={cn("h-9 w-auto", className)}
     />
   );

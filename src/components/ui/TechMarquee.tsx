@@ -55,7 +55,7 @@ export function TechMarquee({
         <p
           className={cn(
             "type-eyebrow text-center",
-            dark ? "text-ink-500" : "text-ink-400",
+            dark ? "text-ink-500" : "text-ink-500",
           )}
         >
           {label}

@@ -54,7 +54,7 @@ export function Process() {
                 </span>
 
                 <div className="lg:pr-4">
-                  <p className="type-eyebrow text-ink-400">{step.number}</p>
+                  <p className="type-eyebrow text-ink-500">{step.number}</p>
                   <h3 className="type-h3 mt-2">{step.title}</h3>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
                     {step.summary}
