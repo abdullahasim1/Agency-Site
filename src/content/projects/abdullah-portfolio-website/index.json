@@ -4,22 +4,18 @@
     "id": "prj-abdullah-portfolio",
     "tagline": "Animated Developer Portfolio with GSAP"
   },
+  "category": "Web Application",
+  "categories": [
+    "Web Apps"
+  ],
   "listing": {
     "shortDescription": "A modern, animated personal portfolio built with React 19, Vite and GSAP — glowing cards, magnetic buttons, particle backgrounds and micro-interactions throughout.",
     "fullDescription": "A developer's personal portfolio is a portfolio page, a motion showcase and a brand statement all at once. Built with React 19, Vite and Tailwind CSS v4, this site layers GSAP-driven reveals, gradient text with flipping words, 3D tilt glow cards, a magnetic call-to-action button and a cursor follower — every scroll and hover is a deliberate micro-interaction."
   },
   "cover": {
-    "image": "/images/projects/abdullah-portfolio/cover.png",
+    "image": "/images/projects/abdullah-portfolio-website/cover/image.png",
     "imageAlt": "Portfolio Website — Animated Developer Portfolio with GSAP"
   },
-  "closing": {
-    "clientOverview": "Personal project — the developer's own showcase site",
-    "conclusion": "The portfolio became a live, animated showcase that visitors remember — the developer's own site, rebuilt with the same motion and polish it sells to clients."
-  },
-  "category": "Web Application",
-  "categories": [
-    "Web Apps"
-  ],
   "technologies": [
     "React",
     "Vite",
@@ -125,6 +121,16 @@
       }
     ]
   },
+  "objectives": [
+    "Prove the developer's motion and UI skills with the site itself",
+    "Keep every effect performant on mobile as well as desktop",
+    "Present projects, skills and services in a convincing order",
+    "Make the whole thing easy to update as the portfolio grows"
+  ],
+  "closing": {
+    "clientOverview": "Personal project — the developer's own showcase site",
+    "conclusion": "The portfolio became a live, animated showcase that visitors remember — the developer's own site, rebuilt with the same motion and polish it sells to clients."
+  },
   "results": [
     {
       "value": "100%",
@@ -144,53 +150,55 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/abdullah-portfolio/shot-1.png",
+      "src": "/images/projects/abdullah-portfolio-website/gallery/0/src.png",
       "alt": "Portfolio hero with animated headline",
       "caption": "The hero — gradient text, particle background and magnetic CTA."
     },
     {
-      "src": "/images/projects/abdullah-portfolio/shot-2.png",
+      "src": "/images/projects/abdullah-portfolio-website/gallery/1/src.png",
       "alt": "Projects section with tilt cards",
       "caption": "Project cards with 3D tilt and spotlight glow."
     },
     {
-      "src": "/images/projects/abdullah-portfolio/shot-3.png",
+      "src": "/images/projects/abdullah-portfolio-website/gallery/2/src.png",
       "alt": "Services and contact sections",
       "caption": "Skills, services and contact with split-text reveals."
     }
   ],
+  "video": {},
   "workflow": [
     {
       "id": "w1",
-      "tag": "DESIGN",
       "title": "Motion language",
-      "description": "Define the reveal, tilt and hover choreography."
+      "description": "Define the reveal, tilt and hover choreography.",
+      "tag": "DESIGN"
     },
     {
       "id": "w2",
-      "tag": "BUILD",
       "title": "Component library",
-      "description": "GlowCard, MagneticButton and WordFlipper as reusable pieces."
+      "description": "GlowCard, MagneticButton and WordFlipper as reusable pieces.",
+      "tag": "BUILD"
     },
     {
       "id": "w3",
-      "tag": "TUNE",
       "title": "Performance pass",
-      "description": "GPU transforms, scroll triggers and mobile fallbacks."
+      "description": "GPU transforms, scroll triggers and mobile fallbacks.",
+      "tag": "TUNE"
     },
     {
       "id": "w4",
-      "tag": "SHIP",
       "title": "Deploy",
-      "description": "Vercel build with continuous iteration."
+      "description": "Vercel build with continuous iteration.",
+      "tag": "SHIP"
     },
     {
       "id": "w5",
-      "tag": "GROW",
       "title": "Content updates",
-      "description": "Projects and copy swap in without touching motion."
+      "description": "Projects and copy swap in without touching motion.",
+      "tag": "GROW"
     }
   ],
+  "workflowLayout": "linear",
   "overview": {
     "client": "Personal project — the developer's own showcase site",
     "industry": "Professional Services",
@@ -207,12 +215,5 @@
   },
   "featured": false,
   "accent": "brand",
-  "order": 12,
-  "objectives": [
-    "Prove the developer's motion and UI skills with the site itself",
-    "Keep every effect performant on mobile as well as desktop",
-    "Present projects, skills and services in a convincing order",
-    "Make the whole thing easy to update as the portfolio grows"
-  ],
-  "workflowLayout": "linear"
+  "order": 12
 }
