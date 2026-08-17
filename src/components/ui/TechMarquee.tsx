@@ -31,7 +31,7 @@ interface TechMarqueeProps {
  */
 export function TechMarquee({
   label = sharedCopy.techMarqueeLabel,
-  items = allTechnologies,
+  items = allTechnologies.slice(0, 28),
   tone = "light",
   className,
 }: TechMarqueeProps) {
