@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/Badge";
 import { GlowCard } from "@/components/ui/GlowCard";
+import { ZoomableImage } from "@/components/ui/Lightbox";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
@@ -38,7 +39,11 @@ export function ProjectCard({
       padding="none"
       className={cn("flex h-full flex-col", className)}
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-ink-200 bg-ink-50">
+      <ZoomableImage
+        images={[{ src: project.image, alt: project.imageAlt }]}
+        index={0}
+        className="relative z-10 aspect-[16/9] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
+      >
         <Image
           src={project.image}
           alt={project.imageAlt}
@@ -48,7 +53,7 @@ export function ProjectCard({
           loading={priority ? undefined : "lazy"}
           className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
         />
-      </div>
+      </ZoomableImage>
 
       <div className="flex flex-1 flex-col p-6">
         <p className="type-eyebrow text-brand-600">{project.category}</p>
