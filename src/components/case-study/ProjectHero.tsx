@@ -4,6 +4,7 @@ import { CheckCircle2, ChevronRight } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ZoomableImage } from "@/components/ui/Lightbox";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
@@ -114,7 +115,18 @@ export function ProjectHero({ project }: { project: Project }) {
           </div>
 
           <Reveal delay={0.18} y={18} className="lg:sticky lg:top-28">
-            <figure className="relative aspect-[4/3] w-full overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card">
+            <ZoomableImage
+              images={[
+                { src: project.image, alt: project.imageAlt },
+                ...project.gallery.map((item) => ({
+                  src: item.src,
+                  alt: item.alt,
+                  caption: item.caption,
+                })),
+              ]}
+              index={0}
+              className="relative aspect-[16/9] w-full overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card"
+            >
               <Image
                 src={project.image}
                 alt={project.imageAlt}
@@ -123,7 +135,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 sizes="(min-width: 1024px) 30vw, 80vw"
                 className="object-cover"
               />
-            </figure>
+            </ZoomableImage>
           </Reveal>
         </div>
       </Container>
