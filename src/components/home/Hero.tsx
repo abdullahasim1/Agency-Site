@@ -82,7 +82,7 @@ export function Hero() {
 
             <Reveal delay={0.32} y={14}>
               <div className="mt-10 border-t border-ink-200 pt-6">
-                <p className="type-eyebrow text-ink-400">
+                <p className="type-eyebrow text-ink-500">
                   {homeCopy.heroCapabilitiesLabel}
                 </p>
                 <ul className="mt-3.5 flex flex-wrap gap-x-5 gap-y-2.5">
