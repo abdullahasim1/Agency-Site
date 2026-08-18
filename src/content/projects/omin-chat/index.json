@@ -280,7 +280,38 @@
       "detail": "The interface was designed and optimized for desktop, tablet, and mobile experiences with responsive navigation, layouts, and interaction patterns."
     }
   ],
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/projects/omin-chat/gallery/0/src.png",
+      "alt": "OmniChat AI interface showing an intelligent conversation with real-time streaming responses in an elegant dark mode design",
+      "caption": "Experience AI Conversations Like Never Before"
+    },
+    {
+      "src": "/images/projects/omin-chat/gallery/1/src.png",
+      "alt": "OmniChat template library featuring 12 categorized prompt templates for development, writing, learning, and business tasks",
+      "caption": "12+ Smart Templates. Infinite Possibilities"
+    },
+    {
+      "src": "/images/projects/omin-chat/gallery/2/src.png",
+      "alt": "Real-time AI response streaming in OmniChat showing live text generation as the AI composes its answer",
+      "caption": "Watch AI Think in Real-Time"
+    },
+    {
+      "src": "/images/projects/omin-chat/gallery/3/src.png",
+      "alt": "OmniChat code syntax highlighting feature showing Python and JavaScript code blocks with copy functionality and line numbers",
+      "caption": "Built for Developers, Loved by Everyone"
+    },
+    {
+      "src": "/images/projects/omin-chat/gallery/4/src.png",
+      "alt": "OmniChat privacy and security settings showing local data storage, API key management, and no tracking guarantee",
+      "caption": "Your Eyes Will Thank You"
+    },
+    {
+      "src": "/images/projects/omin-chat/gallery/5/src.png",
+      "alt": "Lead with the main value proposition",
+      "caption": "Additional Marketing Copy"
+    }
+  ],
   "video": {},
   "workflow": [],
   "workflowLayout": "linear",
