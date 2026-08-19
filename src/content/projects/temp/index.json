@@ -1,0 +1,66 @@
+{
+  "title": "temp",
+  "basics": {
+    "id": "temp"
+  },
+  "categories": [],
+  "listing": {},
+  "cover": {
+    "image": "/images/projects/temp/cover/image.png"
+  },
+  "technologies": [],
+  "techStack": [],
+  "features": [],
+  "challenge": {
+    "points": []
+  },
+  "solution": {
+    "points": []
+  },
+  "objectives": [],
+  "closing": {},
+  "results": [],
+  "gallery": [
+    {
+      "src": "/images/projects/temp/gallery/0/src.png",
+      "alt": "temp",
+      "caption": "temp1"
+    },
+    {
+      "src": "/images/projects/temp/gallery/1/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/temp/gallery/2/src.png",
+      "alt": "temp",
+      "caption": "temptemp"
+    },
+    {
+      "src": "/images/projects/temp/gallery/3/src.png",
+      "alt": "temp",
+      "caption": "temptemp"
+    },
+    {
+      "src": "/images/projects/temp/gallery/4/src.png",
+      "alt": "temp",
+      "caption": "temptemp"
+    },
+    {
+      "src": "/images/projects/temp/gallery/5/src.png",
+      "alt": "temp",
+      "caption": "temptemp"
+    }
+  ],
+  "video": {},
+  "workflow": [],
+  "workflowLayout": "linear",
+  "advanced": {},
+  "overview": {
+    "platforms": [],
+    "services": []
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 100
+}
