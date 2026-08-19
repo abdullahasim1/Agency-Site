@@ -14,30 +14,15 @@ import type { GalleryValue } from "./gallery";
 /**
  * Editor UI for the custom gallery field — a client component.
  *
- * The field shows every image as a clean thumbnail (no buttons on top of the
- * image). Clicking a thumbnail opens a centered modal with the large preview,
- * the alt text and the caption stacked beneath it, and the Remove button under
- * the caption. The Upload button opens a centered modal with a clickable
- * drag-and-drop zone and a Browse picker, so many screenshots can be chosen at
- * once. All alt/caption values live in the field state, so they survive
- * closing and reopening modals, and saving happens with the panel's normal
+ * The field itself only shows the Upload button and an image count. All
+ * management happens in one centered modal: every image (existing or newly
+ * picked) appears in a scrollable vertical list, each row with the preview on
+ * the left, its Alt Text and Caption on the right, and a Remove button below
+ * the preview. The drop zone and Browse button at the bottom of the modal add
+ * more images; values live in the field state, so Alt Text and Caption survive
+ * adding, removing and reopening. Saving happens with the panel's normal
  * Create / Save action.
  */
-
-const thumbnailClass = css({
-  width: 148,
-  height: 100,
-  objectFit: "contain",
-  display: "block",
-  borderRadius: tokenSchema.size.radius.medium,
-  border: `1px solid ${tokenSchema.color.border.neutral}`,
-  background: tokenSchema.color.background.surfaceSecondary,
-  cursor: "pointer",
-  transition: "border-color 120ms ease",
-  "&:hover": {
-    borderColor: tokenSchema.color.border.accent,
-  },
-});
 
 const emptyClass = css({
   padding: tokenSchema.size.space.large,
@@ -45,6 +30,7 @@ const emptyClass = css({
   border: `1px dashed ${tokenSchema.color.border.neutral}`,
   color: tokenSchema.color.foreground.neutralSecondary,
   fontSize: tokenSchema.typography.text.small.size,
+  textAlign: "center",
 });
 
 const dropZoneClass = css({
@@ -53,7 +39,7 @@ const dropZoneClass = css({
   alignItems: "center",
   justifyContent: "center",
   gap: tokenSchema.size.space.regular,
-  padding: tokenSchema.size.space.xlarge,
+  padding: tokenSchema.size.space.large,
   borderRadius: tokenSchema.size.radius.medium,
   border: `2px dashed ${tokenSchema.color.border.neutral}`,
   color: tokenSchema.color.foreground.neutralSecondary,
@@ -71,8 +57,8 @@ const dropZoneDraggingClass = css({
 });
 
 const previewClass = css({
-  maxWidth: "100%",
-  maxHeight: 320,
+  width: 180,
+  height: 130,
   objectFit: "contain",
   display: "block",
   borderRadius: tokenSchema.size.radius.medium,
@@ -80,13 +66,17 @@ const previewClass = css({
   background: tokenSchema.color.background.surfaceSecondary,
 });
 
+const listClass = css({
+  maxHeight: "60vh",
+  overflowY: "auto",
+});
+
 export function GalleryFieldInput(
   props: { label: string; description?: string } & FormFieldInputProps<GalleryValue>,
 ) {
   const { label, description, value, onChange } = props;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
-  const [uploadOpen, setUploadOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   const addFiles = async (files: FileList | null) => {
@@ -106,7 +96,6 @@ export function GalleryFieldInput(
       });
     }
     onChange([...value, ...added]);
-    setUploadOpen(false);
     setIsDragging(false);
   };
 
@@ -120,91 +109,90 @@ export function GalleryFieldInput(
       URL.revokeObjectURL(item.src);
     }
     onChange(value.filter((_, i) => i !== index));
-    setEditingIndex(null);
   };
-
-  const editingItem = editingIndex === null ? null : value[editingIndex];
 
   return (
     <VStack gap="regular" width="100%">
       <FieldLabel elementType="span">{label}</FieldLabel>
       {description ? <FieldDescription>{description}</FieldDescription> : null}
 
-      {value.length === 0 ? (
-        <div className={emptyClass}>No images yet — click Upload to add screenshots.</div>
-      ) : (
-        <Flex gap="regular" wrap="wrap">
-          {value.map((item, index) => (
-            <Flex key={index} direction="column" gap="xsmall" alignItems="center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.src}
-                alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
-                className={thumbnailClass}
-                onClick={() => setEditingIndex(index)}
-                title="Click to edit"
-              />
-              <Text size="small" color="neutralSecondary">
-                {index + 1}
-                {item.alt || item.caption ? " · filled" : ""}
-              </Text>
-            </Flex>
-          ))}
-        </Flex>
-      )}
-
       <Flex gap="regular" alignItems="center">
-        <ActionButton onPress={() => setUploadOpen(true)}>Upload</ActionButton>
+        <ActionButton
+          onPress={() => {
+            setIsOpen(true);
+            fileInputRef.current?.click();
+          }}
+        >
+          Upload
+        </ActionButton>
+        {value.length > 0 ? (
+          <Text size="small" color="neutralSecondary">
+            {value.length} image{value.length > 1 ? "s" : ""}
+          </Text>
+        ) : null}
       </Flex>
 
-      {editingItem && editingIndex !== null ? (
-        <DialogContainer isDismissable onDismiss={() => setEditingIndex(null)}>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        hidden
+        onChange={(event) => {
+          void addFiles(event.target.files);
+          event.target.value = "";
+        }}
+      />
+
+      {isOpen ? (
+        <DialogContainer isDismissable onDismiss={() => setIsOpen(false)}>
           <Dialog size="large">
             <VStack gap="medium" width="100%">
-              <VStack gap="xsmall">
-                <Heading size="medium">Image {editingIndex + 1}</Heading>
-                {editingItem.originalFilename ? (
-                  <Text size="small" color="neutralSecondary">
-                    {editingItem.originalFilename}
-                  </Text>
-                ) : null}
-              </VStack>
-              <Flex justifyContent="center" width="100%">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={editingItem.src}
-                  alt={editingItem.alt || editingItem.originalFilename || `Gallery image ${editingIndex + 1}`}
-                  className={previewClass}
-                />
-              </Flex>
-              <TextField
-                label="Alt text"
-                value={editingItem.alt}
-                onChange={(alt) => updateItem(editingIndex, { alt })}
-              />
-              <TextArea
-                label="Caption"
-                value={editingItem.caption}
-                onChange={(caption) => updateItem(editingIndex, { caption })}
-              />
-              <Flex gap="regular" justifyContent="space-between" alignItems="center">
-                <Button tone="critical" onPress={() => removeItem(editingIndex)}>
-                  Remove
-                </Button>
-                <Button prominence="high" onPress={() => setEditingIndex(null)}>
-                  Done
-                </Button>
-              </Flex>
-            </VStack>
-          </Dialog>
-        </DialogContainer>
-      ) : null}
+              <Heading size="medium">
+                Gallery images{value.length ? ` (${value.length})` : ""}
+              </Heading>
 
-      {uploadOpen ? (
-        <DialogContainer isDismissable onDismiss={() => setUploadOpen(false)}>
-          <Dialog size="medium">
-            <VStack gap="medium" width="100%">
-              <Heading size="medium">Upload screenshots</Heading>
+              {value.length === 0 ? (
+                <div className={emptyClass}>No images yet — add some below.</div>
+              ) : (
+                <div className={listClass}>
+                  <VStack gap="large" width="100%">
+                    {value.map((item, index) => (
+                      <Flex key={index} gap="regular" alignItems="start" width="100%">
+                        <VStack gap="small" alignItems="center">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={item.src}
+                            alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
+                            className={previewClass}
+                          />
+                          <Button tone="critical" onPress={() => removeItem(index)}>
+                            Remove
+                          </Button>
+                        </VStack>
+                        <VStack gap="small" flex>
+                          {item.originalFilename ? (
+                            <Text size="small" color="neutralSecondary">
+                              {item.originalFilename}
+                            </Text>
+                          ) : null}
+                          <TextField
+                            label="Alt Text"
+                            value={item.alt}
+                            onChange={(alt) => updateItem(index, { alt })}
+                          />
+                          <TextArea
+                            label="Caption"
+                            value={item.caption}
+                            onChange={(caption) => updateItem(index, { caption })}
+                          />
+                        </VStack>
+                      </Flex>
+                    ))}
+                  </VStack>
+                </div>
+              )}
+
               <div
                 className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
                 onClick={() => fileInputRef.current?.click()}
@@ -219,20 +207,15 @@ export function GalleryFieldInput(
                   void addFiles(event.dataTransfer.files);
                 }}
               >
-                <Text>Drag &amp; drop images here, or click to browse</Text>
+                <Text>Drag &amp; drop more images here, or click to browse</Text>
                 <Button prominence="high">Browse</Button>
               </div>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                multiple
-                hidden
-                onChange={(event) => {
-                  void addFiles(event.target.files);
-                  event.target.value = "";
-                }}
-              />
+
+              <Flex justifyContent="end">
+                <Button prominence="high" onPress={() => setIsOpen(false)}>
+                  Done
+                </Button>
+              </Flex>
             </VStack>
           </Dialog>
         </DialogContainer>
