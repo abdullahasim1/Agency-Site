@@ -11,19 +11,6 @@ import { css, tokenSchema } from "@keystar/ui/style";
 import type { FormFieldInputProps } from "@keystatic/core";
 import type { GalleryValue } from "./gallery";
 
-/**
- * Editor UI for the custom gallery field — a client component.
- *
- * The field itself only shows the Upload button and an image count. All
- * management happens in one centered modal: every image (existing or newly
- * picked) appears in a scrollable vertical list, each row with the preview on
- * the left, its Alt Text and Caption on the right, and a Remove button below
- * the preview. The drop zone and Browse button at the bottom of the modal add
- * more images; values live in the field state, so Alt Text and Caption survive
- * adding, removing and reopening. Saving happens with the panel's normal
- * Create / Save action.
- */
-
 const emptyClass = css({
   padding: tokenSchema.size.space.large,
   borderRadius: tokenSchema.size.radius.medium,
@@ -102,65 +89,57 @@ const previewClass = css({
 });
 
 const listClass = css({
-  maxHeight: "100%",
+  flex: 1,
   overflowY: "auto",
   overflowX: "hidden",
+  minHeight: 0,
   scrollbarWidth: "thin",
   scrollbarColor: `${tokenSchema.color.border.neutral} transparent`,
-  "&::-webkit-scrollbar": {
-    width: 6,
-  },
-  "&::-webkit-scrollbar-track": {
-    background: "transparent",
-  },
+  "&::-webkit-scrollbar": { width: 6 },
+  "&::-webkit-scrollbar-track": { background: "transparent" },
   "&::-webkit-scrollbar-thumb": {
     background: tokenSchema.color.border.neutral,
     borderRadius: 3,
   },
-  "&::-webkit-scrollbar-button": {
-    display: "none",
-  },
+  "&::-webkit-scrollbar-button": { display: "none" },
 });
 
+// Outer dialog wrapper — forces a fixed width on the dialog
 const dialogContentClass = css({
   width: "100%",
   maxWidth: "calc(100vw - 100px)",
   padding: "50px !important",
   position: "relative",
-  "@media (min-width: 900px)": {
-    minWidth: "800px",
-  },
+  marginRight: "-100px !important",
+  "@media (min-width: 900px)": { minWidth: "800px" },
   "@media (max-width: 900px)": {
     minWidth: "calc(100vw - 100px)",
     padding: "24px !important",
+    marginRight: "50px !important",
   },
+  "button, [role='button']": { cursor: "pointer !important" },
+  "& button": { cursor: "pointer !important" },
 });
 
+// Full modal column: header (fixed) + scrollable list + footer (fixed)
 const modalWrapperClass = css({
-  position: "relative",
-  width: "100%",
-  maxHeight: "80vh",
-  overflow: "hidden",
   display: "flex",
   flexDirection: "column",
+  height: "75vh",
+  overflow: "hidden",
 });
 
-const modalBodyClass = css({
-  flex: 1,
-  overflowY: "auto",
-  overflowX: "hidden",
-  width: "100%",
-  boxSizing: "border-box",
+const modalHeaderClass = css({
+  flexShrink: 0,
+  paddingBottom: tokenSchema.size.space.medium,
 });
 
-const closeButtonOverrideClass = css({
-  marginRight: "-100px !important",
-  "button, [role='button']": {
-    cursor: "pointer !important",
-  },
-  "& button": {
-    cursor: "pointer !important",
-  },
+const modalFooterClass = css({
+  flexShrink: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: tokenSchema.size.space.medium,
+  paddingTop: tokenSchema.size.space.medium,
 });
 
 export function GalleryFieldInput(
@@ -197,9 +176,7 @@ export function GalleryFieldInput(
 
   const removeItem = (index: number) => {
     const item = value[index];
-    if (item && item.src.startsWith("blob:")) {
-      URL.revokeObjectURL(item.src);
-    }
+    if (item && item.src.startsWith("blob:")) URL.revokeObjectURL(item.src);
     onChange(value.filter((_, i) => i !== index));
   };
 
@@ -213,13 +190,7 @@ export function GalleryFieldInput(
       {description ? <FieldDescription>{description}</FieldDescription> : null}
 
       <Flex gap="regular" alignItems="center">
-        <ActionButton
-          onPress={() => {
-            setIsOpen(true);
-          }}
-        >
-          Upload
-        </ActionButton>
+        <ActionButton onPress={() => setIsOpen(true)}>Upload</ActionButton>
         {value.length > 0 ? (
           <Text size="small" color="neutralSecondary">
             {value.length} image{value.length > 1 ? "s" : ""}
@@ -242,14 +213,17 @@ export function GalleryFieldInput(
       {isOpen ? (
         <DialogContainer isDismissable onDismiss={() => setIsOpen(false)}>
           <Dialog size="large">
-            <div className={`${dialogContentClass} ${closeButtonOverrideClass}`}>
+            <div className={dialogContentClass}>
               <div className={modalWrapperClass}>
-                <div className={modalBodyClass}>
-                  <VStack gap="medium" width="100%">
-                <Heading size="medium">
-                  Gallery images{value.length ? ` (${value.length})` : ""}
-                </Heading>
 
+                {/* Fixed header */}
+                <div className={modalHeaderClass}>
+                  <Heading size="medium">
+                    Gallery images{value.length ? ` (${value.length})` : ""}
+                  </Heading>
+                </div>
+
+                {/* Scrollable image list */}
                 {value.length === 0 ? (
                   <div className={emptyClass}>No images yet — add some below.</div>
                 ) : (
@@ -293,32 +267,34 @@ export function GalleryFieldInput(
                   </div>
                 )}
 
-                <div
-                  className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
-                  onDragOver={(event) => {
-                    event.preventDefault();
-                    setIsDragging(true);
-                  }}
-                  onDragLeave={() => setIsDragging(false)}
-                  onDrop={(event) => {
-                    event.preventDefault();
-                    setIsDragging(false);
-                    void addFiles(event.dataTransfer.files);
-                  }}
-                >
-                  <Text>Drag &amp; drop more images here, or click Browse</Text>
-                  <Button prominence="high" onPress={handleBrowseClick}>
-                    Browse
-                  </Button>
+                {/* Fixed footer: dropzone + done */}
+                <div className={modalFooterClass}>
+                  <div
+                    className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
+                    onDragOver={(event) => {
+                      event.preventDefault();
+                      setIsDragging(true);
+                    }}
+                    onDragLeave={() => setIsDragging(false)}
+                    onDrop={(event) => {
+                      event.preventDefault();
+                      setIsDragging(false);
+                      void addFiles(event.dataTransfer.files);
+                    }}
+                  >
+                    <Text>Drag &amp; drop more images here, or click Browse</Text>
+                    <Button prominence="high" onPress={handleBrowseClick}>
+                      Browse
+                    </Button>
+                  </div>
+
+                  <Flex justifyContent="end">
+                    <Button prominence="high" onPress={() => setIsOpen(false)}>
+                      Done
+                    </Button>
+                  </Flex>
                 </div>
 
-                <Flex justifyContent="end">
-                  <Button prominence="high" onPress={() => setIsOpen(false)}>
-                    Done
-                  </Button>
-                </Flex>
-              </VStack>
-                </div>
               </div>
             </div>
           </Dialog>
