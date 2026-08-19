@@ -42,8 +42,8 @@
     "Approval chains with notifications and audit history"
   ],
   "relatedProjects": [
-    "workflow-automation-system",
-    "ai-sales-automation"
+    "nexusops",
+    "verivoice"
   ],
   "accent": "cyan",
   "featured": true

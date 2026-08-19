@@ -234,7 +234,7 @@
     ],
     "team": "1 engineer, 1 designer"
   },
-  "featured": false,
+  "featured": true,
   "accent": "cyan",
   "order": 11,
   "objectives": [

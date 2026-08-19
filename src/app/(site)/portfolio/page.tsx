@@ -23,7 +23,7 @@ export default async function PortfolioPage() {
     <>
       <PortfolioHero />
 
-      <section className="section-y">
+      <section id="projects" className="section-y">
         <Container>
           <h2 className="sr-only">{portfolioCopy.grid.heading}</h2>
           <ProjectGrid projects={projects} categories={projectCategories} />

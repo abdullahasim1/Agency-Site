@@ -44,18 +44,19 @@ export function ProjectGallery({ project }: { project: Project }) {
                     caption,
                   }))}
                   index={index}
-                  className="relative aspect-[16/9] w-full bg-ink-50"
+                  className="relative w-full bg-ink-50"
                 >
                   <Image
                     src={item.src}
                     alt={item.alt}
-                    fill
+                    width={item.width}
+                    height={item.height}
                     sizes={
                       index === 0
                         ? "(min-width: 1280px) 1152px, (min-width: 640px) 92vw, 96vw"
                         : "(min-width: 1280px) 566px, (min-width: 640px) 45vw, 96vw"
                     }
-                    className="object-cover"
+                    className="h-auto w-full"
                   />
                 </ZoomableImage>
                 <figcaption className="border-t border-ink-200 px-5 py-4 text-sm leading-relaxed text-ink-600">
