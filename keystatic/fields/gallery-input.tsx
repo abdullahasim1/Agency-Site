@@ -56,19 +56,44 @@ const dropZoneDraggingClass = css({
   background: tokenSchema.color.background.accent,
 });
 
-const previewClass = css({
-  width: 180,
-  height: 130,
-  objectFit: "contain",
-  display: "block",
+const previewBoxClass = css({
+  width: "100%",
+  maxWidth: 360,
+  flexShrink: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: tokenSchema.size.space.small,
   borderRadius: tokenSchema.size.radius.medium,
   border: `1px solid ${tokenSchema.color.border.neutral}`,
   background: tokenSchema.color.background.surfaceSecondary,
 });
 
+const previewClass = css({
+  width: "100%",
+  maxHeight: 240,
+  objectFit: "contain",
+  display: "block",
+});
+
 const listClass = css({
   maxHeight: "60vh",
   overflowY: "auto",
+  scrollbarWidth: "thin",
+  scrollbarColor: `${tokenSchema.color.border.neutral} transparent`,
+  "&::-webkit-scrollbar": {
+    width: 6,
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "transparent",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: tokenSchema.color.border.neutral,
+    borderRadius: 3,
+  },
+  "&::-webkit-scrollbar-button": {
+    display: "none",
+  },
 });
 
 export function GalleryFieldInput(
@@ -160,12 +185,14 @@ export function GalleryFieldInput(
                     {value.map((item, index) => (
                       <Flex key={index} gap="regular" alignItems="start" width="100%">
                         <VStack gap="small" alignItems="center">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={item.src}
-                            alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
-                            className={previewClass}
-                          />
+                          <div className={previewBoxClass}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={item.src}
+                              alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
+                              className={previewClass}
+                            />
+                          </div>
                           <Button tone="critical" onPress={() => removeItem(index)}>
                             Remove
                           </Button>
