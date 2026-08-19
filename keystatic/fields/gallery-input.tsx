@@ -14,22 +14,26 @@ import type { GalleryValue } from "./gallery";
 /**
  * Editor UI for the custom gallery field — a client component.
  *
- * The field shows every image as a thumbnail. Clicking a thumbnail opens a
- * modal with the large preview, its alt text and caption, and the Remove
- * button beneath them. The Upload button opens a modal with drag-and-drop and
- * a Browse picker, so many screenshots can be chosen at once. Actual saving
- * happens with the panel's normal Create / Save action, exactly like every
- * other field.
+ * The field shows every image as a clean thumbnail (no buttons on top of the
+ * image). Clicking a thumbnail opens a centered modal with the large preview,
+ * the alt text and the caption stacked beneath it, and the Remove button under
+ * the caption. The Upload button opens a centered modal with a clickable
+ * drag-and-drop zone and a Browse picker, so many screenshots can be chosen at
+ * once. All alt/caption values live in the field state, so they survive
+ * closing and reopening modals, and saving happens with the panel's normal
+ * Create / Save action.
  */
 
 const thumbnailClass = css({
   width: 148,
   height: 100,
   objectFit: "contain",
+  display: "block",
   borderRadius: tokenSchema.size.radius.medium,
   border: `1px solid ${tokenSchema.color.border.neutral}`,
   background: tokenSchema.color.background.surfaceSecondary,
   cursor: "pointer",
+  transition: "border-color 120ms ease",
   "&:hover": {
     borderColor: tokenSchema.color.border.accent,
   },
@@ -54,6 +58,11 @@ const dropZoneClass = css({
   border: `2px dashed ${tokenSchema.color.border.neutral}`,
   color: tokenSchema.color.foreground.neutralSecondary,
   textAlign: "center",
+  cursor: "pointer",
+  transition: "border-color 120ms ease, background-color 120ms ease",
+  "&:hover": {
+    borderColor: tokenSchema.color.border.accent,
+  },
 });
 
 const dropZoneDraggingClass = css({
@@ -65,6 +74,7 @@ const previewClass = css({
   maxWidth: "100%",
   maxHeight: 320,
   objectFit: "contain",
+  display: "block",
   borderRadius: tokenSchema.size.radius.medium,
   border: `1px solid ${tokenSchema.color.border.neutral}`,
   background: tokenSchema.color.background.surfaceSecondary,
@@ -132,7 +142,7 @@ export function GalleryFieldInput(
                 alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
                 className={thumbnailClass}
                 onClick={() => setEditingIndex(index)}
-                title="Click to edit alt text, caption or remove"
+                title="Click to edit"
               />
               <Text size="small" color="neutralSecondary">
                 {index + 1}
@@ -148,19 +158,25 @@ export function GalleryFieldInput(
       </Flex>
 
       {editingItem && editingIndex !== null ? (
-        <DialogContainer
-          isDismissable
-          onDismiss={() => setEditingIndex(null)}
-        >
+        <DialogContainer isDismissable onDismiss={() => setEditingIndex(null)}>
           <Dialog size="large">
             <VStack gap="medium" width="100%">
-              <Heading size="medium">Image {editingIndex + 1}</Heading>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={editingItem.src}
-                alt={editingItem.alt || editingItem.originalFilename || `Gallery image ${editingIndex + 1}`}
-                className={previewClass}
-              />
+              <VStack gap="xsmall">
+                <Heading size="medium">Image {editingIndex + 1}</Heading>
+                {editingItem.originalFilename ? (
+                  <Text size="small" color="neutralSecondary">
+                    {editingItem.originalFilename}
+                  </Text>
+                ) : null}
+              </VStack>
+              <Flex justifyContent="center" width="100%">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={editingItem.src}
+                  alt={editingItem.alt || editingItem.originalFilename || `Gallery image ${editingIndex + 1}`}
+                  className={previewClass}
+                />
+              </Flex>
               <TextField
                 label="Alt text"
                 value={editingItem.alt}
@@ -172,10 +188,7 @@ export function GalleryFieldInput(
                 onChange={(caption) => updateItem(editingIndex, { caption })}
               />
               <Flex gap="regular" justifyContent="space-between" alignItems="center">
-                <Button
-                  tone="critical"
-                  onPress={() => removeItem(editingIndex)}
-                >
+                <Button tone="critical" onPress={() => removeItem(editingIndex)}>
                   Remove
                 </Button>
                 <Button prominence="high" onPress={() => setEditingIndex(null)}>
@@ -194,6 +207,7 @@ export function GalleryFieldInput(
               <Heading size="medium">Upload screenshots</Heading>
               <div
                 className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
+                onClick={() => fileInputRef.current?.click()}
                 onDragOver={(event) => {
                   event.preventDefault();
                   setIsDragging(true);
@@ -205,10 +219,8 @@ export function GalleryFieldInput(
                   void addFiles(event.dataTransfer.files);
                 }}
               >
-                <Text>Drag &amp; drop images here</Text>
-                <ActionButton onPress={() => fileInputRef.current?.click()}>
-                  Browse
-                </ActionButton>
+                <Text>Drag &amp; drop images here, or click to browse</Text>
+                <Button prominence="high">Browse</Button>
               </div>
               <input
                 ref={fileInputRef}
