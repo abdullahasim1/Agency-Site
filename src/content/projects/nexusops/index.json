@@ -192,7 +192,13 @@
       "detail": "Exponential backoff before a connector's circuit breaker trips."
     }
   ],
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/projects/nexusops/gallery/0/src.png",
+      "alt": "",
+      "caption": ""
+    }
+  ],
   "video": {},
   "workflow": [
     {
