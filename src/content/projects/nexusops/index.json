@@ -29,6 +29,14 @@
   ],
   "techStack": [
     {
+      "group": "AI",
+      "items": [
+        "Claude Code",
+        "Structured JSON inference",
+        "Deterministic fallback classifier"
+      ]
+    },
+    {
       "group": "Frontend",
       "items": [
         "React 18",
@@ -44,14 +52,6 @@
         "Node.js",
         "Express",
         "Vite"
-      ]
-    },
-    {
-      "group": "AI",
-      "items": [
-        "Claude Code",
-        "Structured JSON inference",
-        "Deterministic fallback classifier"
       ]
     },
     {
