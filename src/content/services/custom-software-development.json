@@ -43,7 +43,7 @@
     "Products that must integrate deeply with legacy systems"
   ],
   "relatedProjects": [
-    "smart-crm",
+    "fieldops-mobile",
     "commerce-insights"
   ],
   "accent": "violet",

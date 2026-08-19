@@ -1,4 +1,5 @@
 import type { IconName } from "./icons";
+import { imageSize } from "@/lib/image-size";
 import { reader } from "./reader";
 
 /**
@@ -63,6 +64,9 @@ interface ProjectGalleryItem {
   src: string;
   alt: string;
   caption: string;
+  /** Intrinsic pixel size, read from the file at build time. */
+  width: number;
+  height: number;
 }
 
 interface TechStackGroup {
@@ -103,6 +107,9 @@ export interface Project {
   fullDescription: string;
   image: string;
   imageAlt: string;
+  /** Intrinsic pixel size of the cover, read from the file at build time. */
+  imageWidth: number;
+  imageHeight: number;
   /** Flat badge list used on cards. */
   technologies: string[];
   /** Grouped stack shown on the case-study page. */
@@ -147,7 +154,7 @@ let projectsPromise: Promise<Project[]> | undefined;
  * components only ever see the flat `Project` shape.
  */
 const flatten = (entry: Record<string, unknown>): Omit<Project, "slug"> => {
-  const { basics, listing, cover, closing, ...rest } = entry as Record<
+  const { basics, listing, cover, closing, advanced: _advanced, ...rest } = entry as Record<
     string,
     Record<string, unknown>
   >;
@@ -160,13 +167,72 @@ const flatten = (entry: Record<string, unknown>): Omit<Project, "slug"> => {
   } as unknown as Omit<Project, "slug">;
 };
 
+/**
+ * Resolves a project entry to its final shape:
+ *
+ * 1. If the panel's "Raw JSON (advanced)" field holds valid JSON, that JSON
+ *    becomes the entire entry — a power-user override for everything above.
+ * 2. Any lines in "Bulk gallery images" are appended to the gallery as extra
+ *    items, so many images can be added in one paste.
+ */
+const resolveEntry = (entry: Record<string, unknown>) => {
+  const raw = entry.advanced as Record<string, unknown> | undefined;
+  const rawJson = typeof raw?.rawJson === "string" ? raw.rawJson.trim() : "";
+
+  if (rawJson) {
+    try {
+      const parsed = JSON.parse(rawJson) as Record<string, unknown>;
+      if (parsed && typeof parsed === "object") {
+        return parsed;
+      }
+    } catch {
+      // Invalid JSON — fall through to the structured form fields.
+    }
+  }
+  return entry;
+};
+
+/** Gallery item appended from the "Bulk gallery images" field. */
+const bulkGalleryItems = (entry: Record<string, unknown>) => {
+  const raw = entry.advanced as Record<string, unknown> | undefined;
+  const urls =
+    typeof raw?.galleryUrls === "string" ? raw.galleryUrls.split("\n") : [];
+
+  return urls
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((src, index) => ({ src, alt: `Gallery image ${index + 1}`, caption: "" }));
+};
+
 /** All projects in portfolio order (lowest `order` first). */
 export function getProjects(): Promise<Project[]> {
-  projectsPromise ??= reader.collections.projects.all().then((entries) =>
-    entries
-      .map(({ slug, entry }) => ({ ...flatten(entry), slug }) as unknown as Project)
-      .sort((a, b) => a.order - b.order),
-  );
+  projectsPromise ??= reader.collections.projects.all().then(async (entries) => {
+    const projects: Project[] = [];
+
+    for (const { slug, entry } of entries) {
+      const resolved = resolveEntry(entry);
+      const project = {
+        ...flatten(resolved),
+        gallery: [...flatten(resolved).gallery, ...bulkGalleryItems(entry)],
+        slug,
+      } as unknown as Project;
+      const cover = await imageSize(project.image);
+      project.imageWidth = cover.width;
+      project.imageHeight = cover.height;
+
+      const gallery = await Promise.all(
+        project.gallery.map(async (item) => {
+          const { width, height } = await imageSize(item.src);
+          return { ...item, width, height };
+        }),
+      );
+      project.gallery = gallery;
+
+      projects.push(project);
+    }
+
+    return projects.sort((a, b) => a.order - b.order);
+  });
   return projectsPromise;
 }
 

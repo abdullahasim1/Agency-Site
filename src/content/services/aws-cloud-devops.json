@@ -62,9 +62,9 @@
     }
   ],
   "relatedProjects": [
-    "workflow-automation-system",
-    "smart-crm",
-    "commerce-insights"
+    "commerce-insights",
+    "reportai",
+    "cyberthreat-mesh"
   ],
   "accent": "brand",
   "featured": true

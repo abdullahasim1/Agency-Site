@@ -298,7 +298,7 @@
     ],
     "team": "1 engineer"
   },
-  "featured": false,
+  "featured": true,
   "accent": "cyan",
   "order": 25
 }

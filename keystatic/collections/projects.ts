@@ -356,6 +356,28 @@ export const projects = collection({
       ],
       defaultValue: "linear",
     }),
+    advanced: fields.object(
+      {
+        rawJson: fields.text({
+          label: "Raw JSON (advanced)",
+          description:
+            "Paste the complete project JSON here to override every field in this form. Leave empty to use the form values. Malformed JSON is ignored and the form is used instead.",
+          multiline: true,
+        }),
+        galleryUrls: fields.text({
+          label: "Bulk gallery images",
+          description:
+            "Optional. Add several gallery images at once — one image URL or /images/... path per line. Appended to the gallery above when saved.",
+          multiline: true,
+        }),
+      },
+      {
+        label: "Advanced — JSON & bulk images",
+        description:
+          "Power-user options: override the entry with raw JSON, or add many gallery images in one paste.",
+        layout: [12, 12],
+      },
+    ),
     overview: fields.object(
       {
         client: fields.text({

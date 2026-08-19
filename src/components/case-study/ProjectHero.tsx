@@ -125,15 +125,16 @@ export function ProjectHero({ project }: { project: Project }) {
                 })),
               ]}
               index={0}
-              className="relative aspect-[16/9] w-full overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card"
+              className="relative w-full overflow-hidden rounded-panel border border-ink-200 bg-ink-50 shadow-card"
             >
               <Image
                 src={project.image}
                 alt={project.imageAlt}
-                fill
+                width={project.imageWidth}
+                height={project.imageHeight}
                 priority
                 sizes="(min-width: 1024px) 30vw, 80vw"
-                className="object-cover"
+                className="h-auto w-full"
               />
             </ZoomableImage>
           </Reveal>
