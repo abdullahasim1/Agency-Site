@@ -44,7 +44,6 @@ const dropZoneClass = css({
   border: `2px dashed ${tokenSchema.color.border.neutral}`,
   color: tokenSchema.color.foreground.neutralSecondary,
   textAlign: "center",
-  cursor: "pointer",
   transition: "border-color 120ms ease, background-color 120ms ease",
   "&:hover": {
     borderColor: tokenSchema.color.border.accent,
@@ -58,7 +57,7 @@ const dropZoneDraggingClass = css({
 
 const previewBoxClass = css({
   width: "100%",
-  maxWidth: 360,
+  maxWidth: 300,
   flexShrink: 0,
   display: "flex",
   alignItems: "center",
@@ -69,6 +68,32 @@ const previewBoxClass = css({
   background: tokenSchema.color.background.surfaceSecondary,
 });
 
+const imageItemClass = css({
+  display: "grid",
+  gridTemplateColumns: "minmax(240px, 300px) 1fr",
+  gap: tokenSchema.size.space.regular,
+  width: "100%",
+  alignItems: "start",
+  "@media (max-width: 768px)": {
+    gridTemplateColumns: "1fr",
+  },
+});
+
+const imageLeftClass = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: tokenSchema.size.space.small,
+  alignItems: "center",
+});
+
+const imageRightClass = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: tokenSchema.size.space.small,
+  width: "100%",
+  minWidth: 0,
+});
+
 const previewClass = css({
   width: "100%",
   maxHeight: 240,
@@ -77,8 +102,9 @@ const previewClass = css({
 });
 
 const listClass = css({
-  maxHeight: "60vh",
+  maxHeight: "100%",
   overflowY: "auto",
+  overflowX: "hidden",
   scrollbarWidth: "thin",
   scrollbarColor: `${tokenSchema.color.border.neutral} transparent`,
   "&::-webkit-scrollbar": {
@@ -93,6 +119,47 @@ const listClass = css({
   },
   "&::-webkit-scrollbar-button": {
     display: "none",
+  },
+});
+
+const dialogContentClass = css({
+  width: "100%",
+  maxWidth: "calc(100vw - 100px)",
+  padding: "50px !important",
+  position: "relative",
+  "@media (min-width: 900px)": {
+    minWidth: "800px",
+  },
+  "@media (max-width: 900px)": {
+    minWidth: "calc(100vw - 100px)",
+    padding: "24px !important",
+  },
+});
+
+const modalWrapperClass = css({
+  position: "relative",
+  width: "100%",
+  maxHeight: "80vh",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+});
+
+const modalBodyClass = css({
+  flex: 1,
+  overflowY: "auto",
+  overflowX: "hidden",
+  width: "100%",
+  boxSizing: "border-box",
+});
+
+const closeButtonOverrideClass = css({
+  marginRight: "-100px !important",
+  "button, [role='button']": {
+    cursor: "pointer !important",
+  },
+  "& button": {
+    cursor: "pointer !important",
   },
 });
 
@@ -136,6 +203,10 @@ export function GalleryFieldInput(
     onChange(value.filter((_, i) => i !== index));
   };
 
+  const handleBrowseClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <VStack gap="regular" width="100%">
       <FieldLabel elementType="span">{label}</FieldLabel>
@@ -145,7 +216,6 @@ export function GalleryFieldInput(
         <ActionButton
           onPress={() => {
             setIsOpen(true);
-            fileInputRef.current?.click();
           }}
         >
           Upload
@@ -172,78 +242,85 @@ export function GalleryFieldInput(
       {isOpen ? (
         <DialogContainer isDismissable onDismiss={() => setIsOpen(false)}>
           <Dialog size="large">
-            <VStack gap="medium" width="100%">
-              <Heading size="medium">
-                Gallery images{value.length ? ` (${value.length})` : ""}
-              </Heading>
+            <div className={`${dialogContentClass} ${closeButtonOverrideClass}`}>
+              <div className={modalWrapperClass}>
+                <div className={modalBodyClass}>
+                  <VStack gap="medium" width="100%">
+                <Heading size="medium">
+                  Gallery images{value.length ? ` (${value.length})` : ""}
+                </Heading>
 
-              {value.length === 0 ? (
-                <div className={emptyClass}>No images yet — add some below.</div>
-              ) : (
-                <div className={listClass}>
-                  <VStack gap="large" width="100%">
-                    {value.map((item, index) => (
-                      <Flex key={index} gap="regular" alignItems="start" width="100%">
-                        <VStack gap="small" alignItems="center">
-                          <div className={previewBoxClass}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={item.src}
-                              alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
-                              className={previewClass}
+                {value.length === 0 ? (
+                  <div className={emptyClass}>No images yet — add some below.</div>
+                ) : (
+                  <div className={listClass}>
+                    <VStack gap="large" width="100%">
+                      {value.map((item, index) => (
+                        <div key={index} className={imageItemClass}>
+                          <div className={imageLeftClass}>
+                            <div className={previewBoxClass}>
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={item.src}
+                                alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
+                                className={previewClass}
+                              />
+                            </div>
+                            <Button tone="critical" onPress={() => removeItem(index)}>
+                              Remove
+                            </Button>
+                          </div>
+                          <div className={imageRightClass}>
+                            {item.originalFilename ? (
+                              <Text size="small" color="neutralSecondary">
+                                {item.originalFilename}
+                              </Text>
+                            ) : null}
+                            <TextField
+                              label="Alt Text"
+                              value={item.alt}
+                              onChange={(alt) => updateItem(index, { alt })}
+                            />
+                            <TextArea
+                              label="Caption"
+                              value={item.caption}
+                              onChange={(caption) => updateItem(index, { caption })}
                             />
                           </div>
-                          <Button tone="critical" onPress={() => removeItem(index)}>
-                            Remove
-                          </Button>
-                        </VStack>
-                        <VStack gap="small" flex>
-                          {item.originalFilename ? (
-                            <Text size="small" color="neutralSecondary">
-                              {item.originalFilename}
-                            </Text>
-                          ) : null}
-                          <TextField
-                            label="Alt Text"
-                            value={item.alt}
-                            onChange={(alt) => updateItem(index, { alt })}
-                          />
-                          <TextArea
-                            label="Caption"
-                            value={item.caption}
-                            onChange={(caption) => updateItem(index, { caption })}
-                          />
-                        </VStack>
-                      </Flex>
-                    ))}
-                  </VStack>
+                        </div>
+                      ))}
+                    </VStack>
+                  </div>
+                )}
+
+                <div
+                  className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
+                  onDragOver={(event) => {
+                    event.preventDefault();
+                    setIsDragging(true);
+                  }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={(event) => {
+                    event.preventDefault();
+                    setIsDragging(false);
+                    void addFiles(event.dataTransfer.files);
+                  }}
+                >
+                  <Text>Drag &amp; drop more images here, or click Browse</Text>
+                  <Button prominence="high" onPress={handleBrowseClick}>
+                    Browse
+                  </Button>
                 </div>
-              )}
 
-              <div
-                className={`${dropZoneClass} ${isDragging ? dropZoneDraggingClass : ""}`}
-                onClick={() => fileInputRef.current?.click()}
-                onDragOver={(event) => {
-                  event.preventDefault();
-                  setIsDragging(true);
-                }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={(event) => {
-                  event.preventDefault();
-                  setIsDragging(false);
-                  void addFiles(event.dataTransfer.files);
-                }}
-              >
-                <Text>Drag &amp; drop more images here, or click to browse</Text>
-                <Button prominence="high">Browse</Button>
+                <Flex justifyContent="end">
+                  <Button prominence="high" onPress={() => setIsOpen(false)}>
+                    Done
+                  </Button>
+                </Flex>
+              </VStack>
+                </div>
               </div>
-
-              <Flex justifyContent="end">
-                <Button prominence="high" onPress={() => setIsOpen(false)}>
-                  Done
-                </Button>
-              </Flex>
-            </VStack>
+            </div>
           </Dialog>
         </DialogContainer>
       ) : null}

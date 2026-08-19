@@ -19,22 +19,28 @@ export const projects = collection({
     title: fields.slug({
       name: {
         label: "Project title",
-        description: "Project name, shown on the card and case-study page.",
-        validation: { isRequired: true },
+        description: "Project name, shown on the card and case-study page. Not required if you're using Raw JSON.",
+        validation: { isRequired: false },
       },
       slug: {
         label: "URL slug",
         description: devOnly(
           "This becomes /portfolio/slug. Avoid changing after publish — existing links break.",
         ),
-        validation: {
-          pattern: keyPatternValidation,
-        },
       },
     }),
     basics: fields.object(
       {
-        id: idField,
+        id: fields.text({
+          label: "Internal ID",
+          description: devOnly(
+            "not shown on the site. Used as a stable key by the data layer — changing it breaks saved references.",
+          ),
+          validation: {
+            isRequired: false,
+            pattern: keyPatternValidation,
+          },
+        }),
         tagline: fields.text({
           label: "Tagline",
           description:
@@ -45,7 +51,7 @@ export const projects = collection({
       {
         label: "Basics",
         description:
-          "The project's stable machine key and the tagline under the title.",
+          "The project's stable machine key and the tagline under the title. Not required if using Raw JSON.",
         layout: [6, 6],
       },
     ),
@@ -361,7 +367,7 @@ export const projects = collection({
         client: fields.text({
           label: "Client",
           description: "Name, or \"Confidential\" if undisclosed.",
-          validation: { isRequired: true },
+          validation: { isRequired: false },
         }),
         industry: fields.text({ label: "Industry" }),
         timeline: fields.text({
