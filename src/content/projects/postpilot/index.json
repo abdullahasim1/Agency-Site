@@ -4,24 +4,20 @@
     "id": "prj-postpilot",
     "tagline": "AI Social Media Content & Publishing Platform"
   },
-  "listing": {
-    "shortDescription": "A centralized AI workspace that turns YouTube videos, trending topics, prompts and uploaded files into platform-specific posts — with scheduling, publishing and analytics for seven networks in one dashboard.",
-    "fullDescription": "PostPilot is a centralized AI-powered social media platform. Users start with a YouTube video, a trending topic, a custom prompt or an uploaded document, and the platform generates platform-specific copy through multiple AI models. Blotato handles automated publishing, Higgsfield generates video assets, and a draft-review workflow keeps humans in control — all from one workspace covering LinkedIn, Instagram, Facebook, X, TikTok, Pinterest and Threads."
-  },
-  "cover": {
-    "image": "/images/projects/postpilot/cover.png",
-    "imageAlt": "PostPilot — AI Social Media Content & Publishing Platform"
-  },
-  "closing": {
-    "clientOverview": "Content teams and creators with long-form content who need it repurposed across LinkedIn, Instagram, Facebook, X, TikTok, Pinterest and Threads without switching between disconnected tools.",
-    "conclusion": "PostPilot turns a single source — a video, a topic, a prompt or a document — into a complete multi-platform campaign. From AI generation through human review, scheduling and publishing, the entire workflow lives in one workspace, and analytics closes the loop on what performs where."
-  },
   "category": "AI / Social Media",
   "categories": [
     "AI",
     "SaaS",
     "Web Apps"
   ],
+  "listing": {
+    "shortDescription": "A centralized AI workspace that turns YouTube videos, trending topics, prompts and uploaded files into platform-specific posts — with scheduling, publishing and analytics for seven networks in one dashboard.",
+    "fullDescription": "PostPilot is a centralized AI-powered social media platform. Users start with a YouTube video, a trending topic, a custom prompt or an uploaded document, and the platform generates platform-specific copy through multiple AI models. Blotato handles automated publishing, Higgsfield generates video assets, and a draft-review workflow keeps humans in control — all from one workspace covering LinkedIn, Instagram, Facebook, X, TikTok, Pinterest and Threads."
+  },
+  "cover": {
+    "image": "/images/projects/postpilot/cover/image.png",
+    "imageAlt": "PostPilot AI social media management dashboard showing scheduled content, connected accounts, and performance metrics for an AI agency in usa, ai services in usa "
+  },
   "technologies": [
     "Next.js",
     "React",
@@ -205,6 +201,10 @@
     "Schedule through a centralized calendar and publish across platforms",
     "Track post performance through cross-platform analytics"
   ],
+  "closing": {
+    "clientOverview": "Content teams and creators with long-form content who need it repurposed across LinkedIn, Instagram, Facebook, X, TikTok, Pinterest and Threads without switching between disconnected tools.",
+    "conclusion": "PostPilot turns a single source — a video, a topic, a prompt or a document — into a complete multi-platform campaign. From AI generation through human review, scheduling and publishing, the entire workflow lives in one workspace, and analytics closes the loop on what performs where."
+  },
   "results": [
     {
       "value": "7",
@@ -229,60 +229,92 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/postpilot/shot-1.png",
-      "alt": "Content Studio",
-      "caption": "The AI creation workspace — choose a source, model, settings and platforms."
+      "src": "/images/projects/postpilot/gallery/0/src.png",
+      "alt": "PostPilot AI content studio for creating and repurposing social media content with AI automation services",
+      "caption": "An AI-powered workspace for creating and repurposing social content from videos, topics, prompts, and uploaded content."
     },
     {
-      "src": "/images/projects/postpilot/shot-2.png",
-      "alt": "Social Accounts",
-      "caption": "Connected accounts for all seven platforms, with status and followers."
+      "src": "/images/projects/postpilot/gallery/1/src.png",
+      "alt": "PostPilot social media content calendar for planning and scheduling automated posts across multiple platforms ai in usa",
+      "caption": "A unified social media calendar for planning, scheduling, and tracking content across all connected platforms."
     },
     {
-      "src": "/images/projects/postpilot/shot-3.png",
-      "alt": "Analytics dashboard",
-      "caption": "Cross-platform performance across impressions, engagement and reach."
+      "src": "/images/projects/postpilot/gallery/2/src.png",
+      "alt": "PostPilot social media post management dashboard for an AI agency managing published and scheduled content, ai solution , agenticai solution , software solution ",
+      "caption": "A centralized workspace to view, manage, edit, schedule, and analyze published and upcoming social media posts."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/3/src.png",
+      "alt": "PostPilot social media account management interface for connecting and managing multiple social platforms, it solution , ai business solution in usa",
+      "caption": "A single dashboard for connecting, monitoring, and managing LinkedIn, Instagram, Facebook, X, TikTok, Pinterest, and Threads accounts."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/4/src.png",
+      "alt": "PostPilot AI social media analytics dashboard showing engagement, impressions, and platform performance, ai in fintech , automation solution , web development , app development",
+      "caption": "A cross-platform performance dashboard for tracking impressions, engagement, likes, comments, shares, and engagement rates."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/5/src.png",
+      "alt": "PostPilot settings dashboard for configuring social media automation services, publishing preferences, and integrations , ai services , web app ",
+      "caption": "A centralized settings workspace for managing user profiles, preferences, notifications, publishing options, team settings, and integrations."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/6/src.png",
+      "alt": "PostPilot AI-generated social media drafts workspace for reviewing and editing content before publishing , software solution in usa",
+      "caption": "A collaborative workspace for reviewing, editing, organizing, and approving AI-generated content before publishing."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/7/src.png",
+      "alt": "PostPilot media library for managing images, videos, documents, and reusable social media content assets ,ai  software solution , agentic ai flow , automation workflow ",
+      "caption": "A centralized asset library for storing, organizing, searching, and reusing images, videos, GIFs, documents, audio, and brand assets."
+    },
+    {
+      "src": "/images/projects/postpilot/gallery/8/src.png",
+      "alt": "PostPilot AI content generator transforming YouTube videos, trending topics, prompts, and uploads into social media content through AI automation, ai services in usa , ai workflow , business automation ",
+      "caption": "An AI content-generation interface for transforming YouTube videos, trending topics, custom prompts, and uploaded content into platform-ready posts."
     }
   ],
+  "video": {},
   "workflow": [
     {
       "id": "w1",
-      "tag": "SOURCE",
       "title": "Content chosen",
-      "description": "A YouTube video, trending topic, custom prompt or uploaded document."
+      "description": "A YouTube video, trending topic, custom prompt or uploaded document.",
+      "tag": "SOURCE"
     },
     {
       "id": "w2",
-      "tag": "GENERATE",
       "title": "AI content generated",
-      "description": "Platform-specific posts across the selected networks and models."
+      "description": "Platform-specific posts across the selected networks and models.",
+      "tag": "GENERATE"
     },
     {
       "id": "w3",
-      "tag": "MEDIA",
       "title": "Media generated",
-      "description": "Images and video produced via Higgsfield into the Media Library."
+      "description": "Images and video produced via Higgsfield into the Media Library.",
+      "tag": "MEDIA"
     },
     {
       "id": "w4",
-      "tag": "REVIEW",
       "title": "Human review",
-      "description": "Drafts edited and approved before anything goes live."
+      "description": "Drafts edited and approved before anything goes live.",
+      "tag": "REVIEW"
     },
     {
       "id": "w5",
-      "tag": "PUBLISH",
       "title": "Schedule & publish",
-      "description": "Blotato publishes across the connected social accounts."
+      "description": "Blotato publishes across the connected social accounts.",
+      "tag": "PUBLISH"
     },
     {
       "id": "w6",
-      "tag": "ANALYZE",
       "title": "Performance tracked",
-      "description": "Cross-platform analytics close the loop on what works."
+      "description": "Cross-platform analytics close the loop on what works.",
+      "tag": "ANALYZE"
     }
   ],
   "workflowLayout": "linear",
+  "advanced": {},
   "overview": {
     "client": "SaaS product — AI social media platform",
     "industry": "Marketing / SaaS / Social Media",
