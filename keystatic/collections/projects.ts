@@ -1,4 +1,5 @@
 import { collection, fields } from "@keystatic/core";
+import { galleryField } from "../fields/gallery";
 import {
   accentField,
   devOnly,
@@ -264,34 +265,11 @@ export const projects = collection({
           props.fields.label.value || props.fields.value.value || "Result",
       },
     ),
-    gallery: fields.array(
-      fields.object(
-        {
-          src: fields.image({
-            label: "Image",
-            description:
-              "Upload a screenshot. Stored under public/images/projects/<slug>/.",
-            directory: "public/images/projects",
-            publicPath: "/images/projects",
-            validation: { isRequired: true },
-          }),
-          alt: fields.text({ label: "Alt text" }),
-          caption: fields.text({
-            label: "Caption",
-            description: "Short line under the image.",
-            multiline: true,
-          }),
-        },
-        {
-          layout: [8, 4, 12],
-        },
-      ),
-      {
-        label: "Gallery",
-        description: "Interface screens. The first image spans the full width.",
-        itemLabel: (props) => props.fields.caption.value || "Image",
-      },
-    ),
+    gallery: galleryField({
+      label: "Gallery",
+      description:
+        "Interface screens. The first image spans the full width. Pick several files at once with Upload — each image gets its own alt text and caption beside the preview.",
+    }),
     video: fields.object(
       {
         file: fields.file({
