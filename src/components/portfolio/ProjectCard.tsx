@@ -42,16 +42,17 @@ export function ProjectCard({
       <ZoomableImage
         images={[{ src: project.image, alt: project.imageAlt }]}
         index={0}
-        className="relative z-10 aspect-[16/9] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
+        className="relative z-10 w-full overflow-hidden border-b border-ink-200 bg-ink-50"
       >
         <Image
           src={project.image}
           alt={project.imageAlt}
-          fill
+          width={project.imageWidth}
+          height={project.imageHeight}
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : "lazy"}
-          className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
+          className="h-auto w-full transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
         />
       </ZoomableImage>
 

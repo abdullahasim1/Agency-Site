@@ -57,7 +57,7 @@ export function ProjectHero({ project }: { project: Project }) {
           </ol>
         </nav>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] lg:items-start lg:gap-14">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-12">
           <div>
             <Reveal y={12}>
               <Eyebrow>{`Case Study / ${project.category}`}</Eyebrow>
@@ -133,7 +133,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 width={project.imageWidth}
                 height={project.imageHeight}
                 priority
-                sizes="(min-width: 1024px) 30vw, 80vw"
+                sizes="(min-width: 1024px) 42vw, 92vw"
                 className="h-auto w-full"
               />
             </ZoomableImage>
