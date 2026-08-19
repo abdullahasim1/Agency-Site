@@ -16,6 +16,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
 import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
 
+// Revalidate every 30 seconds in dev so CMS changes reflect quickly
+export const revalidate = 30;
+
 interface CaseStudyPageProps {
   params: Promise<{ slug: string }>;
 }

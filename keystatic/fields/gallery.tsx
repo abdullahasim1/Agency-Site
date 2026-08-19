@@ -72,7 +72,6 @@ export function galleryField(opts: {
       }));
     },
     serialize(value, args) {
-      const slugPrefix = args.slug ? `${args.slug}/` : "";
       const files = new Map<string, Uint8Array>();
       const used = new Set<string>();
       const stored = value.map((item, index) => {
@@ -80,14 +79,19 @@ export function galleryField(opts: {
         const caption = item.caption ?? "";
         if (item.data) {
           const extension = item.extension || "png";
-          let relative = `${slugPrefix}gallery/${index}/src.${extension}`;
+          // Do NOT prepend slug here — Keystatic runtime inserts it automatically
+          // between the directory and this key when writing to disk.
+          // Final disk path = public/images/projects/<slug>/gallery/<n>/src.<ext>
+          let relative = `gallery/${index}/src.${extension}`;
           let counter = 1;
-          while (used.has(`${PUBLIC_PATH}/${relative}`)) {
-            relative = `${slugPrefix}gallery/${index}/src-${counter++}.${extension}`;
+          while (used.has(relative)) {
+            relative = `gallery/${index}/src-${counter++}.${extension}`;
           }
-          used.add(`${PUBLIC_PATH}/${relative}`);
+          used.add(relative);
           files.set(relative, item.data);
-          return { src: `${PUBLIC_PATH}/${relative}`, alt, caption };
+          // The src stored in JSON still needs the full public URL with the slug
+          const slugPart = args.slug ? `${args.slug}/` : "";
+          return { src: `${PUBLIC_PATH}/${slugPart}${relative}`, alt, caption };
         }
         used.add(item.src);
         return { src: item.src, alt, caption };

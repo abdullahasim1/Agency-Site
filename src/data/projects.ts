@@ -206,6 +206,11 @@ const bulkGalleryItems = (entry: Record<string, unknown>) => {
 
 /** All projects in portfolio order (lowest `order` first). */
 export function getProjects(): Promise<Project[]> {
+  // In development, bust the in-memory cache on every call so CMS edits
+  // reflect immediately without restarting the dev server.
+  if (process.env.NODE_ENV === "development") {
+    projectsPromise = undefined;
+  }
   projectsPromise ??= reader.collections.projects.all().then(async (entries) => {
     const projects: Project[] = [];
 
