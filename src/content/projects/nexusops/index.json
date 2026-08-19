@@ -4,18 +4,6 @@
     "id": "prj-nexusops",
     "tagline": "Enterprise Autonomous Multi-Agent Orchestrator"
   },
-  "listing": {
-    "shortDescription": "A multi-agent operations platform that triages support, qualifies sales leads and governs high-risk actions across omnichannel inbound traffic — with human sign-off on everything that matters.",
-    "fullDescription": "Inbound customer operations were drowning in manual work: tickets routed by hand, sales inquiries sitting in inboxes, and production incidents escalating slowly across fragmented tools. We built a four-agent orchestration platform — triage, technical support, BANT sales qualification and governance — that classifies every inbound event semantically, resolves what it safely can, and pauses anything risky in a human approval queue with full audit trail."
-  },
-  "cover": {
-    "image": "/images/projects/nexusops/cover.svg",
-    "imageAlt": "Abstract multi-agent orchestration diagram showing a triage core branching to support and sales specialists and a governance gate"
-  },
-  "closing": {
-    "clientOverview": "An enterprise B2B SaaS platform serving high-stakes customers across Standard, Growth and Enterprise tiers with guaranteed SLAs. Support and sales engineering teams were overwhelmed by manual ticket routing and lead qualification, while every external integration failure silently dropped customer interactions until an engineer manually replayed them.",
-    "conclusion": "NexusOps now runs every inbound event through a deterministic four-agent DAG: Aegis routes semantically, Vanguard resolves technical issues against the knowledge base, Meridian qualifies and sizes sales leads into the CRM pipeline, and Apex enforces governance — pausing any action with low confidence or high risk in a human approval queue. Every tool call is logged, every failure retries with exponential backoff, and the platform can be fault-tested live from its own connector hub."
-  },
   "category": "AI / Automation",
   "categories": [
     "AI",
@@ -23,6 +11,14 @@
     "SaaS",
     "Web Apps"
   ],
+  "listing": {
+    "shortDescription": "A multi-agent operations platform that triages support, qualifies sales leads and governs high-risk actions across omnichannel inbound traffic — with human sign-off on everything that matters.",
+    "fullDescription": "Inbound customer operations were drowning in manual work: tickets routed by hand, sales inquiries sitting in inboxes, and production incidents escalating slowly across fragmented tools. We built a four-agent orchestration platform — triage, technical support, BANT sales qualification and governance — that classifies every inbound event semantically, resolves what it safely can, and pauses anything risky in a human approval queue with full audit trail."
+  },
+  "cover": {
+    "image": "/images/projects/nexusops/cover/image.png",
+    "imageAlt": "Abstract multi-agent orchestration diagram showing a triage core branching to support and sales specialists and a governance gate"
+  },
   "technologies": [
     "React",
     "TypeScript",
@@ -163,6 +159,17 @@
       }
     ]
   },
+  "objectives": [
+    "Route every inbound event by semantic intent instead of manual triage",
+    "Qualify sales leads with BANT scoring and live ARR sizing",
+    "Enforce human sign-off on every high-risk autonomous action",
+    "Survive connector failures with retry, backoff and circuit breaking",
+    "Keep a tamper-evident audit trail of every agent action"
+  ],
+  "closing": {
+    "clientOverview": "An enterprise B2B SaaS platform serving high-stakes customers across Standard, Growth and Enterprise tiers with guaranteed SLAs. Support and sales engineering teams were overwhelmed by manual ticket routing and lead qualification, while every external integration failure silently dropped customer interactions until an engineer manually replayed them.",
+    "conclusion": "NexusOps now runs every inbound event through a deterministic four-agent DAG: Aegis routes semantically, Vanguard resolves technical issues against the knowledge base, Meridian qualifies and sizes sales leads into the CRM pipeline, and Apex enforces governance — pausing any action with low confidence or high risk in a human approval queue. Every tool call is logged, every failure retries with exponential backoff, and the platform can be fault-tested live from its own connector hub."
+  },
   "results": [
     {
       "value": "78.4%",
@@ -187,53 +194,106 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/nexusops/shot-1.svg",
-      "alt": "NexusOps operations overview",
-      "caption": "System health, active executions and the live multi-agent DAG graph."
+      "src": "/images/projects/nexusops/gallery/0/src.png",
+      "alt": "NexusOps enterprise agentic AI orchestration dashboard showing autonomous support, sales, escalation agents, live operations, human-in-the-loop governance, and multi-agent execution workflows, agentic AI orchestration, autonomous AI agents, enterprise AI orchestration, Claude agent architecture, multi-agent AI system, autonomous support automation, AI agent workflow, United States Claude clients, India Claude clients, United Kingdom Claude clients, enterprise AI automation, human-in-the-loop AI",
+      "caption": "NexusOps orchestrates autonomous AI agents across enterprise support, sales, escalation, and operational workflows with built-in governance and human oversight."
     },
     {
-      "src": "/images/projects/nexusops/shot-2.svg",
-      "alt": "Containment and latency analytics",
-      "caption": "Containment rates, agent latency and self-healing metrics."
+      "src": "/images/projects/nexusops/gallery/1/src.png",
+      "alt": "Enterprise AI application architecture integrating Anthropic Claude API capabilities with autonomous agents, structured inference, tool execution, and operational workflows, Anthropic Claude API, Claude API integration, enterprise Claude development, Claude agent development, Claude enterprise integration, LLM API integration, AI API architecture, United States Claude clients, India Claude developers, United Kingdom Claude clients, enterprise generative AI, Claude solutions architect",
+      "caption": "Enterprise-grade Claude API integration powering intelligent agents, structured reasoning, and automated business workflows."
     },
     {
-      "src": "/images/projects/nexusops/shot-3.svg",
-      "alt": "Execution lifecycle with HITL gate",
-      "caption": "Every execution traced from queue through triage to resolution or human approval."
+      "src": "/images/projects/nexusops/gallery/2/src.png",
+      "alt": "AI engineering workflow demonstrating Claude Code integration within an enterprise autonomous agent platform for software development, debugging, automation, and technical operations, Claude Code, Claude Code development, AI software engineering, Claude coding agent, autonomous software development, AI coding automation, enterprise developer AI, United States Claude Code clients, India Claude Code developers, United Kingdom Claude Code users, agentic software development",
+      "caption": "Claude-powered engineering workflows bring autonomous coding, debugging, and technical automation into enterprise operations."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/3/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/4/src.png",
+      "alt": "NexusOps multi-agent AI system showing specialized triage, technical support, sales, escalation, and self-healing agents collaborating through an autonomous execution network, Claude multi-agent system, multi-agent AI architecture, autonomous AI agent system, Claude agent architecture, multi-agent orchestration, AI agent collaboration, autonomous enterprise agents, United States enterprise AI clients, India AI clients, United Kingdom AI clients, self-healing AI, human-in-the-loop agents",
+      "caption": "A coordinated multi-agent architecture where specialized AI agents collaborate across technical support, sales, escalation, and recovery workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/5/src.png",
+      "alt": "Claude tool calling and function calling workflow connecting an AI agent to authorized enterprise tools, APIs, knowledge systems, CRM platforms, and operational actions, Claude tool calling, Claude function calling, AI tool use, Claude agent tools, function calling API, autonomous AI actions, enterprise AI integrations, agent tool execution, United States Claude enterprise clients, India Claude developers, United Kingdom Claude developers, enterprise agent architecture",
+      "caption": "Claude agents move beyond conversation by securely invoking enterprise tools, APIs, knowledge systems, and business actions."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/6/src.png",
+      "alt": "Enterprise multi-agent DAG pipeline visualizing deterministic routing, agent execution nodes, live telemetry, retry paths, escalation logic, and autonomous workflow orchestration, AI DAG pipeline, agentic AI workflow, multi-agent DAG orchestration, autonomous AI pipeline, AI workflow orchestration, agent execution graph, deterministic agent routing, United States enterprise AI clients, India AI engineering, United Kingdom AI automation, self-healing AI pipeline, agent state machine",
+      "caption": "A deterministic DAG-based execution pipeline routes enterprise events through specialized AI agents, recovery logic, and human escalation paths."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/7/src.png",
+      "alt": "AI language processing workflow for entity extraction and sentiment analysis enabling autonomous intent classification, customer understanding, and enterprise support routing, Claude entity extraction, AI sentiment analysis, NLP enterprise automation, Claude NLP, entity recognition AI, customer sentiment analysis, intent classification AI, United States AI clients, India AI clients, United Kingdom AI clients, natural language processing, customer intelligence AI, conversational AI analytics",
+      "caption": "AI-powered language intelligence extracts entities, detects sentiment, and enriches customer intent for automated enterprise decision-making."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/8/src.png",
+      "alt": "NexusOps HubSpot CRM integration showing AI-powered BANT qualification, sales pipeline stages, qualified opportunities, deal values, and autonomous lead management, HubSpot AI integration, Claude HubSpot integration, AI sales automation, HubSpot CRM automation, AI BANT qualification, autonomous sales agent, Claude sales agent, AI lead qualification, United States HubSpot clients, India HubSpot clients, United Kingdom HubSpot clients, enterprise sales AI",
+      "caption": "AI agents connect with HubSpot CRM to qualify leads, score opportunities, manage deal stages, and accelerate enterprise sales workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/9/src.png",
+      "alt": "Enterprise omnichannel AI support dashboard managing Slack, email, web chat, WhatsApp, ticketing, automated responses, routing, and human escalation, omnichannel AI support, Claude customer support automation, AI support automation, Claude customer service, AI helpdesk automation, autonomous support agent, omnichannel customer experience, Slack AI support, WhatsApp AI automation, United States enterprise clients, India SaaS clients, United Kingdom enterprise AI, Australia AI clients",
+      "caption": "NexusOps unifies Slack, email, web chat, and WhatsApp into an autonomous customer-support workflow with intelligent routing and escalation."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/10/src.png",
+      "alt": "Enterprise RAG architecture combining AI agents with knowledge retrieval, vector search, enterprise documentation, tool execution, and grounded responses, Claude RAG, Retrieval-Augmented Generation, enterprise RAG architecture, Claude knowledge retrieval, AI RAG pipeline, enterprise knowledge AI, grounded LLM responses, RAG AI architecture, United States RAG clients, India RAG developers, United Kingdom AI clients, enterprise generative AI",
+      "caption": "A production-oriented RAG architecture grounds autonomous AI agents in enterprise knowledge for reliable and context-aware decisions."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/11/src.png",
+      "alt": "Enterprise vector search and knowledge base retrieval architecture powering semantic document retrieval, AI agents, embeddings, and grounded Claude-based responses, Claude vector search, vector database AI, knowledge base retrieval, Claude RAG retrieval, semantic search AI, enterprise vector search, AI knowledge base, embeddings search, United States enterprise AI clients, India AI developers, United Kingdom RAG clients, enterprise AI search",
+      "caption": "Semantic vector retrieval connects AI agents with relevant enterprise knowledge, documents, and contextual information."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/12/src.png",
+      "alt": "AI-powered Zendesk ticket lifecycle automation showing ticket creation, triage, technical diagnosis, escalation, SLA monitoring, agent assignment, and resolution workflows, Zendesk AI automation, Claude Zendesk integration, AI ticket automation, Zendesk AI agent, autonomous ticket management, AI customer support, enterprise helpdesk automation, AI ticket triage, automated SLA management, United States Zendesk clients, India SaaS clients, United Kingdom Zendesk clients, Japan enterprise AI, Australia SaaS clients",
+      "caption": "AI agents automate the Zendesk ticket lifecycle from intake and triage through diagnosis, escalation, SLA monitoring, and resolution."
     }
   ],
+  "video": {},
   "workflow": [
     {
       "id": "w1",
-      "tag": "QUEUED",
       "title": "Event ingested",
-      "description": "Inbound message accepted from web chat, email, Slack or WhatsApp."
+      "description": "Inbound message accepted from web chat, email, Slack or WhatsApp.",
+      "tag": "QUEUED"
     },
     {
       "id": "w2",
-      "tag": "TRIAGE",
       "title": "Aegis routes",
-      "description": "Intent, confidence, sentiment and tier extracted before any tool runs."
+      "description": "Intent, confidence, sentiment and tier extracted before any tool runs.",
+      "tag": "TRIAGE"
     },
     {
       "id": "w3",
-      "tag": "EXECUTE",
       "title": "Specialist acts",
-      "description": "Vanguard resolves technical issues; Meridian qualifies and sizes sales leads."
+      "description": "Vanguard resolves technical issues; Meridian qualifies and sizes sales leads.",
+      "tag": "EXECUTE"
     },
     {
       "id": "w4",
-      "tag": "GATE",
       "title": "Apex governs",
-      "description": "Policy check — high risk or low confidence pauses for operator sign-off."
+      "description": "Policy check — high risk or low confidence pauses for operator sign-off.",
+      "tag": "GATE"
     },
     {
       "id": "w5",
-      "tag": "RESOLVE",
       "title": "Close & notify",
-      "description": "Ticket or deal updated, customer notified and audit log sealed."
+      "description": "Ticket or deal updated, customer notified and audit log sealed.",
+      "tag": "RESOLVE"
     }
   ],
+  "workflowLayout": "linear",
+  "advanced": {},
   "overview": {
     "client": "Confidential — enterprise SaaS platform",
     "industry": "SaaS & Technology",
@@ -256,13 +316,5 @@
   },
   "featured": true,
   "accent": "brand",
-  "order": 7,
-  "objectives": [
-    "Route every inbound event by semantic intent instead of manual triage",
-    "Qualify sales leads with BANT scoring and live ARR sizing",
-    "Enforce human sign-off on every high-risk autonomous action",
-    "Survive connector failures with retry, backoff and circuit breaking",
-    "Keep a tamper-evident audit trail of every agent action"
-  ],
-  "workflowLayout": "linear"
+  "order": 7
 }
