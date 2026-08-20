@@ -1,0 +1,40 @@
+{
+  "title": "NexusOps",
+  "basics": {
+    "id": "nexus-ops1",
+    "tagline": "nexus-ops"
+  },
+  "categories": [
+    "AI",
+    "Web Apps",
+    "SaaS"
+  ],
+  "listing": {},
+  "cover": {
+    "image": "/images/projects/nexus-ops/cover/image.png"
+  },
+  "technologies": [],
+  "techStack": [],
+  "features": [],
+  "challenge": {
+    "points": []
+  },
+  "solution": {
+    "points": []
+  },
+  "objectives": [],
+  "closing": {},
+  "results": [],
+  "gallery": [],
+  "video": {},
+  "workflow": [],
+  "workflowLayout": "linear",
+  "advanced": {},
+  "overview": {
+    "platforms": [],
+    "services": []
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 100
+}
