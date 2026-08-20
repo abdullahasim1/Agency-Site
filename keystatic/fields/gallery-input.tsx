@@ -9,7 +9,7 @@ import { TextArea, TextField } from "@keystar/ui/text-field";
 import { Heading, Text } from "@keystar/ui/typography";
 import { css, tokenSchema } from "@keystar/ui/style";
 import type { FormFieldInputProps } from "@keystatic/core";
-import type { GalleryValue } from "./gallery";
+import type { GalleryValue, GalleryImageValue } from "./gallery";
 
 const emptyClass = css({
   padding: tokenSchema.size.space.large,
@@ -53,6 +53,30 @@ const previewBoxClass = css({
   borderRadius: tokenSchema.size.radius.medium,
   border: `1px solid ${tokenSchema.color.border.neutral}`,
   background: tokenSchema.color.background.surfaceSecondary,
+});
+
+// Placeholder shown when image has been removed
+const emptyPreviewBoxClass = css({
+  width: "100%",
+  maxWidth: 300,
+  flexShrink: 0,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: tokenSchema.size.space.small,
+  padding: tokenSchema.size.space.large,
+  borderRadius: tokenSchema.size.radius.medium,
+  border: `2px dashed ${tokenSchema.color.border.neutral}`,
+  background: tokenSchema.color.background.surfaceSecondary,
+  color: tokenSchema.color.foreground.neutralSecondary,
+  fontSize: tokenSchema.typography.text.small.size,
+  textAlign: "center",
+  minHeight: 140,
+  cursor: "pointer",
+  "&:hover": {
+    borderColor: tokenSchema.color.border.accent,
+  },
 });
 
 const imageItemClass = css({
@@ -104,7 +128,6 @@ const listClass = css({
   "&::-webkit-scrollbar-button": { display: "none" },
 });
 
-// Outer dialog wrapper — forces a fixed width on the dialog
 const dialogContentClass = css({
   width: "100%",
   maxWidth: "calc(100vw - 100px)",
@@ -121,7 +144,6 @@ const dialogContentClass = css({
   "& button": { cursor: "pointer !important" },
 });
 
-// Full modal column: header (fixed) + scrollable list + footer (fixed)
 const modalWrapperClass = css({
   display: "flex",
   flexDirection: "column",
@@ -147,6 +169,8 @@ export function GalleryFieldInput(
 ) {
   const { label, description, value, onChange } = props;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  // Per-item replace input refs — keyed by index
+  const replaceInputRefs = useRef<Map<number, HTMLInputElement>>(new Map());
   const [isOpen, setIsOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -170,18 +194,49 @@ export function GalleryFieldInput(
     setIsDragging(false);
   };
 
+  // Replace only the image of an existing item, keeping alt & caption
+  const replaceImage = async (index: number, files: FileList | null) => {
+    if (!files?.length) return;
+    const file = files[0];
+    const dotIndex = file.name.lastIndexOf(".");
+    const extension =
+      dotIndex > 0 ? file.name.slice(dotIndex + 1).toLowerCase() : "";
+    const old = value[index];
+    if (old?.src.startsWith("blob:")) URL.revokeObjectURL(old.src);
+    const updated: GalleryImageValue = {
+      ...old,
+      src: URL.createObjectURL(file),
+      data: new Uint8Array(await file.arrayBuffer()),
+      extension,
+      originalFilename: file.name,
+    };
+    onChange(value.map((item, i) => (i === index ? updated : item)));
+  };
+
   const updateItem = (index: number, patch: Record<string, unknown>) => {
     onChange(value.map((item, i) => (i === index ? { ...item, ...patch } : item)));
   };
 
-  const removeItem = (index: number) => {
+  // Remove only the image, keep alt & caption — src becomes empty string
+  const removeImage = (index: number) => {
     const item = value[index];
-    if (item && item.src.startsWith("blob:")) URL.revokeObjectURL(item.src);
-    onChange(value.filter((_, i) => i !== index));
+    if (item?.src.startsWith("blob:")) URL.revokeObjectURL(item.src);
+    onChange(
+      value.map((it, i) =>
+        i === index
+          ? { ...it, src: "", data: undefined, extension: undefined, originalFilename: undefined }
+          : it,
+      ),
+    );
   };
 
   const handleBrowseClick = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleReplaceClick = (index: number) => {
+    const input = replaceInputRefs.current.get(index);
+    input?.click();
   };
 
   return (
@@ -198,6 +253,7 @@ export function GalleryFieldInput(
         ) : null}
       </Flex>
 
+      {/* Multi-file input for Browse */}
       <input
         ref={fileInputRef}
         type="file"
@@ -232,17 +288,52 @@ export function GalleryFieldInput(
                       {value.map((item, index) => (
                         <div key={index} className={imageItemClass}>
                           <div className={imageLeftClass}>
-                            <div className={previewBoxClass}>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                src={item.src}
-                                alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
-                                className={previewClass}
-                              />
-                            </div>
-                            <Button tone="critical" onPress={() => removeItem(index)}>
-                              Remove
-                            </Button>
+                            {item.src ? (
+                              <>
+                                <div className={previewBoxClass}>
+                                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                                  <img
+                                    src={item.src}
+                                    alt={item.alt || item.originalFilename || `Gallery image ${index + 1}`}
+                                    className={previewClass}
+                                  />
+                                </div>
+                                <Button tone="critical" onPress={() => removeImage(index)}>
+                                  Remove
+                                </Button>
+                              </>
+                            ) : (
+                              <>
+                                {/* Hidden single-file input for replacing */}
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  hidden
+                                  ref={(el) => {
+                                    if (el) replaceInputRefs.current.set(index, el);
+                                    else replaceInputRefs.current.delete(index);
+                                  }}
+                                  onChange={(event) => {
+                                    void replaceImage(index, event.target.files);
+                                    event.target.value = "";
+                                  }}
+                                />
+                                <div
+                                  className={emptyPreviewBoxClass}
+                                  onClick={() => handleReplaceClick(index)}
+                                >
+                                  <Text size="small" color="neutralSecondary">
+                                    No image
+                                  </Text>
+                                  <Button
+                                    prominence="high"
+                                    onPress={() => handleReplaceClick(index)}
+                                  >
+                                    Upload Image
+                                  </Button>
+                                </div>
+                              </>
+                            )}
                           </div>
                           <div className={imageRightClass}>
                             {item.originalFilename ? (
