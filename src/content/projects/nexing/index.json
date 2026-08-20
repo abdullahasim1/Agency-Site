@@ -1,0 +1,52 @@
+{
+  "title": "nexing",
+  "basics": {
+    "id": "nexing",
+    "tagline": "nexing"
+  },
+  "categories": [],
+  "listing": {},
+  "cover": {
+    "image": "/images/projects/nexing/cover/image.png"
+  },
+  "technologies": [],
+  "techStack": [],
+  "features": [],
+  "challenge": {
+    "points": []
+  },
+  "solution": {
+    "points": []
+  },
+  "objectives": [],
+  "closing": {},
+  "results": [],
+  "gallery": [
+    {
+      "src": "/images/projects/nexing/gallery/0/src.png",
+      "alt": "nexing",
+      "caption": "nexing"
+    },
+    {
+      "src": "/images/projects/nexing/gallery/1/src.png",
+      "alt": "nexing",
+      "caption": "nexing"
+    },
+    {
+      "src": "/images/projects/nexing/gallery/2/src.png",
+      "alt": "nexing",
+      "caption": "nexing"
+    }
+  ],
+  "video": {},
+  "workflow": [],
+  "workflowLayout": "linear",
+  "advanced": {},
+  "overview": {
+    "platforms": [],
+    "services": []
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 100
+}
