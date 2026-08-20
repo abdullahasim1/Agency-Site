@@ -1,0 +1,322 @@
+{
+  "title": "Perigee",
+  "basics": {
+    "id": "prj-perigee",
+    "tagline": "Mission Operations & Regulatory OS for SmallSat Fleets"
+  },
+  "listing": {
+    "shortDescription": "A mission operations workspace unifying spacecraft lifecycle, regulatory filings, ground-pass scheduling, flight hardware inventory, and engineering crew operations.",
+    "fullDescription": "Perigee is a deterministic mission operations and regulatory compliance platform for NewSpace operators and SmallSat fleets. It binds mission profiles to FCC, ITU, NOAA, and ITAR/EAR filings, predicts orbital contact windows, detects ground-station conflicts, tracks flight hardware, and connects work packages to the crews responsible for mission delivery."
+  },
+  "cover": {
+    "image": "/images/projects/perigee/00-src.png",
+    "imageAlt": "New spacecraft mission enrollment form in the Perigee mission operations platform, showing orbital parameters, mission designation, launch date, lifecycle status, and budget allocation fields."
+  },
+  "closing": {
+    "clientOverview": "Perigee is designed for NewSpace mission directors, flight engineers, regulatory leads, supply-chain teams, and operations managers coordinating spacecraft from design through launch preparation and active contact operations.",
+    "conclusion": "Perigee replaces disconnected spreadsheets, regulatory PDFs, ground-station portals, and hardware lists with a responsive mission operations workspace. Its implemented conflict engine, pass predictor, compliance matrix, inventory controls, crew directory, Kanban board, command palette, and JSON backup flow create one dependable operational view for SmallSat missions."
+  },
+  "category": "Aerospace / Mission Operations / SaaS",
+  "categories": ["Web Apps", "Automation", "SaaS"],
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Zustand",
+    "Lucide React"
+  ],
+  "techStack": [
+    { "group": "Frontend", "items": ["React", "TypeScript", "Tailwind CSS"] },
+    {
+      "group": "State",
+      "items": ["Zustand", "LocalStorage Persistence", "Reactive Store"]
+    },
+    {
+      "group": "Mission Operations",
+      "items": [
+        "Orbital Pass Predictor",
+        "Ground Station Scheduler",
+        "Conflict Detection",
+        "Regulatory Matrix"
+      ]
+    },
+    {
+      "group": "Delivery Operations",
+      "items": [
+        "Flight Hardware Inventory",
+        "Crew Directory",
+        "Mission Kanban",
+        "Command Palette"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Mission operations command deck",
+      "description": "Aggregate fleet readiness, launch countdowns, ground passes, regulatory deadlines, critical tasks, and budget utilization in one view.",
+      "icon": "LayoutDashboard"
+    },
+    {
+      "title": "Regulatory filing matrix",
+      "description": "Track FCC, ITU, NOAA, and ITAR/EAR workflows with urgency, audit history, approvals, renewals, and exhibit metadata.",
+      "icon": "FileText"
+    },
+    {
+      "title": "Ground-pass conflict engine",
+      "description": "Detect overlapping contact windows and antenna repointing collisions, then support rescheduling or terminal reallocation.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Orbital pass predictor",
+      "description": "Calculate AOS, LOS, azimuth, maximum elevation, duration, and contact quality for deterministic scheduling decisions.",
+      "icon": "Globe"
+    },
+    {
+      "title": "Flight hardware inventory",
+      "description": "Track mission-critical components, vendors, lead times, stock thresholds, costs, and mission allocations.",
+      "icon": "Package"
+    },
+    {
+      "title": "Mission crew and work packages",
+      "description": "Connect aerospace, RF, compliance, and ground-operations personnel to mission-linked Kanban work packages.",
+      "icon": "Users"
+    }
+  ],
+  "challenge": {
+    "summary": "SmallSat operators were coordinating regulatory timelines, ground contacts, orbital milestones, supply-chain lead times, and engineering tasks across disconnected systems.",
+    "points": [
+      {
+        "icon": "FileText",
+        "title": "Regulatory deadlines",
+        "description": "FCC, ITU, NOAA, and export-control milestones could delay a mission when they were tracked in separate documents and spreadsheets."
+      },
+      {
+        "icon": "Radar",
+        "title": "Ground-pass collisions",
+        "description": "Overlapping station bookings and antenna repointing buffers could result in lost telemetry and downlink windows."
+      },
+      {
+        "icon": "Package",
+        "title": "Supply-chain blind spots",
+        "description": "Long lead times for flight-critical hardware made low stock and reorder thresholds mission schedule risks."
+      },
+      {
+        "icon": "ClipboardList",
+        "title": "Scattered engineering work",
+        "description": "Crew assignments, launch checklists, and mission tasks were disconnected from the spacecraft and compliance records they supported."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "Perigee binds mission, compliance, ground segment, inventory, and crew data through a reactive workspace with deterministic domain engines.",
+    "points": [
+      {
+        "icon": "Globe",
+        "title": "Deterministic pass propagation",
+        "description": "The predictor calculates contact windows and link-quality metrics from orbital and ground-terminal parameters."
+      },
+      {
+        "icon": "Radar",
+        "title": "Automated conflict resolution",
+        "description": "The scheduler checks overlap and antenna slew buffers, flags conflicts, and supports alternative-station or rescheduling actions."
+      },
+      {
+        "icon": "FileText",
+        "title": "Auditable filing lifecycle",
+        "description": "Regulatory records move through drafting, review, submission, approval, rejection, and renewal states with history and exhibits."
+      },
+      {
+        "icon": "Package",
+        "title": "Mission-linked inventory",
+        "description": "Component stock, vendor reliability, lead time, unit cost, reorder thresholds, and critical mission allocations stay connected."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Operational execution board",
+        "description": "Crew-linked work packages move through backlog, in progress, blocked, review, and done stages with mission context."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "6",
+      "label": "Mission operations domains",
+      "detail": "Mission lifecycle, compliance, ground scheduling, pass prediction, hardware supply chain, and crew work packages share one workspace."
+    },
+    {
+      "value": "24h",
+      "label": "Scheduling horizon",
+      "detail": "The ground operations matrix evaluates upcoming contact windows and antenna conflicts across a rolling 24-hour view."
+    },
+    {
+      "value": "5",
+      "label": "Work-package stages",
+      "detail": "Engineering tasks move through Backlog, In Progress, Blocked, Review, and Done with direct mission linkage."
+    },
+    {
+      "value": "1",
+      "label": "Operations workspace",
+      "detail": "Command deck, compliance, passes, inventory, crew, reporting, settings, and backup utilities are unified in one application."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/perigee/00-src.png",
+      "alt": "New spacecraft mission enrollment form in the Perigee mission operations platform, showing orbital parameters, mission designation, launch date, lifecycle status, and budget allocation fields.",
+      "caption": "Mission Enrollment & Configuration — Define spacecraft parameters, orbital profile, lifecycle status, launch targets, and initial mission budget."
+    },
+    {
+      "src": "/images/projects/perigee/01-src.png",
+      "alt": "Perigee engineering crew directory displaying aerospace, compliance, RF communications, mechanical, and ground operations personnel with their assigned missions and work items.",
+      "caption": "Engineering Crew & Mission Roster — Centralize technical personnel, responsibilities, mission assignments, and active work items."
+    },
+    {
+      "src": "/images/projects/perigee/02-src.png",
+      "alt": "Flight hardware and components inventory dashboard showing hardware SKUs, inventory valuation, low-stock parts, suppliers, lead times, and mission allocations.",
+      "caption": "Flight Hardware Inventory — Track mission-critical components, supplier lead times, stock levels, costs, and reorder risks."
+    },
+    {
+      "src": "/images/projects/perigee/03-src.png",
+      "alt": "Perigee work package creation dialog for assigning a technical task to a spacecraft mission, engineering assignee, priority, workflow column, and target due date.",
+      "caption": "Mission Work Package Creation — Create mission-linked engineering tasks with ownership, priority, workflow state, and deadlines."
+    },
+    {
+      "src": "/images/projects/perigee/04-src.png",
+      "alt": "Perigee dialog for adding an engineering crew member with name, email, discipline, and spacecraft mission assignments.",
+      "caption": "Engineering Team Assignment — Add specialists and associate them directly with the missions they support."
+    },
+    {
+      "src": "/images/projects/perigee/05-src.png",
+      "alt": "New regulatory and spectrum filing form in Perigee showing associated spacecraft mission, filing category, reference number, due date, regulatory lead, and supporting exhibits.",
+      "caption": "Regulatory Filing Registration — Create and manage FCC, ITU, export-control, and other mission authorization records."
+    },
+    {
+      "src": "/images/projects/perigee/06-src.png",
+      "alt": "Perigee missions directory listing spacecraft missions with mission codes, orbit types, lifecycle statuses, launch dates, budget utilization, and assigned crew.",
+      "caption": "Multi-Mission Operations Directory — Monitor spacecraft lifecycle, launch readiness, budgets, orbit profiles, and mission ownership from one workspace."
+    },
+    {
+      "src": "/images/projects/perigee/07-src.png",
+      "alt": "Perigee mission operations command deck showing active missions, regulatory filings, scheduled passes, supply chain alerts, compliance deadlines, and operational events.",
+      "caption": "Mission Operations Command Deck — Provide a centralized operational view of fleet readiness, compliance risk, ground passes, and supply-chain health."
+    },
+    {
+      "src": "/images/projects/perigee/08-src.png",
+      "alt": "Perigee organization and system settings interface showing aerospace entity information, ground segment antenna collision parameters, primary frequency configuration, and JSON backup controls.",
+      "caption": "Operations OS Configuration — Configure organizational parameters, antenna collision rules, frequency defaults, and operational state management."
+    },
+    {
+      "src": "/images/projects/perigee/09-src.png",
+      "alt": "Perigee analytics and telemetry reports dashboard showing regulatory audit exports, spacecraft fleet reporting, ground pass operations, and operational charts.",
+      "caption": "Mission Readiness & Telemetry Reporting — Transform operational data into compliance, fleet, ground-pass, and executive reporting views."
+    },
+    {
+      "src": "/images/projects/perigee/10-src.png",
+      "alt": "Global Perigee ground station network displaying operational and maintenance-status ground terminals, geographic locations, antenna configurations, supported frequencies, and scheduled passes.",
+      "caption": "Global Ground Station Network — Manage telemetry, tracking, and command infrastructure across geographically distributed ground terminals."
+    },
+    {
+      "src": "/images/projects/perigee/11-src.png",
+      "alt": "Perigee regulatory compliance dashboard showing filing workflows across draft, submitted, under-review, approved, and rejected states with overdue filing alerts.",
+      "caption": "Regulatory Compliance Workflow — Track filing lifecycles, statutory deadlines, approval states, and critical compliance exceptions."
+    },
+    {
+      "src": "/images/projects/perigee/12-src.png",
+      "alt": "Perigee ground station pass scheduling and conflict matrix showing spacecraft contact windows, station assignments, AOS and LOS times, elevation angles, and scheduling conflicts.",
+      "caption": "Pass Scheduling & Conflict Matrix — Coordinate multi-spacecraft ground contacts while detecting and resolving overlapping communication windows."
+    },
+    {
+      "src": "/images/projects/perigee/13-src.png",
+      "alt": "Perigee ground station pass booking dialog for selecting a station, spacecraft mission, pass type, AOS and LOS times, maximum elevation, and operator notes.",
+      "caption": "Ground Pass Reservation — Book telemetry, command, and payload communication windows with precise operational parameters."
+    },
+    {
+      "src": "/images/projects/perigee/14-src.png",
+      "alt": "Perigee mission operations notification stream showing ground station conflicts, regulatory deadlines, inventory risks, and upcoming operational alerts.",
+      "caption": "Mission Notification & Event Stream — Surface critical scheduling, compliance, inventory, and operational events in real time."
+    },
+    {
+      "src": "/images/projects/perigee/15-src.png",
+      "alt": "Perigee dialog for adding a flight hardware component with part number, manufacturer, subsystem category, lead time, unit cost, stock quantity, reorder threshold, and mission allocations.",
+      "caption": "Flight Hardware Registration — Capture detailed component specifications and connect hardware directly to supported spacecraft missions."
+    },
+    {
+      "src": "/images/projects/perigee/16-src.png",
+      "alt": "Perigee supplier enrollment form for registering an aerospace hardware manufacturer with organization details, subsystem category, lead time, contact information, and quality certifications.",
+      "caption": "Qualified Supplier Enrollment — Build a trusted aerospace supplier network with lead-time, contact, quality, and flight-heritage information."
+    },
+    {
+      "src": "/images/projects/perigee/17-src.png",
+      "alt": "Perigee hardware supply chain and qualified vendors dashboard showing aerospace suppliers, disciplines, reliability ratings, lead times, and qualified catalog items.",
+      "caption": "Qualified Vendors & OEM Directory — Evaluate mission suppliers through technical specialization, reliability, lead times, and qualified hardware catalogs."
+    },
+    {
+      "src": "/images/projects/perigee/18-src.png",
+      "alt": "Perigee mission operations Kanban board showing technical work packages across backlog, in-progress, blocked, verification and review, and completed stages.",
+      "caption": "Mission Operations Work Packages — Manage engineering execution through a mission-aware Kanban workflow from backlog to completion."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "MISSION",
+      "title": "Mission configured",
+      "description": "Create a spacecraft profile with orbit, launch, budget, phase, milestones, crew, and health information."
+    },
+    {
+      "id": "w2",
+      "tag": "COMPLY",
+      "title": "Filings connected",
+      "description": "Bind FCC, ITU, NOAA, and export-control filing records to the mission with deadlines and audit history."
+    },
+    {
+      "id": "w3",
+      "tag": "PREDICT",
+      "title": "Pass window predicted",
+      "description": "Calculate AOS, LOS, elevation, duration, and link quality for a selected ground terminal and spacecraft."
+    },
+    {
+      "id": "w4",
+      "tag": "SCHEDULE",
+      "title": "Contact reserved",
+      "description": "Book the pass into the matrix and run antenna repointing conflict detection before committing the reservation."
+    },
+    {
+      "id": "w5",
+      "tag": "EXECUTE",
+      "title": "Crew and hardware aligned",
+      "description": "Connect components, suppliers, personnel, and work packages so delivery progress remains mission-aware."
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Personal project",
+    "industry": "Aerospace / NewSpace",
+    "timeline": "Multi-module SPA",
+    "year": "2026",
+    "platforms": [
+      "Web application",
+      "Mission operations workspace",
+      "Responsive SPA"
+    ],
+    "services": [
+      "Product UI Engineering",
+      "Operations Workflow Design",
+      "Data Modeling",
+      "Interactive Frontend Development"
+    ],
+    "team": "Single engineering effort"
+  },
+  "featured": true,
+  "accent": "cyan",
+  "order": 15,
+  "objectives": [
+    "Unify spacecraft missions, milestones, budgets, and crew ownership",
+    "Track regulatory filings, deadlines, approvals, exhibits, and audit history",
+    "Predict orbital contact windows and detect ground-station scheduling conflicts",
+    "Manage flight hardware stock, lead times, vendors, costs, and mission allocations",
+    "Connect engineering work packages to the missions and specialists responsible for delivery",
+    "Provide command palette, reporting, JSON backup, and operational reset utilities"
+  ]
+}
