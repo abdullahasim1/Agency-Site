@@ -195,8 +195,53 @@
   "gallery": [
     {
       "src": "/images/projects/nexusops/gallery/0/src.png",
+      "alt": "NexusOps enterprise agentic AI orchestration dashboard showing autonomous support, sales, escalation agents, live operations, human-in-the-loop governance, and multi-agent execution workflows, agentic AI orchestration, autonomous AI agents, enterprise AI orchestration, Claude agent architecture, multi-agent AI system, autonomous support automation, AI agent workflow, United States Claude clients, India Claude clients, United Kingdom Claude clients, enterprise AI automation, human-in-the-loop AI",
+      "caption": "NexusOps orchestrates autonomous AI agents across enterprise support, sales, escalation, and operational workflows with built-in governance and human oversight."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/1/src.png",
+      "alt": "Enterprise AI application architecture integrating Anthropic Claude API capabilities with autonomous agents, structured inference, tool execution, and operational workflows, Anthropic Claude API, Claude API integration, enterprise Claude development, Claude agent development, Claude enterprise integration, LLM API integration, AI API architecture, United States Claude clients, India Claude developers, United Kingdom Claude clients, enterprise generative AI, Claude solutions architect",
+      "caption": "Enterprise-grade Claude API integration powering intelligent agents, structured reasoning, and automated business workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/2/src.png",
+      "alt": "NexusOps multi-agent AI system showing specialized triage, technical support, sales, escalation, and self-healing agents collaborating through an autonomous execution network, Claude multi-agent system, multi-agent AI architecture, autonomous AI agent system, Claude agent architecture, multi-agent orchestration, AI agent collaboration, autonomous enterprise agents, United States enterprise AI clients, India AI clients, United Kingdom AI clients, self-healing AI, human-in-the-loop agents",
+      "caption": "A coordinated multi-agent architecture where specialized AI agents collaborate across technical support, sales, escalation, and recovery workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/3/src.png",
+      "alt": "Structured AI inference workflow showing Claude-generated JSON outputs used for deterministic enterprise automation, agent decisions, and downstream system execution, Claude structured JSON, structured output Claude, Claude JSON inference, enterprise AI automation, Claude structured outputs, JSON AI response, deterministic AI workflows, LLM structured data, United States Claude API clients, India Claude API developers, United Kingdom Claude API clients, machine-readable AI output",
+      "caption": "Structured Claude outputs transform AI reasoning into reliable, machine-readable decisions for enterprise automation."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/4/src.png",
+      "alt": "Claude tool calling and function calling workflow connecting an AI agent to authorized enterprise tools, APIs, knowledge systems, CRM platforms, and operational actions, Claude tool calling, Claude function calling, AI tool use, Claude agent tools, function calling API, autonomous AI actions, enterprise AI integrations, agent tool execution, United States Claude enterprise clients, India Claude developers, United Kingdom Claude developers, enterprise agent architecture",
+      "caption": "Claude agents move beyond conversation by securely invoking enterprise tools, APIs, knowledge systems, and business actions."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/5/src.png",
+      "alt": "AI language processing workflow for entity extraction and sentiment analysis enabling autonomous intent classification, customer understanding, and enterprise support routing, Claude entity extraction, AI sentiment analysis, NLP enterprise automation, Claude NLP, entity recognition AI, customer sentiment analysis, intent classification AI, United States AI clients, India AI clients, United Kingdom AI clients, natural language processing, customer intelligence AI, conversational AI analytics",
+      "caption": "AI-powered language intelligence extracts entities, detects sentiment, and enriches customer intent for automated enterprise decision-making."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/6/src.png",
+      "alt": "NexusOps HubSpot CRM integration showing AI-powered BANT qualification, sales pipeline stages, qualified opportunities, deal values, and autonomous lead management, HubSpot AI integration, Claude HubSpot integration, AI sales automation, HubSpot CRM automation, AI BANT qualification, autonomous sales agent, Claude sales agent, AI lead qualification, United States HubSpot clients, India HubSpot clients, United Kingdom HubSpot clients, enterprise sales AI",
+      "caption": "AI agents connect with HubSpot CRM to qualify leads, score opportunities, manage deal stages, and accelerate enterprise sales workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/7/src.png",
       "alt": "",
       "caption": ""
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/8/src.png",
+      "alt": "Enterprise vector search and knowledge base retrieval architecture powering semantic document retrieval, AI agents, embeddings, and grounded Claude-based responses, Claude vector search, vector database AI, knowledge base retrieval, Claude RAG retrieval, semantic search AI, enterprise vector search, AI knowledge base, embeddings search, United States enterprise AI clients, India AI developers, United Kingdom RAG clients, enterprise AI search",
+      "caption": "Semantic vector retrieval connects AI agents with relevant enterprise knowledge, documents, and contextual information."
+    },
+    {
+      "src": "/images/projects/nexusops/gallery/9/src.png",
+      "alt": "AI-powered Zendesk ticket lifecycle automation showing ticket creation, triage, technical diagnosis, escalation, SLA monitoring, agent assignment, and resolution workflows, Zendesk AI automation, Claude Zendesk integration, AI ticket automation, Zendesk AI agent, autonomous ticket management, AI customer support, enterprise helpdesk automation, AI ticket triage, automated SLA management, United States Zendesk clients, India SaaS clients, United Kingdom Zendesk clients, Japan enterprise AI, Australia SaaS clients",
+      "caption": "AI agents automate the Zendesk ticket lifecycle from intake and triage through diagnosis, escalation, SLA monitoring, and resolution."
     }
   ],
   "video": {},
