@@ -1,5 +1,5 @@
 {
-  "title": "Portfolio Website",
+  "title": "Portfolio Websiteee",
   "basics": {
     "id": "prj-abdullah-portfolio",
     "tagline": "Animated Developer Portfolio with GSAP"
@@ -199,6 +199,7 @@
     }
   ],
   "workflowLayout": "linear",
+  "advanced": {},
   "overview": {
     "client": "Personal project — the developer's own showcase site",
     "industry": "Professional Services",
