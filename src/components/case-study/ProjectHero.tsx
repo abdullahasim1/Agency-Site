@@ -34,10 +34,7 @@ export function ProjectHero({ project }: { project: Project }) {
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
             <li>
-              <Link
-                href="/"
-                className="transition-colors hover:text-ink-800"
-              >
+              <Link href="/" className="transition-colors hover:text-ink-800">
                 {sharedCopy.breadcrumb.home}
               </Link>
             </li>
@@ -132,6 +129,7 @@ export function ProjectHero({ project }: { project: Project }) {
                 alt={project.imageAlt}
                 width={project.imageWidth}
                 height={project.imageHeight}
+                quality={90}
                 priority
                 sizes="(min-width: 1024px) 42vw, 92vw"
                 className="h-auto w-full"

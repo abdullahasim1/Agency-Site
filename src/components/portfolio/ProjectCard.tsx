@@ -49,6 +49,7 @@ export function ProjectCard({
           alt={project.imageAlt}
           width={project.imageWidth}
           height={project.imageHeight}
+          quality={90}
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : "lazy"}
