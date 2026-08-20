@@ -4,10 +4,15 @@
     "id": "vigilon12",
     "tagline": "AI Workforce Operations & Command Center"
   },
-  "categories": ["AI", "Automation", "Web Apps", "SaaS"],
+  "categories": [
+    "AI",
+    "Automation",
+    "Web Apps",
+    "SaaS"
+  ],
   "listing": {
-    "shortDescription": "A workforce operations platform for physical security agencies, unifying verified attendance, shift scheduling, patrol compliance, billing, and dispatch.",
-    "fullDescription": "Vigilon is a specialized command platform for physical security agencies and facility operators. It brings polygon geofencing, biometric liveness simulation, fatigue-aware scheduling, hours-to-invoice calculations, NFC patrol checkpoints, incident documentation, and an operations assistant into one high-density workspace."
+    "shortDescription": "Vigilon workforce operations command center for physical security agencies showing field telemetry, workforce dispatch, attendance verification, patrol compliance, and financial governance",
+    "fullDescription": "Vigilon workforce operations command center for physical security agencies showing field telemetry, workforce dispatch, attendance verification, patrol compliance, and financial governance"
   },
   "cover": {
     "image": "/images/projects/vigilon/cover/image.png",
@@ -25,9 +30,20 @@
   "techStack": [
     {
       "group": "Frontend",
-      "items": ["React 19", "TypeScript", "Tailwind CSS v4"]
+      "items": [
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4"
+      ]
     },
-    { "group": "Interaction", "items": ["Motion", "Recharts", "Lucide React"] },
+    {
+      "group": "Interaction",
+      "items": [
+        "Motion",
+        "Recharts",
+        "Lucide React"
+      ]
+    },
     {
       "group": "Operations",
       "items": [
@@ -37,7 +53,14 @@
         "Invoice Calculator"
       ]
     },
-    { "group": "Platform", "items": ["Vite", "Node.js", "Express"] }
+    {
+      "group": "Platform",
+      "items": [
+        "Vite",
+        "Node.js",
+        "Express"
+      ]
+    }
   ],
   "features": [
     {
@@ -301,5 +324,6 @@
   },
   "featured": false,
   "accent": "brand",
-  "order": 14
+  "order": 14,
+  "category": "AI / Automation"
 }
