@@ -159,7 +159,7 @@
     ]
   },
   "solution": {
-    "summary": "We built a single-page-product shell: a living attack graph where risk is encoded by color, glow and label, operational screens built from the same dataset, and a dual-theme design system so the same product works in tactical dark mode and high-contrast light mode without layout changes.",
+    "summary": "We built a single page product shell: a living attack graph where risk is encoded by color, glow and label, operational screens built from the same dataset, and a dual-theme design system so the same product works in tactical dark mode and high-contrast light mode without layout changes.",
     "points": [
       {
         "icon": "Target",
