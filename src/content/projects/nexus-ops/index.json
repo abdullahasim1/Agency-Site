@@ -25,7 +25,28 @@
   "objectives": [],
   "closing": {},
   "results": [],
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/projects/nexus-ops/gallery/0/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/nexus-ops/gallery/1/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/nexus-ops/gallery/2/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/nexus-ops/gallery/3/src.png",
+      "alt": "",
+      "caption": ""
+    }
+  ],
   "video": {},
   "workflow": [],
   "workflowLayout": "linear",
