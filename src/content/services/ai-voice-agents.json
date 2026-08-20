@@ -42,8 +42,7 @@
     "Tier-one support with escalation to a human agent"
   ],
   "relatedProjects": [
-    "verivoice",
-    "medisync-scheduling"
+    "verivoice"
   ],
   "accent": "cyan",
   "featured": true

@@ -42,7 +42,6 @@
     "Internal tools that need a camera, GPS or barcode scanning"
   ],
   "relatedProjects": [
-    "fieldops-mobile",
     "routelens-driver-app"
   ],
   "accent": "violet",

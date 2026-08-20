@@ -31,26 +31,6 @@
       "projectSlug": "reportai"
     },
     {
-      "id": "t-4",
-      "quote": "Our field crews work in places with no signal, and every previous app fell over. This one syncs when it can and never loses a job. Adoption was near total within the first month, which has never happened with software we have rolled out before.",
-      "name": "Tom Bergstrom",
-      "role": "Field Services Manager",
-      "company": "Halden Utilities",
-      "initials": "TB",
-      "accent": "brand",
-      "projectSlug": "fieldops-mobile"
-    },
-    {
-      "id": "t-5",
-      "quote": "They delivered a working slice in the third week and kept that rhythm the whole way. We were never waiting on a big reveal, and every review meeting was about a system we had already used ourselves.",
-      "name": "Sofia Marchetti",
-      "role": "Founder",
-      "company": "Cadence Health",
-      "initials": "SM",
-      "accent": "cyan",
-      "projectSlug": "medisync-scheduling"
-    },
-    {
       "id": "t-6",
       "quote": "The handover was the best I have experienced. Architecture notes, diagrams, a walkthrough for each of our engineers. Six months on, our own team is extending the platform without needing to call them.",
       "name": "Alex Novak",
