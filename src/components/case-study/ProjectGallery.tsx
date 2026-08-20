@@ -6,12 +6,14 @@ import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { portfolioCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
 /**
  * Interface / system screens.
  *
- * Every screenshot is shown full-width at its own aspect ratio, so images
- * render as large as the container allows without cropping or downscaling.
+ * The first screenshot leads full-width, then the remaining shots sit two per
+ * row at their own aspect ratio — the same grid for every project, so no image
+ * is cropped or downscaled. On small screens everything stacks.
  */
 export function ProjectGallery({ project }: { project: Project }) {
   if (project.gallery.length === 0) return null;
@@ -28,10 +30,14 @@ export function ProjectGallery({ project }: { project: Project }) {
         <Stagger
           as="ul"
           stagger={0.08}
-          className="mt-10 grid grid-cols-1 gap-6"
+          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2"
         >
           {project.gallery.map((item, index) => (
-            <StaggerItem as="li" key={item.src}>
+            <StaggerItem
+              as="li"
+              key={item.src}
+              className={cn(index === 0 && "md:col-span-2")}
+            >
               <figure className="overflow-hidden rounded-card border border-ink-200 bg-white">
                 <ZoomableImage
                   images={project.gallery.map(({ src, alt, caption }) => ({
