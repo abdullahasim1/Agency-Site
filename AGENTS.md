@@ -10,16 +10,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Git workflow
 
-`main` is branch-protected (pull request required — set up so CMS saves from
-the Keystatic panel land on `edit/` branches instead of touching main
-directly). The `.github/workflows/auto-merge.yml` workflow opens a PR for every
-push to an `edit/*` branch, copies those branches to `<editor>/task/<name>`
-(kept as the per-editor record) and merges their PRs automatically — do not
-merge those manually. So after finishing any task that changes files:
+Single-developer repo. `main` is the only branch — no branch protection, no
+feature branches, no pull requests. Every change (Keystatic CMS saves and code
+edits) is committed and pushed straight to `main`, and Vercel's GitHub
+integration deploys the production site automatically on each push.
+
+So after finishing any task that changes files:
 
 1. Commit locally with a short, descriptive message in the repo's style, and
    stage only files that belong to the task (no secrets, no unrelated changes).
-2. Push to a new branch: `git push -u origin <short-name>`.
-3. Open and merge the pull request: `gh pr create --fill && gh pr merge --merge --delete-branch`.
-4. Never try to push to `main` directly — the remote rejects it.
+2. Push straight to `main`: `git push origin main`.
+
+The `.github/workflows/auto-merge.yml` workflow (edit-branch + PR flow) is
+dormant: Keystatic no longer creates `edit/` branches, so it never fires.
 
