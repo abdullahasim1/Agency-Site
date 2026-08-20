@@ -63,3 +63,25 @@ jobs:
             nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
       - run: npm ci
       - run: npm run build
+
+  deploy:
+    # Only merge-to-main deploys; PRs stop at the checks above.
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # Deploys the committed code through the Vercel CLI. This runs from
+      # GitHub Actions rather than relying on Vercel's git webhook, which has
+      # been dropping Keystatic push events. The token (VERCEL_TOKEN) is a
+      # Vercel access token stored as a repository secret.
+      - name: Deploy production
+        run: npx vercel --prod --yes --token "$VERCEL_TOKEN" --scope abdullahasim1s-projects
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
