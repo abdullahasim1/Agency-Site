@@ -92,9 +92,9 @@ export default config({
           kind: "github",
           repo: keystaticRepo,
           /*
-           * main is branch-protected (PR required), so Keystatic prompts for a
-           * new branch on every save instead of committing to main directly.
-           * This prefix keeps those panel-created branches recognisable.
+           * main is unprotected, so Keystatic commits straight to main and
+           * Vercel's git integration deploys on each push. The prefix only
+           * applies if a branch is ever needed again.
            */
           branchPrefix: "edit/",
         }
