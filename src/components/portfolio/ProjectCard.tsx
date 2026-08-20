@@ -42,7 +42,7 @@ export function ProjectCard({
       <ZoomableImage
         images={[{ src: project.image, alt: project.imageAlt }]}
         index={0}
-        className="relative z-10 aspect-[16/10] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
+        className="relative z-10 !h-auto aspect-[16/10] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
       >
         <Image
           src={project.image}
