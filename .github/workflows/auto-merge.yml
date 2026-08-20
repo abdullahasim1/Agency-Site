@@ -1,21 +1,30 @@
 name: Auto-merge Keystatic edits
 
-# Keystatic saves land on `edit/*` branches (main is branch-protected) and the
-# panel offers a "Create pull request" button. This workflow:
+# Keystatic saves land on `edit/*` branches (main is branch-protected) and this
+# workflow makes the whole trip hands-free:
 #
-#  1. Copies the branch to `<editor-username>/task/<name>` (e.g.
+#  1. On a push to an `edit/*` branch (the panel's save with no manual PR step)
+#     it opens a pull request to main if none is open yet.
+#  2. It copies the branch to `<editor-username>/task/<name>` (e.g.
 #     abdullah/task/xyz) so every CMS change is traceable to the developer who
 #     made it. The copy is kept after the merge as that record.
-#  2. Merges the panel's own PR automatically (squash + delete branch), so the
-#     editor never has to touch GitHub.
+#  3. It merges the PR automatically (squash + delete branch), so the editor
+#     never has to touch GitHub.
 #
 # A branch copy is used instead of a rename + replacement PR: renaming makes
 # the PR's head ref stale (GitHub does not retarget it), and opening a fresh
 # PR with the Actions token puts its merge run behind a manual approval gate.
 # Copying keeps the PR valid, so everything runs unattended in one run.
+#
+# The PR-open step runs in this same workflow instead of relying on the
+# `pull_request` event: GitHub does not start new workflow runs for events
+# triggered by the Actions token, so a separate "open PR" workflow would never
+# be followed by this one.
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches: ['edit/**']
 
 permissions:
   contents: write
@@ -24,26 +33,64 @@ permissions:
 jobs:
   copy-and-merge:
     if: >
+      github.event_name == 'push' ||
       startsWith(github.event.pull_request.head.ref, 'edit/') ||
       contains(github.event.pull_request.head.ref, '/task/')
     runs-on: ubuntu-latest
     steps:
+      - name: Open a pull request for a Keystatic edit branch
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          branch="${{ github.ref_name }}"
+          existing="$(gh pr list --repo "${GH_REPO}" --head "${branch}" --state open \
+            --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            echo "PR ${existing} already open for ${branch}"
+          elif gh pr create --repo "${GH_REPO}" --base main --head "${branch}" \
+            --title "Keystatic edit: ${branch}" --body "Opened automatically from a Keystatic save."; then
+            echo "Opened PR for ${branch}"
+          else
+            echo "PR create failed for ${branch}"
+          fi
+      - name: Resolve PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            branch="${{ github.ref_name }}"
+            number="$(gh pr list --repo "${GH_REPO}" --head "${branch}" --state open \
+              --json number --jq '.[0].number // empty')"
+            if [ -n "$number" ]; then
+              url="$(gh pr view "$number" --repo "${GH_REPO}" --json url --jq .url)"
+            fi
+          else
+            number="${{ github.event.pull_request.number }}"
+            url="${{ github.event.pull_request.html_url }}"
+          fi
+          echo "number=${number}" >> "$GITHUB_OUTPUT"
+          echo "url=${url}" >> "$GITHUB_OUTPUT"
+          echo "head=${{ github.event_name == 'push' && github.ref_name || github.event.pull_request.head.ref }}" >> "$GITHUB_OUTPUT"
       - name: Resolve task branch name
         id: branch
         env:
-          PR_USER: ${{ github.event.pull_request.user.login }}
-          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          PR_USER: ${{ github.actor }}
+          PR_HEAD: ${{ steps.pr.outputs.head }}
         run: |
           case "$PR_HEAD" in
             edit/*) suffix="${PR_HEAD#edit/}"; echo "name=${PR_USER}/task/${suffix}" >> "$GITHUB_OUTPUT" ;;
             *) echo "name=${PR_HEAD}" >> "$GITHUB_OUTPUT" ;;
           esac
       - name: Copy branch to <editor>/task/<name>
-        if: startsWith(github.event.pull_request.head.ref, 'edit/')
+        if: startsWith(steps.pr.outputs.head, 'edit/')
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD: ${{ steps.pr.outputs.head }}
           NEW_NAME: ${{ steps.branch.outputs.name }}
           REPO: ${{ github.repository }}
         run: |
@@ -57,8 +104,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ steps.pr.outputs.url }}
         run: |
+          if [ -z "$PR_URL" ]; then
+            echo "No pull request to merge — nothing to do"
+            exit 0
+          fi
           state="$(gh pr view "$PR_URL" --json state --jq '.state')"
           if [ "$state" = "MERGED" ]; then
             echo "PR already merged — nothing to do"
