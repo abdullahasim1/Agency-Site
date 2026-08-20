@@ -12,10 +12,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 `main` is branch-protected (pull request required — set up so CMS saves from
 the Keystatic panel land on `edit/` branches instead of touching main
-directly). The `.github/workflows/auto-merge.yml` workflow copies those
-branches to `<editor>/task/<name>` (kept as the per-editor record) and merges
-their PRs automatically — do not merge those manually. So after finishing any
-task that changes files:
+directly). The `.github/workflows/auto-merge.yml` workflow opens a PR for every
+push to an `edit/*` branch, copies those branches to `<editor>/task/<name>`
+(kept as the per-editor record) and merges their PRs automatically — do not
+merge those manually. So after finishing any task that changes files:
 
 1. Commit locally with a short, descriptive message in the repo's style, and
    stage only files that belong to the task (no secrets, no unrelated changes).
