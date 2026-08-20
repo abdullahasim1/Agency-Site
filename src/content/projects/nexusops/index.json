@@ -1,0 +1,304 @@
+{
+  "title": "NexusOps",
+  "basics": {
+    "id": "prj-nexusops",
+    "tagline": "Agentic AI Operating System"
+  },
+  "listing": {
+    "shortDescription": "An enterprise agentic AI platform that orchestrates autonomous support, sales, escalation, and operations workflows with governance built in.",
+    "fullDescription": "NexusOps is an enterprise autonomous multi-agent orchestration and operational governance platform. Aegis routes intent, Vanguard handles technical support, Meridian qualifies sales opportunities, and Apex manages escalation and governance across Web Chat, Email, Slack, and WhatsApp. Claude-powered structured reasoning, Zendesk and HubSpot automation, knowledge retrieval, human approval gates, and self-healing retries keep complex workflows moving without losing control or context."
+  },
+  "cover": {
+    "image": "/images/projects/nexusops/agentic-ai-orchestration.png",
+    "imageAlt": "NexusOps enterprise agentic AI orchestration dashboard showing autonomous support, sales, escalation agents, live operations, human-in-the-loop governance, and multi-agent execution workflows, agentic AI orchestration, autonomous AI agents, enterprise AI orchestration, Claude agent architecture, multi-agent AI system, autonomous support automation, AI agent workflow, United States Claude clients, India Claude clients, United Kingdom Claude clients, enterprise AI automation, human-in-the-loop AI"
+  },
+  "closing": {
+    "clientOverview": "NexusOps is designed for multi-tier B2B software teams handling high-stakes support, sales, and incident workflows. Support engineers need automated diagnostics, account executives need instant BANT qualification, operations leaders need live execution visibility, and compliance teams need an auditable record of every tool invocation and human approval.",
+    "conclusion": "NexusOps turns fragmented customer operations into a deterministic, observable execution pipeline. Specialized Claude-powered agents collaborate through a verified DAG, connect to Zendesk, HubSpot, Bedrock knowledge retrieval, and Slack, and pause at explicit HITL gates for low-confidence or high-risk actions. Retry policies and circuit-breaker behavior provide a resilient path when third-party integrations fail."
+  },
+  "category": "AI / Automation / Multi-Agent",
+  "categories": ["AI", "Automation", "SaaS"],
+  "technologies": [
+    "Anthropic Claude",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "PostgreSQL",
+    "Redis",
+    "Vector Search",
+    "HubSpot",
+    "Zendesk",
+    "Slack",
+    "AWS"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "group": "Agent Platform",
+      "items": [
+        "Anthropic Claude",
+        "Function Calling",
+        "Structured JSON",
+        "Multi-Agent Orchestration"
+      ]
+    },
+    {
+      "group": "Knowledge & AI",
+      "items": [
+        "RAG",
+        "Vector Search",
+        "Entity Extraction",
+        "Sentiment Analysis"
+      ]
+    },
+    {
+      "group": "System Integrations",
+      "items": ["HubSpot", "Zendesk", "Slack", "WhatsApp", "CRM APIs"]
+    },
+    {
+      "group": "Infrastructure",
+      "items": ["PostgreSQL", "Redis", "AWS", "Docker"]
+    }
+  ],
+  "features": [
+    {
+      "title": "Agentic orchestration layer",
+      "description": "Coordinate Aegis, Vanguard, Meridian, and Apex across support, sales, escalation, and operations with shared context and policy controls.",
+      "icon": "Bot"
+    },
+    {
+      "title": "Human-in-the-loop governance",
+      "description": "Keep critical operations visible and reviewable with approval gates, escalation paths, and direct human oversight.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Tool-first execution",
+      "description": "Allow agents to safely call APIs, systems, and business tools using structured execution patterns and permissions.",
+      "icon": "Wrench"
+    },
+    {
+      "title": "Grounded enterprise knowledge",
+      "description": "Connect AI workflows to internal knowledge bases, vector retrieval, and business context for reliable decisions.",
+      "icon": "BrainCircuit"
+    },
+    {
+      "title": "Operational visibility",
+      "description": "Track live DAG topology, execution telemetry, agent latency, SLA health, and escalation states through an operational console.",
+      "icon": "Gauge"
+    },
+    {
+      "title": "Workflow automation at scale",
+      "description": "Use DAG-driven orchestration to route tasks, retry flows, and recover from failures without manual intervention.",
+      "icon": "Workflow"
+    }
+  ],
+  "challenge": {
+    "summary": "Enterprise support and sales engineering teams were losing time to fragmented tools, manual routing, slow escalation, and fragile integrations. Autonomous actions also lacked consistent authorization and audit controls.",
+    "points": [
+      {
+        "icon": "Layers3",
+        "title": "Fragmented tooling and context",
+        "description": "Zendesk, HubSpot, internal runbooks, and Slack held separate pieces of customer context, forcing teams to copy information between systems."
+      },
+      {
+        "icon": "Inbox",
+        "title": "Slow triage and escalation",
+        "description": "Manual ticket routing delayed technical diagnosis and left high-value sales inquiries unaddressed while critical incidents moved slowly."
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "Unenforced governance",
+        "description": "Refunds, production hotfixes, custom SLA terms, and low-confidence decisions needed explicit authorization rather than unguarded automation."
+      },
+      {
+        "icon": "ArrowRightLeft",
+        "title": "Integration fragility",
+        "description": "Rate limits, webhook drops, and third-party timeouts could silently break workflows or require manual replay and engineering intervention."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "NexusOps introduced a deterministic DAG execution engine where specialized agents collaborate across channels and systems, use enterprise tools intentionally, and escalate to humans when policy requires it.",
+    "points": [
+      {
+        "icon": "Workflow",
+        "title": "Verified agent topology",
+        "description": "Aegis routes intent, Vanguard handles technical support, Meridian manages BANT sales qualification, and Apex enforces escalation and governance."
+      },
+      {
+        "icon": "BrainCircuit",
+        "title": "Deterministic execution states",
+        "description": "The engine moves work through QUEUED, TRIAGING, EXECUTING, WAITING_FOR_HUMAN, RETRYING, RESOLVED, and FAILED states with visible telemetry."
+      },
+      {
+        "icon": "FunctionSquare",
+        "title": "Governed tool execution",
+        "description": "Agents call Zendesk, HubSpot, Bedrock knowledge retrieval, and Slack through explicit tools, with high-risk actions paused for operator approval."
+      },
+      {
+        "icon": "Database",
+        "title": "Grounded support automation",
+        "description": "Vector knowledge retrieval supports error diagnosis and runbook execution while bi-directional ticket updates preserve the operational record."
+      },
+      {
+        "icon": "ScanLine",
+        "title": "Resilient integration mesh",
+        "description": "Exponential backoff, circuit-breaker failover, fault injection, audit logs, and HITL queues make failure and approval paths observable and recoverable."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "4",
+      "label": "Specialized agents",
+      "detail": "Aegis, Vanguard, Meridian, and Apex divide triage, technical support, sales qualification, and governance responsibilities."
+    },
+    {
+      "value": "78.4%",
+      "label": "Containment rate",
+      "detail": "The operations overview tracks the proportion of inbound work contained by the autonomous workflow."
+    },
+    {
+      "value": "< 0.80",
+      "label": "Confidence gate",
+      "detail": "Low-confidence decisions pause execution and enter the Human-in-the-Loop approval queue with an audit trail."
+    },
+    {
+      "value": "4",
+      "label": "Omnichannel inputs",
+      "detail": "Web Chat, Email, Slack, and WhatsApp events enter the same governed multi-agent execution pipeline."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/nexusops/agentic-ai-orchestration.png",
+      "alt": "NexusOps enterprise agentic AI orchestration dashboard showing autonomous support, sales, escalation agents, live operations, human-in-the-loop governance, and multi-agent execution workflows, agentic AI orchestration, autonomous AI agents, enterprise AI orchestration, Claude agent architecture, multi-agent AI system, autonomous support automation, AI agent workflow, United States Claude clients, India Claude clients, United Kingdom Claude clients, enterprise AI automation, human-in-the-loop AI",
+      "caption": "NexusOps orchestrates autonomous AI agents across enterprise support, sales, escalation, and operational workflows with built-in governance and human oversight."
+    },
+    {
+      "src": "/images/projects/nexusops/anthropic-claude-api.png",
+      "alt": "Enterprise AI application architecture integrating Anthropic Claude API capabilities with autonomous agents, structured inference, tool execution, and operational workflows, Anthropic Claude API, Claude API integration, enterprise Claude development, Claude agent development, Claude enterprise integration, LLM API integration, AI API architecture, United States Claude clients, India Claude developers, United Kingdom Claude clients, enterprise generative AI, Claude solutions architect",
+      "caption": "Enterprise-grade Claude API integration powering intelligent agents, structured reasoning, and automated business workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/claude-code.png",
+      "alt": "AI engineering workflow demonstrating Claude Code integration within an enterprise autonomous agent platform for software development, debugging, automation, and technical operations, Claude Code, Claude Code development, AI software engineering, Claude coding agent, autonomous software development, AI coding automation, enterprise developer AI, United States Claude Code clients, India Claude Code developers, United Kingdom Claude Code users, agentic software development",
+      "caption": "Claude-powered engineering workflows bring autonomous coding, debugging, and technical automation into enterprise operations."
+    },
+    {
+      "src": "/images/projects/nexusops/claude-multi-agent-system.png",
+      "alt": "NexusOps multi-agent AI system showing specialized triage, technical support, sales, escalation, and self-healing agents collaborating through an autonomous execution network, Claude multi-agent system, multi-agent AI architecture, autonomous AI agent system, Claude agent architecture, multi-agent orchestration, AI agent collaboration, autonomous enterprise agents, United States enterprise AI clients, India AI clients, United Kingdom AI clients, self-healing AI, human-in-the-loop agents",
+      "caption": "A coordinated multi-agent architecture where specialized AI agents collaborate across technical support, sales, escalation, and recovery workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/claude-structured-json-inference.png",
+      "alt": "Structured AI inference workflow showing Claude-generated JSON outputs used for deterministic enterprise automation, agent decisions, and downstream system execution, Claude structured JSON, structured output Claude, Claude JSON inference, enterprise AI automation, Claude structured outputs, JSON AI response, deterministic AI workflows, LLM structured data, United States Claude API clients, India Claude API developers, United Kingdom Claude API clients, machine-readable AI output",
+      "caption": "Structured Claude outputs transform AI reasoning into reliable, machine-readable decisions for enterprise automation."
+    },
+    {
+      "src": "/images/projects/nexusops/claude-tool-calling-function-calling.png",
+      "alt": "Claude tool calling and function calling workflow connecting an AI agent to authorized enterprise tools, APIs, knowledge systems, CRM platforms, and operational actions, Claude tool calling, Claude function calling, AI tool use, Claude agent tools, function calling API, autonomous AI actions, enterprise AI integrations, agent tool execution, United States Claude enterprise clients, India Claude developers, United Kingdom Claude developers, enterprise agent architecture",
+      "caption": "Claude agents move beyond conversation by securely invoking enterprise tools, APIs, knowledge systems, and business actions."
+    },
+    {
+      "src": "/images/projects/nexusops/directed-acyclic-graph-(dag)-pipeline.png",
+      "alt": "Enterprise multi-agent DAG pipeline visualizing deterministic routing, agent execution nodes, live telemetry, retry paths, escalation logic, and autonomous workflow orchestration, AI DAG pipeline, agentic AI workflow, multi-agent DAG orchestration, autonomous AI pipeline, AI workflow orchestration, agent execution graph, deterministic agent routing, United States enterprise AI clients, India AI engineering, United Kingdom AI automation, self-healing AI pipeline, agent state machine",
+      "caption": "A deterministic DAG-based execution pipeline routes enterprise events through specialized AI agents, recovery logic, and human escalation paths."
+    },
+    {
+      "src": "/images/projects/nexusops/entity-extraction-sentiment-analysis.png",
+      "alt": "AI language processing workflow for entity extraction and sentiment analysis enabling autonomous intent classification, customer understanding, and enterprise support routing, Claude entity extraction, AI sentiment analysis, NLP enterprise automation, Claude NLP, entity recognition AI, customer sentiment analysis, intent classification AI, United States AI clients, India AI clients, United Kingdom AI clients, natural language processing, customer intelligence AI, conversational AI analytics",
+      "caption": "AI-powered language intelligence extracts entities, detects sentiment, and enriches customer intent for automated enterprise decision-making."
+    },
+    {
+      "src": "/images/projects/nexusops/hubspot-crm-pipeline-integration.png",
+      "alt": "NexusOps HubSpot CRM integration showing AI-powered BANT qualification, sales pipeline stages, qualified opportunities, deal values, and autonomous lead management, HubSpot AI integration, Claude HubSpot integration, AI sales automation, HubSpot CRM automation, AI BANT qualification, autonomous sales agent, Claude sales agent, AI lead qualification, United States HubSpot clients, India HubSpot clients, United Kingdom HubSpot clients, enterprise sales AI",
+      "caption": "AI agents connect with HubSpot CRM to qualify leads, score opportunities, manage deal stages, and accelerate enterprise sales workflows."
+    },
+    {
+      "src": "/images/projects/nexusops/omnichannel-support-automation.png",
+      "alt": "Enterprise omnichannel AI support dashboard managing Slack, email, web chat, WhatsApp, ticketing, automated responses, routing, and human escalation, omnichannel AI support, Claude customer support automation, AI support automation, Claude customer service, AI helpdesk automation, autonomous support agent, omnichannel customer experience, Slack AI support, WhatsApp AI automation, United States enterprise clients, India SaaS clients, United Kingdom enterprise AI, Australia AI clients",
+      "caption": "NexusOps unifies Slack, email, web chat, and WhatsApp into an autonomous customer-support workflow with intelligent routing and escalation."
+    },
+    {
+      "src": "/images/projects/nexusops/retrieval-augmented-generation-(rag).png",
+      "alt": "Enterprise RAG architecture combining AI agents with knowledge retrieval, vector search, enterprise documentation, tool execution, and grounded responses, Claude RAG, Retrieval-Augmented Generation, enterprise RAG architecture, Claude knowledge retrieval, AI RAG pipeline, enterprise knowledge AI, grounded LLM responses, RAG AI architecture, United States RAG clients, India RAG developers, United Kingdom AI clients, enterprise generative AI",
+      "caption": "A production-oriented RAG architecture grounds autonomous AI agents in enterprise knowledge for reliable and context-aware decisions."
+    },
+    {
+      "src": "/images/projects/nexusops/vector-search-knowledge-base-retrieval.png",
+      "alt": "Enterprise vector search and knowledge base retrieval architecture powering semantic document retrieval, AI agents, embeddings, and grounded Claude-based responses, Claude vector search, vector database AI, knowledge base retrieval, Claude RAG retrieval, semantic search AI, enterprise vector search, AI knowledge base, embeddings search, United States enterprise AI clients, India AI developers, United Kingdom RAG clients, enterprise AI search",
+      "caption": "Semantic vector retrieval connects AI agents with relevant enterprise knowledge, documents, and contextual information."
+    },
+    {
+      "src": "/images/projects/nexusops/zendesk-ticket-lifecycle-automation.png",
+      "alt": "AI-powered Zendesk ticket lifecycle automation showing ticket creation, triage, technical diagnosis, escalation, SLA monitoring, agent assignment, and resolution workflows, Zendesk AI automation, Claude Zendesk integration, AI ticket automation, Zendesk AI agent, autonomous ticket management, AI customer support, enterprise helpdesk automation, AI ticket triage, automated SLA management, United States Zendesk clients, India SaaS clients, United Kingdom Zendesk clients, Japan enterprise AI, Australia SaaS clients",
+      "caption": "AI agents automate the Zendesk ticket lifecycle from intake and triage through diagnosis, escalation, SLA monitoring, and resolution."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "INTAKE",
+      "title": "Inbound signal received",
+      "description": "A Web Chat, Email, Slack, or WhatsApp event enters the system with customer context, SLA tier, and routing metadata."
+    },
+    {
+      "id": "w2",
+      "tag": "ROUTE",
+      "title": "Aegis triages intent",
+      "description": "Aegis classifies intent, urgency, sentiment, and entities before dispatching the request to Vanguard, Meridian, or Apex."
+    },
+    {
+      "id": "w3",
+      "tag": "INFER",
+      "title": "Vanguard or Meridian executes",
+      "description": "Vanguard retrieves runbooks and diagnoses technical issues, while Meridian evaluates BANT, sizes ARR, and provisions HubSpot deals with Claude-powered structured reasoning."
+    },
+    {
+      "id": "w4",
+      "tag": "ACT",
+      "title": "Tools and integrations act",
+      "description": "Zendesk, HubSpot, Bedrock knowledge retrieval, and Slack receive structured actions while the engine records telemetry and retries transient failures."
+    },
+    {
+      "id": "w5",
+      "tag": "HUMAN",
+      "title": "Apex governs the outcome",
+      "description": "Apex evaluates risk and pauses low-confidence, high-value, hotfix, refund, or Sev-1 actions in the HITL queue until an operator approves or rejects them."
+    }
+  ],
+  "overview": {
+    "client": "Confidential",
+    "industry": "Enterprise AI Automation",
+    "timeline": "8–12 weeks",
+    "year": "2025",
+    "platforms": [
+      "Web application",
+      "Enterprise workflow platform",
+      "Omnichannel operations"
+    ],
+    "services": [
+      "AI Agents",
+      "Workflow Automation",
+      "AI Integrations",
+      "Knowledge Retrieval"
+    ],
+    "team": "2 engineers, 1 designer, 1 product lead"
+  },
+  "featured": true,
+  "accent": "violet",
+  "order": 12,
+  "objectives": [
+    "Coordinate Aegis, Vanguard, Meridian, and Apex across enterprise support, sales, and incident workflows",
+    "Process Web Chat, Email, Slack, WhatsApp, and Phone workflows through one omnichannel execution layer",
+    "Ground agent decisions in current enterprise knowledge with structured intent, entities, and sentiment data",
+    "Enable safe tool execution with confidence thresholds, high-risk approval gates, and complete audit logging",
+    "Recover from connector timeouts and rate limits with exponential backoff and circuit-breaker failover",
+    "Provide live DAG topology, telemetry traces, SLA visibility, and operational analytics"
+  ]
+}

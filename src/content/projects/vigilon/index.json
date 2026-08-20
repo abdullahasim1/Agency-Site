@@ -1,126 +1,305 @@
 {
   "title": "Vigilon",
   "basics": {
-    "id": "vigilon12"
+    "id": "vigilon12",
+    "tagline": "AI Workforce Operations & Command Center"
   },
-  "categories": [
-    "AI",
-    "Automation",
-    "Web Apps",
-    "SaaS"
-  ],
-  "listing": {},
+  "categories": ["AI", "Automation", "Web Apps", "SaaS"],
+  "listing": {
+    "shortDescription": "A workforce operations platform for physical security agencies, unifying verified attendance, shift scheduling, patrol compliance, billing, and dispatch.",
+    "fullDescription": "Vigilon is a specialized command platform for physical security agencies and facility operators. It brings polygon geofencing, biometric liveness simulation, fatigue-aware scheduling, hours-to-invoice calculations, NFC patrol checkpoints, incident documentation, and an operations assistant into one high-density workspace."
+  },
   "cover": {
-    "image": "/images/projects/vigilon/cover/image.png"
+    "image": "/images/projects/vigilon/cover/image.png",
+    "imageAlt": "Vigilon workforce operations command center for physical security agencies showing field telemetry, workforce dispatch, attendance verification, patrol compliance, and financial governance"
   },
-  "technologies": [],
-  "techStack": [],
-  "features": [],
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Motion",
+    "Recharts",
+    "Lucide React"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": ["React 19", "TypeScript", "Tailwind CSS v4"]
+    },
+    { "group": "Interaction", "items": ["Motion", "Recharts", "Lucide React"] },
+    {
+      "group": "Operations",
+      "items": [
+        "Polygon Geofencing",
+        "NFC Checkpoints",
+        "Shift Scheduling",
+        "Invoice Calculator"
+      ]
+    },
+    { "group": "Platform", "items": ["Vite", "Node.js", "Express"] }
+  ],
+  "features": [
+    {
+      "title": "Zero-trust attendance",
+      "description": "Combine polygon geofencing, biometric liveness simulation, and cryptographic timestamps before authorizing a clock-in.",
+      "icon": "Target"
+    },
+    {
+      "title": "Fatigue-aware scheduling",
+      "description": "Detect shift overlaps, overtime thresholds, and continuous-work risks before supervisors confirm assignments.",
+      "icon": "Calendar"
+    },
+    {
+      "title": "Hours-to-invoice automation",
+      "description": "Calculate billable hours, overtime, shift differentials, payroll cost, and gross margin from verified attendance.",
+      "icon": "Receipt"
+    },
+    {
+      "title": "NFC patrol verification",
+      "description": "Track checkpoint sequences, dwell-time requirements, missed scans, and camera-only incident documentation.",
+      "icon": "Fingerprint"
+    },
+    {
+      "title": "Tactical operations radar",
+      "description": "Give dispatchers a live simulated view of officer positions, geofences, checkpoint status, and incidents.",
+      "icon": "Radar"
+    },
+    {
+      "title": "Operations command assistant",
+      "description": "Route common pricing, offline-operation, demo, and compliance questions through an embedded dispatch assistant.",
+      "icon": "MessagesSquare"
+    }
+  ],
   "challenge": {
-    "points": []
+    "summary": "Physical security agencies were relying on paper logs, broad GPS circles, spreadsheets, and manual invoice reconciliation in a low-margin, high-liability operating environment.",
+    "points": [
+      {
+        "icon": "Target",
+        "title": "Ghost shifts and buddy punching",
+        "description": "Paper sign-in sheets and broad GPS radii could not reliably prove that the assigned guard was physically present at the post."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Scheduling and fatigue risk",
+        "description": "Spreadsheet scheduling made overlapping shifts, unfilled posts, overtime leakage, and excessive consecutive hours easy to miss."
+      },
+      {
+        "icon": "Receipt",
+        "title": "Invoice disputes",
+        "description": "Clients needed proof of physical presence while finance teams spent weeks reconciling hours against paper records."
+      },
+      {
+        "icon": "Route",
+        "title": "Unverified patrols",
+        "description": "Without checkpoint and dwell-time verification, guards could rush rounds and leave high-risk areas insufficiently inspected."
+      }
+    ]
   },
   "solution": {
-    "points": []
+    "summary": "Vigilon connects field verification, workforce dispatch, patrol execution, and financial governance in a single interactive command workflow.",
+    "points": [
+      {
+        "icon": "ShieldCheck",
+        "title": "Polygon and liveness authorization",
+        "description": "A coordinate boundary check and facial-liveness state work together to authorize or block timecard creation."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Conflict-detecting shift board",
+        "description": "The scheduler flags overlaps, fatigue violations, overtime, and open shifts while supporting reassignment and broadcast actions."
+      },
+      {
+        "icon": "CreditCard",
+        "title": "Margin-aware billing engine",
+        "description": "Interactive inputs calculate regular, overtime, night, and holiday billing alongside payroll expense and gross margin."
+      },
+      {
+        "icon": "Fingerprint",
+        "title": "Checkpoint and incident controls",
+        "description": "NFC route execution enforces sequence and dwell time while incident reporting requires direct camera capture."
+      },
+      {
+        "icon": "Radar",
+        "title": "Command visibility",
+        "description": "The radar, event log, and assistant give supervisors a shared operational view across posts and incidents."
+      }
+    ]
   },
-  "objectives": [],
-  "closing": {},
-  "results": [],
+  "objectives": [
+    "Validate attendance with location, liveness, and timestamp signals",
+    "Reduce scheduling conflicts, overtime leakage, and fatigue violations",
+    "Turn verified hours into transparent client invoices and margin calculations",
+    "Verify patrol rounds through checkpoint sequences and dwell-time rules",
+    "Give dispatchers a unified command view for field operations and incidents"
+  ],
+  "closing": {
+    "clientOverview": "Vigilon is designed for field security officers, dispatch supervisors, field operations directors, and finance controllers. Officers need friction-free clock-ins and offline support; dispatchers need post coverage and incident visibility; executives need reliable attendance evidence, margins, and audit-ready invoices.",
+    "conclusion": "Vigilon replaces disconnected logs and spreadsheets with a coherent operational command surface. Its implemented simulators demonstrate how verified attendance, fatigue-safe scheduling, patrol evidence, invoice calculations, and dispatch intelligence can work together while clearly distinguishing simulated integrations from production hardware and APIs."
+  },
+  "results": [
+    {
+      "value": "15+",
+      "label": "Application routes",
+      "detail": "A complete SPA spanning attendance, scheduling, billing, incidents, solutions, pricing, resources, cases, demo, contact, and security workflows."
+    },
+    {
+      "value": "±3.5m",
+      "label": "Geofence tolerance",
+      "detail": "The documented simulator models tight polygon validation instead of broad circular GPS check-in radii."
+    },
+    {
+      "value": "5",
+      "label": "Core simulators",
+      "detail": "Geofence, radar, scheduler, invoice calculator, and patrol-route engines provide interactive operational demonstrations."
+    },
+    {
+      "value": "100%",
+      "label": "Typed UI domain",
+      "detail": "Workforce, patrol, billing, scheduling, and dispatch concepts are modeled through TypeScript domain structures and reusable components."
+    }
+  ],
   "gallery": [
     {
       "src": "/images/projects/vigilon/gallery/0/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Agentic AI system with autonomous agents and intelligent task execution",
+      "caption": "Agentic AI enables autonomous systems to reason, act, and complete complex tasks."
     },
     {
       "src": "/images/projects/vigilon/gallery/1/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Agentic AI architecture demonstrating autonomous intelligent workflows",
+      "caption": "Agentic AI combines reasoning, planning, and tool execution into autonomous workflows."
     },
     {
       "src": "/images/projects/vigilon/gallery/2/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Agentic AI and generative AI working together in an intelligent system",
+      "caption": "The convergence of generative AI and agentic systems enables more capable autonomous applications."
     },
     {
       "src": "/images/projects/vigilon/gallery/3/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Agentic AI technology architecture for intelligent autonomous applications",
+      "caption": "Modern agentic AI technologies connect models, tools, memory, and workflows to automate complex operations."
     },
     {
       "src": "/images/projects/vigilon/gallery/4/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI agents collaborating to perform intelligent tasks and workflows",
+      "caption": "AI agents can collaborate, reason over context, and execute specialized tasks."
     },
     {
       "src": "/images/projects/vigilon/gallery/5/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Artificial intelligence system representing intelligent automation and machine reasoning",
+      "caption": "Artificial intelligence provides the foundation for intelligent automation and decision-making."
     },
     {
       "src": "/images/projects/vigilon/gallery/6/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI agentic system demonstrating autonomous reasoning and task execution",
+      "caption": "Agentic AI transforms traditional AI interactions into goal-oriented autonomous execution."
     },
     {
       "src": "/images/projects/vigilon/gallery/7/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI agents coordinating intelligent tasks and autonomous workflows",
+      "caption": "Multiple AI agents can coordinate specialized capabilities to solve complex problems."
     },
     {
       "src": "/images/projects/vigilon/gallery/8/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI solutions architecture for intelligent enterprise applications",
+      "caption": "AI-powered solutions bring intelligent automation and decision support to enterprise workflows."
     },
     {
       "src": "/images/projects/vigilon/gallery/9/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AWS cloud platform supporting artificial intelligence and enterprise workloads",
+      "caption": "AWS provides scalable cloud infrastructure and services for building production AI applications."
     },
     {
       "src": "/images/projects/vigilon/gallery/10/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Claude AI model interface for generative artificial intelligence applications",
+      "caption": "Claude provides advanced language intelligence for reasoning, generation, and enterprise AI workflows."
     },
     {
       "src": "/images/projects/vigilon/gallery/11/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Claude powering agentic AI workflows and autonomous task execution",
+      "caption": "Claude can serve as the reasoning layer behind sophisticated agentic workflows."
     },
     {
       "src": "/images/projects/vigilon/gallery/12/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Claude Architect concepts for designing production-grade AI systems",
+      "caption": "Claude architecture patterns help developers design reliable and scalable AI-powered applications."
     },
     {
       "src": "/images/projects/vigilon/gallery/13/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Claude AI assistant supporting intelligent interaction and task automation",
+      "caption": "AI assistants can combine natural-language interaction with contextual reasoning and task execution."
     },
     {
       "src": "/images/projects/vigilon/gallery/14/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "Core AI tools supporting agentic workflows and intelligent application development",
+      "caption": "Core tools provide agents with the capabilities required to interact with systems and complete tasks."
     },
     {
       "src": "/images/projects/vigilon/gallery/15/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI solutions for enterprise automation and intelligent business workflows",
+      "caption": "Enterprise AI solutions integrate intelligent capabilities into real-world business processes."
     },
     {
       "src": "/images/projects/vigilon/gallery/16/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI tool use workflow showing an agent interacting with external capabilities",
+      "caption": "Tool use allows AI systems to move beyond text generation and perform actions through external capabilities."
     }
   ],
   "video": {},
-  "workflow": [],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "VERIFY",
+      "title": "Attendance verified",
+      "description": "The geofence and liveness simulator evaluates whether a guard can create an authorized timecard."
+    },
+    {
+      "id": "w2",
+      "tag": "DISPATCH",
+      "title": "Shift assigned",
+      "description": "The scheduler checks overlap, fatigue, and overtime rules before confirming a post assignment."
+    },
+    {
+      "id": "w3",
+      "tag": "PATROL",
+      "title": "Checkpoint route executed",
+      "description": "NFC checkpoints and dwell timers validate that a patrol follows the required sequence."
+    },
+    {
+      "id": "w4",
+      "tag": "BILL",
+      "title": "Hours converted to invoice",
+      "description": "Verified hours flow into differential, payroll, margin, and invoice calculations."
+    },
+    {
+      "id": "w5",
+      "tag": "COMMAND",
+      "title": "Operations reviewed",
+      "description": "Radar, incident logs, and the command assistant surface exceptions to supervisors."
+    }
+  ],
   "workflowLayout": "linear",
   "advanced": {},
   "overview": {
-    "platforms": [],
-    "services": []
+    "client": "Personal project",
+    "industry": "Physical Security Operations",
+    "timeline": "15+ route SPA",
+    "year": "2026",
+    "platforms": [
+      "Web application",
+      "Operations command center",
+      "Responsive SPA"
+    ],
+    "services": [
+      "Product UI Engineering",
+      "Workflow Simulation",
+      "Data Visualization",
+      "Responsive Frontend Development"
+    ],
+    "team": "Single engineering effort"
   },
   "featured": false,
   "accent": "brand",
-  "order": 100
+  "order": 14
 }

@@ -1,0 +1,282 @@
+{
+  "title": "CosmoAtlas",
+  "basics": {
+    "id": "prj-cosmoatlas",
+    "tagline": "Interactive Cosmic Knowledge Graph & AI Cosmology Platform"
+  },
+  "listing": {
+    "shortDescription": "A full-stack scientific platform for exploring cosmic hierarchies, astronomical scale, cosmological theories, guided journeys, and AI-powered scientific reasoning.",
+    "fullDescription": "CosmoAtlas maps the universe from Earth and planetary systems through galaxies, superclusters, cosmic phenomena, and theoretical geometries. Its interactive graph, canvas visualizations, scale navigator, cosmic timeline, guided journeys, dossier generator, and Claude-powered Atlas copilot turn complex cosmology into an explorable knowledge system with deterministic fallbacks when AI services are unavailable."
+  },
+  "cover": {
+    "image": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.png",
+    "imageAlt": "CosmoAtlas interactive cosmic knowledge graph landing screen showing connected astronomical entities, cosmic scale relationships, Claude AI assistance, and educational universe exploration, AI cosmology software services in the USA, UK, India, and Australia"
+  },
+  "closing": {
+    "clientOverview": "CosmoAtlas is designed for astrophysics students, science communicators, educators, amateur astronomers, space enthusiasts, and theoretical physics researchers who need more than static astronomy articles or an unstructured AI chat window.",
+    "conclusion": "CosmoAtlas combines a secure server-side Claude proxy, structured JSON responses, an interactive cosmic graph, procedural 2D canvas visuals, guided journeys, and local astrophysical fallbacks. The result is an educational research surface that makes cosmic scale, hierarchy, chronology, and theoretical models easier to explore without exposing API credentials to the browser."
+  },
+  "category": "AI / Cosmology / Knowledge Graph",
+  "categories": ["AI", "Web Apps", "SaaS"],
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Express",
+    "Anthropic Claude",
+    "HTML5 Canvas",
+    "Web Audio API"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": ["React 19", "TypeScript 5.8", "Vite 6", "Tailwind CSS 4"]
+    },
+    {
+      "group": "AI Platform",
+      "items": [
+        "Claude Models",
+        "Claude API",
+        "Structured JSON Schema",
+        "Server-side AI Proxy"
+      ]
+    },
+    {
+      "group": "Visualization",
+      "items": [
+        "HTML5 Canvas 2D",
+        "Cosmic Knowledge Graph",
+        "Keplerian Orbits",
+        "Procedural Starfields"
+      ]
+    },
+    {
+      "group": "Interaction",
+      "items": ["Motion", "Web Audio API", "Lucide React", "Canvas Confetti"]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "Express",
+        "TSX",
+        "esbuild",
+        "Deterministic Fallback Engine"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Cosmic knowledge graph",
+      "description": "Explore relationships from Earth and the Solar System through galaxies, superclusters, cosmic phenomena, and theoretical cosmological models.",
+      "icon": "Network"
+    },
+    {
+      "title": "Atlas AI copilot",
+      "description": "Use structured Claude model responses to answer scientific questions and dispatch navigation, path highlighting, theory comparison, and scale actions.",
+      "icon": "BrainCircuit"
+    },
+    {
+      "title": "Multi-scale universe navigator",
+      "description": "Traverse 27 orders of magnitude from human and planetary dimensions to the cosmological particle horizon.",
+      "icon": "Globe"
+    },
+    {
+      "title": "Cosmic chronology and journeys",
+      "description": "Move through a 13.8-billion-year timeline or launch narrated routes from Earth to Sagittarius A* and other cosmic destinations.",
+      "icon": "Route"
+    },
+    {
+      "title": "Scientific dossier generator",
+      "description": "Generate structured trans-cosmic reports with trajectory waypoints, physical boundaries, evidence, and unresolved mysteries.",
+      "icon": "FileText"
+    },
+    {
+      "title": "Secure resilient AI architecture",
+      "description": "Keep Claude model credentials server-side and fall back to deterministic astrophysical knowledge when API keys or network access are unavailable.",
+      "icon": "ShieldCheck"
+    }
+  ],
+  "challenge": {
+    "summary": "Astronomy learners and researchers had to combine static articles, specialist simulation tools, and unstructured AI chat to understand cosmic hierarchy, scale, traversals, and theoretical models together.",
+    "points": [
+      {
+        "icon": "Network",
+        "title": "Disconnected cosmic taxonomy",
+        "description": "It was difficult to see how local structures such as Earth and the Solar System nest inside the Milky Way, Laniakea, and the Observable Universe."
+      },
+      {
+        "icon": "Route",
+        "title": "No relational traversal",
+        "description": "Static search could describe objects but could not guide users through a meaningful physical path from one cosmic entity to another."
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "AI scientific rigor",
+        "description": "A general-purpose chatbot can blur the distinction between observed structures, supported models, theoretical geometries, and speculative ideas."
+      },
+      {
+        "icon": "Lock",
+        "title": "Client-side API exposure",
+        "description": "AI prototypes often place provider credentials in browser code, creating avoidable security and operational risks."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "CosmoAtlas unifies graph topology, scale, chronology, theory comparison, guided traversal, and secure AI reasoning behind one responsive application architecture.",
+    "points": [
+      {
+        "icon": "Network",
+        "title": "Structured cosmic graph",
+        "description": "Typed astronomical entities and relationships provide exact hierarchy, adjacency, physical metadata, scientific consensus, and mystery context."
+      },
+      {
+        "icon": "BrainCircuit",
+        "title": "Agentic Atlas actions",
+        "description": "The AI copilot returns typed actions such as NAVIGATE, HIGHLIGHT_PATH, COMPARE, and SCALE_TO instead of unstructured chat alone."
+      },
+      {
+        "icon": "ChartNoAxesCombined",
+        "title": "Exponential visualization",
+        "description": "The scale navigator and canvas camera make astronomical magnitude understandable through interactive zoom, targeting, and orbital context."
+      },
+      {
+        "icon": "FileText",
+        "title": "Grounded scientific output",
+        "description": "Schema-enforced explanations, reports, comparisons, and local fallbacks preserve consistent output shapes and scientific status labels."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Secure fallback architecture",
+        "description": "Express proxies Claude model calls server-side while deterministic datasets preserve usability during missing-key, network, or rate-limit failures."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "27",
+      "label": "Orders of magnitude",
+      "detail": "The scale experience traverses from human and planetary dimensions to the cosmological particle horizon."
+    },
+    {
+      "value": "6",
+      "label": "AI endpoints",
+      "detail": "Status, explain, path, Atlas, report, and theory-compare services are exposed through a structured Express proxy layer."
+    },
+    {
+      "value": "4",
+      "label": "Atlas UI actions",
+      "detail": "The copilot can navigate, highlight paths, compare theories, and move the scale camera through typed commands."
+    },
+    {
+      "value": "0",
+      "label": "Client-side API keys",
+      "detail": "Claude model credentials remain server-side while deterministic astrophysical fallbacks keep the experience available without a key."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.png",
+      "alt": "CosmoAtlas landing screen showing a connected cosmic knowledge graph with planets, stars, galaxies, cosmic phenomena, and an AI-powered explorer entry point, Claude AI cosmology knowledge graph services in the USA, UK, India, and Australia",
+      "caption": "CosmoAtlas landing experience — an AI-powered cosmic knowledge graph for navigating the interconnected architecture of the universe."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/cosmic-scale-navigator-ai-cosmology-software-uk.png",
+      "alt": "CosmoAtlas Cosmic Scale Navigator displaying Planet Earth at 10 to the 7 meters with exact diameter, comparative perspective, astrophysical context, and an interactive 27-order scale slider, AI cosmology software services in the UK",
+      "caption": "Cosmic Scale Navigator — move across 27 orders of magnitude while inspecting exact dimensions and astrophysical context for Planet Earth."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/cosmic-timeline-claude-ai-knowledge-platform-india.png",
+      "alt": "CosmoAtlas Cosmic Timeline showing the primordial flash, exponential inflation, Planck Epoch, key phenomena, and linked cosmic chronology events, Claude AI knowledge platform for cosmology services in India",
+      "caption": "Cosmic Timeline — explore the universe from the Planck Epoch and inflation through star formation, human civilization, and its ultimate fate."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/spacetime-topology-cosmology-ai-research-usa.png",
+      "alt": "CosmoAtlas Spacetime Topology and Cosmologies comparison showing Flat Universe and 3-Sphere Closed Universe models, curvature, mathematical formulation, and observational evidence, cosmology AI research services in the USA",
+      "caption": "Spacetime Topology & Cosmologies — compare flat and closed-universe models through geometry, equations, and observational evidence."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/guided-cosmic-journeys-ai-education-uk.png",
+      "alt": "CosmoAtlas Guided Cosmic Journeys interface showing a voyage from Earth to the center of the Milky Way and a 13.8 billion year Genesis Flight with waypoint stages, AI cosmic education services in the UK",
+      "caption": "Guided Cosmic Journeys — launch narrated, multi-stage expeditions from Earth to Sagittarius A* or through the 13.8-billion-year history of the universe."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/cosmic-dossier-generator-claude-ai-india.png",
+      "alt": "CosmoAtlas Cosmic Dossier Generator configured for an Earth to Sagittarius A* report with trajectory waypoints, virialized boundaries, distance scale, and astrophysical synthesis, Claude AI report generation services in India",
+      "caption": "Cosmic Dossier Generator — turn a selected route into a publication-style astrophysical report with trajectory stages and scientific synthesis."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/cosmology-saas-pricing-ai-platform-australia.png",
+      "alt": "CosmoAtlas cosmology SaaS pricing page showing Stargazer, Voyager Pro, and Galactic Enterprise plans with cosmic graph, AI query, report, and collaboration capabilities, AI platform services in Australia",
+      "caption": "Cosmology Platform Plans — package cosmic graph exploration, Atlas AI queries, dossier generation, collaboration, and institutional capabilities for different audiences."
+    },
+    {
+      "src": "/images/projects/cosmoatlas/interactive-cosmic-knowledge-graph-proxima-centauri.png",
+      "alt": "CosmoAtlas interactive cosmic knowledge graph explorer showing Proxima Centauri selected with observed status, physical description, scale, distance from Earth, astrophysical metrics, and graph connections, AI astronomy software services",
+      "caption": "Interactive Cosmic Explorer — inspect Proxima Centauri in context with its physical description, distance, metrics, observations, and graph relationships."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "EXPLORE",
+      "title": "Select a cosmic entity",
+      "description": "Users search or select a planet, star, galaxy, phenomenon, or theoretical model from the interactive knowledge graph."
+    },
+    {
+      "id": "w2",
+      "tag": "CONTEXT",
+      "title": "Build grounded context",
+      "description": "CosmicContext assembles physical metadata, hierarchy, relationships, observations, consensus, and unresolved mysteries."
+    },
+    {
+      "id": "w3",
+      "tag": "REASON",
+      "title": "Ask Atlas AI",
+      "description": "The server-side Claude proxy generates schema-constrained explanations, paths, reports, comparisons, or UI actions."
+    },
+    {
+      "id": "w4",
+      "tag": "VISUALIZE",
+      "title": "Navigate the cosmos",
+      "description": "The canvas camera, scale slider, timeline, theory comparator, and journey views render the requested scientific context."
+    },
+    {
+      "id": "w5",
+      "tag": "FALLBACK",
+      "title": "Stay available offline",
+      "description": "Deterministic astrophysical datasets return compatible responses when credentials, network access, or external AI services are unavailable."
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Personal project",
+    "industry": "Education / Scientific Visualization",
+    "timeline": "6–8 months",
+    "year": "2024",
+    "platforms": [
+      "Web application",
+      "Interactive canvas",
+      "AI reasoning platform"
+    ],
+    "services": [
+      "Interactive Product Engineering",
+      "Scientific Data Visualization",
+      "AI Integration",
+      "Responsive Frontend Development"
+    ],
+    "team": "Individual full-stack AI engineer / solution architect"
+  },
+  "featured": true,
+  "accent": "violet",
+  "order": 16,
+  "objectives": [
+    "Model a unified cosmic knowledge graph across astronomical scales",
+    "Make exponential scale, chronology, and cosmic relationships explorable in real time",
+    "Secure Claude model reasoning behind server-side structured API endpoints",
+    "Enable Atlas AI to dispatch typed navigation and comparison actions into the UI",
+    "Distinguish observed, supported, theoretical, hypothetical, and speculative knowledge",
+    "Preserve complete functionality through deterministic local astrophysical fallbacks"
+  ]
+}
