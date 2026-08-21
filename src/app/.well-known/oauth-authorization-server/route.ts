@@ -8,6 +8,8 @@ import { siteConfig } from "@/data/site";
  * wire this to a real AS (e.g. WorkOS, Auth0, Keycloak) and publish the
  * issuer, endpoints, and JWKS here.
  *
+ * Includes agent_auth block per auth.md spec for agent registration discovery.
+ *
  * See also: /.well-known/oauth-protected-resource for the resource metadata.
  */
 export async function GET(): Promise<Response> {
@@ -29,6 +31,14 @@ export async function GET(): Promise<Response> {
     introspection_endpoint: "",
     device_authorization_endpoint: "",
     userinfo_endpoint: "",
+    // auth.md agent_auth block for agent registration discovery
+    agent_auth: {
+      register_uri: `${base}/.well-known/oauth-authorization-server/register`,
+      supported_identity_types: ["service-account", "workload-identity"],
+      supported_credential_types: ["client_secret_basic", "client_secret_post", "private_key_jwt"],
+      claims_endpoint: "",
+      revocation_endpoint: "",
+    },
   };
 
   return new NextResponse(JSON.stringify(metadata, null, 2), {

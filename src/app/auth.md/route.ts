@@ -14,7 +14,7 @@ import { siteConfig } from "@/data/site";
 export async function GET(): Promise<Response> {
   const base = siteConfig.url;
 
-  const markdown = `# DevRox Agent Authentication
+  const markdown = `# Auth.md
 
 This document describes how AI agents can authenticate to access protected resources on **${siteConfig.name}** (${base}).
 
