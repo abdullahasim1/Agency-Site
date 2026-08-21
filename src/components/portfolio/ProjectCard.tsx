@@ -46,6 +46,18 @@ export function ProjectCard({
       >
         <Image
           src={project.image}
+          alt=""
+          width={project.imageWidth}
+          height={project.imageHeight}
+          quality={70}
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover blur-md scale-[1.08]"
+        />
+        <Image
+          src={project.image}
           alt={project.imageAlt}
           width={project.imageWidth}
           height={project.imageHeight}
@@ -53,7 +65,7 @@ export function ProjectCard({
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : "lazy"}
-          className="h-full w-full object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
+          className="relative z-10 h-full w-full object-contain transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
         />
       </ZoomableImage>
 
