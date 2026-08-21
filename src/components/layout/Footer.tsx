@@ -48,6 +48,15 @@ export async function Footer() {
       />
       <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-40" />
 
+      {/* Watermark logo - bottom right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-4 right-4 opacity-5 md:opacity-10 transition-opacity hover:opacity-20"
+        style={{ zIndex: 0 }}
+      >
+        <BrandLogo tone="inverse" className="h-24 md:h-32 w-auto" />
+      </div>
+
       <Container className="relative">
         <div className="grid grid-cols-1 gap-12 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)] lg:gap-16 lg:py-20">
           {/* Brand + contact */}
