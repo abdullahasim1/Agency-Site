@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Bakes a repeating DevRox logo watermark into every portfolio image so the
-assets are protected even when downloaded directly from /images.
+Bakes a single DevRox logo watermark into the bottom of every portfolio image
+so the assets are protected even when downloaded directly from /images.
 
 Output: in-place, all PNGs under public/images/projects (cover + gallery +
 case-study shots).
@@ -9,19 +9,15 @@ case-study shots).
 Usage: python3 scripts/watermark.py
 
 Requires Pillow and ImageMagick (to rasterise the SVG logos into /tmp). The
-watermark is the DevRox wordmark rendered in brand colour over a soft white
-halo, so it stays readable on light and dark covers alike. Re-running is
-idempotent — it does not blank anything out, so expect the mark to deepen if
-the source images were already watermarked.
+watermark is the DevRox wordmark rendered in brand colour at the bottom centre
+with a soft white halo, so it stays readable on light and dark images alike.
 """
 from __future__ import annotations
 
 import glob
-import os
 import subprocess
 import sys
 import tempfile
-from functools import lru_cache
 from pathlib import Path
 
 from PIL import Image
@@ -31,12 +27,13 @@ PROJECT_IMAGES = ROOT / "public" / "images" / "projects"
 LOGO_COLOR = ROOT / "public" / "logos" / "weblogo" / "devrox-color.svg"
 LOGO_WHITE = ROOT / "public" / "logos" / "weblogo" / "devrox-white.svg"
 
-COLOR_ALPHA = 0.55
-HALO_ALPHA = 0.5
+COLOR_ALPHA = 0.75
+HALO_ALPHA = 0.65
 HALO_GROW = 1.04
-SPACING_RATIO = 0.8  # tile cell as a fraction of the shortest side
-SIZE_RATIO = 0.42  # logo width as a fraction of the shortest side
-ANGLE = -25
+WIDTH_RATIO = 0.28  # logo width as a fraction of the image width
+EDGE_PADDING = 3  # px gap from the bottom edge
+
+CACHE: dict[tuple[int, int], Image.Image] = {}
 
 
 def raster(logo_svg: Path, size_w: int) -> Image.Image:
@@ -54,55 +51,33 @@ def raster(logo_svg: Path, size_w: int) -> Image.Image:
         return img.resize((round(img.width * scale), round(img.height * scale)), Image.Resampling.LANCZOS)
 
 
-def make_stamp(size_w: int) -> tuple[Image.Image, Image.Image]:
-    """(halo, colour) stamps rotated to the watermark angle."""
-    color = raster(LOGO_COLOR, size_w).rotate(ANGLE, expand=True, resample=Image.Resampling.BICUBIC)
-    halo = raster(LOGO_WHITE, round(size_w * HALO_GROW)).rotate(
-        ANGLE, expand=True, resample=Image.Resampling.BICUBIC
-    )
-    halo = halo.resize(color.size, Image.Resampling.LANCZOS)
+def make_stamp(size_w: int) -> Image.Image:
+    """Composite (halo + brand colour) logo stamp at the given width."""
+    key = (size_w,)
+    if key not in CACHE:
+        color = raster(LOGO_COLOR, size_w)
+        halo = raster(LOGO_WHITE, round(size_w * HALO_GROW)).resize(color.size, Image.Resampling.LANCZOS)
 
-    halo_a = halo.getchannel("A").point(lambda v: int(v * HALO_ALPHA))
-    halo.putalpha(halo_a)
-    color_a = color.getchannel("A").point(lambda v: int(v * COLOR_ALPHA))
-    color.putalpha(color_a)
-    return halo, color
-
-
-def build_tile(cell: int, size_w: int) -> Image.Image:
-    """One repeating cell: a corner-centred stamp plus a centre stamp."""
-    halo, color = make_stamp(size_w)
-    w, h = color.size
-    tile = Image.new("RGBA", (cell, cell), (0, 0, 0, 0))
-    for cx, cy in [(cell // 2, cell // 2), (0, 0), (cell, 0), (0, cell), (cell, cell)]:
-        x, y = round(cx - w / 2), round(cy - h / 2)
-        tile.alpha_composite(halo, (x, y))
-        tile.alpha_composite(color, (x, y))
-    return tile
-
-
-_tile_cache: dict[tuple[int, int], Image.Image] = {}
-
-
-def _tile(cell: int, size_w: int) -> Image.Image:
-    item = _tile_cache.get((cell, size_w))
-    if item is None:
-        item = build_tile(cell, size_w)
-        _tile_cache[(cell, size_w)] = item
-    return item
+        halo_a = halo.getchannel("A").point(lambda v: int(v * HALO_ALPHA))
+        halo.putalpha(halo_a)
+        color_a = color.getchannel("A").point(lambda v: int(v * COLOR_ALPHA))
+        color.putalpha(color_a)
+        CACHE[key] = Image.alpha_composite(halo, color)
+    return CACHE[key].copy()
 
 
 def watermark(path: Path, dry_run: bool = False) -> None:
     base = Image.open(path).convert("RGBA")
     w, h = base.size
-    cell = round(min(w, h) * SPACING_RATIO)
-    size_w = round(min(w, h) * SIZE_RATIO)
-    tile = _tile(cell, size_w)
+    size_w = round(w * WIDTH_RATIO)
+    stamp = make_stamp(size_w)
+    sw, sh = stamp.size
+
+    x = round((w - sw) / 2)
+    y = h - sh - EDGE_PADDING
 
     ov = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    for y in range(0, h, cell):
-        for x in range(0, w, cell):
-            ov.alpha_composite(tile, (x, y))
+    ov.alpha_composite(stamp, (x, y))
 
     if dry_run:
         return
