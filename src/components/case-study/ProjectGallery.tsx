@@ -61,7 +61,7 @@ export function ProjectGallery({ project }: { project: Project }) {
                 {/* Watermark logo - bottom right */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute bottom-2 right-2 opacity-5"
+                  className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-5"
                 >
                   <BrandLogo tone="inverse" className="h-6 w-auto" />
                 </div>
