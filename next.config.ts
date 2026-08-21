@@ -100,8 +100,9 @@ const nextConfig: NextConfig = {
            * Link headers (RFC 8288) so AI agents and API clients can discover
            * machine-readable resources without loading any HTML: the RFC 9727
            * API catalog, the ARD capability manifest, the markdown version of
-           * this page, the OAuth auth server metadata, the Web Bot Auth JWKS
-           * and the contact service documentation.
+           * this page, the OAuth auth server metadata, the OAuth protected
+           * resource metadata, the Web Bot Auth JWKS and the contact service
+           * documentation.
            */
           {
             key: "Link",
@@ -110,6 +111,7 @@ const nextConfig: NextConfig = {
               '</.well-known/ai-catalog.json>; rel="https://agenticresourcediscovery.org/rel/ai-catalog"; type="application/json"',
               '</.well-known/agent-skills/index.json>; rel="https://agentskills.io/rel/skills-index"; type="application/json"',
               '</.well-known/oauth-authorization-server>; rel="http://openid.net/specs/connect/1.0/issuer"; type="application/json"',
+              '</.well-known/oauth-protected-resource>; rel="http://ietf.org/rfc/rfc9728"; type="application/json"',
               '</.well-known/http-message-signatures-directory>; rel="http-message-signatures-directory"; type="application/jwk-set+json"',
               '</auth.md>; rel="describedby"; type="text/markdown"',
               '</contact>; rel="service-doc"',
