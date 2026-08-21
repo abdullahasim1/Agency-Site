@@ -159,21 +159,15 @@ function cover(project) {
     <text x="64" y="74" font-size="13" letter-spacing="3" fill="${pal.soft}">${project.tag}</text>
     <text x="64" y="104" font-size="13" letter-spacing="2" fill="${MUTE}">SYSTEM ARCHITECTURE</text>
   </g>
-  ${connectorsIn}
-  ${connectorsOut}
-  ${inNodes}
-  <g transform="translate(${coreX} 360)">
-    <rect x="0" y="-96" width="${coreW}" height="192" rx="18" fill="${PANEL}" stroke="${pal.main}" stroke-opacity="0.4"/>
-    <rect x="0" y="-96" width="${coreW}" height="34" rx="18" fill="${pal.faint}" fill-opacity="0.5"/>
-    <text x="18" y="-74" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2" fill="${pal.soft}">ORCHESTRATION</text>
-    ${coreRows}
-  </g>
-  ${outNodes}
-  <g font-family="ui-monospace,monospace">
-    <text x="64" y="668" font-size="12" letter-spacing="2" fill="${MUTE}">LOGGING · EVALUATION · HUMAN REVIEW</text>
-  </g>
-  <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" fill="none" stroke="rgba(255,255,255,0.08)"/>
-</svg>`;
+${connectorsIn}
+   ${connectorsOut}
+   ${inNodes}
+   ${outNodes}
+   <g font-family="ui-monospace,monospace">
+     <text x="64" y="668" font-size="12" letter-spacing="2" fill="${MUTE}">LOGGING · EVALUATION · HUMAN REVIEW</text>
+   </g>
+   <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" fill="none" stroke="rgba(255,255,255,0.08)"/>
+ </svg>`;
 }
 
 /** Browser/app chrome header shared by every shot. */
