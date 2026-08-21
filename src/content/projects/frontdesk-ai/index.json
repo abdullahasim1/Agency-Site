@@ -1,16 +1,16 @@
 {
-  "title": "Business Help",
+  "title": "FrontDesk AI",
   "basics": {
-    "id": "prj-business-help",
+    "id": "prj-frontdesk-ai",
     "tagline": "Embeddable AI Chat & Voice-Call Widget for Business Websites"
   },
   "listing": {
     "shortDescription": "A multi-tenant SaaS that lets any business configure an AI agent, feed it knowledge, and embed a chat + voice-call widget on their website — capturing leads, transcripts and bookings in one dashboard.",
-    "fullDescription": "Small businesses want AI support on their websites without building it. Business Help packages that into one product: a business signs in to a dashboard, configures a single AI agent — name, tone, language and instructions — feeds it knowledge from inline text or PDF uploads, and copies a one-line embed script onto their site. Visitors then chat with the agent or talk to a voice agent straight from the browser. Every interaction is captured as a lead with full transcripts, Calendly bookings sync into the same pipeline, and the whole loop — embed, converse, capture, review, book — runs on a deliberately small, production-minded backend."
+    "fullDescription": "Small businesses want AI support on their websites without building it. FrontDesk AI packages that into one product: a business signs in to a dashboard, configures a single AI agent — name, tone, language and instructions — feeds it knowledge from inline text or PDF uploads, and copies a one-line embed script onto their site. Visitors then chat with the agent or talk to a voice agent straight from the browser. Every interaction is captured as a lead with full transcripts, Calendly bookings sync into the same pipeline, and the whole loop — embed, converse, capture, review, book — runs on a deliberately small, production-minded backend."
   },
   "cover": {
-    "image": "/images/projects/business-help/cover.svg",
-    "imageAlt": "Business Help AI chat and call widget dashboard showing agent configuration, captured leads and conversations"
+    "image": "/images/projects/frontdesk-ai/cover.svg",
+    "imageAlt": "FrontDesk AI chat and call widget dashboard showing agent configuration, captured leads and conversations"
   },
   "closing": {
     "clientOverview": "An internal SaaS product idea: give agencies and small businesses an AI front desk they can install in minutes. The team wanted one deployable backend serving many business tenants, a zero-dependency widget any site could host, and an admin panel that made agent configuration, knowledge management and lead review approachable for non-technical operators.",
@@ -175,17 +175,17 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/business-help/shot-1.svg",
+      "src": "/images/projects/frontdesk-ai/shot-1.svg",
       "alt": "Business Help dashboard overview with metrics",
       "caption": "The dashboard — leads, conversations and calls at a glance per business."
     },
     {
-      "src": "/images/projects/business-help/shot-2.svg",
+      "src": "/images/projects/frontdesk-ai/shot-2.svg",
       "alt": "AI agent configuration screen",
       "caption": "Agent configuration — name, tone, language and instructions per tenant."
     },
     {
-      "src": "/images/projects/business-help/shot-3.svg",
+      "src": "/images/projects/frontdesk-ai/shot-3.svg",
       "alt": "Conversation transcript viewer",
       "caption": "Transcript review — full chat history stored per conversation."
     }
