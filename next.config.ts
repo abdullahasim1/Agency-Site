@@ -94,7 +94,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), payment=()",
+            value:
+              "camera=(), microphone=(), geolocation=(), payment=(), tools=(self)",
           },
           /*
            * Link headers (RFC 8288) so AI agents and API clients can discover

@@ -3,9 +3,12 @@ import { NextResponse } from "next/server";
 import { siteConfig } from "@/data/site";
 
 /**
- * OAuth Protected Resource Metadata (RFC 9728) — declares that the public
- * APIs on this origin do not currently require OAuth authorization.
- * If/when protected APIs are added, wire this to a real AS.
+ * OAuth Protected Resource Metadata (RFC 9728).
+ *
+ * Everything on this origin is currently public. We still publish the resource
+ * metadata so an agent can discover the matching agent-registration guidance
+ * before an authenticated service is introduced. The advertised issuer serves
+ * metadata only; no token is needed for today's public endpoints.
  */
 
 export async function GET(): Promise<Response> {
@@ -13,7 +16,7 @@ export async function GET(): Promise<Response> {
 
   const metadata = {
     resource: base,
-    authorization_servers: [],
+    authorization_servers: [base],
     scopes_supported: [],
     bearer_methods_supported: ["header"],
   };

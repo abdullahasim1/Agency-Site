@@ -4,53 +4,57 @@ import { siteConfig } from "@/data/site";
 
 /**
  * Auth.md (https://workos.com/auth.md) — agent registration and authentication
- * metadata. This documents how AI agents can authenticate to access protected
- * resources on this origin.
- *
- * Currently, DevRox has no protected APIs requiring agent authentication. This
- * file is published for discovery purposes and will be updated if/when
- * authenticated endpoints are added.
+ * discovery. The site is currently public, so this is deliberately explicit
+ * about the one agent action that creates a side effect (an enquiry) and does
+ * not pretend that an OAuth credential can be issued when it cannot.
  */
 export async function GET(): Promise<Response> {
   const base = siteConfig.url;
 
-  const markdown = `# Auth.md
+  const markdown = `# auth.md
 
-This document describes how AI agents can authenticate to access protected resources on **${siteConfig.name}** (${base}).
+Agent access and provisioning guidance for **${siteConfig.name}** (${base}).
 
-## Current Status
+## Audience and access
 
-**No protected APIs currently require agent authentication.** All public endpoints (contact form, health check, MCP server) are accessible without authentication.
+${siteConfig.name} is a public agency website. Its public pages, portfolio data,
+service catalogue, health check and MCP server do **not** require a user account,
+OAuth token or bearer credential.
 
-If/when protected APIs are added, this document will be updated with:
+Agents can use the read-only discovery tools without registration. An agent may
+submit a project enquiry only with the end user's confirmation.
 
-- OAuth 2.0 / OIDC flows supported
-- Token acquisition endpoints
-- Required scopes and permissions
-- Agent registration process
+## Registration and provisioning
+
+There is no automated account or OAuth-client registration flow today. To request
+a consultation or future service access, submit a project enquiry to
+\`POST ${base}/api/contact\` using the [published OpenAPI document](${base}/api/contact/openapi.json).
+
+- **Identity type:** \`anonymous\` — no identity assertion is required for the
+  public service.
+- **Credential type:** \`none\` — this request does not create an account or
+  issue a bearer token.
+- **User confirmation:** required before sending an enquiry, because it delivers
+  the supplied contact details and message to ${siteConfig.name}.
+- **Claim and revocation:** not applicable; there is no credential to claim or
+  revoke.
+
+Required enquiry fields are \`fullName\`, \`email\`, \`projectType\` and
+\`message\`. The endpoint validates requests, applies a rate limit and returns
+JSON. Do not submit speculative or automated enquiries.
 
 ## Discovery Endpoints
 
 | Endpoint | Purpose |
 |----------|---------|
-| [\`/.well-known/oauth-authorization-server\`](${base}/.well-known/oauth-authorization-server) | OAuth 2.0 Authorization Server Metadata (RFC 8414) |
+| [\`/.well-known/oauth-authorization-server\`](${base}/.well-known/oauth-authorization-server) | Agent-registration metadata issuer; no token endpoint is currently available |
 | [\`/.well-known/oauth-protected-resource\`](${base}/.well-known/oauth-protected-resource) | OAuth Protected Resource Metadata (RFC 9728) |
 | [\`/.well-known/api-catalog\`](${base}/.well-known/api-catalog) | API Catalog with service descriptions (RFC 9727) |
 | [\`/.well-known/mcp/server-card.json\`](${base}/.well-known/mcp/server-card.json) | MCP Server Card (SEP-1649) |
 
-## Agent Registration (Future)
-
-When agent authentication is enabled, registration will follow the **auth.md** specification:
-
-1. Agent submits registration request to \`register_uri\` (TBD)
-2. Supported identity types: \`service-account\`, \`workload-identity\`
-3. Supported credential types: \`client_secret_basic\`, \`client_secret_post\`, \`private_key_jwt\`
-4. Upon approval, agent receives \`client_id\` and credentials
-5. Agent uses OAuth 2.0 Client Credentials flow to obtain access tokens
-
 ## Contact
 
-For questions about agent access or to request API credentials:
+For access questions or a manual provisioning request:
 - Email: ${siteConfig.contact.email}
 - Website: ${base}/contact
 

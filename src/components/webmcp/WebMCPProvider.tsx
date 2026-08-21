@@ -2,20 +2,38 @@
 
 import { useEffect } from "react";
 
-import { siteConfig } from "@/data/site";
-
 interface MCPTool {
   name: string;
   description: string;
   inputSchema: Record<string, unknown>;
-  execute: (args: Record<string, unknown>) => Promise<unknown>;
+  annotations?: { readOnlyHint?: boolean };
+  execute: (args: Record<string, unknown>) => Promise<string>;
 }
 
-async function callMCPTool(name: string, args: Record<string, unknown>): Promise<unknown> {
-  const base = siteConfig.url;
-  const response = await fetch(`${base}/mcp`, {
+interface WebMCPContext {
+  registerTool: (
+    tool: MCPTool,
+    options?: { signal?: AbortSignal },
+  ) => Promise<void>;
+}
+
+interface WebMCPDocument extends Document {
+  modelContext?: WebMCPContext;
+}
+
+interface LegacyWebMCPNavigator extends Navigator {
+  modelContext?: { provideContext: (tools: MCPTool[]) => void };
+}
+
+/** Calls the same-origin MCP endpoint, so previews and production use their own data. */
+async function callMCPTool(
+  name: string,
+  args: Record<string, unknown>,
+): Promise<string> {
+  const response = await fetch("/mcp", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
     body: JSON.stringify({
       jsonrpc: "2.0",
       id: crypto.randomUUID(),
@@ -25,35 +43,44 @@ async function callMCPTool(name: string, args: Record<string, unknown>): Promise
   });
 
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error?.message ?? `MCP request failed: ${response.status}`);
+  }
   if (data.error) {
     throw new Error(data.error.message ?? "MCP tool call failed");
   }
-  return data.result?.content?.[0]?.text ?? data.result;
+
+  const text = data.result?.content?.[0]?.text;
+  return typeof text === "string" ? text : JSON.stringify(data.result ?? {});
 }
 
 const TOOLS: MCPTool[] = [
   {
     name: "get_site_info",
-    description: "Get basic information about DevRox (name, tagline, contact, services list).",
+    description:
+      "Get basic information about DevRox, including public contact details and services.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true },
     execute: () => callMCPTool("get_site_info", {}),
   },
   {
     name: "list_projects",
-    description: "Get all DevRox portfolio projects with metadata.",
+    description: "List DevRox portfolio projects and their public case-study metadata.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true },
     execute: () => callMCPTool("list_projects", {}),
   },
   {
     name: "list_services",
-    description: "Get all DevRox service offerings with descriptions.",
+    description: "List DevRox service offerings, descriptions and related technologies.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true },
     execute: () => callMCPTool("list_services", {}),
   },
   {
     name: "submit_enquiry",
     description:
-      "Submit a project enquiry to DevRox. Requires fullName, email, projectType, message. Optional: company, phone, budget.",
+      "Submit a project enquiry to DevRox. This sends the supplied details to DevRox; use only with the end user's confirmation.",
     inputSchema: {
       type: "object",
       required: ["fullName", "email", "projectType", "message"],
@@ -72,22 +99,51 @@ const TOOLS: MCPTool[] = [
   },
 ];
 
+/**
+ * Registers browser-local tools on every marketing page.
+ *
+ * `document.modelContext.registerTool()` is the current WebMCP API. The
+ * navigator fallback keeps the tools visible to early browser previews that
+ * implemented the previous `provideContext()` proposal. Aborting on unmount
+ * removes every current-API tool before a route transition or React remount.
+ */
 export function WebMCPProvider() {
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const controller = new AbortController();
+    const currentContext = (document as WebMCPDocument).modelContext;
 
-    const modelContext = (navigator as unknown as { modelContext?: { provideContext: (tools: MCPTool[]) => void } }).modelContext;
-    if (!modelContext?.provideContext) {
-      console.debug("[WebMCP] navigator.modelContext.provideContext not available");
-      return;
+    if (currentContext?.registerTool) {
+      void Promise.all(
+        TOOLS.map((tool) =>
+          currentContext.registerTool(tool, { signal: controller.signal }),
+        ),
+      )
+        .then(() => {
+          console.info(
+            "[WebMCP] Registered tools:",
+            TOOLS.map((tool) => tool.name).join(", "),
+          );
+        })
+        .catch((error: unknown) => {
+          if (!controller.signal.aborted) {
+            console.warn("[WebMCP] Failed to register tools:", error);
+          }
+        });
+
+      return () => controller.abort();
     }
 
-    try {
-      modelContext.provideContext(TOOLS);
-      console.info("[WebMCP] Registered tools:", TOOLS.map((t) => t.name).join(", "));
-    } catch (error) {
-      console.warn("[WebMCP] Failed to register tools:", error);
+    /* Compatibility with the early navigator-based WebMCP proposal. */
+    const legacyContext = (navigator as LegacyWebMCPNavigator).modelContext;
+    if (legacyContext?.provideContext) {
+      try {
+        legacyContext.provideContext(TOOLS);
+      } catch (error) {
+        console.warn("[WebMCP] Failed to provide legacy context:", error);
+      }
     }
+
+    return () => controller.abort();
   }, []);
 
   return null;
