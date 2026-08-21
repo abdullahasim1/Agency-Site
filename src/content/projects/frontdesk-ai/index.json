@@ -183,8 +183,8 @@
   "gallery": [
     {
       "src": "/images/projects/frontdesk-ai/gallery/0/src.png",
-      "alt": "Business Help dashboard overview with metrics",
-      "caption": "The dashboard — leads, conversations and calls at a glance per business."
+      "alt": "",
+      "caption": ""
     },
     {
       "src": "/images/projects/frontdesk-ai/gallery/1/src.png",
@@ -222,7 +222,7 @@
       "caption": ""
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/8/src.png",
+      "src": "",
       "alt": "",
       "caption": ""
     }
