@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { BrandLogo } from "@/components/ui/LogoMark";
 import { getFeaturedProjects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -72,13 +71,6 @@ export async function ProjectCollage({ className }: ProjectCollageProps) {
             fetchPriority="high"
             className="object-cover"
           />
-          {/* Watermark logo - bottom right */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-10"
-          >
-            <BrandLogo tone="default" className="h-6 w-auto" />
-          </div>
         </div>
       </div>
     </div>

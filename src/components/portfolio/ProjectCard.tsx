@@ -67,13 +67,6 @@ export function ProjectCard({
           loading={priority ? undefined : "lazy"}
           className="relative z-10 h-full w-full object-contain transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
         />
-        {/* Watermark logo - bottom right */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-10"
-        >
-          <BrandLogo tone="default" className="h-6 w-auto" />
-        </div>
       </Link>
 
       <div className="flex flex-1 flex-col p-6">
