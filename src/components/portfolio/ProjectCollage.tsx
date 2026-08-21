@@ -75,9 +75,9 @@ export async function ProjectCollage({ className }: ProjectCollageProps) {
           {/* Watermark logo - bottom right */}
           <div
             aria-hidden
-            className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-5"
+            className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-10"
           >
-            <BrandLogo tone="inverse" className="h-6 w-auto" />
+            <BrandLogo tone="default" className="h-6 w-auto" />
           </div>
         </div>
       </div>
