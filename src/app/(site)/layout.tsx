@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { WebMCPProvider } from "@/components/webmcp/WebMCPProvider";
 import { siteConfig, siteTitle } from "@/data/site";
 import { siteGraph } from "@/lib/seo";
 
@@ -65,20 +66,6 @@ export const metadata: Metadata = {
    * is indexed. The preview limits are repeated on googleBot because Google
    * reads its own group in preference to the generic one.
    */
-  robots: {
-    index: true,
-    follow: true,
-    "max-snippet": -1,
-    "max-image-preview": "large",
-    "max-video-preview": -1,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
-  },
   formatDetection: { telephone: false, address: false, email: false },
 };
 
@@ -101,6 +88,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       {/* Organisation + WebSite, stated once. Each page's own graph refers back
           into these two nodes by @id rather than restating them. */}
       <JsonLd data={siteGraph()} />
+      <WebMCPProvider />
     </div>
   );
 }

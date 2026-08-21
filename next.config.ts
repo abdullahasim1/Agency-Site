@@ -96,6 +96,25 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), payment=()",
           },
+          /*
+           * Link headers (RFC 8288) so AI agents and API clients can discover
+           * machine-readable resources without loading any HTML: the RFC 9727
+           * API catalog, the ARD capability manifest, the markdown version of
+           * this page, the OAuth auth server metadata, the Web Bot Auth JWKS
+           * and the contact service documentation.
+           */
+          {
+            key: "Link",
+            value: [
+              '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
+              '</.well-known/ai-catalog.json>; rel="https://agenticresourcediscovery.org/rel/ai-catalog"; type="application/json"',
+              '</.well-known/agent-skills/index.json>; rel="https://agentskills.io/rel/skills-index"; type="application/json"',
+              '</.well-known/oauth-authorization-server>; rel="http://openid.net/specs/connect/1.0/issuer"; type="application/json"',
+              '</.well-known/http-message-signatures-directory>; rel="http-message-signatures-directory"; type="application/jwk-set+json"',
+              '</auth.md>; rel="describedby"; type="text/markdown"',
+              '</contact>; rel="service-doc"',
+            ].join(", "),
+          },
         ],
       },
       /* Last, so it wins for the same header key (see headers docs on
