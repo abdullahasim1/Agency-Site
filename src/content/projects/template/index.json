@@ -1,9 +1,13 @@
 {
-  "title": "template",
+  "title": "template template",
   "basics": {
-    "id": "temp1"
+    "id": "template121111"
   },
-  "categories": [],
+  "categories": [
+    "AI",
+    "Mobile",
+    "Web Apps"
+  ],
   "listing": {},
   "cover": {
     "image": "/images/projects/template/cover/image.png"
@@ -23,18 +27,18 @@
   "gallery": [
     {
       "src": "/images/projects/template/gallery/0/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI",
+      "caption": "AI"
     },
     {
       "src": "/images/projects/template/gallery/1/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI",
+      "caption": "AI"
     },
     {
       "src": "/images/projects/template/gallery/2/src.png",
-      "alt": "",
-      "caption": ""
+      "alt": "AI",
+      "caption": "AI"
     }
   ],
   "video": {},
