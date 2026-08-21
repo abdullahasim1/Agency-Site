@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Container } from "@/components/ui/Container";
 import { ZoomableImage } from "@/components/ui/Lightbox";
+import { BrandLogo } from "@/components/ui/LogoMark";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { portfolioCopy } from "@/data/pages";
@@ -57,6 +58,13 @@ export function ProjectGallery({ project }: { project: Project }) {
                     className="h-auto w-full"
                   />
                 </ZoomableImage>
+                {/* Watermark logo - bottom right */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-10"
+                >
+                  <BrandLogo tone="default" className="h-6 w-auto" />
+                </div>
                 <figcaption className="border-t border-ink-200 px-5 py-4 text-sm leading-relaxed text-ink-600">
                   {item.caption}
                 </figcaption>
