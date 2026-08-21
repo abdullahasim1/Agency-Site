@@ -20,7 +20,23 @@
   "objectives": [],
   "closing": {},
   "results": [],
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/projects/template/gallery/0/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/template/gallery/1/src.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "src": "/images/projects/template/gallery/2/src.png",
+      "alt": "",
+      "caption": ""
+    }
+  ],
   "video": {},
   "workflow": [],
   "workflowLayout": "linear",
