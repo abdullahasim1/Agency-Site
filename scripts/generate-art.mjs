@@ -48,6 +48,7 @@ const PROJECTS = [
   { slug: "reportai", accent: "violet", tag: "AI · COMPLIANCE", io: ["Submit", "Research", "Report"] },
   { slug: "cyberthreat-mesh", accent: "cyan", tag: "SECURITY · SAAS", io: ["Asset", "Graph", "Alert"] },
   { slug: "nexusops", accent: "brand", tag: "AI · ORCHESTRATION", io: ["Triage", "Resolve", "Govern"] },
+  { slug: "business-help", accent: "violet", tag: "AI · WIDGET", io: ["Chat", "Capture", "Call"] },
 ];
 
 /** Deterministic PRNG so output never changes between runs. */

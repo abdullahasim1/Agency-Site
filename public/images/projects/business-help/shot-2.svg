@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img">
+  <defs>
+    <pattern id="grid-business-help-2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow-business-help-2" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-business-help-2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#0a0f1e"/>
+  <rect width="1280" height="720" fill="url(#grid-business-help-2)"/>
+  <rect width="1280" height="46" fill="#111827"/>
+  <circle cx="26" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="46" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="66" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="96" y="13" width="1080" height="20" rx="10" fill="rgba(255,255,255,0.04)"/>
+  <text x="112" y="27" font-family="ui-monospace,monospace" font-size="12" fill="rgba(255,255,255,0.38)">business-help · analytics</text>
+  <line x1="0" y1="46" x2="1280" y2="46" stroke="rgba(255,255,255,0.06)"/>
+  <text x="40" y="78" font-family="ui-sans-serif,system-ui" font-size="13" letter-spacing="2" fill="#a78bfa">OVERVIEW</text>
+  <g transform="translate(40 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">68%</text>
+      <rect x="20" y="92" width="97" height="7" rx="3" fill="#8b5cf6" fill-opacity="0.4"/>
+    </g><g transform="translate(340 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">24/7</text>
+      <rect x="20" y="92" width="81" height="7" rx="3" fill="#8b5cf6" fill-opacity="0.4"/>
+    </g><g transform="translate(640 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">3.4×</text>
+      <rect x="20" y="92" width="88" height="7" rx="3" fill="#8b5cf6" fill-opacity="0.4"/>
+    </g><g transform="translate(940 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">1.2k</text>
+      <rect x="20" y="92" width="92" height="7" rx="3" fill="#8b5cf6" fill-opacity="0.4"/>
+    </g>
+  <g transform="translate(40 250)">
+    <rect width="1200" height="380" rx="16" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+    <text x="28" y="44" font-family="ui-sans-serif,system-ui" font-size="15" fill="rgba(255,255,255,0.72)">Throughput</text>
+    <line x1="28" y1="312" x2="1172" y2="312" stroke="rgba(255,255,255,0.06)"/>
+    <rect x="72" y="348" width="34" height="212" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.71"/><rect x="134" y="365" width="34" height="195" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.82"/><rect x="196" y="431" width="34" height="129" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.8"/><rect x="258" y="371" width="34" height="189" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.73"/><rect x="320" y="400" width="34" height="160" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.84"/><rect x="382" y="332" width="34" height="228" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.69"/><rect x="444" y="383" width="34" height="177" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.77"/><rect x="506" y="435" width="34" height="125" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.53"/><rect x="568" y="385" width="34" height="175" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.79"/><rect x="630" y="488" width="34" height="72" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.51"/><rect x="692" y="517" width="34" height="43" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.75"/><rect x="754" y="489" width="34" height="71" rx="6" fill="url(#edge-business-help-2)" fill-opacity="0.79"/>
+    <path d="M89 335 L151 330 L213 352 L275 307 L337 327 L399 423 L461 316 L523 341 L585 313 L647 402 L709 395 L771 420 " fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linejoin="round" opacity="0.9"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="rgba(255,255,255,0.08)"/>
+</svg>

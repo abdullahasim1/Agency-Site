@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img">
+  <defs>
+    <pattern id="grid-ai-resume-platform-2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow-ai-resume-platform-2" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#3d63ff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#3d63ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-ai-resume-platform-2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6b8afd"/>
+      <stop offset="100%" stop-color="#3d63ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#0a0f1e"/>
+  <rect width="1280" height="720" fill="url(#grid-ai-resume-platform-2)"/>
+  <rect width="1280" height="46" fill="#111827"/>
+  <circle cx="26" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="46" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <circle cx="66" cy="23" r="5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="96" y="13" width="1080" height="20" rx="10" fill="rgba(255,255,255,0.04)"/>
+  <text x="112" y="27" font-family="ui-monospace,monospace" font-size="12" fill="rgba(255,255,255,0.38)">ai-resume-platform · analytics</text>
+  <line x1="0" y1="46" x2="1280" y2="46" stroke="rgba(255,255,255,0.06)"/>
+  <text x="40" y="78" font-family="ui-sans-serif,system-ui" font-size="13" letter-spacing="2" fill="#6b8afd">OVERVIEW</text>
+  <g transform="translate(40 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">68%</text>
+      <rect x="20" y="92" width="79" height="7" rx="3" fill="#3d63ff" fill-opacity="0.4"/>
+    </g><g transform="translate(340 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">24/7</text>
+      <rect x="20" y="92" width="70" height="7" rx="3" fill="#3d63ff" fill-opacity="0.4"/>
+    </g><g transform="translate(640 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">3.4×</text>
+      <rect x="20" y="92" width="78" height="7" rx="3" fill="#3d63ff" fill-opacity="0.4"/>
+    </g><g transform="translate(940 90)">
+      <rect width="272" height="120" rx="14" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="22" width="90" height="8" rx="4" fill="rgba(255,255,255,0.20)"/>
+      <text x="20" y="76" font-family="ui-sans-serif,system-ui" font-size="30" font-weight="700" fill="#fff">1.2k</text>
+      <rect x="20" y="92" width="118" height="7" rx="3" fill="#3d63ff" fill-opacity="0.4"/>
+    </g>
+  <g transform="translate(40 250)">
+    <rect width="1200" height="380" rx="16" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+    <text x="28" y="44" font-family="ui-sans-serif,system-ui" font-size="15" fill="rgba(255,255,255,0.72)">Throughput</text>
+    <line x1="28" y1="312" x2="1172" y2="312" stroke="rgba(255,255,255,0.06)"/>
+    <rect x="72" y="478" width="34" height="82" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.72"/><rect x="134" y="483" width="34" height="77" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.63"/><rect x="196" y="472" width="34" height="88" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.87"/><rect x="258" y="515" width="34" height="45" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.54"/><rect x="320" y="346" width="34" height="214" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.58"/><rect x="382" y="448" width="34" height="112" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.82"/><rect x="444" y="498" width="34" height="62" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.56"/><rect x="506" y="455" width="34" height="105" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.66"/><rect x="568" y="458" width="34" height="102" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.68"/><rect x="630" y="416" width="34" height="144" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.64"/><rect x="692" y="337" width="34" height="223" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.57"/><rect x="754" y="518" width="34" height="42" rx="6" fill="url(#edge-ai-resume-platform-2)" fill-opacity="0.61"/>
+    <path d="M89 314 L151 414 L213 407 L275 379 L337 411 L399 400 L461 348 L523 320 L585 353 L647 296 L709 359 L771 399 " fill="none" stroke="#6b8afd" stroke-width="2.5" stroke-linejoin="round" opacity="0.9"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="rgba(255,255,255,0.08)"/>
+</svg>

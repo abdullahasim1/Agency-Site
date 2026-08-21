@@ -1,0 +1,252 @@
+{
+  "title": "Business Help",
+  "basics": {
+    "id": "prj-business-help",
+    "tagline": "Embeddable AI Chat & Voice-Call Widget for Business Websites"
+  },
+  "listing": {
+    "shortDescription": "A multi-tenant SaaS that lets any business configure an AI agent, feed it knowledge, and embed a chat + voice-call widget on their website — capturing leads, transcripts and bookings in one dashboard.",
+    "fullDescription": "Small businesses want AI support on their websites without building it. Business Help packages that into one product: a business signs in to a dashboard, configures a single AI agent — name, tone, language and instructions — feeds it knowledge from inline text or PDF uploads, and copies a one-line embed script onto their site. Visitors then chat with the agent or talk to a voice agent straight from the browser. Every interaction is captured as a lead with full transcripts, Calendly bookings sync into the same pipeline, and the whole loop — embed, converse, capture, review, book — runs on a deliberately small, production-minded backend."
+  },
+  "cover": {
+    "image": "/images/projects/business-help/cover.svg",
+    "imageAlt": "Business Help AI chat and call widget dashboard showing agent configuration, captured leads and conversations"
+  },
+  "closing": {
+    "clientOverview": "An internal SaaS product idea: give agencies and small businesses an AI front desk they can install in minutes. The team wanted one deployable backend serving many business tenants, a zero-dependency widget any site could host, and an admin panel that made agent configuration, knowledge management and lead review approachable for non-technical operators.",
+    "conclusion": "The MVP delivers the full loop — embed, converse, capture, review, book — with production-minded controls: signature-verified webhooks, origin pinning, per-endpoint rate limits and hashed session tokens. The surface stays small enough for a two-person team to operate while every tenant's data remains isolated behind role-guarded, business-scoped queries."
+  },
+  "category": "AI / SaaS / Multi-Tenant",
+  "categories": [
+    "AI",
+    "SaaS",
+    "Web Apps"
+  ],
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Prisma",
+    "MySQL",
+    "Retell AI",
+    "Tailwind CSS"
+  ],
+  "techStack": [
+    {
+      "group": "Backend API",
+      "items": [
+        "Next.js 15 App Router route handlers",
+        "Prisma ORM",
+        "MySQL",
+        "TypeScript"
+      ]
+    },
+    {
+      "group": "Admin panel",
+      "items": [
+        "React 19 + Vite SPA",
+        "Redux Toolkit",
+        "React Router",
+        "Formik + Yup"
+      ]
+    },
+    {
+      "group": "AI & voice",
+      "items": [
+        "Retell AI chat agents",
+        "Retell web calls (create-web-call)",
+        "HMAC-SHA256 signed webhooks",
+        "Dynamic conversation variables"
+      ]
+    },
+    {
+      "group": "Widget & integrations",
+      "items": [
+        "Zero-dependency vanilla JS embed script",
+        "Calendly REST API sync",
+        "PDF knowledge ingestion (pdf-parse)",
+        "Per-origin CORS reflection"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "One-line embed",
+      "description": "A single script tag renders the chat/call bubble on any website, gated by widget key and origin allowlist.",
+      "icon": "Code2"
+    },
+    {
+      "title": "Configurable AI agent",
+      "description": "Each business tunes its agent's name, tone, language and instructions — no code, from the dashboard.",
+      "icon": "Bot"
+    },
+    {
+      "title": "Knowledge base",
+      "description": "Inline text and uploaded PDFs become retrievable knowledge, budgeted per response so answers stay grounded.",
+      "icon": "FileText"
+    },
+    {
+      "title": "Browser voice calls",
+      "description": "Visitors talk to a voice agent via Retell web calls; results stream back through a signed webhook.",
+      "icon": "PhoneCall"
+    },
+    {
+      "title": "Lead capture",
+      "description": "Emails and phones are extracted from conversations, deduplicated per visitor, and stored as contacts.",
+      "icon": "Users"
+    },
+    {
+      "title": "Booking pipeline",
+      "description": "Calendly events sync into the same pipeline, stitched to the contacts that scheduled them.",
+      "icon": "Calendar"
+    }
+  ],
+  "challenge": {
+    "summary": "Businesses want an AI front desk on their website, but wiring up an LLM provider, voice agent, transcript storage and lead flow is weeks of work nobody wants to repeat per customer.",
+    "points": [
+      {
+        "icon": "Code2",
+        "title": "Integration overhead",
+        "description": "Every business would need its own chat UI, voice plumbing and storage built from scratch."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Public endpoint risk",
+        "description": "A browser-facing widget exposes APIs to the open internet — spoofed origins and abuse had to be designed against."
+      },
+      {
+        "icon": "Users",
+        "title": "Multi-tenant isolation",
+        "description": "Many businesses on one backend, each with private agents, knowledge, leads and transcripts."
+      },
+      {
+        "icon": "PhoneCall",
+        "title": "Voice is hard",
+        "description": "Call lifecycle, recordings, transcripts and summaries arrive asynchronously from the provider via webhooks."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "One deployable Next.js API serving a zero-dependency embed script, a separate React admin panel, and a five-table data model — with security controls baked into every public route.",
+    "points": [
+      {
+        "icon": "Workflow",
+        "title": "Single-origin architecture",
+        "description": "API and static widget.js share one origin; the admin panel proxies /api in dev and behind a reverse proxy in prod."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Defence-in-depth public API",
+        "description": "Widget key plus Origin allowlist checks, dynamic CORS limited to allowed origins, and rate limits of 60/min config, 20/min chat and 3/hour calls."
+      },
+      {
+        "icon": "Database",
+        "title": "Deliberately small data model",
+        "description": "Business as the tenant root; chat history serialised atomically per conversation; calls enriched by webhook keyed on provider call ID."
+      },
+      {
+        "icon": "LockKeyhole",
+        "title": "Hardened sessions & webhooks",
+        "description": "httpOnly cookies holding SHA-256 token hashes, instant revocation, and timing-safe HMAC verification with a replay window."
+      }
+    ]
+  },
+  "results": [
+    {
+      "value": "1 line",
+      "label": "To install the widget",
+      "detail": "A single script tag puts chat and voice on any customer website."
+    },
+    {
+      "value": "2",
+      "label": "Channels per agent",
+      "detail": "Text chat and browser voice calls served by the same configured agent."
+    },
+    {
+      "value": "5",
+      "label": "Application tables",
+      "detail": "User, Business, Contact, Conversation and Call carry the whole product."
+    },
+    {
+      "value": "3 layers",
+      "label": "Of widget security",
+      "detail": "Widget key, origin allowlist and per-endpoint rate limiting on every public route."
+    }
+  ],
+  "gallery": [
+    {
+      "src": "/images/projects/business-help/shot-1.svg",
+      "alt": "Business Help dashboard overview with metrics",
+      "caption": "The dashboard — leads, conversations and calls at a glance per business."
+    },
+    {
+      "src": "/images/projects/business-help/shot-2.svg",
+      "alt": "AI agent configuration screen",
+      "caption": "Agent configuration — name, tone, language and instructions per tenant."
+    },
+    {
+      "src": "/images/projects/business-help/shot-3.svg",
+      "alt": "Conversation transcript viewer",
+      "caption": "Transcript review — full chat history stored per conversation."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "EMBED",
+      "title": "Widget installed",
+      "description": "Business copies one script tag; key and origins verified on every load."
+    },
+    {
+      "id": "w2",
+      "tag": "CONVERSE",
+      "title": "Visitor engages",
+      "description": "Chat or browser voice call starts with the business's configured agent."
+    },
+    {
+      "id": "w3",
+      "tag": "CAPTURE",
+      "title": "Lead extracted",
+      "description": "Contact details parsed from conversation, deduplicated and stored."
+    },
+    {
+      "id": "w4",
+      "tag": "REVIEW",
+      "title": "Business reviews",
+      "description": "Transcripts, call summaries and recordings visible in the dashboard."
+    },
+    {
+      "id": "w5",
+      "tag": "BOOK",
+      "title": "Meeting booked",
+      "description": "Calendly events sync into the pipeline against the contact."
+    }
+  ],
+  "overview": {
+    "client": "Internal product — multi-tenant SaaS MVP",
+    "industry": "AI / SaaS",
+    "timeline": "10 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web application",
+      "Embeddable widget"
+    ],
+    "services": [
+      "Full-Stack Development",
+      "AI Integration",
+      "Security Hardening"
+    ],
+    "team": "2 engineers"
+  },
+  "featured": true,
+  "accent": "violet",
+  "order": 12,
+  "objectives": [
+    "Let a non-technical business install an AI agent on its website in minutes",
+    "Keep every tenant's agents, knowledge, leads and transcripts isolated",
+    "Treat the public widget API as hostile territory: keys, origins and rate limits",
+    "Capture every interaction as a lead with a complete, reviewable transcript",
+    "Convert conversations into meetings by syncing Calendly into the same pipeline"
+  ],
+  "workflowLayout": "linear"
+}
