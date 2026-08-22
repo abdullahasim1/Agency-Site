@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/data/site";
 import { getProjects } from "@/data/projects";
 import { getServices } from "@/data/services";
+import type { ProjectCategory } from "@/data/projects";
 
 /**
  * Minimal MCP (Model Context Protocol) server — JSON-RPC 2.0 over HTTP.
@@ -27,6 +28,53 @@ const TOOLS = [
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
+    name: "search_projects",
+    description:
+      "Search DevRox portfolio projects by query with optional filters for technology, language, and category.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Search term (title, description, technologies)" },
+        filters: {
+          type: "object",
+          properties: {
+            tech: { type: "string", description: "Filter by technology (e.g., React, Python, TensorFlow)" },
+            language: { type: "string", description: "Filter by programming language" },
+            category: {
+              type: "string",
+              enum: ["AI", "Automation", "Web Apps", "Mobile", "SaaS"],
+              description: "Filter by project category",
+            },
+          },
+          additionalProperties: false,
+        },
+      },
+      required: ["query"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "search_works",
+    description:
+      "Search DevRox works (articles, case studies, tutorials) by query with optional type and date filters.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Search term" },
+        filters: {
+          type: "object",
+          properties: {
+            type: { type: "string", enum: ["article", "video", "tutorial", "case-study"], description: "Content type" },
+            date: { type: "string", format: "date", description: "Filter by date (YYYY-MM-DD)" },
+          },
+          additionalProperties: false,
+        },
+      },
+      required: ["query"],
+      additionalProperties: false,
+    },
+  },
+  {
     name: "list_services",
     description: "Get all DevRox service offerings with descriptions.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
@@ -46,6 +94,18 @@ const TOOLS = [
         projectType: { type: "string", minLength: 2, maxLength: 60 },
         budget: { type: "string", maxLength: 60 },
         message: { type: "string", minLength: 20, maxLength: 5000 },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "book_meeting",
+    description:
+      "Get the DevRox meeting booking URL. The user must visit this URL to schedule a meeting.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        purpose: { type: "string", description: "Meeting purpose (optional)" },
       },
       additionalProperties: false,
     },
@@ -148,6 +208,107 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             break;
           }
 
+          case "search_projects": {
+            const args = params.arguments ?? {};
+            const query = (args.query as string)?.toLowerCase() ?? "";
+            const filters = (args.filters as Record<string, string>) ?? {};
+
+            const projects = await getProjects();
+            const filtered = projects.filter((p) => {
+              const haystack = [
+                p.title,
+                p.tagline,
+                p.shortDescription,
+                p.fullDescription,
+                p.category,
+                ...p.technologies,
+              ]
+                .join(" ")
+                .toLowerCase();
+
+              if (query && !haystack.includes(query)) return false;
+
+              if (filters.tech && !p.technologies.some((t) => t.toLowerCase().includes(filters.tech!.toLowerCase()))) {
+                return false;
+              }
+              if (filters.language && !p.technologies.some((t) => t.toLowerCase().includes(filters.language!.toLowerCase()))) {
+                return false;
+              }
+              if (filters.category && !p.categories.includes(filters.category as ProjectCategory)) {
+                return false;
+              }
+
+              return true;
+            });
+
+            result = filtered.map((p) => ({
+              id: p.id,
+              slug: p.slug,
+              title: p.title,
+              tagline: p.tagline,
+              category: p.category,
+              technologies: p.technologies,
+              shortDescription: p.shortDescription,
+              caseStudyUrl: `${siteConfig.url}/portfolio/${p.slug}`,
+            }));
+            break;
+          }
+
+          case "search_works": {
+            const args = params.arguments ?? {};
+            const query = (args.query as string)?.toLowerCase() ?? "";
+            const filters = (args.filters as Record<string, string>) ?? {};
+
+            // Get all projects as "works" (case studies)
+            const projects = await getProjects();
+            const filtered = projects.filter((p) => {
+              const haystack = [
+                p.title,
+                p.tagline,
+                p.shortDescription,
+                p.fullDescription,
+                p.category,
+                ...p.technologies,
+              ]
+                .join(" ")
+                .toLowerCase();
+
+              if (query && !haystack.includes(query)) return false;
+
+              // Filter by type if specified (map category to type)
+              if (filters.type) {
+                const typeMap: Record<string, string[]> = {
+                  article: ["AI", "Automation", "Web Apps"],
+                  "case-study": ["AI", "Automation", "Web Apps", "Mobile", "SaaS"],
+                  tutorial: ["Web Apps", "Mobile", "SaaS"],
+                  video: ["AI", "Automation"],
+                };
+                const allowedCategories = typeMap[filters.type] ?? [];
+                if (!p.categories.some((c) => allowedCategories.includes(c))) return false;
+              }
+
+              // Filter by date if specified (using year from overview)
+              if (filters.date && p.overview.year !== filters.date.substring(0, 4)) {
+                return false;
+              }
+
+              return true;
+            });
+
+            result = filtered.map((p) => ({
+              id: p.id,
+              slug: p.slug,
+              title: p.title,
+              tagline: p.tagline,
+              type: "case-study",
+              category: p.category,
+              date: p.overview.year,
+              shortDescription: p.shortDescription,
+              url: `${siteConfig.url}/portfolio/${p.slug}`,
+            }));
+            break;
+          }
+
           case "list_services": {
             const services = await getServices();
             result = services.map((s) => ({
@@ -213,6 +374,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             }
 
             result = contactData;
+            break;
+          }
+
+          case "book_meeting": {
+            const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL;
+            if (!bookingUrl) {
+              result = {
+                message:
+                  "Meeting booking is not configured. Please contact via email or contact form.",
+                email: siteConfig.contact.email,
+                contactForm: `${siteConfig.url}/contact`,
+              };
+            } else {
+              result = {
+                bookingUrl,
+                message: "Visit this URL to schedule a meeting with DevRox.",
+              };
+            }
             break;
           }
 

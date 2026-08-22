@@ -71,6 +71,57 @@ const TOOLS: MCPTool[] = [
     execute: () => callMCPTool("list_projects", {}),
   },
   {
+    name: "search_projects",
+    description:
+      "Search DevRox portfolio projects by query with optional filters for technology, language, and category.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Search term (title, description, technologies)" },
+        filters: {
+          type: "object",
+          properties: {
+            tech: { type: "string", description: "Filter by technology (e.g., React, Python, TensorFlow)" },
+            language: { type: "string", description: "Filter by programming language" },
+            category: {
+              type: "string",
+              enum: ["AI", "Automation", "Web Apps", "Mobile", "SaaS"],
+              description: "Filter by project category",
+            },
+          },
+          additionalProperties: false,
+        },
+      },
+      required: ["query"],
+      additionalProperties: false,
+    },
+    annotations: { readOnlyHint: true },
+    execute: (args) => callMCPTool("search_projects", args),
+  },
+  {
+    name: "search_works",
+    description:
+      "Search DevRox works (articles, case studies, tutorials) by query with optional type and date filters.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Search term" },
+        filters: {
+          type: "object",
+          properties: {
+            type: { type: "string", enum: ["article", "video", "tutorial", "case-study"], description: "Content type" },
+            date: { type: "string", format: "date", description: "Filter by date (YYYY-MM-DD)" },
+          },
+          additionalProperties: false,
+        },
+      },
+      required: ["query"],
+      additionalProperties: false,
+    },
+    annotations: { readOnlyHint: true },
+    execute: (args) => callMCPTool("search_works", args),
+  },
+  {
     name: "list_services",
     description: "List DevRox service offerings, descriptions and related technologies.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
@@ -96,6 +147,20 @@ const TOOLS: MCPTool[] = [
       additionalProperties: false,
     },
     execute: (args) => callMCPTool("submit_enquiry", args),
+  },
+  {
+    name: "book_meeting",
+    description:
+      "Get the DevRox meeting booking URL. The user must visit this URL to schedule a meeting.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        purpose: { type: "string", description: "Meeting purpose (optional)" },
+      },
+      additionalProperties: false,
+    },
+    annotations: { readOnlyHint: true },
+    execute: (args) => callMCPTool("book_meeting", args),
   },
 ];
 
