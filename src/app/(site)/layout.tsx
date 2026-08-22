@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
@@ -89,6 +90,12 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           into these two nodes by @id rather than restating them. */}
       <JsonLd data={siteGraph()} />
       <WebMCPProvider />
+      <Script
+        src="https://client-two-omega-57.vercel.app/widget.js"
+        data-business-id="2"
+        data-widget-key="cmt4ijjl80000jt044t5lz9rh"
+        strategy="afterInteractive"
+      />
     </div>
   );
 }
