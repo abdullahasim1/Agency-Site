@@ -12,7 +12,7 @@ const isDev = process.env.NODE_ENV === "development";
  */
 const cspHeader = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://clone-bussiness-help.vercel.app${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://clone-bussiness-help.vercel.app https://vercel.live${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://avatars.githubusercontent.com",
   "media-src 'self' https:",
@@ -23,7 +23,7 @@ const cspHeader = [
    * raw.githubusercontent.com. Without these, the panel renders
    * "Failed to load shell". The public site never fetches them.
    */
-  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://clone-bussiness-help.vercel.app",
+  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://clone-bussiness-help.vercel.app https://vercel.live",
   "frame-src https:",
   "object-src 'none'",
   "base-uri 'self'",
