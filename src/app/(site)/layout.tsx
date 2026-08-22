@@ -91,7 +91,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       <JsonLd data={siteGraph()} />
       <WebMCPProvider />
       <Script
-        src="https://client-two-omega-57.vercel.app/widget.js"
+        src="https://clone-bussiness-help.vercel.app/widget.js"
         data-business-id="2"
         data-widget-key="cmt4ijjl80000jt044t5lz9rh"
         strategy="afterInteractive"
@@ -101,11 +101,6 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         data-business-id="1"
         data-widget-key="cmt0d5xgg0000l704b331jd6b"
         strategy="afterInteractive"
-      />
-      <script
-        src="https://client-two-omega-57.vercel.app/widget.js"
-        data-business-id="2"
-        data-widget-key="cmt4ijjl80000jt044t5lz9rh"
       />
     </div>
   );
