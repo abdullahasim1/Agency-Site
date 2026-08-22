@@ -67,6 +67,12 @@ export function ProjectCard({
           loading={priority ? undefined : "lazy"}
           className="relative z-10 h-full w-full object-contain transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover/card:scale-[1.03]"
         />
+        {project.slug === "frontdesk-ai" && (
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 h-1/2 bg-gradient-to-b from-ink-50 via-ink-50/80 to-transparent"
+          />
+        )}
         {/* Watermark logo - bottom right */}
         <div
           aria-hidden
