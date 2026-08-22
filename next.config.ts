@@ -16,14 +16,14 @@ const cspHeader = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://avatars.githubusercontent.com",
   "media-src 'self' https:",
-  "font-src 'self'",
+  "font-src 'self' https://vercel.live",
   /*
    * The Keystatic panel (GitHub mode) talks to GitHub straight from the
    * browser: GraphQL + contents API on api.github.com and raw files on
    * raw.githubusercontent.com. Without these, the panel renders
    * "Failed to load shell". The public site never fetches them.
    */
-  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://clone-bussiness-help.vercel.app https://vercel.live",
+  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://clone-bussiness-help.vercel.app https://vercel.live wss://ws-us3.pusher.com",
   "frame-src https:",
   "object-src 'none'",
   "base-uri 'self'",
