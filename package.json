@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "art": "node scripts/generate-art.mjs",
-    
+    "art": "node scripts/generate-art.mjs"
   },
   "engines": {
     "node": "22.x"
