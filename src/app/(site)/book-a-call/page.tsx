@@ -136,10 +136,8 @@ export default function BookACallPage() {
               </Reveal>
             </div>
 
-            {/* Right: scheduler */}
-            <Reveal delay={0.2} y={18}>
+{/* Right: scheduler */}
               <BookingEmbed />
-            </Reveal>
           </div>
         </Container>
       </section>
