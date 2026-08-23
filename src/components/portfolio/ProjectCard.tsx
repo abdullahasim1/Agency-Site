@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/Badge";
-import { BrandLogo } from "@/components/ui/LogoMark";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { sharedCopy } from "@/data/pages";
@@ -73,13 +72,7 @@ export function ProjectCard({
             className="pointer-events-none absolute inset-x-0 top-0 z-20 h-1/2 bg-gradient-to-b from-ink-50 via-ink-50/80 to-transparent"
           />
         )}
-        {/* Watermark logo - bottom right */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-2 right-2 z-20 opacity-10"
-        >
-          <BrandLogo tone="default" className="h-6 w-auto" />
-        </div>
+        
       </Link>
 
       <div className="flex flex-1 flex-col p-6">

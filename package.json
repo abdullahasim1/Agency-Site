@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "art": "node scripts/generate-art.mjs",
-    "watermark": "python3 scripts/watermark.py"
+    
   },
   "engines": {
     "node": "22.x"
