@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { ENQUIRY_SCOPE } from "@/lib/agent-scopes";
 import { siteConfig } from "@/data/site";
 
 /**
@@ -8,14 +9,15 @@ import { siteConfig } from "@/data/site";
  * The site has no protected endpoints or token issuer today, so endpoint fields
  * such as token, claim and revocation URLs are intentionally omitted instead
  * of advertising placeholders that do not exist. `agent_auth` points to the
- * real, manual provisioning path described in /auth.md.
+ * real, manual provisioning path described in /auth.md, and `scopes_supported`
+ * mirrors the protected-resource metadata so agents see one consistent story.
  */
 export async function GET(): Promise<Response> {
   const base = siteConfig.url;
 
   const metadata = {
     issuer: base,
-    scopes_supported: [],
+    scopes_supported: [ENQUIRY_SCOPE],
     grant_types_supported: [],
     agent_auth: {
       skill: `${base}/auth.md`,

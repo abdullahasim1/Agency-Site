@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { ENQUIRY_SCOPE } from "@/lib/agent-scopes";
 import { siteConfig } from "@/data/site";
 
 /**
@@ -30,6 +31,17 @@ There is no automated account or OAuth-client registration flow today. To reques
 a consultation or future service access, submit a project enquiry to
 \`POST ${base}/api/contact\` using the [published OpenAPI document](${base}/api/contact/openapi.json).
 
+1. Read the protected-resource metadata at
+   \`${base}/.well-known/oauth-protected-resource\` — the resource is
+   \`${base}\`, the advertised authorization server metadata lives at
+   \`${base}/.well-known/oauth-authorization-server\`, and the supported scope
+   is listed below.
+2. Confirm the enquiry details with the end user.
+3. Submit \`POST ${base}/api/contact\` with the fields listed below.
+
+- **Scope:** \`${ENQUIRY_SCOPE}\` — covers enquiry submission only. No bearer
+  token is required to present it today; the scope names the capability rather
+  than gating it.
 - **Identity type:** \`anonymous\` — no identity assertion is required for the
   public service.
 - **Credential type:** \`none\` — this request does not create an account or

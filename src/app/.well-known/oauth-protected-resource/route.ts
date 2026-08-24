@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { ENQUIRY_SCOPE } from "@/lib/agent-scopes";
 import { siteConfig } from "@/data/site";
 
 /**
@@ -17,7 +18,7 @@ export async function GET(): Promise<Response> {
   const metadata = {
     resource: base,
     authorization_servers: [base],
-    scopes_supported: [],
+    scopes_supported: [ENQUIRY_SCOPE],
     bearer_methods_supported: ["header"],
   };
 
