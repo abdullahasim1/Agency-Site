@@ -2,7 +2,7 @@ import { fields } from "@keystatic/core";
 import { iconRegistry } from "../src/data/icons";
 
 /** Icon dropdown options, derived from the one registry that bundles the icons. */
-export const iconOptions = Object.keys(iconRegistry).map((name) => ({
+const iconOptions = Object.keys(iconRegistry).map((name) => ({
   label: name,
   value: name,
 }));

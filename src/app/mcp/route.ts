@@ -4,6 +4,7 @@ import { siteConfig } from "@/data/site";
 import { getProjects } from "@/data/projects";
 import { getServices } from "@/data/services";
 import type { ProjectCategory } from "@/data/projects";
+import { clientIp, deliver, isRateLimited, validate } from "@/lib/enquiry";
 
 /**
  * Minimal MCP (Model Context Protocol) server — JSON-RPC 2.0 over HTTP.
@@ -100,7 +101,11 @@ function jsonRpcResponse(id: string | number | null, result?: unknown, error?: {
   const body: Record<string, unknown> = { jsonrpc: "2.0", id };
   if (error) body.error = error;
   else body.result = result;
-  return NextResponse.json(body);
+  /* The OPTIONS preflight advertises CORS; every response has to carry the
+     header too, or browser-based agents cannot read the answer. */
+  return NextResponse.json(body, {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  });
 }
 
 function jsonRpcError(id: string | number | null, code: number, message: string) {
@@ -131,7 +136,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     case "notifications/initialized":
       // No response for notifications
-      return new NextResponse(null, { status: 204 });
+      return new NextResponse(null, {
+        status: 204,
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
 
     case "tools/list":
       return jsonRpcResponse(id, { tools: TOOLS });
@@ -250,51 +258,32 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
           case "submit_enquiry": {
             const args = params.arguments ?? {};
-            const { fullName, email, projectType, message, company, phone, budget } = args as Record<
-              string,
-              unknown
-            >;
 
-            // Validate required fields
-            if (
-              !fullName ||
-              typeof fullName !== "string" ||
-              fullName.length < 2
-            ) {
-              return jsonRpcError(id, -32602, "fullName is required (min 2 chars)");
-            }
-            if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-              return jsonRpcError(id, -32602, "email is required and must be valid");
-            }
-            if (!projectType || typeof projectType !== "string" || projectType.length < 2) {
-              return jsonRpcError(id, -32602, "projectType is required");
-            }
-            if (!message || typeof message !== "string" || message.length < 20) {
-              return jsonRpcError(id, -32602, "message is required (min 20 chars)");
+            /* Rate limit on this request's real client IP before delivering.
+               This used to re-POST to /api/contact over HTTP, which shared one
+               Vercel egress IP across all callers and locked the tool out
+               globally after five enquiries. */
+            if (isRateLimited(clientIp(req))) {
+              return jsonRpcError(id, -32603, "Too many requests — try again later.");
             }
 
-            // Call the internal contact API
-            const contactRes = await fetch(new URL("/api/contact", siteConfig.url).toString(), {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                fullName,
-                email,
-                company: company ?? "",
-                phone: phone ?? "",
-                projectType,
-                budget: budget ?? "",
-                message,
-                website: "", // honeypot
-              }),
-            });
+            const { data, errors } = validate({ ...args, website: "" });
 
-            const contactData = await contactRes.json();
-            if (!contactRes.ok) {
-              return jsonRpcError(id, -32603, contactData.message ?? "Failed to submit enquiry");
+            if (errors || !data) {
+              const detail = errors
+                ? Object.values(errors).join(" ")
+                : "Expected a JSON object.";
+              return jsonRpcError(id, -32602, detail);
             }
 
-            result = contactData;
+            try {
+              await deliver(data);
+            } catch (err) {
+              console.error("[mcp] enquiry delivery failed:", err);
+              return jsonRpcError(id, -32603, "Could not deliver the enquiry.");
+            }
+
+            result = { ok: true, message: "Enquiry received." };
             break;
           }
 

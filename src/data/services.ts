@@ -101,13 +101,6 @@ export async function getFeaturedServices(): Promise<Service[]> {
   return services.filter((service) => service.featured);
 }
 
-export async function getServiceBySlug(
-  slug: string,
-): Promise<Service | undefined> {
-  const services = await getServices();
-  return services.find((service) => service.slug === slug);
-}
-
 export async function getServiceSlugs(): Promise<string[]> {
   const services = await getServices();
   return services.map((service) => service.slug);

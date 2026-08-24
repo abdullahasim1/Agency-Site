@@ -258,14 +258,6 @@ export async function getProjectSlugs(): Promise<string[]> {
   return projects.map((project) => project.slug);
 }
 
-export async function getProjectsByCategory(
-  category: ProjectCategory | "All",
-): Promise<Project[]> {
-  const projects = await getProjects();
-  if (category === "All") return projects;
-  return projects.filter((project) => project.categories.includes(category));
-}
-
 /** Projects referenced by a service, preserving portfolio order. */
 export async function getProjectsBySlugs(slugs: string[]): Promise<Project[]> {
   const projects = await getProjects();
