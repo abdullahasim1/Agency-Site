@@ -32,10 +32,10 @@ a consultation or future service access, submit a project enquiry to
 \`POST ${base}/api/contact\` using the [published OpenAPI document](${base}/api/contact/openapi.json).
 
 1. Read the protected-resource metadata at
-   \`${base}/.well-known/oauth-protected-resource\` — the resource is
-   \`${base}\`, the advertised authorization server metadata lives at
-   \`${base}/.well-known/oauth-authorization-server\`, and the supported scope
-   is listed below.
+   [${base}/.well-known/oauth-protected-resource](${base}/.well-known/oauth-protected-resource).
+   The resource is ${base}, and the matching authorization-server metadata is
+   published at [${base}/.well-known/oauth-authorization-server](${base}/.well-known/oauth-authorization-server).
+   The supported scope is listed below.
 2. Confirm the enquiry details with the end user.
 3. Submit \`POST ${base}/api/contact\` with the fields listed below.
 
