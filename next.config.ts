@@ -52,11 +52,11 @@ const svgCspHeader =
  * revalidate), not on every navigation.
  *
  * Not `immutable`: Keystatic editors can replace an image at the same path, so
- * a replaced file propagates within max-age instead of being pinned forever.
+ * a replaced file propagates within 7 days instead of being pinned forever.
  * `minimumCacheTTL` gives the /_next/image optimizer output the same lifetime.
  */
 const IMAGE_CACHE =
-  "public, max-age=2592000, stale-while-revalidate=31536000";
+  "public, max-age=604800, stale-while-revalidate=2592000";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -83,9 +83,9 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     formats: ["image/avif", "image/webp"],
-    /* 30 days: matches the Cache-Control set on the source files below, so a
+    /* 7 days: matches the Cache-Control set on the source files below, so a
        cached optimized variant is not discarded after the default short TTL. */
-    minimumCacheTTL: 2_592_000,
+    minimumCacheTTL: 604_800,
   },
   async headers() {
     return [
