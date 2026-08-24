@@ -28,7 +28,10 @@ export async function imageSize(src: string): Promise<{
 
   let size = FALLBACK;
   try {
-    const file = path.join(process.cwd(), "public", src.replace(/^\//, ""));
+    /* Versioned URLs (?v=hash from asset-version) must not leak into the
+       filesystem lookup — the hash is cache metadata, not part of the path. */
+    const bare = src.split("?")[0];
+    const file = path.join(process.cwd(), "public", bare.replace(/^\//, ""));
     const metadata = await sharp(file).metadata();
     if (metadata.width && metadata.height) {
       size = { width: metadata.width, height: metadata.height };

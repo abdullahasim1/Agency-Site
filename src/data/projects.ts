@@ -1,4 +1,5 @@
 import type { IconName } from "./icons";
+import { v } from "@/lib/asset-version";
 import { imageSize } from "@/lib/image-size";
 import { reader } from "./reader";
 
@@ -221,6 +222,10 @@ export function getProjects(): Promise<Project[]> {
         gallery: [...flatten(resolved).gallery, ...bulkGalleryItems(entry)],
         slug,
       } as unknown as Project;
+      /* Content-hashed URLs: a replaced image gets a new URL (fresh fetch for
+         everyone immediately), untouched ones stay cached. */
+      project.image = v(project.image);
+      project.gallery = project.gallery.map((item) => ({ ...item, src: v(item.src) }));
       const cover = await imageSize(project.image);
       project.imageWidth = cover.width;
       project.imageHeight = cover.height;

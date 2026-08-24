@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { v } from "@/lib/asset-version";
 
 interface LogoMarkProps {
   className?: string;
@@ -113,8 +114,8 @@ export function BrandLogo({ className, tone = "default" }: BrandLogoProps) {
     <img
       src={
         tone === "inverse"
-          ? "/logos/weblogo/devrox-white.svg"
-          : "/logos/weblogo/devrox-color.svg"
+          ? v("/logos/weblogo/devrox-white.svg")
+          : v("/logos/weblogo/devrox-color.svg")
       }
       alt="DevRox"
       width={1304}

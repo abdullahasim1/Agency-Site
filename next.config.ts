@@ -86,6 +86,15 @@ const nextConfig: NextConfig = {
     /* 7 days: matches the Cache-Control set on the source files below, so a
        cached optimized variant is not discarded after the default short TTL. */
     minimumCacheTTL: 604_800,
+    /*
+     * Only first-party artwork and brand marks may be optimized. Omitting
+     * `search` deliberately: asset-version appends ?v=<hash> for cache
+     * busting, so any query on these two prefixes must be accepted.
+     */
+    localPatterns: [
+      { pathname: "/images/**" },
+      { pathname: "/logos/**" },
+    ],
   },
   async headers() {
     return [

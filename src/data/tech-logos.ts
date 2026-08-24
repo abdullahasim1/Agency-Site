@@ -1,6 +1,5 @@
 /**
  * Maps a technology name to a first-party brand logo in `/public/logos`.
- *
  * The SVGs are the official marks, vendored into the repo so the strip renders
  * with no external request and no new dependency. A name with no entry here —
  * a proprietary tool with no published mark, or a newly added one — simply falls
@@ -12,6 +11,8 @@
  * ("Next.js 16" → "Next.js"), parenthesised suffixes ignored ("n8n
  * (self-hosted)" → "n8n"), and unknown names fall through to the dot.
  */
+
+import { v } from "@/lib/asset-version";
 
 const techLogos: Record<string, string> = {
   React: "/logos/react.svg",
@@ -170,16 +171,16 @@ const VERSION_PREFIX = /^(.+?)\s+\d+(\.\d+)*$/;
  */
 export function techLogo(name: string): string | undefined {
   const direct = techLogos[name];
-  if (direct) return direct;
+  if (direct) return v(direct);
 
   const withoutParens = name.replace(/\s*\([^)]*\)\s*/g, " ").trim();
   const trimmed = techLogos[withoutParens];
-  if (trimmed) return trimmed;
+  if (trimmed) return v(trimmed);
 
   const versionless = withoutParens.match(VERSION_PREFIX)?.[1]?.trim() ?? "";
   if (versionless) {
     const base = techLogos[versionless];
-    if (base) return base;
+    if (base) return v(base);
   }
 
   return undefined;
