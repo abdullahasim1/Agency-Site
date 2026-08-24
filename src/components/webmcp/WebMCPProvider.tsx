@@ -77,36 +77,6 @@ const TOOL_DEFINITIONS: MCPToolDefinition[] = [
     annotations: { readOnlyHint: true },
   },
   {
-    name: "search_works",
-    description:
-      "Search DevRox works (articles, case studies, tutorials) by query with optional type and date filters.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        query: { type: "string", description: "Search term" },
-        filters: {
-          type: "object",
-          properties: {
-            type: {
-              type: "string",
-              enum: ["article", "video", "tutorial", "case-study"],
-              description: "Content type",
-            },
-            date: {
-              type: "string",
-              format: "date",
-              description: "Filter by date (YYYY-MM-DD)",
-            },
-          },
-          additionalProperties: false,
-        },
-      },
-      required: ["query"],
-      additionalProperties: false,
-    },
-    annotations: { readOnlyHint: true },
-  },
-  {
     name: "list_services",
     description:
       "List DevRox service offerings, descriptions and related technologies.",

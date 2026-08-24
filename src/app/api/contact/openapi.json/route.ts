@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 export async function GET(): Promise<Response> {
   const spec = {
     openapi: "3.1.0",

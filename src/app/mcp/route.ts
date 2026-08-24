@@ -54,27 +54,6 @@ const TOOLS = [
     },
   },
   {
-    name: "search_works",
-    description:
-      "Search DevRox works (articles, case studies, tutorials) by query with optional type and date filters.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        query: { type: "string", description: "Search term" },
-        filters: {
-          type: "object",
-          properties: {
-            type: { type: "string", enum: ["article", "video", "tutorial", "case-study"], description: "Content type" },
-            date: { type: "string", format: "date", description: "Filter by date (YYYY-MM-DD)" },
-          },
-          additionalProperties: false,
-        },
-      },
-      required: ["query"],
-      additionalProperties: false,
-    },
-  },
-  {
     name: "list_services",
     description: "Get all DevRox service offerings with descriptions.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
@@ -143,15 +122,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!method) return jsonRpcError(id, -32600, "Invalid Request");
 
   switch (method) {
-    case "initialize": {
-      const params = rpc.params as Record<string, unknown> | undefined;
-      const clientProtocol = (params?.protocolVersion as string) ?? "unknown";
+    case "initialize":
       return jsonRpcResponse(id, {
         protocolVersion: "2025-06-18",
         capabilities: { tools: {} },
         serverInfo: SERVER_INFO,
       });
-    }
 
     case "notifications/initialized":
       // No response for notifications
@@ -250,61 +226,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
               technologies: p.technologies,
               shortDescription: p.shortDescription,
               caseStudyUrl: `${siteConfig.url}/portfolio/${p.slug}`,
-            }));
-            break;
-          }
-
-          case "search_works": {
-            const args = params.arguments ?? {};
-            const query = (args.query as string)?.toLowerCase() ?? "";
-            const filters = (args.filters as Record<string, string>) ?? {};
-
-            // Get all projects as "works" (case studies)
-            const projects = await getProjects();
-            const filtered = projects.filter((p) => {
-              const haystack = [
-                p.title,
-                p.tagline,
-                p.shortDescription,
-                p.fullDescription,
-                p.category,
-                ...p.technologies,
-              ]
-                .join(" ")
-                .toLowerCase();
-
-              if (query && !haystack.includes(query)) return false;
-
-              // Filter by type if specified (map category to type)
-              if (filters.type) {
-                const typeMap: Record<string, string[]> = {
-                  article: ["AI", "Automation", "Web Apps"],
-                  "case-study": ["AI", "Automation", "Web Apps", "Mobile", "SaaS"],
-                  tutorial: ["Web Apps", "Mobile", "SaaS"],
-                  video: ["AI", "Automation"],
-                };
-                const allowedCategories = typeMap[filters.type] ?? [];
-                if (!p.categories.some((c) => allowedCategories.includes(c))) return false;
-              }
-
-              // Filter by date if specified (using year from overview)
-              if (filters.date && p.overview.year !== filters.date.substring(0, 4)) {
-                return false;
-              }
-
-              return true;
-            });
-
-            result = filtered.map((p) => ({
-              id: p.id,
-              slug: p.slug,
-              title: p.title,
-              tagline: p.tagline,
-              type: "case-study",
-              category: p.category,
-              date: p.overview.year,
-              shortDescription: p.shortDescription,
-              url: `${siteConfig.url}/portfolio/${p.slug}`,
             }));
             break;
           }

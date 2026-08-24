@@ -4,7 +4,6 @@ import {
   accentField,
   devOnly,
   iconField,
-  idField,
   keyPatternValidation,
 } from "../helpers";
 

@@ -44,7 +44,6 @@ const GLOBAL_LINKS = [
   '</.well-known/agent-skills/index.json>; rel="https://agentskills.io/rel/skills-index"; type="application/json"',
   '</.well-known/oauth-authorization-server>; rel="http://openid.net/specs/connect/1.0/issuer"; type="application/json"',
   '</.well-known/oauth-protected-resource>; rel="http://ietf.org/rfc/rfc9728"; type="application/json"',
-  '</.well-known/http-message-signatures-directory>; rel="http-message-signatures-directory"; type="application/jwk-set+json"',
   /* llmstxt.org v2: describedby names the llms.txt covering this origin. */
   '</llms.txt>; rel="describedby"; type="text/markdown"',
   "</contact>; rel=\"service-doc\"",

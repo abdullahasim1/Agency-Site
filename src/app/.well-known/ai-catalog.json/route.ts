@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 import { siteConfig } from "@/data/site";
 
 /**
@@ -110,7 +108,7 @@ export async function GET(): Promise<Response> {
       identifier: `urn:air:${new URL(base).hostname}:markdown:homepage`,
       displayName: "DevRox Homepage (Markdown)",
       type: "text/markdown",
-      url: `${base}/`,
+      url: `${base}/index.md`,
       representativeQueries: [
         "Give me a markdown summary of DevRox's homepage",
       ],
