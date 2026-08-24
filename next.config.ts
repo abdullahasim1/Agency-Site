@@ -46,6 +46,18 @@ const cspHeader = [
 const svgCspHeader =
   "default-src 'none'; style-src 'unsafe-inline'; sandbox";
 
+/*
+ * Long-lived image caching. After a first load the browser serves artwork from
+ * its own cache and hits the server only in the background (stale-while-
+ * revalidate), not on every navigation.
+ *
+ * Not `immutable`: Keystatic editors can replace an image at the same path, so
+ * a replaced file propagates within max-age instead of being pinned forever.
+ * `minimumCacheTTL` gives the /_next/image optimizer output the same lifetime.
+ */
+const IMAGE_CACHE =
+  "public, max-age=2592000, stale-while-revalidate=31536000";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   /*
@@ -71,6 +83,9 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     formats: ["image/avif", "image/webp"],
+    /* 30 days: matches the Cache-Control set on the source files below, so a
+       cached optimized variant is not discarded after the default short TTL. */
+    minimumCacheTTL: 2_592_000,
   },
   async headers() {
     return [
@@ -104,6 +119,18 @@ const nextConfig: NextConfig = {
            * one rather than merging. src/middleware.ts emits the full set.
            */
         ],
+      },
+      /* Long-lived caching for static artwork, brand logos and videos: the
+         browser reuses what it already has instead of revalidating on every
+         navigation. Kept before the SVG rule so that rule stays last (it must
+         win on the Content-Security-Policy key). */
+      {
+        source: "/images/:path*",
+        headers: [{ key: "Cache-Control", value: IMAGE_CACHE }],
+      },
+      {
+        source: "/logos/:path*",
+        headers: [{ key: "Cache-Control", value: IMAGE_CACHE }],
       },
       /* Last, so it wins for the same header key (see headers docs on
          overriding behavior). Neutralises scripting inside any SVG served
