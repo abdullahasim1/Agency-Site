@@ -48,7 +48,9 @@ a consultation or future service access, submit a project enquiry to
   issue a bearer token.
 - **User confirmation:** required before sending an enquiry, because it delivers
   the supplied contact details and message to ${siteConfig.name}.
-- **Claim and revocation:** not applicable; there is no credential to claim or
+- **Claim:** the authorization server metadata names
+  [${base}/auth.md](${base}/auth.md) as the \`claim_uri\` — completing the
+  documented enquiry flow *is* the registration. There is no credential to
   revoke.
 
 Required enquiry fields are \`fullName\`, \`email\`, \`projectType\` and

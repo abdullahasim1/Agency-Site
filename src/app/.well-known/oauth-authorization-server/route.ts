@@ -26,6 +26,13 @@ export async function GET(): Promise<Response> {
       anonymous: {
         credential_types_supported: ["none"],
       },
+      /**
+       * Required by the auth.md anonymous flow. With no credential issued,
+       * claiming an anonymous registration amounts to following the published
+       * guidance, so the claim URI points at the skill document itself rather
+       * than at a token-issuing endpoint that does not exist.
+       */
+      claim_uri: `${base}/auth.md`,
     },
   };
 
