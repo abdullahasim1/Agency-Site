@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
-import { EASE_OUT_SOFT, revealViewport } from "@/lib/motion";
+import { useInViewOnce, usePrefersReducedMotion } from "@/lib/use-in-view";
 import { cn } from "@/lib/utils";
 
 interface RevealProps {
@@ -19,10 +19,12 @@ interface RevealProps {
 /**
  * Scroll-triggered entrance.
  *
- * This is the only client component in most sections: children are passed in
- * from a server component, so the markup itself stays server-rendered and only
- * the wrapper ships JavaScript. Reduced-motion users get the content rendered
- * plainly, with no transform and no animation.
+ * CSS-driven twin of the original framer-motion variant: the node is marked
+ * data-reveal="pending" only when it starts below the viewport and the user
+ * has not asked for reduced motion — entering view removes the attribute and
+ * globals.css animates the rest. Children are passed in from a server
+ * component, so the markup itself stays server-rendered; without JavaScript
+ * (or for crawlers) the content renders plainly visible.
  */
 export function Reveal({
   children,
@@ -31,24 +33,26 @@ export function Reveal({
   y = 16,
   as = "div",
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
-  const MotionTag = motion[as];
+  const [setNode, inView, startedOffscreen] = useInViewOnce();
+  const reduceMotion = usePrefersReducedMotion();
 
-  if (reduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  const Tag = as;
+  const pending = !reduceMotion && !inView && startedOffscreen;
 
   return (
-    <MotionTag
+    <Tag
+      ref={setNode}
+      data-reveal={pending ? "pending" : undefined}
+      style={
+        {
+          "--reveal-y": `${y}px`,
+          transitionDelay: pending || inView ? `${delay}s` : undefined,
+        } as CSSProperties
+      }
       className={cn(className)}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={revealViewport}
-      transition={{ duration: 0.55, ease: EASE_OUT_SOFT, delay }}
     >
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
 
@@ -63,6 +67,10 @@ interface StaggerProps {
 
 /**
  * Parent for staggered lists. Pair with <StaggerItem> children.
+ *
+ * The container carries the timing variables; each StaggerItem reads its own
+ * sibling position at mount to derive the same sequential delay the old
+ * framer-motion staggerChildren produced.
  */
 export function Stagger({
   children,
@@ -71,29 +79,21 @@ export function Stagger({
   delay = 0,
   as = "div",
 }: StaggerProps) {
-  const reduceMotion = useReducedMotion();
-  const MotionTag = motion[as];
-
-  if (reduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  const Tag = as;
 
   return (
-    <MotionTag
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={revealViewport}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: stagger, delayChildren: delay },
-        },
-      }}
+    <Tag
+      data-stagger=""
+      style={
+        {
+          "--stagger-step": `${stagger}s`,
+          "--stagger-delay": `${delay}s`,
+        } as CSSProperties
+      }
+      className={cn(className)}
     >
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
 
@@ -104,33 +104,59 @@ interface StaggerItemProps {
   as?: "div" | "li" | "article";
 }
 
+const MAX_STAGGER_STEPS = 8;
+const DEFAULT_STAGGER_STEP_S = 0.07;
+
+/** One animated child inside a <Stagger>. */
 export function StaggerItem({
   children,
   className,
   y = 14,
   as = "div",
 }: StaggerItemProps) {
-  const reduceMotion = useReducedMotion();
-  const MotionTag = motion[as];
+  const [setNode, inView, startedOffscreen] = useInViewOnce();
+  const reduceMotion = usePrefersReducedMotion();
+  const [itemDelay, setItemDelay] = useState(0);
+  const nodeRef = useRef<Element | null>(null);
 
-  if (reduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  // Sibling index × parent step reproduces staggerChildren's sequencing.
+  useEffect(() => {
+    const node = nodeRef.current;
+    if (!node) return;
+    const parent = node.parentElement;
+    if (!parent) return;
+    const index = Array.prototype.indexOf.call(parent.children, node);
+    if (index < 0) return;
+
+    const style = getComputedStyle(parent);
+    const step =
+      Number.parseFloat(style.getPropertyValue("--stagger-step")) ||
+      DEFAULT_STAGGER_STEP_S;
+    const base =
+      Number.parseFloat(style.getPropertyValue("--stagger-delay")) || 0;
+
+    setItemDelay(base + Math.min(index, MAX_STAGGER_STEPS) * step);
+  }, []);
+
+  const Tag = as;
+  const pending = !reduceMotion && !inView && startedOffscreen;
 
   return (
-    <MotionTag
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: EASE_OUT_SOFT },
-        },
+    <Tag
+      ref={(node: Element | null) => {
+        nodeRef.current = node;
+        setNode(node);
       }}
+      data-reveal={pending ? "pending" : undefined}
+      style={
+        {
+          "--reveal-y": `${y}px`,
+          transitionDelay: `${itemDelay}s`,
+        } as CSSProperties
+      }
+      className={cn(className)}
     >
       {children}
-    </MotionTag>
+    </Tag>
   );
 }

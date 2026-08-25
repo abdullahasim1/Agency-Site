@@ -378,3 +378,28 @@
   }
 }
 
+
+/* ---------------------------------------------------------------------------
+   Scroll-reveal engine (CSS twin of the old framer-motion variants).
+
+   Components mark themselves data-reveal="pending" *only* when JavaScript is
+   running, the node starts below the viewport, and the user has not asked for
+   reduced motion. No-JS renders, crawlers and reduced-motion users therefore
+   always see the plain visible markup.
+   ------------------------------------------------------------------------- */
+[data-reveal] {
+  transition:
+    opacity 0.55s var(--ease-out-soft),
+    transform 0.55s var(--ease-out-soft);
+}
+
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 16px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+}

@@ -1,8 +1,8 @@
 "use client";
 
-import { useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import { useInViewOnce, usePrefersReducedMotion } from "@/lib/use-in-view";
 import { cn } from "@/lib/utils";
 
 interface AnimatedCounterProps {
@@ -35,9 +35,9 @@ export function AnimatedCounter({
   className,
   decimals = 0,
 }: AnimatedCounterProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.5 });
-  const reduceMotion = useReducedMotion();
+  const [setNode, inView] = useInViewOnce(0.5);
+  const reduceMotion = usePrefersReducedMotion();
+  const spanRef = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(reduceMotion ? value : 0);
 
   useEffect(() => {
@@ -75,7 +75,13 @@ export function AnimatedCounter({
   });
 
   return (
-    <span ref={ref} className={cn("nums-tabular", className)}>
+    <span
+      ref={(node: HTMLSpanElement | null) => {
+        spanRef.current = node;
+        setNode(node);
+      }}
+      className={cn("nums-tabular", className)}
+    >
       {/* The accessible value is always the final number, never the tween. */}
       <span aria-hidden>
         {prefix}
