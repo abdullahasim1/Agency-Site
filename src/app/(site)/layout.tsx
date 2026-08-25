@@ -90,11 +90,14 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           into these two nodes by @id rather than restating them. */}
       <JsonLd data={siteGraph()} />
       <WebMCPProvider />
+      {/* Chat/lead widget — wanted on every page, but its script is heavy on
+          the main thread. lazyOnload defers it to idle time after the page is
+          interactive, so hydration and First Input never wait for it. */}
       <Script
         src="https://clone-bussiness-help.vercel.app/widget.js"
         data-business-id="2"
         data-widget-key="cmt4ijjl80000jt044t5lz9rh"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </div>
   );
