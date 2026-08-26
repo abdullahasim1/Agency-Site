@@ -3,11 +3,13 @@ import { ArrowUpRight, Quote } from "lucide-react";
 
 import { Avatar } from "@/components/ui/Avatar";
 import { Container } from "@/components/ui/Container";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { homeCopy } from "@/data/pages";
 import { getProjects } from "@/data/projects";
 import { testimonials } from "@/data/testimonials";
+import { siteConfig } from "@/data/site";
 
 /**
  * Client testimonials.
@@ -85,6 +87,35 @@ export async function Testimonials() {
           })}
         </Stagger>
       </Container>
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": `${siteConfig.url}/#organization`,
+          name: siteConfig.name,
+          review: testimonials.map((t) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: t.name,
+              jobTitle: t.role,
+            },
+            reviewBody: t.quote,
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: 5,
+              bestRating: 5,
+            },
+          })),
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: 5,
+            reviewCount: testimonials.length,
+            bestRating: 5,
+          },
+        }}
+      />
     </section>
   );
 }
