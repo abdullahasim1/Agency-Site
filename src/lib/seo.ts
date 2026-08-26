@@ -291,8 +291,26 @@ export function caseStudySchema(options: {
 }
 
 /**
+ * Person-author node emitted alongside a BlogPosting when the post has a
+ * named human author. The `@id` is stable so the same author across
+ * multiple posts is a single node in any aggregator's graph.
+ */
+function authorNode(name: string, url: string): Node {
+  return {
+    "@type": "Person",
+    "@id": `${siteConfig.url}/#author-${name.toLowerCase().replace(/\s+/g, "-")}`,
+    name,
+    url,
+  };
+}
+
+/**
  * Blog-posting node for /blog/[slug]. Uses the dynamic /og card as the post
  * image so every article ships a valid image without needing artwork.
+ *
+ * When `authorName` is provided a Person node is emitted and referenced
+ * instead of the generic Organization author — this is the signal Google's
+ * Helpful Content system uses to evaluate expertise.
  */
 export function articleSchema(options: {
   title: string;
@@ -300,7 +318,14 @@ export function articleSchema(options: {
   path: string;
   datePublished: string;
   keywords?: string[];
+  authorName?: string;
+  authorUrl?: string;
 }): Node {
+  const hasAuthor = Boolean(options.authorName);
+  const author = hasAuthor
+    ? authorNode(options.authorName!, options.authorUrl ?? `${siteConfig.url}/about`)
+    : undefined;
+
   return present({
     "@type": "BlogPosting",
     "@id": `${abs(options.path)}#article`,
@@ -313,11 +338,36 @@ export function articleSchema(options: {
     datePublished: options.datePublished,
     dateModified: options.datePublished,
     keywords: options.keywords,
-    author: ref(ID.organization),
+    author: author ? { "@id": author["@id"] } : ref(ID.organization),
     publisher: ref(ID.organization),
     isPartOf: ref(ID.website),
     mainEntityOfPage: ref(ID.page(options.path)),
   });
+}
+
+/**
+ * Returns the author Person node (if any) that should be emitted alongside
+ * the page graph for a blog post. Call pageGraph() with this in `nodes`.
+ */
+export function articleAuthorNode(options: {
+  authorName?: string;
+  authorUrl?: string;
+}): Node | undefined {
+  if (!options.authorName) return undefined;
+  return authorNode(options.authorName, options.authorUrl ?? `${siteConfig.url}/about`);
+}
+
+/** Team-member Person nodes for the about page. */
+export function teamPersonNodes(
+  members: Array<{ name: string; role: string; id: string }>,
+): Node[] {
+  return members.map((member) => ({
+    "@type": "Person",
+    "@id": `${siteConfig.url}/#team-${member.id}`,
+    name: member.name,
+    jobTitle: member.role,
+    worksFor: ref(ID.organization),
+  }));
 }
 
 /** WebPage subtypes we use. FAQPage is itself a WebPage in schema.org. */

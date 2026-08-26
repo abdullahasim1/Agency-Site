@@ -37,7 +37,12 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
   creator: siteConfig.legalName,
   publisher: siteConfig.legalName,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -67,6 +72,11 @@ export const metadata: Metadata = {
    * is indexed. The preview limits are repeated on googleBot because Google
    * reads its own group in preference to the generic one.
    */
+  robots: {
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
+  },
   formatDetection: { telephone: false, address: false, email: false },
 };
 

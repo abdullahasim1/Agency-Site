@@ -54,6 +54,21 @@ export const posts = collection({
         "Shown on the card and the article, and used to order the listing (newest first).",
       validation: { isRequired: true },
     }),
+    authorName: fields.text({
+      label: "Author name",
+      description:
+        "Full name of the human author (e.g. \"Jonas Whitfield\"). When set, Google sees a Person author instead of a generic Organization — this is the E-E-A-T expertise signal.",
+    }),
+    authorRole: fields.text({
+      label: "Author role",
+      description:
+        "The author's role at the studio (e.g. \"Head of AI Engineering\"). Shown on the article and in structured data.",
+    }),
+    authorUrl: fields.text({
+      label: "Author URL",
+      description:
+        "Optional link to the author's profile or bio section. Defaults to /about.",
+    }),
     draft: fields.checkbox({
       label: "Draft",
       description:

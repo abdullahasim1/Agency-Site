@@ -30,6 +30,12 @@ export interface Post {
   bodyHtml: string;
   /** Whole-minute read time, derived from the word count. */
   readingMinutes: number;
+  /** Named human author — when set, emitted as Person schema instead of Organization. */
+  authorName?: string;
+  /** The author's role at the studio (e.g. "Head of AI Engineering"). */
+  authorRole?: string;
+  /** Absolute URL to the author's profile or bio section. */
+  authorUrl?: string;
 }
 
 interface PostEntry {
@@ -39,6 +45,9 @@ interface PostEntry {
   publishedAt: string;
   draft: boolean;
   body: string;
+  authorName?: string;
+  authorRole?: string;
+  authorUrl?: string;
 }
 
 /** Markdown → HTML, once per build. Headings stay one level under the H1. */
@@ -72,6 +81,9 @@ export function getPosts(): Promise<Post[]> {
           publishedAt: post.publishedAt,
           bodyHtml: renderMarkdown(post.body),
           readingMinutes: readingTime(post.body),
+          authorName: post.authorName,
+          authorRole: post.authorRole,
+          authorUrl: post.authorUrl,
         } satisfies Post;
       })
       .sort(

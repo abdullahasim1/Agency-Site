@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ChallengeSection } from "@/components/case-study/ChallengeSection";
@@ -12,8 +13,12 @@ import { ProjectVideo } from "@/components/case-study/ProjectVideo";
 import { ResultsSection } from "@/components/case-study/ResultsSection";
 import { SolutionSection } from "@/components/case-study/SolutionSection";
 import { TechStack } from "@/components/case-study/TechStack";
+import { ChevronRight } from "lucide-react";
+
+import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
+import { sharedCopy } from "@/data/pages";
 import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
 
 interface CaseStudyPageProps {
@@ -65,6 +70,38 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <>
+      {/* Breadcrumb */}
+      <section className="relative isolate overflow-hidden border-b border-ink-200 pt-28 pb-0 sm:pt-32 lg:pt-40">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full bg-blueprint mask-fade-b opacity-60"
+        />
+        <Container>
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
+              <li>
+                <Link href="/" className="transition-colors hover:text-ink-800">
+                  {sharedCopy.breadcrumb.home}
+                </Link>
+              </li>
+              <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
+              <li>
+                <Link
+                  href="/portfolio"
+                  className="transition-colors hover:text-ink-800"
+                >
+                  {sharedCopy.breadcrumb.portfolio}
+                </Link>
+              </li>
+              <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
+              <li aria-current="page" className="text-ink-800">
+                {project.title}
+              </li>
+            </ol>
+          </nav>
+        </Container>
+      </section>
+
       <ProjectHero project={project} />
       <ProjectOverview project={project} />
       <ChallengeSection project={project} />

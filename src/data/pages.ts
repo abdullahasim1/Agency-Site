@@ -261,7 +261,7 @@ interface SharedCopy {
     viewCaseStudy: string;
   };
   /** Names of the fixed pages in the "you are here" trail. */
-  breadcrumb: { home: string; services: string; portfolio: string };
+  breadcrumb: { home: string; services: string; portfolio: string; blog: string; faq: string; contact: string; bookACall: string };
   /** Screen-reader heading above the figures strip. */
   statsHeading: string;
   footer: {

@@ -16,7 +16,7 @@ const BLOG_DESCRIPTION =
   "Practical guides on AI agents, automation and software engineering: what works, what it costs and where it pays off. Written by the DevRox team.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Blog",
+  title: "AI & Automation Blog",
   description: BLOG_DESCRIPTION,
   path: "/blog",
   keywords: [

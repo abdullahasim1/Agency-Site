@@ -17,7 +17,7 @@ import { siteConfig } from "@/data/site";
 import { capabilities, missionVision, team, values } from "@/data/team";
 import { differentiators } from "@/data/whyChooseUs";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildMetadata, pageGraph } from "@/lib/seo";
+import { buildMetadata, pageGraph, teamPersonNodes } from "@/lib/seo";
 
 const description = fill(aboutCopy.seo.description, { name: siteConfig.name });
 
@@ -301,6 +301,9 @@ export default function AboutPage() {
             { name: "Home", path: "/" },
             { name: "About", path: "/about" },
           ],
+          nodes: teamPersonNodes(
+            team.map((m) => ({ name: m.name, role: m.role, id: m.id })),
+          ),
         })}
       />
     </>

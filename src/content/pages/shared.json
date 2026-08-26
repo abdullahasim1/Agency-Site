@@ -17,7 +17,11 @@
   "breadcrumb": {
     "home": "Home",
     "services": "Services",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookACall": "Book a Call"
   },
   "statsHeading": "Company statistics",
   "footer": {

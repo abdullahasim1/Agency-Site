@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
 
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -10,7 +10,8 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { getPostBySlug, getPostSlugs } from "@/data/posts";
 import { PRIMARY_CTA } from "@/data/navigation";
-import { articleSchema, buildMetadata, pageGraph } from "@/lib/seo";
+import { sharedCopy } from "@/data/pages";
+import { articleAuthorNode, articleSchema, buildMetadata, pageGraph } from "@/lib/seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -77,19 +78,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
         <Container>
           <div className="max-w-3xl">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-500 transition-colors hover:text-brand-700"
-            >
-              <ArrowLeft className="size-4" aria-hidden />
-              All articles
-            </Link>
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
+                <li>
+                  <Link href="/" className="transition-colors hover:text-ink-800">
+                    {sharedCopy.breadcrumb.home}
+                  </Link>
+                </li>
+                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
+                <li>
+                  <Link
+                    href="/blog"
+                    className="transition-colors hover:text-ink-800"
+                  >
+                    {sharedCopy.breadcrumb.blog}
+                  </Link>
+                </li>
+                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
+                <li aria-current="page" className="text-ink-800">
+                  {post.title}
+                </li>
+              </ol>
+            </nav>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
               <Eyebrow>{post.category}</Eyebrow>
               <p className="inline-flex items-center gap-1.5 text-xs text-ink-500">
                 <Clock className="size-3.5" aria-hidden />
                 {formatDate(post.publishedAt)} · {post.readingMinutes} min read
               </p>
+              {post.authorName ? (
+                <p className="text-xs text-ink-500">
+                  Written by {" "}
+                  <span className="font-medium text-ink-700">
+                    {post.authorName}
+                  </span>
+                  {post.authorRole ? (
+                    <> · {post.authorRole}</>
+                  ) : null}
+                </p>
+              ) : null}
             </div>
             <h1 className="type-display mt-4 text-balance">{post.title}</h1>
             <p className="type-lead mt-5 max-w-2xl text-ink-600">
@@ -146,8 +173,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               path,
               datePublished: post.publishedAt,
               keywords: [post.category],
+              authorName: post.authorName,
+              authorUrl: post.authorUrl,
             }),
-          ],
+            articleAuthorNode({
+              authorName: post.authorName,
+              authorUrl: post.authorUrl,
+            }),
+          ].filter((n): n is NonNullable<typeof n> => n != null),
         })}
       />
     </>
