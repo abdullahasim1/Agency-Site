@@ -2,6 +2,7 @@ import { config } from "@keystatic/core";
 
 import { projects } from "./keystatic/collections/projects";
 import { services } from "./keystatic/collections/services";
+import { posts } from "./keystatic/collections/posts";
 import {
   aboutPage,
   faqPage,
@@ -17,6 +18,7 @@ import {
 import { site } from "./keystatic/singletons/site";
 import {
   about,
+  clients,
   contact,
   faq,
   industries,
@@ -118,6 +120,7 @@ export default config({
       "🏠 Home page": [
         "homePage",
         "stats",
+        "clients",
         "services",
         "technologies",
         "process",
@@ -141,6 +144,7 @@ export default config({
         "technologies",
       ],
       "💼 Portfolio page": ["portfolioPage", "projects"],
+      "📝 Blog": ["posts"],
       "❓ FAQ page": ["faqPage", "faq", "technologies"],
       "✉️ Contact page": ["contactPage", "contact", "site"],
       "📞 Book a call page": ["bookACallPage", "contact", "site"],
@@ -159,6 +163,7 @@ export default config({
   collections: {
     projects,
     services,
+    posts,
   },
 
   singletons: {
@@ -179,6 +184,7 @@ export default config({
     sharedCopy,
     site,
     stats,
+    clients,
     why,
     process,
     about,

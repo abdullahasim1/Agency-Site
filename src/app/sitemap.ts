@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getProjectSlugs } from "@/data/projects";
+import { getPostSlugs } from "@/data/posts";
 import { getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site";
 
@@ -27,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" },
     { path: "/portfolio", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.8, changeFrequency: "yearly" },
     { path: "/book-a-call", priority: 0.8, changeFrequency: "yearly" },
@@ -40,9 +42,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: entry.priority,
   }));
 
-  const [serviceSlugs, projectSlugs] = await Promise.all([
+  const [serviceSlugs, projectSlugs, postSlugs] = await Promise.all([
     getServiceSlugs(),
     getProjectSlugs(),
+    getPostSlugs(),
   ]);
 
   const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
@@ -59,5 +62,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes];
+  const postRoutes: MetadataRoute.Sitemap = postSlugs.map((slug) => ({
+    url: url(`/blog/${slug}`),
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...postRoutes];
 }

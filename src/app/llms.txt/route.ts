@@ -1,4 +1,5 @@
 import { faqs } from "@/data/faq";
+import { getPosts } from "@/data/posts";
 import { getProjects } from "@/data/projects";
 import { getServices } from "@/data/services";
 import { siteConfig } from "@/data/site";
@@ -43,7 +44,11 @@ const section = (heading: string, lines: string[]) =>
   lines.length > 0 ? `## ${heading}\n\n${lines.join("\n")}` : "";
 
 export async function GET() {
-  const [services, projects] = await Promise.all([getServices(), getProjects()]);
+  const [services, projects, posts] = await Promise.all([
+    getServices(),
+    getProjects(),
+    getPosts(),
+  ]);
 
   const body = [
     `# ${siteConfig.name}`,
@@ -79,6 +84,13 @@ export async function GET() {
       ),
     ),
 
+    section(
+      "Articles",
+      posts.map((post) =>
+        mdLink(post.title, `/blog/${post.slug}`, post.excerpt),
+      ),
+    ),
+
     /* Questions, not answers. The answers are on /faq.md, which is where a
        citation should point — repeating them here would create a second copy
        to keep in sync with the panel. */
@@ -91,6 +103,7 @@ export async function GET() {
       mdLink("Home", "/", oneLine(siteConfig.shortDescription)),
       mdLink("Services", "/services", "Every service line, with deliverables."),
       mdLink("Portfolio", "/portfolio", "Case studies, filterable by category."),
+      mdLink("Blog", "/blog", "Practical articles on AI, automation and software engineering."),
       mdLink("About", "/about", "How the studio works, and who does the work."),
       mdLink("Contact", "/contact", "Enquiry form and contact details."),
       mdLink("Book a call", "/book-a-call", "Schedule the consultation directly."),

@@ -10,6 +10,7 @@ export const primaryNav = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -39,6 +40,7 @@ export const footerTechnologyLinks = [
 
 export const footerResourceLinks = [
   { label: "Case Studies", href: "/portfolio" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Book a Call", href: "/book-a-call" },
 ] as const;

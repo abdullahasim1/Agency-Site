@@ -3,6 +3,22 @@ import type { NextConfig } from "next";
 const isDev = process.env.NODE_ENV === "development";
 
 /*
+ * The chat/lead widget is opt-in via NEXT_PUBLIC_CHAT_WIDGET_URL (see the
+ * (site) layout). When it is configured, its origin is allowed in script-src
+ * (the script itself) and connect-src (its API calls); otherwise no
+ * third-party chat origin appears in the policy at all.
+ */
+const chatOrigin = (() => {
+  const url = process.env.NEXT_PUBLIC_CHAT_WIDGET_URL?.trim();
+  if (!url) return undefined;
+  try {
+    return new URL(url).origin;
+  } catch {
+    return undefined;
+  }
+})();
+
+/*
  * Static-site CSP, the documented approach for sites that are not dynamically
  * rendered (nonces would force every page through the server). It blocks
  * off-origin scripts, objects and framing, and pins forms/frames to self.
@@ -14,7 +30,7 @@ const cspHeader = [
   "default-src 'self'",
   // static.cloudflareinsights.com: Cloudflare Web Analytics beacon (injected on
   // proxied zones); cloudflareinsights.com: where the beacon reports to.
-  `script-src 'self' 'unsafe-inline' https://clone-bussiness-help.vercel.app https://vercel.live https://static.cloudflareinsights.com${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://vercel.live https://static.cloudflareinsights.com${chatOrigin ? ` ${chatOrigin}` : ""}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://avatars.githubusercontent.com",
   "media-src 'self' https:",
@@ -25,7 +41,7 @@ const cspHeader = [
    * raw.githubusercontent.com. Without these, the panel renders
    * "Failed to load shell". The public site never fetches them.
    */
-  "connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://clone-bussiness-help.vercel.app https://vercel.live https://cloudflareinsights.com wss://ws-us3.pusher.com",
+  `connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://vercel.live https://cloudflareinsights.com wss://ws-us3.pusher.com${chatOrigin ? ` ${chatOrigin}` : ""}`,
   "frame-src https:",
   "object-src 'none'",
   "base-uri 'self'",

@@ -1,3 +1,4 @@
+import { ClientLogos } from "@/components/home/ClientLogos";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Hero } from "@/components/home/Hero";
@@ -27,6 +28,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TechMarquee />
+      <ClientLogos />
       <Stats />
       <Services />
       <OurTeam tone="light" />

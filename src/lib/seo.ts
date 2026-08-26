@@ -290,6 +290,36 @@ export function caseStudySchema(options: {
   });
 }
 
+/**
+ * Blog-posting node for /blog/[slug]. Uses the dynamic /og card as the post
+ * image so every article ships a valid image without needing artwork.
+ */
+export function articleSchema(options: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  keywords?: string[];
+}): Node {
+  return present({
+    "@type": "BlogPosting",
+    "@id": `${abs(options.path)}#article`,
+    name: options.title,
+    headline: options.title,
+    description: options.description,
+    url: abs(options.path),
+    image: ogImageUrl(options.title, options.path),
+    inLanguage: "en",
+    datePublished: options.datePublished,
+    dateModified: options.datePublished,
+    keywords: options.keywords,
+    author: ref(ID.organization),
+    publisher: ref(ID.organization),
+    isPartOf: ref(ID.website),
+    mainEntityOfPage: ref(ID.page(options.path)),
+  });
+}
+
 /** WebPage subtypes we use. FAQPage is itself a WebPage in schema.org. */
 type PageType =
   | "WebPage"

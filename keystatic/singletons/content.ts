@@ -1,5 +1,59 @@
 import { fields, singleton } from "@keystatic/core";
-import { accentField, iconField, idField, legalPageField } from "../helpers";
+import { accentField, iconField, idField, keyPatternValidation, legalPageField } from "../helpers";
+
+/**
+ * Client logos wall — the social-proof strip under the homepage hero.
+ *
+ * Deliberately starts empty and the homepage section hides while it is: a
+ * logos wall only builds trust when every name on it is real. Add clients
+ * once each name can be shown publicly; never seed it with placeholders.
+ */
+export const clients = singleton({
+  label: "Client logos",
+  path: "src/content/clients",
+  format: { data: "json" },
+  schema: {
+    label: fields.text({
+      label: "Strip heading",
+      description:
+        'Small line above the logo strip, e.g. "Trusted by forward-thinking teams".',
+    }),
+    items: fields.array(
+      fields.object({
+        id: fields.text({
+          label: "Internal ID",
+          description:
+            "Developer field — not shown on the site. A stable key for the list, e.g. acme-1.",
+          validation: { isRequired: true, pattern: keyPatternValidation },
+        }),
+        name: fields.text({
+          label: "Client name",
+          description:
+            "Shown as the wordmark when no logo is uploaded, and as the alt text when one is.",
+          validation: { isRequired: true },
+        }),
+        logo: fields.image({
+          label: "Logo file",
+          description:
+            "Optional. SVG or PNG with a transparent background, stored under public/logos/. Without it the name renders as a text wordmark.",
+          directory: "public/logos",
+          publicPath: "/logos",
+          validation: { isRequired: false },
+        }),
+        url: fields.url({
+          label: "Website",
+          description: "Optional link out to the client's site.",
+        }),
+      }),
+      {
+        label: "Clients",
+        description:
+          "Only add clients who have agreed to be named publicly. The wall hides while this list is empty.",
+        itemLabel: (props) => props.fields.name.value || "Client",
+      },
+    ),
+  },
+});
 
 export const stats = singleton({
   label: "Statistics",

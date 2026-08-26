@@ -78,6 +78,14 @@ export const viewport: Viewport = {
 };
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
+  /*
+   * The chat/lead widget is opt-in: its origin comes from the
+   * NEXT_PUBLIC_CHAT_WIDGET_URL environment variable, so an unconfigured (or
+   * staging) deployment ships no third-party script at all. Set the variable to
+   * the full widget.js URL in Vercel to turn the widget on.
+   */
+  const chatWidgetUrl = process.env.NEXT_PUBLIC_CHAT_WIDGET_URL?.trim();
+
   return (
     <div className="flex min-h-dvh flex-col">
       <Navbar />
@@ -93,12 +101,14 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       {/* Chat/lead widget — wanted on every page, but its script is heavy on
           the main thread. lazyOnload defers it to idle time after the page is
           interactive, so hydration and First Input never wait for it. */}
-      <Script
-        src="https://clone-bussiness-help.vercel.app/widget.js"
-        data-business-id="2"
-        data-widget-key="cmt4ijjl80000jt044t5lz9rh"
-        strategy="lazyOnload"
-      />
+      {chatWidgetUrl ? (
+        <Script
+          src={chatWidgetUrl}
+          data-business-id={process.env.NEXT_PUBLIC_CHAT_BUSINESS_ID}
+          data-widget-key={process.env.NEXT_PUBLIC_CHAT_WIDGET_KEY}
+          strategy="lazyOnload"
+        />
+      ) : null}
     </div>
   );
 }

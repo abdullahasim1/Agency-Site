@@ -403,3 +403,130 @@
     transition: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Article body (.prose) — styles the compiled Markdown of blog posts.
+
+   Hand-rolled instead of @tailwindcss/typography so the type ramp, spacing
+   and link colours come from the same @theme tokens as the rest of the site.
+   Scoped to .prose only; it never leaks into page chrome.
+   ------------------------------------------------------------------------- */
+.prose {
+  color: var(--color-ink-700);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--color-ink-950);
+  font-family: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.prose h2 {
+  font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+  line-height: 1.25;
+  margin-top: 2em;
+}
+
+.prose h3 {
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  margin-top: 1.6em;
+}
+
+.prose h4 {
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  margin-top: 1.5em;
+}
+
+.prose a {
+  color: var(--color-brand-700);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease-out-soft);
+}
+
+.prose a:hover {
+  color: var(--color-brand-600);
+}
+
+.prose strong {
+  color: var(--color-ink-950);
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li::marker {
+  color: var(--color-brand-400);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-brand-300);
+  padding-left: 1.25rem;
+  color: var(--color-ink-600);
+  font-style: italic;
+}
+
+.prose code {
+  background: var(--color-ink-100);
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--color-ink-800);
+}
+
+.prose pre {
+  overflow-x: auto;
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-card);
+  background: var(--color-ink-950);
+  padding: 1.125rem 1.25rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--color-ink-200);
+  font-size: 0.8125rem;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--color-ink-200);
+  margin-top: 2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose a {
+    transition: none;
+  }
+}

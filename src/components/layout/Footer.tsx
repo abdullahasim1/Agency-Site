@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowUpRight, Globe, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
-import { GithubIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { GithubIcon, LinkedInIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { BrandLogo } from "@/components/ui/LogoMark";
 import {
   footerCompanyLinks,
@@ -85,7 +85,7 @@ export async function Footer() {
                 href={siteConfig.social.linkedin}
                 label={`${siteConfig.name} on LinkedIn`}
               >
-                <Globe className="size-4" aria-hidden />
+                <LinkedInIcon className="size-4" aria-hidden />
               </SocialLink>
               <SocialLink
                 href={siteConfig.social.github}

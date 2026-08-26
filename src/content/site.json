@@ -10,10 +10,10 @@
     "salesEmail": "newbusiness@thedevrox.com",
     "location": "Remote-first · Serving clients worldwide",
     "address": {
-      "line1": "Studio 4, Innovation Quarter",
-      "city": "Austin",
-      "region": "TX",
-      "country": "United States"
+      "line1": "",
+      "city": "",
+      "region": "",
+      "country": ""
     },
     "hours": "Mon – Fri · 9:00 – 18:00 (CT)",
     "responseTime": "We reply to every enquiry within one business day.",
@@ -28,8 +28,11 @@
   "foundedYear": 2016,
   "schema": {
     "telephone": "",
-    "foundingDate": "",
-    "sameAs": [],
+    "foundingDate": "2016-01-01",
+    "sameAs": [
+      "https://www.linkedin.com/company/devrox",
+      "https://github.com/thedevrox"
+    ],
     "address": {
       "streetAddress": "",
       "addressLocality": "",

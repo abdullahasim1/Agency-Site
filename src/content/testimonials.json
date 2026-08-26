@@ -7,8 +7,7 @@
       "role": "Director of Operations",
       "company": "Northgate Property Group",
       "initials": "ME",
-      "accent": "brand",
-      "projectSlug": "verivoice"
+      "accent": "brand"
     },
     {
       "id": "t-2",
@@ -37,8 +36,7 @@
       "role": "VP Engineering",
       "company": "Lumen Commerce",
       "initials": "AN",
-      "accent": "violet",
-      "projectSlug": "commerce-insights"
+      "accent": "violet"
     }
   ]
 }
