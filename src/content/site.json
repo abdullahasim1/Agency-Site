@@ -10,10 +10,10 @@
     "salesEmail": "newbusiness@thedevrox.com",
     "location": "Remote-first · Serving clients worldwide",
     "address": {
-      "line1": "",
-      "city": "",
-      "region": "",
-      "country": ""
+      "line1": "Bahria Town",
+      "city": "Lahore",
+      "region": "Punjab",
+      "country": "Pakistan"
     },
     "hours": "Mon – Fri · 9:00 – 18:00 (CT)",
     "responseTime": "We reply to every enquiry within one business day.",
@@ -34,11 +34,11 @@
       "https://github.com/thedevrox"
     ],
     "address": {
-      "streetAddress": "",
-      "addressLocality": "",
-      "addressRegion": "",
+      "streetAddress": "Bahria Town",
+      "addressLocality": "Lahore",
+      "addressRegion": "Punjab",
       "postalCode": "",
-      "addressCountry": ""
+      "addressCountry": "PK"
     }
   }
 }
