@@ -32,7 +32,14 @@ export function ProjectGallery({ project }: { project: Project }) {
           stagger={0.08}
           className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2"
         >
-          {project.gallery.map((item, index) => (
+          {/* Pre-compute the lightbox image list once instead of mapping per item. */}
+          {(() => {
+            const lightboxImages = project.gallery.map(({ src, alt, caption }) => ({
+              src,
+              alt,
+              caption,
+            }));
+            return project.gallery.map((item, index) => (
             <StaggerItem
               as="li"
               key={item.src}
@@ -40,11 +47,7 @@ export function ProjectGallery({ project }: { project: Project }) {
             >
               <figure className="relative overflow-hidden rounded-card border border-ink-200 bg-white">
                 <ZoomableImage
-                  images={project.gallery.map(({ src, alt, caption }) => ({
-                    src,
-                    alt,
-                    caption,
-                  }))}
+                  images={lightboxImages}
                   index={index}
                   className="relative w-full bg-ink-50"
                 >
@@ -63,7 +66,8 @@ export function ProjectGallery({ project }: { project: Project }) {
                 </figcaption>
               </figure>
             </StaggerItem>
-          ))}
+          ));
+          })()}
         </Stagger>
       </Container>
     </section>

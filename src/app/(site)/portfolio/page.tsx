@@ -21,7 +21,7 @@ export default async function PortfolioPage() {
 
   return (
     <>
-      <PortfolioHero />
+      <PortfolioHero projectCount={projects.length} />
 
       <section id="projects" className="section-y">
         <Container>

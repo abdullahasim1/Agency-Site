@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { budgetRanges, projectTypes } from "@/data/contact";
 import { contactCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
+import { EMAIL_PATTERN } from "@/lib/validation";
 import { cn } from "@/lib/utils";
 
 const copy = contactCopy.form;
@@ -33,9 +34,6 @@ const initialValues: FormValues = {
   budget: "",
   message: "",
 };
-
-/** Deliberately permissive: rejecting a valid address is worse than accepting a bad one. */
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {};

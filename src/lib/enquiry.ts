@@ -41,7 +41,9 @@ export interface ContactPayload {
   website: string;
 }
 
-export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+import { EMAIL_PATTERN } from "@/lib/validation";
+
+export { EMAIL_PATTERN };
 
 /** Per-field upper bounds, mirroring what the UI would ever legitimately send. */
 const MAX_LENGTHS: Record<keyof Omit<ContactPayload, "website">, number> = {

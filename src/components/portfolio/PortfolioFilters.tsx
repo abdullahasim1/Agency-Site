@@ -85,10 +85,7 @@ export function PortfolioFilters({
               {filter === "All" ? portfolioCopy.grid.allFilterLabel : filter}
             </span>
             <span
-              className={cn(
-                "relative nums-tabular text-xs",
-                isActive ? "text-ink-400" : "text-ink-400",
-              )}
+              className="relative nums-tabular text-xs text-ink-400"
             >
               {counts[filter] ?? 0}
             </span>

@@ -5,16 +5,20 @@ import { industries } from "@/data/industries";
 import { portfolioCopy } from "@/data/pages";
 import { techCategories } from "@/data/technologies";
 
+interface PortfolioHeroProps {
+  /** Pre-loaded project count — avoids a redundant getProjects() call. */
+  projectCount: number;
+}
+
 /**
- * Portfolio page hero. Every figure here is derived from the data files rather
- * than typed in, so it cannot drift out of date as projects are added.
+ * Portfolio page hero. Stats are derived from data files rather than typed in,
+ * so they cannot drift out of date as projects are added.
  */
-export async function PortfolioHero() {
+export function PortfolioHero({ projectCount }: PortfolioHeroProps) {
   const technologyCount = techCategories.reduce(
     (total, category) => total + category.items.length,
     0,
   );
-  const projects = await getProjects();
 
   return (
     <PageHero
@@ -25,7 +29,7 @@ export async function PortfolioHero() {
       meta={[
         {
           label: portfolioCopy.heroMeta.caseStudiesLabel,
-          value: `${projects.length}`,
+          value: `${projectCount}`,
         },
         {
           label: portfolioCopy.heroMeta.industriesLabel,
