@@ -217,9 +217,10 @@ export function getProjects(): Promise<Project[]> {
 
     for (const { slug, entry } of entries) {
       const resolved = resolveEntry(entry);
+      const flat = flatten(resolved);
       const project = {
-        ...flatten(resolved),
-        gallery: [...flatten(resolved).gallery, ...bulkGalleryItems(entry)],
+        ...flat,
+        gallery: [...flat.gallery, ...bulkGalleryItems(entry)],
         slug,
       } as unknown as Project;
       /* Content-hashed URLs: a replaced image gets a new URL (fresh fetch for

@@ -66,12 +66,7 @@ export function BookingEmbed() {
         </Button>
       </div>
 
-      <p className="mt-8 border-t border-ink-200 pt-6 text-xs leading-relaxed text-ink-500">
-        <span className="font-medium text-ink-700">Developer note: </span>
-        set <code className="font-mono text-ink-700">NEXT_PUBLIC_BOOKING_URL</code>{" "}
-        to a Calendly, Cal.com or GoHighLevel scheduling link and this panel is
-        replaced by the live calendar. No component changes required.
-      </p>
+
     </div>
   );
 }

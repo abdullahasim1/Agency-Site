@@ -299,21 +299,8 @@
     animation: marquee-x 28s linear infinite;
   }
 
-  /* Card-sized strips (case-study tech stack): shorter loop, can run reversed. */
-  .animate-marquee-sm {
-    animation: marquee-x 18s linear infinite;
-  }
-
-  .animate-marquee-sm-reverse {
-    animation: marquee-x 18s linear infinite reverse;
-  }
-
   .marquee-track:hover .animate-marquee,
-  .marquee-track:focus-within .animate-marquee,
-  .marquee-track:hover .animate-marquee-sm,
-  .marquee-track:focus-within .animate-marquee-sm,
-  .marquee-track:hover .animate-marquee-sm-reverse,
-  .marquee-track:focus-within .animate-marquee-sm-reverse {
+  .marquee-track:focus-within .animate-marquee {
     animation-play-state: paused;
   }
 
@@ -363,8 +350,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee,
-    .animate-marquee-sm,
-    .animate-marquee-sm-reverse,
     .animate-sheen,
     .animate-dash,
     .animate-node {

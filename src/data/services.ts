@@ -88,6 +88,11 @@ const flatten = (entry: Record<string, unknown>): Omit<Service, "slug"> => {
 
 /** All services in catalogue order (lowest `order` first). */
 export function getServices(): Promise<Service[]> {
+  // In development, bust the in-memory cache on every call so CMS edits
+  // reflect immediately without restarting the dev server.
+  if (process.env.NODE_ENV === "development") {
+    servicesPromise = undefined;
+  }
   servicesPromise ??= reader.collections.services.all().then((entries) =>
     entries
       .map(({ slug, entry }) => ({ ...flatten(entry), slug }) as unknown as Service)
