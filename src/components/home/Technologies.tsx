@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
+import { Parallax } from "@/components/ui/Parallax";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechLogo } from "@/components/ui/TechLogo";
@@ -90,14 +91,18 @@ export function Technologies() {
       className="section-y relative isolate overflow-hidden bg-ink-950"
     >
       <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-50" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-40 top-0 size-[34rem] rounded-full bg-brand-600/10 blur-[130px]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-40 bottom-0 size-[30rem] rounded-full bg-accent-violet/10 blur-[130px]"
-      />
+      <Parallax speed={0.2} className="absolute -right-40 top-0 size-[34rem]">
+        <div
+          aria-hidden
+          className="size-full rounded-full bg-brand-600/10 blur-[130px]"
+        />
+      </Parallax>
+      <Parallax speed={0.15} className="absolute -left-40 bottom-0 size-[30rem]">
+        <div
+          aria-hidden
+          className="size-full rounded-full bg-accent-violet/10 blur-[130px]"
+        />
+      </Parallax>
 
       <Container className="relative">
         <SectionHeading
