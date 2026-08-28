@@ -48,6 +48,7 @@ export function Avatar({
         alt={name}
         width={pixelSizes[size]}
         height={pixelSizes[size]}
+        loading="lazy"
         className={cn(
           "shrink-0 rounded-full object-cover ring-1 ring-ink-200 dark:ring-white/15",
           sizes[size],

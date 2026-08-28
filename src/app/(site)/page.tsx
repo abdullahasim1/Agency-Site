@@ -26,18 +26,23 @@ import { pageGraph } from "@/lib/seo";
 export default function HomePage() {
   return (
     <>
+      {/* Hero: always visible, no animation delay on first paint */}
       <Hero />
-      <TechMarquee />
-      <ClientLogos />
-      <Stats />
-      <Services />
-      <OurTeam tone="light" />
-      <Technologies />
-      <Process />
-      <FeaturedProjects />
-      <WhyChooseUs />
-      <Testimonials />
-      <FinalCTA />
+
+      {/* Below-fold sections: content-visibility auto defers rendering */}
+      <div className="content-below-fold">
+        <TechMarquee />
+        <ClientLogos />
+        <Stats />
+        <Services />
+        <OurTeam tone="light" />
+        <Technologies />
+        <Process />
+        <FeaturedProjects />
+        <WhyChooseUs />
+        <Testimonials />
+        <FinalCTA />
+      </div>
 
       {/* No breadcrumb — a single-item trail ending at the page itself carries
           no information, and Google discards it. */}

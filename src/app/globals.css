@@ -401,6 +401,20 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Content-visibility: below-fold sections render lazily.
+
+   Tells the browser to skip layout/paint for off-screen sections until they
+   approach the viewport. Combined with contain-intrinsic-size, this avoids
+   layout shifts while dramatically cutting initial render work.
+   ------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .content-below-fold {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Article body (.prose) — styles the compiled Markdown of blog posts.
 
    Hand-rolled instead of @tailwindcss/typography so the type ramp, spacing

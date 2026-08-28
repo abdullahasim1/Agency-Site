@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 interface HeroVisualProps {
   className?: string;
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 const inputs = [
@@ -28,13 +29,14 @@ const outputs = [
   { y: 290, label: "Notifications" },
 ] as const;
 
-export function HeroVisual({ className }: HeroVisualProps) {
+export function HeroVisual({ className, fetchPriority = "auto" }: HeroVisualProps) {
   return (
     <div
       className={cn(
         "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
         className,
       )}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 400px" } as React.CSSProperties}
     >
       {/* Faint engineering grid behind the diagram. */}
       <div aria-hidden className="absolute inset-0 bg-blueprint opacity-70" />
