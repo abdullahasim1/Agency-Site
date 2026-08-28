@@ -37,6 +37,7 @@ export async function ClientLogos({ className }: { className?: string }) {
           alt={client.name}
           width={client.size.width}
           height={client.size.height}
+          loading="lazy"
           className="h-7 w-auto object-contain opacity-60 transition-opacity duration-300 hover:opacity-100 sm:h-8"
         />
       ) : (

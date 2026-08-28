@@ -11,7 +11,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "art": "node scripts/generate-art.mjs",
-    "check:dns-aid": "node scripts/check-dns-aid.mjs"
+    "check:dns-aid": "node scripts/check-dns-aid.mjs",
+    "lighthouse": "lhci autorun",
+    "lighthouse:collect": "lhci collect --config=lighthouserc.json"
   },
   "engines": {
     "node": "22.x"
@@ -34,6 +36,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^8.0.1",

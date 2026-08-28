@@ -119,6 +119,20 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           strategy="lazyOnload"
         />
       ) : null}
+      {/* Service worker: enables offline caching for repeat visits. */}
+      <Script
+        id="sw-register"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').catch(function() {});
+              });
+            }
+          `,
+        }}
+      />
     </div>
   );
 }

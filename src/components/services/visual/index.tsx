@@ -1,11 +1,3 @@
-import { agentsMockup } from "./agents";
-import { automationMockup } from "./automation";
-import { customMockup } from "./custom";
-import { integrationsMockup } from "./integrations";
-import { mobileMockup } from "./mobile";
-import { webMockup } from "./web";
-import { workflowMockup } from "./workflow";
-import { voiceMockup } from "./voice";
 import {
   accentHex,
   VisualPanel,
@@ -22,27 +14,39 @@ import {
  * retinted eight times. Server-rendered inline SVG animated by the keyframes
  * already in globals.css, so it costs zero client JavaScript and is neutralised
  * under prefers-reduced-motion.
+ *
+ * Mockups are lazily imported per slug to avoid bundling all 8 on every page.
  */
 
-const fallbackMockup = customMockup;
-
-const registry: Record<string, Mockup> = {
-  "ai-automation": automationMockup,
-  "ai-agents": agentsMockup,
-  "ai-voice-agents": voiceMockup,
-  "web-application-development": webMockup,
-  "mobile-app-development": mobileMockup,
-  "workflow-automation": workflowMockup,
-  "crm-api-integrations": integrationsMockup,
-  "custom-software-development": customMockup,
+const mockupLoaders: Record<string, () => Promise<{ default: Mockup }>> = {
+  "ai-automation": () =>
+    import("./automation").then((m) => ({ default: m.automationMockup })),
+  "ai-agents": () =>
+    import("./agents").then((m) => ({ default: m.agentsMockup })),
+  "ai-voice-agents": () =>
+    import("./voice").then((m) => ({ default: m.voiceMockup })),
+  "web-application-development": () =>
+    import("./web").then((m) => ({ default: m.webMockup })),
+  "mobile-app-development": () =>
+    import("./mobile").then((m) => ({ default: m.mobileMockup })),
+  "workflow-automation": () =>
+    import("./workflow").then((m) => ({ default: m.workflowMockup })),
+  "crm-api-integrations": () =>
+    import("./integrations").then((m) => ({ default: m.integrationsMockup })),
+  "custom-software-development": () =>
+    import("./custom").then((m) => ({ default: m.customMockup })),
 };
 
-export function ServiceHeroVisual({
+const fallbackLoader = () =>
+  import("./custom").then((m) => ({ default: m.customMockup }));
+
+export async function ServiceHeroVisual({
   slug,
   accent,
   className,
 }: ServiceHeroVisualProps) {
-  const mockup = registry[slug] ?? fallbackMockup;
+  const loader = mockupLoaders[slug] ?? fallbackLoader;
+  const { default: mockup } = await loader();
 
   return (
     <VisualPanel

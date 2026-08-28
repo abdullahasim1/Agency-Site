@@ -296,18 +296,15 @@
 
   .animate-marquee {
     animation: marquee-x 28s linear infinite;
-    will-change: transform;
   }
 
   /* Card-sized strips (case-study tech stack): shorter loop, can run reversed. */
   .animate-marquee-sm {
     animation: marquee-x 18s linear infinite;
-    will-change: transform;
   }
 
   .animate-marquee-sm-reverse {
     animation: marquee-x 18s linear infinite reverse;
-    will-change: transform;
   }
 
   .marquee-track:hover .animate-marquee,
@@ -334,7 +331,6 @@
 
   .animate-sheen {
     animation: sheen-sweep 8s var(--ease-in-out-soft) infinite;
-    will-change: transform;
   }
 
   @keyframes dash-flow {
@@ -528,5 +524,21 @@
 @media (prefers-reduced-motion: reduce) {
   .prose a {
     transition: none;
+  }
+}
+
+/* Page transition fade-in (replaces framer-motion in template.tsx) */
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-transition {
+  animation: page-fade-in 0.28s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
   }
 }

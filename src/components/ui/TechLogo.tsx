@@ -107,6 +107,7 @@ export function TechLogo({
       alt=""
       width={28}
       height={28}
+      loading="lazy"
       aria-hidden
       className={cn(
         "shrink-0 object-contain",

@@ -41,26 +41,14 @@ export function ProjectCard({
       <Link
         href={`/portfolio/${project.slug}`}
         aria-label={`View case study for ${project.title}`}
-        className="relative z-10 block aspect-[16/10] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
+        className="group/card relative z-10 block aspect-[16/10] w-full overflow-hidden border-b border-ink-200 bg-ink-50"
       >
-        <Image
-          src={project.image}
-          alt=""
-          width={project.imageWidth}
-          height={project.imageHeight}
-          quality={70}
-          sizes={sizes}
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover blur-md scale-[1.08]"
-        />
         <Image
           src={project.image}
           alt={project.imageAlt}
           width={project.imageWidth}
           height={project.imageHeight}
-          quality={90}
+          quality={85}
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : "lazy"}

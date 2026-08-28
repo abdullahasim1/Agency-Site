@@ -76,6 +76,23 @@ const svgCspHeader =
 const IMAGE_CACHE =
   "public, max-age=604800, stale-while-revalidate=2592000";
 
+/*
+ * HTML pages: serve from cache, revalidate in background. Users get instant
+ * page loads on repeat visits while content stays fresh.
+ */
+const PAGE_CACHE =
+  "public, max-age=0, must-revalidate, stale-while-revalidate=3600";
+
+/*
+ * immutable assets: content-hashed bundles can be cached forever.
+ */
+const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
+
+/*
+ * Fonts: long cache, same as Vercel's default for /_next/static.
+ */
+const FONT_CACHE = "public, max-age=31536000, immutable";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   /*
@@ -158,6 +175,22 @@ const nextConfig: NextConfig = {
       {
         source: "/logos/:path*",
         headers: [{ key: "Cache-Control", value: IMAGE_CACHE }],
+      },
+      /* Content-hashed JS/CSS bundles: immutable for the lifetime of the hash. */
+      {
+        source: "/_next/static/:path*",
+        headers: [{ key: "Cache-Control", value: IMMUTABLE_CACHE }],
+      },
+      /* Fonts served from /public: long immutable cache. */
+      {
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: FONT_CACHE }],
+      },
+      /* HTML pages: stale-while-revalidate for fast repeat visits. */
+      {
+        source: "/:path*",
+        has: [{ type: "header", key: "Accept", value: ".*text/html.*" }],
+        headers: [{ key: "Cache-Control", value: PAGE_CACHE }],
       },
       /* Last, so it wins for the same header key (see headers docs on
          overriding behavior). Neutralises scripting inside any SVG served
