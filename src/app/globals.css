@@ -297,11 +297,21 @@
 
   .animate-marquee {
     animation: marquee-x 28s linear infinite;
+    /* GPU-accelerate the translateX animation. */
+    will-change: transform;
   }
 
   .marquee-track:hover .animate-marquee,
   .marquee-track:focus-within .animate-marquee {
     animation-play-state: paused;
+  }
+
+  /* When the marquee is paused (via hover, focus, or out-of-view), release
+     the compositor layer to save GPU memory. */
+  .animate-marquee[style*="paused"],
+  .marquee-track:hover .animate-marquee,
+  .marquee-track:focus-within .animate-marquee {
+    will-change: auto;
   }
 
   /* Glass sheen sweeping across dark marquee strips. */
@@ -368,11 +378,21 @@
    running, the node starts below the viewport, and the user has not asked for
    reduced motion. No-JS renders, crawlers and reduced-motion users therefore
    always see the plain visible markup.
+
+   Performance notes:
+   - Only `opacity` and `transform` are transitioned — both are compositor-
+     only properties that never trigger layout or paint.
+   - `contain: layout style` isolates the element so the browser can skip
+     recalculating the rest of the page during the transition.
+   - `contain-intrinsic-size` gives the browser a size estimate for the
+     element before it becomes visible, preventing layout shifts.
    ------------------------------------------------------------------------- */
 [data-reveal] {
   transition:
     opacity 0.55s var(--ease-out-soft),
     transform 0.55s var(--ease-out-soft);
+  contain: layout style;
+  contain-intrinsic-size: auto 200px;
 }
 
 [data-reveal="pending"] {
@@ -606,10 +626,7 @@
   }
 }
 
-/* Prevent layout shifts during scroll */
-[data-reveal] {
-  contain: layout style;
-}
+
 
 /* NOTE: will-change on scroll-reveal elements is intentionally omitted.
    The browser already promotes data-reveal elements during their CSS

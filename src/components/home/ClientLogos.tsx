@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Container } from "@/components/ui/Container";
+import { PauseableMarquee } from "@/components/ui/PauseableMarquee";
 import { clients, clientsLabel } from "@/data/clients";
 import { imageSize } from "@/lib/image-size";
 import { cn } from "@/lib/utils";
@@ -71,7 +72,7 @@ export async function ClientLogos({ className }: { className?: string }) {
         <p className="type-eyebrow text-center text-ink-500">{clientsLabel}</p>
       </Container>
 
-      <div className="marquee-track mask-fade-x relative mt-8 overflow-hidden">
+      <PauseableMarquee className="marquee-track mask-fade-x relative mt-8 overflow-hidden">
         <div className="animate-marquee flex w-full pr-3.5">
           {/* Second copy is decorative: the first already names every client. */}
           {[0, 1].map((copy) => (
@@ -84,7 +85,7 @@ export async function ClientLogos({ className }: { className?: string }) {
             </ul>
           ))}
         </div>
-      </div>
+      </PauseableMarquee>
     </section>
   );
 }

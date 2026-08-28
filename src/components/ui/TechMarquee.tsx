@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { PauseableMarquee } from "@/components/ui/PauseableMarquee";
 import { TechLogo } from "@/components/ui/TechLogo";
 import { sharedCopy } from "@/data/pages";
 import { allTechnologies } from "@/data/technologies";
@@ -62,7 +63,7 @@ export function TechMarquee({
         </p>
       </Container>
 
-      <div className="marquee-track mask-fade-x relative mt-7 overflow-hidden">
+      <PauseableMarquee className="marquee-track mask-fade-x relative mt-7 overflow-hidden">
         {/* Glass sheen sweeping over the strip. */}
         <span
           aria-hidden
@@ -98,7 +99,7 @@ export function TechMarquee({
             </ul>
           ))}
         </div>
-      </div>
+      </PauseableMarquee>
     </section>
   );
 }
