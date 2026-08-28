@@ -94,7 +94,6 @@
     color: var(--color-ink-700);
     font-family: var(--font-sans);
     font-synthesis-weight: none;
-    will-change: scroll-position;
   }
 
   h1,
@@ -408,12 +407,13 @@
    Tells the browser to skip layout/paint for off-screen sections until they
    approach the viewport. Combined with contain-intrinsic-size, this avoids
    layout shifts while dramatically cutting initial render work.
+
+   Applied at all viewport widths — mobile users benefit just as much from
+   skipped off-screen rendering.
    ------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
-  .content-below-fold {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 800px;
-  }
+.content-below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -626,13 +626,7 @@
   contain: layout style;
 }
 
-/* GPU-accelerate scroll-triggered elements */
-.reveal-entering,
-.reveal-visible {
-  will-change: transform, opacity;
-}
-
-/* Remove will-change after animation completes */
-.reveal-visible {
-  will-change: auto;
-}
+/* NOTE: will-change on scroll-reveal elements is intentionally omitted.
+   The browser already promotes data-reveal elements during their CSS
+   transition; a static will-change forces a compositor layer for the
+   element's entire lifetime, wasting GPU memory. */

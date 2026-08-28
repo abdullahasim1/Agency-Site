@@ -3,6 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 
+/**
+ * Read a CSS custom property from an element's inline style.
+ * Unlike getComputedStyle(), this does not trigger a style recalculation.
+ * Falls back to a default when the property is absent or non-numeric.
+ */
+function readInlineCSSVar(
+  element: Element | null,
+  name: string,
+  fallback: number,
+): number {
+  if (!element) return fallback;
+  const raw = (element as HTMLElement).style.getPropertyValue(name);
+  if (!raw) return fallback;
+  // Strip trailing units ("s", "px") — we only need the number.
+  const num = parseFloat(raw);
+  return Number.isFinite(num) ? num : fallback;
+}
+
 import { useInViewOnce, usePrefersReducedMotion } from "@/lib/use-in-view";
 import { cn } from "@/lib/utils";
 
@@ -120,6 +138,8 @@ export function StaggerItem({
   const nodeRef = useRef<Element | null>(null);
 
   // Sibling index × parent step reproduces staggerChildren's sequencing.
+  // Reads the parent's *inline* style for the CSS variables — this does not
+  // trigger a getComputedStyle() call, avoiding layout thrashing on mount.
   useEffect(() => {
     const node = nodeRef.current;
     if (!node) return;
@@ -128,12 +148,8 @@ export function StaggerItem({
     const index = Array.prototype.indexOf.call(parent.children, node);
     if (index < 0) return;
 
-    const style = getComputedStyle(parent);
-    const step =
-      Number.parseFloat(style.getPropertyValue("--stagger-step")) ||
-      DEFAULT_STAGGER_STEP_S;
-    const base =
-      Number.parseFloat(style.getPropertyValue("--stagger-delay")) || 0;
+    const step = readInlineCSSVar(parent, "--stagger-step", DEFAULT_STAGGER_STEP_S);
+    const base = readInlineCSSVar(parent, "--stagger-delay", 0);
 
     setItemDelay(base + Math.min(index, MAX_STAGGER_STEPS) * step);
   }, []);
