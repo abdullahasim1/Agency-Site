@@ -54,7 +54,7 @@ const details = [
 export default function ContactPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden pt-8 pb-16 sm:pt-10 lg:pt-12 lg:pb-24">
+      <section className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-24">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-136 bg-blueprint mask-fade-b opacity-60"
