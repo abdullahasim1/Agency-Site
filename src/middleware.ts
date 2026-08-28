@@ -230,6 +230,14 @@ export async function middleware(request: NextRequest) {
   if (!wantsMarkdown(request)) {
     const response = NextResponse.next();
     response.headers.set("Link", agentLinkHeader(pathname));
+    // Ensure stale-while-revalidate is preserved for HTML pages
+    const accept = request.headers.get("accept") ?? "";
+    if (accept.includes("text/html")) {
+      response.headers.set(
+        "Cache-Control",
+        "public, max-age=0, must-revalidate, stale-while-revalidate=3600"
+      );
+    }
     return response;
   }
 
