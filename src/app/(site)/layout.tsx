@@ -39,9 +39,6 @@ export const metadata: Metadata = {
   publisher: siteConfig.legalName,
   alternates: {
     canonical: "/",
-    languages: {
-      en: "/",
-    },
   },
   openGraph: {
     type: "website",

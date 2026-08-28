@@ -40,7 +40,10 @@ export function buildMetadata({
     title,
     description,
     keywords,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: { en: url },
+    },
     openGraph: {
       type,
       url,
