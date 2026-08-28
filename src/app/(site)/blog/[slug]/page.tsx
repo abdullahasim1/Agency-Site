@@ -78,29 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
         <Container>
           <div className="max-w-3xl">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
-                <li>
-                  <Link href="/" className="transition-colors hover:text-ink-800">
-                    {sharedCopy.breadcrumb.home}
-                  </Link>
-                </li>
-                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-                <li>
-                  <Link
-                    href="/blog"
-                    className="transition-colors hover:text-ink-800"
-                  >
-                    {sharedCopy.breadcrumb.blog}
-                  </Link>
-                </li>
-                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-                <li aria-current="page" className="text-ink-800">
-                  {post.title}
-                </li>
-              </ol>
-            </nav>
-            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
               <Eyebrow>{post.category}</Eyebrow>
               <p className="inline-flex items-center gap-1.5 text-xs text-ink-500">
                 <Clock className="size-3.5" aria-hidden />

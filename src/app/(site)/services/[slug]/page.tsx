@@ -90,31 +90,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         />
 
         <Container>
-          <Reveal y={12}>
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
-                <li>
-                  <Link href="/" className="transition-colors hover:text-ink-800">
-                    {sharedCopy.breadcrumb.home}
-                  </Link>
-                </li>
-                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-                <li>
-                  <Link
-                    href="/services"
-                    className="transition-colors hover:text-ink-800"
-                  >
-                    {sharedCopy.breadcrumb.services}
-                  </Link>
-                </li>
-                <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-                <li aria-current="page" className="text-ink-800">
-                  {service.title}
-                </li>
-              </ol>
-            </nav>
-          </Reveal>
-
           <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
             <div className="max-w-3xl">
               <Reveal y={12}>

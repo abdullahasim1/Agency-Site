@@ -38,29 +38,6 @@ export default function FaqPage() {
 
   return (
     <>
-      {/* Breadcrumb */}
-      <section className="relative isolate overflow-hidden border-b border-ink-200 pt-28 pb-0 sm:pt-32 lg:pt-40">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full bg-blueprint mask-fade-b opacity-60"
-        />
-        <Container>
-          <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
-              <li>
-                <Link href="/" className="transition-colors hover:text-ink-800">
-                  {sharedCopy.breadcrumb.home}
-                </Link>
-              </li>
-              <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-              <li aria-current="page" className="text-ink-800">
-                {sharedCopy.breadcrumb.faq}
-              </li>
-            </ol>
-          </nav>
-        </Container>
-      </section>
-
       <PageHero
         eyebrow={faqCopy.hero.eyebrow}
         title={faqCopy.hero.title}
