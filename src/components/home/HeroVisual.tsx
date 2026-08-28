@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 
 interface HeroVisualProps {
   className?: string;
-  fetchPriority?: "high" | "low" | "auto";
 }
 
 const inputs = [
@@ -29,7 +28,7 @@ const outputs = [
   { y: 290, label: "Notifications" },
 ] as const;
 
-export function HeroVisual({ className, fetchPriority = "auto" }: HeroVisualProps) {
+export function HeroVisual({ className }: HeroVisualProps) {
   return (
     <div
       className={cn(

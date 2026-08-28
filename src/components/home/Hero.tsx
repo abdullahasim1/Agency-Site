@@ -112,7 +112,7 @@ export function Hero() {
           </div>
 
           <Reveal delay={0.18} y={20} className="lg:pl-4">
-            <HeroVisual fetchPriority="high" />
+            <HeroVisual />
           </Reveal>
         </div>
       </Container>

@@ -74,7 +74,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300",
         scrolled
-          ? "border-b border-ink-200/80 bg-white/80 shadow-[0_1px_0_0_rgb(10_13_20/0.02)] backdrop-blur-xl supports-backdrop-filter:bg-white/70"
+          ? "border-b border-ink-200/80 bg-white/90 shadow-[0_1px_0_0_rgb(10_13_20/0.02)]"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -180,7 +180,7 @@ export function Navbar() {
           open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="border-t border-ink-200 bg-white/95 backdrop-blur-xl">
+            <div className="border-t border-ink-200 bg-white/95">
           <Container className="py-5">
             <ul className="flex flex-col">
               {primaryNav.map((item, index) => (

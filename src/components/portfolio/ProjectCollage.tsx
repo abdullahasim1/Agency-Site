@@ -55,7 +55,7 @@ export async function ProjectCollage({ className }: ProjectCollageProps) {
               alt=""
               fill
               sizes="(min-width: 1024px) 34vw, 40vw"
-              loading="eager"
+              loading="lazy"
               className="object-cover"
             />
           </div>
