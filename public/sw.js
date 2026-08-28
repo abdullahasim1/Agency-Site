@@ -1,35 +1,32 @@
-const CACHE_NAME = "thedevrox-v1";
-const STATIC_CACHE = "thedevrox-static-v1";
-const PAGES_CACHE = "thedevrox-pages-v1";
+const STATIC_CACHE = "thedevrox-static-v2";
+const PAGES_CACHE = "thedevrox-pages-v2";
 
-// Assets to preinstall on activation
-const PRECACHE_URLS = ["/", "/services", "/portfolio", "/about", "/contact"];
+// Max items in the pages cache before oldest entries are evicted.
+const PAGES_MAX = 20;
 
-// Install: pre-cache critical pages
+// Install: skip pre-caching — fetching 5 pages on first visit adds to initial
+// load time. The cache-first strategy for static assets and stale-while-revalidate
+// for pages means they fill in naturally as the user browses.
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(STATIC_CACHE)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
-// Activate: clean old caches
+// Activate: clean old caches (including v1 from previous versions).
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter(
-            (key) =>
-              key !== STATIC_CACHE &&
-              key !== PAGES_CACHE &&
-              key !== CACHE_NAME
-          )
-          .map((key) => caches.delete(key))
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter(
+              (key) =>
+                key !== STATIC_CACHE && key !== PAGES_CACHE,
+            )
+            .map((key) => caches.delete(key)),
+        ),
       )
-    ).then(() => self.clients.claim())
+      .then(() => self.clients.claim()),
   );
 });
 
@@ -62,7 +59,8 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
-// Cache-first: serve from cache, fallback to network
+// Cache-first: serve from cache, fallback to network.
+// Returns a proper offline page when both cache and network fail.
 async function cacheFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
@@ -71,15 +69,24 @@ async function cacheFirst(request, cacheName) {
   try {
     const response = await fetch(request);
     if (response.ok) {
+      // Evict oldest entries if the cache is too large.
+      const keys = await cache.keys();
+      if (keys.length > 50) {
+        await cache.delete(keys[0]);
+      }
       cache.put(request, response.clone());
     }
     return response;
   } catch {
-    return new Response("Offline", { status: 503 });
+    return new Response("Offline", {
+      status: 503,
+      headers: { "Content-Type": "text/plain" },
+    });
   }
 }
 
-// Stale-while-revalidate: serve cache, update in background
+// Stale-while-revalidate: serve cache, update in background.
+// Limits the pages cache to PAGES_MAX entries.
 async function staleWhileRevalidate(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
@@ -88,6 +95,14 @@ async function staleWhileRevalidate(request, cacheName) {
     .then(async (response) => {
       if (response.ok) {
         await cache.put(request, response.clone());
+
+        // Evict oldest entries if the cache is too large.
+        const keys = await cache.keys();
+        if (keys.length > PAGES_MAX) {
+          for (let i = 0; i < keys.length - PAGES_MAX; i++) {
+            await cache.delete(keys[i]);
+          }
+        }
       }
       return response;
     })
