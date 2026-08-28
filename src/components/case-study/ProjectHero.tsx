@@ -30,29 +30,7 @@ export function ProjectHero({ project }: { project: Project }) {
         className="pointer-events-none absolute -right-48 -top-32 -z-10 size-[36rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
       />
 
-      <Container>
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-500">
-            <li>
-              <Link href="/" className="transition-colors hover:text-ink-800">
-                {sharedCopy.breadcrumb.home}
-              </Link>
-            </li>
-            <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-            <li>
-              <Link
-                href="/portfolio"
-                className="transition-colors hover:text-ink-800"
-              >
-                {sharedCopy.breadcrumb.portfolio}
-              </Link>
-            </li>
-            <ChevronRight className="size-3.5 text-ink-300" aria-hidden />
-            <li aria-current="page" className="text-ink-800">
-              {project.title}
-            </li>
-          </ol>
-        </nav>
+<Container>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-12">
           <div>
