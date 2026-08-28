@@ -85,6 +85,8 @@
     /* Anchor targets clear the sticky navbar. */
     scroll-padding-top: 6rem;
     color-scheme: light;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
@@ -92,6 +94,7 @@
     color: var(--color-ink-700);
     font-family: var(--font-sans);
     font-synthesis-weight: none;
+    will-change: scroll-position;
   }
 
   h1,
@@ -605,4 +608,31 @@
   .animate-menu-item-in {
     animation: none;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Smooth scroll performance optimizations */
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Prevent layout shifts during scroll */
+[data-reveal] {
+  contain: layout style;
+}
+
+/* GPU-accelerate scroll-triggered elements */
+.reveal-entering,
+.reveal-visible {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.reveal-visible {
+  will-change: auto;
 }
