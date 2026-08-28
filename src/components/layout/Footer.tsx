@@ -91,13 +91,13 @@ export async function Footer() {
                 href={siteConfig.social.github}
                 label={`${siteConfig.name} on GitHub`}
               >
-                <GithubIcon className="size-4" />
+                <GithubIcon className="size-4" aria-hidden />
               </SocialLink>
               <SocialLink
                 href={siteConfig.contact.whatsappHref}
                 label={`${siteConfig.name} on WhatsApp`}
               >
-                <WhatsAppIcon className="size-4" />
+                <WhatsAppIcon className="size-4" aria-hidden />
               </SocialLink>
             </div>
           </div>

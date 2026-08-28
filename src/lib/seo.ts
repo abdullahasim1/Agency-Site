@@ -144,7 +144,10 @@ export function organizationSchema(): Node {
     slogan: siteConfig.tagline,
     url: siteConfig.url,
     email: siteConfig.contact.email,
-    areaServed: "Worldwide",
+    areaServed: [
+      { "@type": "Country", name: "Pakistan" },
+      "Worldwide",
+    ],
     logo: {
       "@type": "ImageObject",
       "@id": ID.logo,
@@ -249,7 +252,10 @@ export function serviceSchema(options: {
     url: abs(options.path),
     serviceType: options.serviceType,
     provider: ref(ID.organization),
-    areaServed: "Worldwide",
+    areaServed: [
+      { "@type": "Country", name: "Pakistan" },
+      "Worldwide",
+    ],
     mainEntityOfPage: ref(ID.page(options.path)),
     hasOfferCatalog: options.deliverables?.length
       ? {
