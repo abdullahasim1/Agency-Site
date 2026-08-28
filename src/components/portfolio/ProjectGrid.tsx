@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMemo, useState } from "react";
 
 import {
@@ -10,7 +9,6 @@ import {
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { fill, portfolioCopy } from "@/data/pages";
 import type { Project, ProjectCategory } from "@/data/projects";
-import { gridItem } from "@/lib/motion";
 
 interface ProjectGridProps {
   projects: Project[];
@@ -20,13 +18,10 @@ interface ProjectGridProps {
 /**
  * Filterable project grid.
  *
- * The only stateful part of the portfolio page. Projects arrive already
- * serialised from src/data/projects.ts via the server component, so filtering
- * is a synchronous array operation with no fetching and no loading state.
+ * Uses CSS animations instead of framer-motion for better performance.
  */
 export function ProjectGrid({ projects, categories }: ProjectGridProps) {
   const [active, setActive] = useState<PortfolioFilter>("All");
-  const reduceMotion = useReducedMotion();
 
   const filters = useMemo<readonly PortfolioFilter[]>(
     () => ["All", ...categories],
@@ -79,29 +74,20 @@ export function ProjectGrid({ projects, categories }: ProjectGridProps) {
         })}
         className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3"
       >
-        <AnimatePresence mode="popLayout" initial={false}>
-          {visible.map((project, index) => (
-            <motion.article
-              key={project.id}
-              layout={!reduceMotion}
-              variants={reduceMotion ? undefined : gridItem}
-              initial={reduceMotion ? undefined : "hidden"}
-              animate={reduceMotion ? undefined : "visible"}
-              exit={reduceMotion ? undefined : "exit"}
-              transition={
-                reduceMotion ? undefined : { delay: Math.min(index, 5) * 0.035 }
-              }
-              className="h-full"
-            >
-              <ProjectCard
-                project={project}
-                as="h2"
-                priority={index < 3}
-                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
-              />
-            </motion.article>
-          ))}
-        </AnimatePresence>
+        {visible.map((project, index) => (
+          <article
+            key={project.id}
+            className="h-full animate-fade-in-up"
+            style={{ animationDelay: `${Math.min(index, 5) * 35}ms` }}
+          >
+            <ProjectCard
+              project={project}
+              as="h2"
+              priority={index < 3}
+              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+            />
+          </article>
+        ))}
       </div>
 
       {visible.length === 0 ? (

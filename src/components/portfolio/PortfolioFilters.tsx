@@ -1,10 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-
 import { portfolioCopy } from "@/data/pages";
 import type { ProjectCategory } from "@/data/projects";
-import { EASE_OUT_SOFT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /** `"All"` is the internal sentinel; its visible label is editable copy. */
@@ -22,8 +19,7 @@ interface PortfolioFiltersProps {
  * Category filters.
  *
  * Implemented as a tablist so arrow keys move between filters, which is what a
- * keyboard user expects from a single-select control of this kind. The active
- * pill is a shared layout element, so it slides rather than jumping.
+ * keyboard user expects from a single-select control of this kind.
  */
 export function PortfolioFilters({
   filters,
@@ -31,8 +27,6 @@ export function PortfolioFilters({
   onChange,
   counts,
 }: PortfolioFiltersProps) {
-  const reduceMotion = useReducedMotion();
-
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
     const delta =
       event.key === "ArrowRight" || event.key === "ArrowDown"
@@ -82,11 +76,9 @@ export function PortfolioFilters({
             )}
           >
             {isActive ? (
-              <motion.span
-                layoutId={reduceMotion ? undefined : "portfolio-filter-pill"}
+              <span
                 aria-hidden
-                className="absolute inset-0 -z-10 rounded-pill bg-ink-950"
-                transition={{ duration: 0.32, ease: EASE_OUT_SOFT }}
+                className="absolute inset-0 -z-10 rounded-pill bg-ink-950 animate-pill-slide-in"
               />
             ) : null}
             <span className="relative">

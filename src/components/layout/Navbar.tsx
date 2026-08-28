@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -13,7 +12,6 @@ import { BrandLogo } from "@/components/ui/LogoMark";
 import { PRIMARY_CTA, primaryNav } from "@/data/navigation";
 import { sharedCopy } from "@/data/pages";
 import { siteConfig } from "@/data/site";
-import { EASE_OUT_SOFT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -27,7 +25,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -95,11 +92,6 @@ export function Navbar() {
         >
           <Link
             href="/"
-            /* py-2 lifts the hit area to 48px tall on touch without resizing the
-               mark. The horizontal pair does the same for width: below sm the
-               wordmark is hidden, so the link is only as wide as the 32px mark —
-               px-1.5 takes it to 44px and the matching -mx-1.5 cancels the
-               indent, leaving the mark exactly where it was. */
             className="-mx-1.5 flex shrink-0 items-center gap-2.5 rounded-lg px-1.5 py-2 lg:py-0"
             aria-label={`${siteConfig.name} — home`}
           >
@@ -122,11 +114,7 @@ export function Navbar() {
                 >
                   {item.label}
                   {isActive(item.href) ? (
-                    <motion.span
-                      layoutId={reduceMotion ? undefined : "nav-active"}
-                      className="absolute inset-x-3.5 -bottom-0.5 h-px bg-brand-500"
-                      transition={{ duration: 0.3, ease: EASE_OUT_SOFT }}
-                    />
+                    <span className="absolute inset-x-3.5 -bottom-0.5 h-px bg-brand-500" />
                   ) : null}
                 </Link>
               </li>
@@ -158,13 +146,6 @@ export function Navbar() {
             <Button
               href={PRIMARY_CTA.href}
               size="sm"
-              /* max-lg:hidden, not `hidden lg:inline-flex`. Tailwind emits the
-                 display utilities in one fixed order — block, contents, flex,
-                 grid, hidden, inline, inline-flex, table — at equal specificity,
-                 so an unprefixed `hidden` from here loses to the unprefixed
-                 `inline-flex` in Button's own base classes and the button stays
-                 visible on mobile. A variant-prefixed utility is emitted after
-                 all the unprefixed ones, so this one actually wins. */
               className="max-lg:hidden"
               trailingIcon={<ArrowUpRight className="size-4" aria-hidden />}
             >
@@ -191,91 +172,84 @@ export function Navbar() {
       </Container>
 
       {/* Mobile panel */}
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            id="mobile-menu"
-            ref={panelRef}
-            initial={reduceMotion ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.24, ease: EASE_OUT_SOFT }}
-            className="lg:hidden"
-          >
-            <div className="border-t border-ink-200 bg-white/95 backdrop-blur-xl">
-              <Container className="py-5">
-                <ul className="flex flex-col">
-                  {primaryNav.map((item, index) => (
-                    <motion.li
-                      key={item.href}
-                      initial={reduceMotion ? false : { opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: reduceMotion ? 0 : 0.04 * index,
-                        ease: EASE_OUT_SOFT,
-                      }}
-                      className="border-b border-ink-100 last:border-b-0"
-                    >
-                      <Link
-                        href={item.href}
-                        aria-current={isActive(item.href) ? "page" : undefined}
-                        className={cn(
-                          "flex items-center justify-between py-3.5 text-base font-medium transition-colors",
-                          isActive(item.href)
-                            ? "text-brand-600"
-                            : "text-ink-800 hover:text-ink-950",
-                        )}
-                      >
-                        {item.label}
-                        <ArrowUpRight
-                          className="size-4 text-ink-400"
-                          aria-hidden
-                        />
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-
-                <Button
-                  href={PRIMARY_CTA.href}
-                  size="lg"
-                  fullWidth
-                  className="mt-5"
-                  trailingIcon={<ArrowUpRight className="size-4" aria-hidden />}
+      <div
+        id="mobile-menu"
+        ref={panelRef}
+        className={cn(
+          "lg:hidden overflow-hidden transition-all duration-240 ease-out",
+          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <div className="border-t border-ink-200 bg-white/95 backdrop-blur-xl">
+          <Container className="py-5">
+            <ul className="flex flex-col">
+              {primaryNav.map((item, index) => (
+                <li
+                  key={item.href}
+                  className={cn(
+                    "border-b border-ink-100 last:border-b-0",
+                    "animate-menu-item-in",
+                    !open && "opacity-0"
+                  )}
+                  style={{ animationDelay: open ? `${0.04 * index}s` : "0s" }}
                 >
-                  {PRIMARY_CTA.label}
-                </Button>
-
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <a
-                    href={siteConfig.social.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    className={cn(
+                      "flex items-center justify-between py-3.5 text-base font-medium transition-colors",
+                      isActive(item.href)
+                        ? "text-brand-600"
+                        : "text-ink-800 hover:text-ink-950",
+                    )}
                   >
-                    <GithubIcon className="size-4" aria-hidden />
-                    GitHub
-                  </a>
-                  <a
-                    href={siteConfig.contact.whatsappHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
-                  >
-                    <WhatsAppIcon className="size-4" aria-hidden />
-                    WhatsApp
-                  </a>
-                </div>
+                    {item.label}
+                    <ArrowUpRight
+                      className="size-4 text-ink-400"
+                      aria-hidden
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-                <p className="mt-4 text-center text-xs text-ink-500">
-                  {siteConfig.contact.responseTime}
-                </p>
-              </Container>
+            <Button
+              href={PRIMARY_CTA.href}
+              size="lg"
+              fullWidth
+              className="mt-5"
+              trailingIcon={<ArrowUpRight className="size-4" aria-hidden />}
+            >
+              {PRIMARY_CTA.label}
+            </Button>
+
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
+              >
+                <GithubIcon className="size-4" aria-hidden />
+                GitHub
+              </a>
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:bg-ink-50"
+              >
+                <WhatsAppIcon className="size-4" aria-hidden />
+                WhatsApp
+              </a>
             </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+
+            <p className="mt-4 text-center text-xs text-ink-500">
+              {siteConfig.contact.responseTime}
+            </p>
+          </Container>
+        </div>
+      </div>
     </header>
   );
 }
