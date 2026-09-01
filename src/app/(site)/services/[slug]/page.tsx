@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, ChevronRight, Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Process } from "@/components/home/Process";

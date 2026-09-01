@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Check, ChevronRight, Clock, Mail, ShieldCheck } from "lucide-react";
+import { Check, Clock, Mail, ShieldCheck } from "lucide-react";
 
 import { BookingEmbed } from "@/components/contact/BookingEmbed";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -8,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { consultationPoints } from "@/data/contact";
-import { bookACallCopy, fill, sharedCopy } from "@/data/pages";
+import { bookACallCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { buildMetadata, pageGraph } from "@/lib/seo";
 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ChallengeSection } from "@/components/case-study/ChallengeSection";
@@ -13,12 +12,9 @@ import { ProjectVideo } from "@/components/case-study/ProjectVideo";
 import { ResultsSection } from "@/components/case-study/ResultsSection";
 import { SolutionSection } from "@/components/case-study/SolutionSection";
 import { TechStack } from "@/components/case-study/TechStack";
-import { ChevronRight } from "lucide-react";
 
-import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
-import { sharedCopy } from "@/data/pages";
 import { buildMetadata, caseStudySchema, pageGraph } from "@/lib/seo";
 
 interface CaseStudyPageProps {

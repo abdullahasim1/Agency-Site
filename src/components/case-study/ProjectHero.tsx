@@ -1,13 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
-import { CheckCircle2, ChevronRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ZoomableImage } from "@/components/ui/Lightbox";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechBadge } from "@/components/ui/TechBadge";
-import { sharedCopy } from "@/data/pages";
 import type { Project } from "@/data/projects";
 
 /**

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ChevronRight, Clock, Mail, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 
 import { ContactForm } from "@/components/contact/ContactForm";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
@@ -8,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PRIMARY_CTA } from "@/data/navigation";
-import { contactCopy, fill, sharedCopy } from "@/data/pages";
+import { contactCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMetadata, pageGraph } from "@/lib/seo";

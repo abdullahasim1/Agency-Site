@@ -1,6 +1,5 @@
 import { ProjectCollage } from "@/components/portfolio/ProjectCollage";
 import { PageHero } from "@/components/ui/PageHero";
-import { getProjects } from "@/data/projects";
 import { industries } from "@/data/industries";
 import { portfolioCopy } from "@/data/pages";
 import { techCategories } from "@/data/technologies";

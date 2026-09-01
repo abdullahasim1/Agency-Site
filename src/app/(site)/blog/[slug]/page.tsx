@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock } from "lucide-react";
 
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -10,7 +9,6 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { getPostBySlug, getPostSlugs } from "@/data/posts";
 import { PRIMARY_CTA } from "@/data/navigation";
-import { sharedCopy } from "@/data/pages";
 import { articleAuthorNode, articleSchema, buildMetadata, pageGraph } from "@/lib/seo";
 
 interface BlogPostPageProps {

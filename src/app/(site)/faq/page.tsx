@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ConsultationMockup } from "@/components/ui/ConsultationMockup";
@@ -11,7 +8,7 @@ import { FaqList } from "@/components/ui/FaqList";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { faqs, type FaqItem } from "@/data/faq";
-import { faqCopy, sharedCopy } from "@/data/pages";
+import { faqCopy } from "@/data/pages";
 import { buildMetadata, pageGraph } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
