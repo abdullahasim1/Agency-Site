@@ -381,9 +381,7 @@
      of it can invalidate it.
      ------------------------------------------------------------------------- */
   .wash {
-    transform: translateZ(0);
-    /* The layer is static; the compositor keeps the rasterised blur. */
-    backface-visibility: hidden;
+    /* AB-TEST: layer promotion disabled */
   }
 
   @media (prefers-reduced-motion: reduce) {
