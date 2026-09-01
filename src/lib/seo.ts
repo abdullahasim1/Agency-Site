@@ -130,7 +130,7 @@ function present(node: Node): Node {
  * Keystatic panel — see the comment on `SiteConfig.schema` in src/data/site.ts
  * for why the placeholders on the page are deliberately not repeated here.
  */
-export function organizationSchema(): Node {
+function organizationSchema(): Node {
   const { schema } = siteConfig;
   const address = present(schema.address);
 

@@ -13,7 +13,7 @@
 import type { IconName } from "./icons";
 import raw from "@/content/technologies.json";
 
-export interface Technology {
+interface Technology {
   name: string;
   /** Short note shown on hover / in the expanded grid. */
   note: string;

@@ -16,7 +16,7 @@
 
 import raw from "@/content/site.json";
 
-export interface SiteConfig {
+interface SiteConfig {
   name: string;
   legalName: string;
   tagline: string;

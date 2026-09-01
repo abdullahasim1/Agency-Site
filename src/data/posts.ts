@@ -20,7 +20,7 @@ import { reader } from "./reader";
  * any page, card or sitemap entry can see them.
  */
 
-export interface Post {
+interface Post {
   slug: string;
   title: string;
   excerpt: string;

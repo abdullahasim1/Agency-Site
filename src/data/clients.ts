@@ -12,7 +12,7 @@
 import { v } from "@/lib/asset-version";
 import raw from "@/content/clients.json";
 
-export interface ClientLogo {
+interface ClientLogo {
   id: string;
   /** Client name; doubles as the text wordmark when no logo file exists. */
   name: string;

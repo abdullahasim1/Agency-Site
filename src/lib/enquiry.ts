@@ -29,7 +29,7 @@ import { createTransport } from "nodemailer";
  *   CONTACT_INBOX_EMAIL where enquiries are delivered (defaults to SMTP_USER)
  */
 
-export interface ContactPayload {
+interface ContactPayload {
   fullName: string;
   email: string;
   company: string;
@@ -42,8 +42,6 @@ export interface ContactPayload {
 }
 
 import { EMAIL_PATTERN } from "@/lib/validation";
-
-export { EMAIL_PATTERN };
 
 /** Per-field upper bounds, mirroring what the UI would ever legitimately send. */
 const MAX_LENGTHS: Record<keyof Omit<ContactPayload, "website">, number> = {
