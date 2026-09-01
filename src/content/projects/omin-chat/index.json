@@ -13,7 +13,7 @@
     "fullDescription": "OmniChat is a modern general-purpose conversational AI application designed to provide a polished, responsive experience for interacting with large language models. The platform combines real-time streaming conversations with multi-chat management, searchable conversation history, reusable prompt templates, configurable generation controls, Markdown and code rendering, and responsive support across desktop, tablet, and mobile."
   },
   "cover": {
-    "image": "/images/projects/omin-chat/cover/image.png"
+    "image": "/images/projects/omin-chat/cover/image.webp"
   },
   "technologies": [
     "Next.js",
@@ -282,32 +282,32 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/omin-chat/gallery/0/src.png",
+      "src": "/images/projects/omin-chat/gallery/0/src.webp",
       "alt": "OmniChat AI interface showing an intelligent conversation with real-time streaming responses in an elegant dark mode design",
       "caption": "Experience AI Conversations Like Never Before"
     },
     {
-      "src": "/images/projects/omin-chat/gallery/1/src.png",
+      "src": "/images/projects/omin-chat/gallery/1/src.webp",
       "alt": "OmniChat template library featuring 12 categorized prompt templates for development, writing, learning, and business tasks",
       "caption": "12+ Smart Templates. Infinite Possibilities"
     },
     {
-      "src": "/images/projects/omin-chat/gallery/2/src.png",
+      "src": "/images/projects/omin-chat/gallery/2/src.webp",
       "alt": "Real-time AI response streaming in OmniChat showing live text generation as the AI composes its answer",
       "caption": "Watch AI Think in Real-Time"
     },
     {
-      "src": "/images/projects/omin-chat/gallery/3/src.png",
+      "src": "/images/projects/omin-chat/gallery/3/src.webp",
       "alt": "OmniChat code syntax highlighting feature showing Python and JavaScript code blocks with copy functionality and line numbers",
       "caption": "Built for Developers, Loved by Everyone"
     },
     {
-      "src": "/images/projects/omin-chat/gallery/4/src.png",
+      "src": "/images/projects/omin-chat/gallery/4/src.webp",
       "alt": "OmniChat privacy and security settings showing local data storage, API key management, and no tracking guarantee",
       "caption": "Your Eyes Will Thank You"
     },
     {
-      "src": "/images/projects/omin-chat/gallery/5/src.png",
+      "src": "/images/projects/omin-chat/gallery/5/src.webp",
       "alt": "Lead with the main value proposition",
       "caption": "Additional Marketing Copy"
     }

@@ -9,7 +9,7 @@
     "fullDescription": "CyberThreat Mesh is an interactive SaaS-style security product for reasoning about cloud attack surfaces. It combines a reusable SVG attack graph, autonomous-agent control surfaces, vulnerability feeds, blast-radius analytics, temporal replay, compliance reporting, RBAC governance, connector health, and audit trails in a theme-aware front-end system driven by deterministic simulated domain data."
   },
   "cover": {
-    "image": "/images/projects/cyberthreat/agentic-workflows.png",
+    "image": "/images/projects/cyberthreat/agentic-workflows.webp",
     "imageAlt": "Claude AI agentic workflows showing autonomous AI task execution and multi-step workflow orchestration, Anthropic Claude, Claude agentic AI, Claude workflows, Claude autonomous agents, Claude AI automation, multi-step AI workflows, AI orchestration, enterprise agentic AI"
   },
   "closing": {
@@ -167,137 +167,137 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/cyberthreat/agentic-workflows.png",
+      "src": "/images/projects/cyberthreat/agentic-workflows.webp",
       "alt": "Claude AI agentic workflows showing autonomous AI task execution and multi-step workflow orchestration, Anthropic Claude, Claude agentic AI, Claude workflows, Claude autonomous agents, Claude AI automation, multi-step AI workflows, AI orchestration, enterprise agentic AI",
       "caption": "Claude-powered Agentic Workflows automate complex multi-step tasks through autonomous AI execution."
     },
     {
-      "src": "/images/projects/cyberthreat/ai-safety-and-governance.png",
+      "src": "/images/projects/cyberthreat/ai-safety-and-governance.webp",
       "alt": "Claude AI safety and governance framework showing responsible AI controls and enterprise AI governance, Anthropic Claude, Claude AI safety, Claude governance, Claude responsible AI, Constitutional AI, AI risk management, AI compliance, enterprise AI governance",
       "caption": "Claude AI Safety & Governance brings responsible AI controls into enterprise AI deployment."
     },
     {
-      "src": "/images/projects/cyberthreat/anthropic-api.png",
+      "src": "/images/projects/cyberthreat/anthropic-api.webp",
       "alt": "Anthropic Claude API interface for integrating Claude AI models into software applications, Anthropic API, Claude API, Claude AI, Claude models, Claude developer platform, generative AI API, AI application development, enterprise AI integration",
       "caption": "Anthropic Claude API enables developers to integrate Claude intelligence directly into applications."
     },
     {
-      "src": "/images/projects/cyberthreat/anthropic-console.png",
+      "src": "/images/projects/cyberthreat/anthropic-console.webp",
       "alt": "Anthropic Claude Console interface for developing and testing Claude AI applications, Claude Console, Anthropic Console, Claude API, Claude models, Claude AI development, prompt engineering, generative AI development, AI application development",
       "caption": "Anthropic Console provides a workspace for building, testing and refining Claude-powered applications."
     },
     {
-      "src": "/images/projects/cyberthreat/artifacts.png",
+      "src": "/images/projects/cyberthreat/artifacts.webp",
       "alt": "Claude AI Artifacts interface showing interactive AI-generated content and workspace output, Anthropic Claude, Claude Artifacts, Claude AI, Claude interactive artifacts, Claude productivity, AI-generated content, AI workspace, enterprise AI tools",
       "caption": "Claude Artifacts turn AI-generated ideas into interactive, usable work products."
     },
     {
-      "src": "/images/projects/cyberthreat/claude-3.5-sonnet.png",
+      "src": "/images/projects/cyberthreat/claude-3.5-sonnet.webp",
       "alt": "Claude 3.5 Sonnet AI model from Anthropic showing Claude's advanced reasoning and generative AI capabilities, Anthropic Claude 3.5 Sonnet, Claude AI, Claude Sonnet, Anthropic AI models, AI reasoning, coding AI, multimodal AI, enterprise generative AI",
       "caption": "Claude 3.5 Sonnet is built for strong reasoning, coding and multimodal AI capabilities."
     },
     {
-      "src": "/images/projects/cyberthreat/claude-code-(cli).png",
+      "src": "/images/projects/cyberthreat/claude-code-(cli).webp",
       "alt": "Claude Code CLI interface showing Claude AI assisting with software development through terminal commands, Anthropic Claude Code, Claude Code CLI, Claude AI coding assistant, Claude developer tools, AI coding, terminal AI, software engineering automation, code generation",
       "caption": "Claude Code CLI brings Claude-powered development assistance directly into the terminal."
     },
     {
-      "src": "/images/projects/cyberthreat/claude-enterprise-workspaces.png",
+      "src": "/images/projects/cyberthreat/claude-enterprise-workspaces.webp",
       "alt": "Claude Enterprise Workspaces interface showing enterprise collaboration and AI workspace management, Anthropic Claude Enterprise, Claude AI, Claude enterprise workspaces, enterprise AI collaboration, Claude security, AI productivity, organizational AI",
       "caption": "Claude Enterprise Workspaces bring secure AI collaboration and productivity into enterprise environments."
     },
     {
-      "src": "/images/projects/cyberthreat/claude-opus.png",
+      "src": "/images/projects/cyberthreat/claude-opus.webp",
       "alt": "Claude Opus AI model interface representing Anthropic's advanced Claude model capabilities, Anthropic Claude Opus, Claude Opus, Claude AI, Anthropic AI models, advanced reasoning, generative AI, enterprise AI, AI model intelligence",
       "caption": "Claude Opus represents Anthropic's high-capability Claude model family for demanding AI workloads."
     },
     {
-      "src": "/images/projects/cyberthreat/claude-workspaces.png",
+      "src": "/images/projects/cyberthreat/claude-workspaces.webp",
       "alt": "Claude AI Workspaces interface for organizing AI projects, conversations and collaborative workflows, Anthropic Claude, Claude Workspaces, Claude AI, AI productivity, Claude collaboration, enterprise AI workspace, AI project management",
       "caption": "Claude Workspaces organize AI-powered projects, conversations and collaborative work."
     },
     {
-      "src": "/images/projects/cyberthreat/codebase-refactoring-and-review.png",
+      "src": "/images/projects/cyberthreat/codebase-refactoring-and-review.webp",
       "alt": "Claude AI codebase refactoring and code review workflow analyzing software architecture and improving source code, Anthropic Claude, Claude Code, Claude AI coding, Claude code review, AI refactoring, codebase analysis, software engineering automation, developer productivity",
       "caption": "Claude-powered Codebase Refactoring & Review helps developers analyze, improve and modernize complex codebases."
     },
     {
-      "src": "/images/projects/cyberthreat/constitutional-ai.png",
+      "src": "/images/projects/cyberthreat/constitutional-ai.webp",
       "alt": "Anthropic Claude Constitutional AI framework for aligning AI behavior with principles and safety guidelines, Claude Constitutional AI, Anthropic Claude, Claude AI safety, responsible AI, AI alignment, AI governance, safe AI development, enterprise AI safety",
       "caption": "Claude Constitutional AI provides a foundation for safer, more aligned AI behavior."
     },
     {
-      "src": "/images/projects/cyberthreat/function-calling-and-tool-use.png",
+      "src": "/images/projects/cyberthreat/function-calling-and-tool-use.webp",
       "alt": "Claude AI function calling and tool use workflow connecting Claude agents with external functions and applications, Anthropic Claude, Claude function calling, Claude tool use, Claude API, Claude agentic AI, AI agents, tool integration, autonomous AI workflows, AI automation",
       "caption": "Claude Function Calling & Tool Use enables AI agents to interact with external functions and systems."
     },
     {
-      "src": "/images/projects/cyberthreat/generative-engine-optimization-(geo).png",
+      "src": "/images/projects/cyberthreat/generative-engine-optimization-(geo).webp",
       "alt": "Claude AI Generative Engine Optimization GEO workflow for optimizing content visibility in AI search and generative engines, Anthropic Claude, Claude AI, Claude GEO, generative engine optimization, AI search optimization, LLM optimization, generative AI marketing, AI content strategy",
       "caption": "Claude-informed Generative Engine Optimization helps content become more discoverable across AI-powered search experiences."
     },
     {
-      "src": "/images/projects/cyberthreat/large-context-window-(200k-tokens).png",
+      "src": "/images/projects/cyberthreat/large-context-window-(200k-tokens).webp",
       "alt": "Claude AI large context window supporting 200k plus tokens for extensive document and code analysis, Anthropic Claude, Claude large context window, Claude 200k tokens, Claude AI, long context AI, codebase analysis, document intelligence, enterprise AI",
       "caption": "Claude's large context window enables deep reasoning across extensive documents, codebases and knowledge."
     },
     {
-      "src": "/images/projects/cyberthreat/long-document-summarization.png",
+      "src": "/images/projects/cyberthreat/long-document-summarization.webp",
       "alt": "Claude AI long-document summarization workflow processing large documents and generating concise summaries, Anthropic Claude, Claude long context, Claude document analysis, Claude summarization, long document processing, AI document intelligence, enterprise AI",
       "caption": "Claude-powered long-document summarization transforms large volumes of information into concise, useful insights."
     },
     {
-      "src": "/images/projects/cyberthreat/model-context-protocol-(mcp).png",
+      "src": "/images/projects/cyberthreat/model-context-protocol-(mcp).webp",
       "alt": "Claude AI Model Context Protocol MCP architecture connecting AI models with external tools and data sources, Anthropic Claude, Claude MCP, Model Context Protocol, Claude agentic AI, AI tool integration, AI agents, contextual AI, enterprise AI integration",
       "caption": "Claude + Model Context Protocol (MCP) connects AI agents with tools, data and external systems."
     },
     {
-      "src": "/images/projects/cyberthreat/multimodal-and-vision-analysis.png",
+      "src": "/images/projects/cyberthreat/multimodal-and-vision-analysis.webp",
       "alt": "Claude AI multimodal and vision analysis processing images and visual information, Anthropic Claude, Claude vision, Claude multimodal AI, Claude image analysis, Claude AI, visual reasoning, document vision, multimodal intelligence, enterprise AI",
       "caption": "Claude Multimodal & Vision Analysis extends AI reasoning beyond text into images and visual information."
     },
     {
-      "src": "/images/projects/cyberthreat/prompt-caching.png",
+      "src": "/images/projects/cyberthreat/prompt-caching.webp",
       "alt": "Claude AI prompt caching architecture reducing repeated processing and improving application efficiency, Anthropic Claude, Claude prompt caching, Claude API, Claude AI performance, AI cost optimization, LLM optimization, AI application architecture",
       "caption": "Claude Prompt Caching improves AI application efficiency by reusing frequently accessed context."
     },
     {
-      "src": "/images/projects/cyberthreat/rag-retrieval-augmented-generation-.png",
+      "src": "/images/projects/cyberthreat/rag-retrieval-augmented-generation-.webp",
       "alt": "Claude AI RAG Retrieval-Augmented Generation system showing contextual retrieval and grounded AI response generation, Anthropic Claude, Claude RAG, Claude AI, Claude knowledge retrieval, RAG architecture, semantic retrieval, AI grounding, enterprise AI",
       "caption": "Claude-powered Retrieval-Augmented Generation connects relevant knowledge with intelligent response generation."
     },
     {
-      "src": "/images/projects/cyberthreat/retrieval-augmented-generation.png",
+      "src": "/images/projects/cyberthreat/retrieval-augmented-generation.webp",
       "alt": "Claude AI Retrieval-Augmented Generation workflow connecting user queries, knowledge retrieval and AI-generated responses, Anthropic Claude, Claude RAG, Claude AI, Claude retrieval augmented generation, Claude knowledge retrieval, AI document search, enterprise RAG, grounded AI responses",
       "caption": "Claude-powered RAG combines knowledge retrieval with intelligent generation for grounded AI responses."
     },
     {
-      "src": "/images/projects/cyberthreat/retrieval-augmented-generation-(rag).png",
+      "src": "/images/projects/cyberthreat/retrieval-augmented-generation-(rag).webp",
       "alt": "Claude AI RAG architecture showing retrieval augmented generation and contextual knowledge grounding, Anthropic Claude, Claude RAG, Claude AI, Claude knowledge retrieval, retrieval augmented generation, semantic search, grounded generation, enterprise AI",
       "caption": "Claude RAG grounds AI responses in retrieved knowledge for more contextual and reliable generation."
     },
     {
-      "src": "/images/projects/cyberthreat/screenshot-from-2026-08-18-14-31-50.png",
+      "src": "/images/projects/cyberthreat/screenshot-from-2026-08-18-14-31-50.webp",
       "alt": "Claude AI interface screenshot demonstrating Anthropic Claude AI capabilities and enterprise workflow functionality, Anthropic Claude, Claude AI, Claude agentic AI, Claude productivity, Claude automation, AI assistant, enterprise AI, generative AI",
       "caption": "Claude AI workflow experience demonstrating practical enterprise AI capabilities."
     },
     {
-      "src": "/images/projects/cyberthreat/screenshot-from-2026-08-18-14-31-53.png",
+      "src": "/images/projects/cyberthreat/screenshot-from-2026-08-18-14-31-53.webp",
       "alt": "Claude AI interface screenshot demonstrating Anthropic Claude capabilities for AI-assisted workflows and productivity, Claude AI, Anthropic Claude, Claude agentic AI, Claude automation, generative AI, AI assistant, enterprise AI",
       "caption": "Claude AI in action demonstrating practical generative AI and workflow capabilities."
     },
     {
-      "src": "/images/projects/cyberthreat/structured-output-json.png",
+      "src": "/images/projects/cyberthreat/structured-output-json.webp",
       "alt": "Claude AI structured JSON output showing machine-readable AI responses generated through Anthropic Claude, Claude API, Claude structured output, Claude JSON, Claude AI, Claude function calling, AI automation, structured generation, developer AI tools",
       "caption": "Claude structured outputs make AI responses predictable, machine-readable and ready for downstream automation."
     },
     {
-      "src": "/images/projects/cyberthreat/system-prompt-engineering.png",
+      "src": "/images/projects/cyberthreat/system-prompt-engineering.webp",
       "alt": "Claude AI system prompt engineering workflow showing instruction design and behavior control for Anthropic Claude, Claude prompt engineering, Claude AI, Claude system prompts, Anthropic Claude, AI instruction design, LLM prompting, agent behavior control, generative AI development",
       "caption": "Claude System Prompt Engineering shapes reliable AI behavior through precise instructions and structured context."
     },
     {
-      "src": "/images/projects/cyberthreat/vibe-coding.png",
+      "src": "/images/projects/cyberthreat/vibe-coding.webp",
       "alt": "Claude AI vibe coding workflow showing AI-assisted software development and rapid application creation, Anthropic Claude, Claude Code, Claude AI coding, Claude vibe coding, AI software development, AI programming assistant, code generation, developer productivity",
       "caption": "Claude-powered Vibe Coding accelerates software development through natural-language AI collaboration."
     }

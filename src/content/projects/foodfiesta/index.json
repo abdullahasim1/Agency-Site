@@ -9,7 +9,7 @@
     "fullDescription": "FoodFiesta is a food ordering platform that treats the whole experience as one flow. Customers explore a menu, build a cart, manage their profile and order — with Leaflet maps adding location context and Material UI giving the app a familiar, polished feel. The Express backend handles sessions, uploads and the MySQL data layer."
   },
   "cover": {
-    "image": "/images/projects/foodfiesta/cover.png",
+    "image": "/images/projects/foodfiesta/cover.webp",
     "imageAlt": "FoodFiesta — Food Ordering Platform"
   },
   "closing": {
@@ -158,17 +158,17 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/foodfiesta/shot-1.png",
+      "src": "/images/projects/foodfiesta/shot-1.webp",
       "alt": "FoodFiesta home",
       "caption": "The ordering platform home screen."
     },
     {
-      "src": "/images/projects/foodfiesta/shot-2.png",
+      "src": "/images/projects/foodfiesta/shot-2.webp",
       "alt": "Menu view",
       "caption": "Category-based menu browsing."
     },
     {
-      "src": "/images/projects/foodfiesta/shot-3.png",
+      "src": "/images/projects/foodfiesta/shot-3.webp",
       "alt": "Cart view",
       "caption": "Review and adjust before ordering."
     }

@@ -15,7 +15,7 @@
     "fullDescription": "Small businesses want AI support on their websites without building it. FrontDesk AI packages that into one product: a business signs in to a dashboard, configures a single AI agent — name, tone, language and instructions — feeds it knowledge from inline text or PDF uploads, and copies a one-line embed script onto their site. Visitors then chat with the agent or talk to a voice agent straight from the browser. Every interaction is captured as a lead with full transcripts, Calendly bookings sync into the same pipeline, and the whole loop — embed, converse, capture, review, book — runs on a deliberately small, production-minded backend."
   },
   "cover": {
-    "image": "/images/projects/frontdesk-ai/cover/image.png",
+    "image": "/images/projects/frontdesk-ai/cover/image.webp",
     "imageAlt": "FrontDesk AI chat and call widget dashboard showing agent configuration, captured leads and conversations"
   },
   "technologies": [
@@ -182,42 +182,42 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/frontdesk-ai/gallery/0/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/0/src.webp",
       "alt": "Dashboard overview showing metrics cards for leads, conversations and calls with live counts",
       "caption": "Dashboard — key metrics at a glance: 6 leads, 4 conversations, 2 calls this period."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/1/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/1/src.webp",
       "alt": "AI agent configuration screen with fields for agent name, tone, language and system instructions",
       "caption": "Agent configuration — name, tone, language and instructions per tenant."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/2/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/2/src.webp",
       "alt": "Conversations list showing visitor names, last message preview and status badges",
       "caption": "Conversations — every chat thread with visitor details and transcript access."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/3/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/3/src.webp",
       "alt": "Calls page showing empty state with zero calls recorded",
       "caption": "Calls — voice call records with duration, transcript and recording URL once populated."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/4/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/4/src.webp",
       "alt": "Knowledge base management with inline text editor and PDF upload section",
       "caption": "Knowledge base — feed the agent inline text or upload PDFs for retrieval."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/5/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/5/src.webp",
       "alt": "Leads and contacts table with visitor details, source and last interaction time",
       "caption": "Contacts — captured leads deduplicated by visitor token with email and phone."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/6/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/6/src.webp",
       "alt": "Bookings page showing Calendly events synced into the pipeline",
       "caption": "Bookings — Calendly events stitched to the contacts that scheduled them."
     },
     {
-      "src": "/images/projects/frontdesk-ai/gallery/7/src.png",
+      "src": "/images/projects/frontdesk-ai/gallery/7/src.webp",
       "alt": "Widget preview and embed code configuration for allowed origins and branding",
       "caption": "Widget — copy the one-line script tag and configure allowed origins and theme."
     }

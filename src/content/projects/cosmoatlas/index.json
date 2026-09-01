@@ -9,7 +9,7 @@
     "fullDescription": "CosmoAtlas maps the universe from Earth and planetary systems through galaxies, superclusters, cosmic phenomena, and theoretical geometries. Its interactive graph, canvas visualizations, scale navigator, cosmic timeline, guided journeys, dossier generator, and Claude-powered Atlas copilot turn complex cosmology into an explorable knowledge system with deterministic fallbacks when AI services are unavailable."
   },
   "cover": {
-    "image": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.png",
+    "image": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.webp",
     "imageAlt": "CosmoAtlas interactive cosmic knowledge graph landing screen showing connected astronomical entities, cosmic scale relationships, Claude AI assistance, and educational universe exploration, AI cosmology software services in the USA, UK, India, and Australia"
   },
   "closing": {
@@ -177,42 +177,42 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.png",
+      "src": "/images/projects/cosmoatlas/claude-ai-cosmic-knowledge-graph-services-usa.webp",
       "alt": "CosmoAtlas landing screen showing a connected cosmic knowledge graph with planets, stars, galaxies, cosmic phenomena, and an AI-powered explorer entry point, Claude AI cosmology knowledge graph services in the USA, UK, India, and Australia",
       "caption": "CosmoAtlas landing experience — an AI-powered cosmic knowledge graph for navigating the interconnected architecture of the universe."
     },
     {
-      "src": "/images/projects/cosmoatlas/cosmic-scale-navigator-ai-cosmology-software-uk.png",
+      "src": "/images/projects/cosmoatlas/cosmic-scale-navigator-ai-cosmology-software-uk.webp",
       "alt": "CosmoAtlas Cosmic Scale Navigator displaying Planet Earth at 10 to the 7 meters with exact diameter, comparative perspective, astrophysical context, and an interactive 27-order scale slider, AI cosmology software services in the UK",
       "caption": "Cosmic Scale Navigator — move across 27 orders of magnitude while inspecting exact dimensions and astrophysical context for Planet Earth."
     },
     {
-      "src": "/images/projects/cosmoatlas/cosmic-timeline-claude-ai-knowledge-platform-india.png",
+      "src": "/images/projects/cosmoatlas/cosmic-timeline-claude-ai-knowledge-platform-india.webp",
       "alt": "CosmoAtlas Cosmic Timeline showing the primordial flash, exponential inflation, Planck Epoch, key phenomena, and linked cosmic chronology events, Claude AI knowledge platform for cosmology services in India",
       "caption": "Cosmic Timeline — explore the universe from the Planck Epoch and inflation through star formation, human civilization, and its ultimate fate."
     },
     {
-      "src": "/images/projects/cosmoatlas/spacetime-topology-cosmology-ai-research-usa.png",
+      "src": "/images/projects/cosmoatlas/spacetime-topology-cosmology-ai-research-usa.webp",
       "alt": "CosmoAtlas Spacetime Topology and Cosmologies comparison showing Flat Universe and 3-Sphere Closed Universe models, curvature, mathematical formulation, and observational evidence, cosmology AI research services in the USA",
       "caption": "Spacetime Topology & Cosmologies — compare flat and closed-universe models through geometry, equations, and observational evidence."
     },
     {
-      "src": "/images/projects/cosmoatlas/guided-cosmic-journeys-ai-education-uk.png",
+      "src": "/images/projects/cosmoatlas/guided-cosmic-journeys-ai-education-uk.webp",
       "alt": "CosmoAtlas Guided Cosmic Journeys interface showing a voyage from Earth to the center of the Milky Way and a 13.8 billion year Genesis Flight with waypoint stages, AI cosmic education services in the UK",
       "caption": "Guided Cosmic Journeys — launch narrated, multi-stage expeditions from Earth to Sagittarius A* or through the 13.8-billion-year history of the universe."
     },
     {
-      "src": "/images/projects/cosmoatlas/cosmic-dossier-generator-claude-ai-india.png",
+      "src": "/images/projects/cosmoatlas/cosmic-dossier-generator-claude-ai-india.webp",
       "alt": "CosmoAtlas Cosmic Dossier Generator configured for an Earth to Sagittarius A* report with trajectory waypoints, virialized boundaries, distance scale, and astrophysical synthesis, Claude AI report generation services in India",
       "caption": "Cosmic Dossier Generator — turn a selected route into a publication-style astrophysical report with trajectory stages and scientific synthesis."
     },
     {
-      "src": "/images/projects/cosmoatlas/cosmology-saas-pricing-ai-platform-australia.png",
+      "src": "/images/projects/cosmoatlas/cosmology-saas-pricing-ai-platform-australia.webp",
       "alt": "CosmoAtlas cosmology SaaS pricing page showing Stargazer, Voyager Pro, and Galactic Enterprise plans with cosmic graph, AI query, report, and collaboration capabilities, AI platform services in Australia",
       "caption": "Cosmology Platform Plans — package cosmic graph exploration, Atlas AI queries, dossier generation, collaboration, and institutional capabilities for different audiences."
     },
     {
-      "src": "/images/projects/cosmoatlas/interactive-cosmic-knowledge-graph-proxima-centauri.png",
+      "src": "/images/projects/cosmoatlas/interactive-cosmic-knowledge-graph-proxima-centauri.webp",
       "alt": "CosmoAtlas interactive cosmic knowledge graph explorer showing Proxima Centauri selected with observed status, physical description, scale, distance from Earth, astrophysical metrics, and graph connections, AI astronomy software services",
       "caption": "Interactive Cosmic Explorer — inspect Proxima Centauri in context with its physical description, distance, metrics, observations, and graph relationships."
     }

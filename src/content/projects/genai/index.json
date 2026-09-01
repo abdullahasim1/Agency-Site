@@ -9,7 +9,7 @@
     "fullDescription": "HireGen AI is a full-stack hiring platform built around generative AI. The Next.js app signs users in, manages jobs and candidates, and layers AI across the workflow: resume parsing via PDF extraction, AI-generated job content and screening questions, and an analytics dashboard over the pipeline. Google Gemini, OpenAI and Hugging Face models sit behind a typed Next.js API with Neon PostgreSQL storage."
   },
   "cover": {
-    "image": "/images/projects/genai/cover.png",
+    "image": "/images/projects/genai/cover.webp",
     "imageAlt": "HireGen AI — AI Hiring Assistant Platform"
   },
   "closing": {
@@ -160,17 +160,17 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/genai/shot-1.png",
+      "src": "/images/projects/genai/shot-1.webp",
       "alt": "HireGen home",
       "caption": "The platform's AI-first landing page."
     },
     {
-      "src": "/images/projects/genai/shot-2.png",
+      "src": "/images/projects/genai/shot-2.webp",
       "alt": "Login screen",
       "caption": "Gated entry into the hiring workspace."
     },
     {
-      "src": "/images/projects/genai/shot-3.png",
+      "src": "/images/projects/genai/shot-3.webp",
       "alt": "Hiring dashboard",
       "caption": "Pipeline analytics in one view."
     }

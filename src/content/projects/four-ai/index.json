@@ -9,7 +9,7 @@
     "fullDescription": "Four AI is a complete AI content platform. Users generate natural-sounding speech from text, convert text to speech in multiple voices and languages, apply studio effects to uploaded audio, and create images from prompts with Hugging Face FLUX.1 models. Accounts, profiles, usage history, a voice library and an admin panel with ban/unban complete the product loop."
   },
   "cover": {
-    "image": "/images/projects/four-ai/cover.png",
+    "image": "/images/projects/four-ai/cover.webp",
     "imageAlt": "Four AI — AI Voice & Image Generation Platform"
   },
   "closing": {
@@ -165,17 +165,17 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/four-ai/shot-1.png",
+      "src": "/images/projects/four-ai/shot-1.webp",
       "alt": "Four AI home page",
       "caption": "The dark, glassmorphic landing page for the platform."
     },
     {
-      "src": "/images/projects/four-ai/shot-2.png",
+      "src": "/images/projects/four-ai/shot-2.webp",
       "alt": "Sign-up screen",
       "caption": "Account creation with the platform's visual style."
     },
     {
-      "src": "/images/projects/four-ai/shot-3.png",
+      "src": "/images/projects/four-ai/shot-3.webp",
       "alt": "Voice generator studio",
       "caption": "The voice generation tool in action."
     }

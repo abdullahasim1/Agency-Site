@@ -52,7 +52,7 @@ self.addEventListener("fetch", (event) => {
     url.pathname.startsWith("/fonts/") ||
     url.pathname.startsWith("/images/") ||
     url.pathname.startsWith("/logos/") ||
-    url.pathname.match(/\.(js|css|woff2?|png|jpg|jpeg|gif|svg|ico)$/)
+    url.pathname.match(/\.(js|css|woff2?|png|jpg|jpeg|gif|svg|webp|avif|ico)$/)
   ) {
     event.respondWith(cacheFirst(request, STATIC_CACHE));
     return;

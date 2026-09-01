@@ -14,7 +14,7 @@
     "fullDescription": "A serverless AI-powered due diligence platform that automates company research, regulatory data collection, risk analysis, entity matching, and forensic report generation using AWS and generative AI. A company request enters through Amazon API Gateway, is validated and placed onto Amazon SQS, and is then processed by a dedicated Lambda worker. The worker gathers information from multiple external intelligence sources, normalizes the evidence, invokes Amazon Bedrock for AI-assisted analysis and report generation, stores the resulting report in Amazon S3, and records the report metadata and status in DynamoDB."
   },
   "cover": {
-    "image": "/images/projects/reportai/cover/image.png",
+    "image": "/images/projects/reportai/cover/image.webp",
     "imageAlt": "Abstract diagram of an event-driven AWS due diligence pipeline with queue-based workers and AI report generation"
   },
   "technologies": [
@@ -251,22 +251,22 @@
   ],
   "gallery": [
     {
-      "src": "/images/projects/reportai/gallery/0/src.png",
+      "src": "/images/projects/reportai/gallery/0/src.webp",
       "alt": "AI , AUtomation , AI Sevices ",
       "caption": "AWS Architecture Diagram : A serverless, event-driven AWS architecture connecting API Gateway, Lambda, SQS, external intelligence APIs, Amazon Bedrock, S3, DynamoDB, and a Dead Letter Queue to automate end-to-end due diligence report generation."
     },
     {
-      "src": "/images/projects/reportai/gallery/1/src.png",
+      "src": "/images/projects/reportai/gallery/1/src.webp",
       "alt": "AI , web , Automation , ai services",
       "caption": "A comprehensive report view presenting company identification, business profile, ownership, risk assessment, sanctions & PEP screening, adverse media, financial insights, and supporting evidence."
     },
     {
-      "src": "/images/projects/reportai/gallery/2/src.png",
+      "src": "/images/projects/reportai/gallery/2/src.webp",
       "alt": "AI, web , app",
       "caption": "A centralized report management workspace for searching, filtering, tracking risk scores, monitoring report status, and exporting completed due diligence reports."
     },
     {
-      "src": "/images/projects/reportai/gallery/3/src.png",
+      "src": "/images/projects/reportai/gallery/3/src.webp",
       "alt": "web , ai services",
       "caption": "A streamlined AI-powered form for submitting company details, configuring due diligence levels, selecting data sources, and generating comprehensive risk reports."
     }
