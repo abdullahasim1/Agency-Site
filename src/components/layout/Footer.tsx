@@ -44,7 +44,7 @@ export async function Footer() {
       {/* Single restrained wash, top-left, to stop the dark band reading flat. */}
       <div
         aria-hidden
-        className="wash pointer-events-none absolute -left-40 -top-40 size-144 rounded-full bg-brand-600/10 blur-[120px]"
+        className="pointer-events-none absolute -left-40 -top-40 size-144 rounded-full bg-brand-600/10 blur-[120px]"
       />
       <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-40" />
 

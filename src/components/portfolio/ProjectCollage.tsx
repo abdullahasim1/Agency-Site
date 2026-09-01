@@ -37,7 +37,7 @@ export async function ProjectCollage({ className }: ProjectCollageProps) {
       />
       <div
         aria-hidden
-        className="wash pointer-events-none absolute left-1/2 top-4 -z-10 size-72 -translate-x-1/2 rounded-full bg-brand-500/10 blur-[100px] sm:size-96"
+        className="pointer-events-none absolute left-1/2 top-4 -z-10 size-72 -translate-x-1/2 rounded-full bg-brand-500/10 blur-[100px] sm:size-96"
       />
 
       <div className="relative w-full sm:aspect-[16/9]">

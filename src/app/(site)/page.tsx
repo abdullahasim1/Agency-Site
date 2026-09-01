@@ -48,16 +48,16 @@ export default function HomePage() {
         logo strip against a 2,400px technology grid), so one number cannot
         serve them all.
 
-        Two sets, because the grids reflow: measured at 1440px the sections total
-        10,649px, and at 545px the same sections total 18,676px — the estimate
-        has to move with the breakpoint or it is wrong by 70% on phones, which
-        is where it hurts most. Base values come from the narrow measurement,
-        `lg:` from the wide one.
+        Two sets, because the grids reflow: the same ten sections measure
+        19,854px at 412px and 10,649px at 1440px — the estimate has to move with
+        the breakpoint or it is wrong by ~85% on phones, which is where it hurts
+        most. Base values are the 412px measurement (phone widths are the common
+        case, and every width below `lg` shares them); `lg:` is the 1440px one.
 
         Only the reader's first pass is affected; `contain-intrinsic-size: auto`
         switches each section to its real measured height once rendered.
       */}
-      <div className="content-below-fold [--cv-est:190px] lg:[--cv-est:260px]">
+      <div className="content-below-fold [--cv-est:180px] lg:[--cv-est:240px]">
         <TechMarquee />
       </div>
       {/* ClientLogos renders null while the Keystatic client list is empty, and
@@ -69,31 +69,31 @@ export default function HomePage() {
           <ClientLogos />
         </div>
       )}
-      <div className="content-below-fold [--cv-est:890px] lg:[--cv-est:320px]">
+      <div className="content-below-fold [--cv-est:980px] lg:[--cv-est:260px]">
         <Stats />
       </div>
-      <div className="content-below-fold [--cv-est:3140px] lg:[--cv-est:1700px]">
+      <div className="content-below-fold [--cv-est:3480px] lg:[--cv-est:1660px]">
         <Services />
       </div>
-      <div className="content-below-fold [--cv-est:1150px] lg:[--cv-est:620px]">
+      <div className="content-below-fold [--cv-est:1190px] lg:[--cv-est:590px]">
         <OurTeam tone="light" />
       </div>
-      <div className="content-below-fold [--cv-est:3630px] lg:[--cv-est:2400px]">
+      <div className="content-below-fold [--cv-est:3810px] lg:[--cv-est:2410px]">
         <Technologies />
       </div>
-      <div className="content-below-fold [--cv-est:1540px] lg:[--cv-est:950px]">
+      <div className="content-below-fold [--cv-est:1880px] lg:[--cv-est:900px]">
         <Process />
       </div>
-      <div className="content-below-fold [--cv-est:4070px] lg:[--cv-est:1650px]">
+      <div className="content-below-fold [--cv-est:3930px] lg:[--cv-est:1640px]">
         <FeaturedProjects />
       </div>
-      <div className="content-below-fold [--cv-est:1790px] lg:[--cv-est:1100px]">
+      <div className="content-below-fold [--cv-est:2000px] lg:[--cv-est:1080px]">
         <WhyChooseUs />
       </div>
-      <div className="content-below-fold [--cv-est:1630px] lg:[--cv-est:1150px]">
+      <div className="content-below-fold [--cv-est:1760px] lg:[--cv-est:1150px]">
         <Testimonials />
       </div>
-      <div className="content-below-fold [--cv-est:660px] lg:[--cv-est:750px]">
+      <div className="content-below-fold [--cv-est:650px] lg:[--cv-est:720px]">
         <FinalCTA />
       </div>
 

@@ -339,8 +339,9 @@
    * diagrams that is a `blur(90px)` wash whose re-rasterisation costs orders
    * of magnitude more than the stroke itself.
    *
-   * `contain: paint` on the animated group bounds the invalidation; the wash
-   * is promoted to its own layer by `.wash` below so it is rasterised once.
+   * `contain: paint` on the animated group bounds the invalidation, and the
+   * panel itself is a `content-visibility: auto` unit so the animation stops
+   * costing anything at all once it scrolls away.
    * Lighthouse flagged 8 of these paths in the hero as non-composited
    * animations — that was the site's single largest source of idle jank.
    */
@@ -363,25 +364,6 @@
   .animate-node {
     animation: pulse-node 3.2s var(--ease-in-out-soft) infinite;
     transform-origin: center;
-  }
-
-  /* -------------------------------------------------------------------------
-     Soft colour wash (the large `blur(90–130px)` circles behind heroes and
-     dark sections).
-
-     A blur of that radius is one of the most expensive paint operations the
-     browser has: the surface has to be rasterised, then run through a
-     separable Gaussian with a kernel wider than most phones' viewports. Doing
-     it once is fine. Doing it again because something in front of it animated
-     is not — and these washes sit behind animated SVG diagrams and parallax
-     layers on every hero.
-
-     `translateZ(0)` promotes the wash to its own compositor layer, so it is
-     rasterised once and thereafter only composited. Nothing painting in front
-     of it can invalidate it.
-     ------------------------------------------------------------------------- */
-  .wash {
-    /* AB-TEST: layer promotion disabled */
   }
 
   @media (prefers-reduced-motion: reduce) {

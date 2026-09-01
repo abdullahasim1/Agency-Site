@@ -36,7 +36,7 @@ function Panel({ label, ariaLabel, className, children }: PanelProps) {
       <div aria-hidden className="absolute inset-0 bg-blueprint opacity-60" />
       <div
         aria-hidden
-        className="wash pointer-events-none absolute -right-20 -top-24 size-60 rounded-full bg-brand-500/[0.08] blur-[90px]"
+        className="pointer-events-none absolute -right-20 -top-24 size-60 rounded-full bg-brand-500/[0.08] blur-[90px]"
       />
 
       <div className="relative flex items-center gap-2 border-b border-ink-200/80 bg-ink-25/80 px-4 py-3">

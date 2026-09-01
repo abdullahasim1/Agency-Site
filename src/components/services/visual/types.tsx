@@ -49,7 +49,7 @@ export function VisualPanel({
       <div
         aria-hidden
         className={cn(
-          "wash pointer-events-none absolute -right-24 -top-24 size-72 rounded-full blur-[90px]",
+          "pointer-events-none absolute -right-24 -top-24 size-72 rounded-full blur-[90px]",
           accentGlow[accent],
         )}
       />

@@ -200,6 +200,74 @@ const observersByThreshold = new Map<number, IntersectionObserver>();
 
 type ViewState = { inView: boolean; startedOffscreen: boolean };
 
+/* ---------------------------------------------------------------------------
+   Batched first measurement
+
+   Every instance needs one answer at mount: am I on screen right now? Asking
+   per instance is what made the page slow. A ref callback runs during React's
+   commit, so the sequence per node was write DOM → getBoundingClientRect() →
+   setState → React re-renders and writes DOM again → next node reads. Each read
+   followed a write, so each one forced a synchronous layout, and with ~83
+   Reveal/StaggerItem instances on the homepage that alone accounted for most of
+   the 358 layouts Chrome reported for a single load.
+
+   Splitting it into phases fixes it without changing what anyone observes.
+   Callbacks only enqueue; one microtask then reads all the rects back to back
+   (the browser resolves layout once, because nothing writes in between) and
+   applies the states afterwards. React batches the setStates from that
+   microtask into a single render, so the DOM is written once too.
+
+   The microtask still runs before paint, so a below-fold node is hidden before
+   the reader could ever see it — the flash this measurement exists to prevent
+   stays prevented.
+--------------------------------------------------------------------------- */
+
+type BatchItem = {
+  node: Element;
+  amount: number;
+  apply: (state: ViewState) => void;
+};
+
+const measureQueue: BatchItem[] = [];
+let measureScheduled = false;
+
+function flushMeasureQueue(): void {
+  measureScheduled = false;
+  if (measureQueue.length === 0) return;
+
+  const items = measureQueue.splice(0, measureQueue.length);
+  const viewportH = window.innerHeight || document.documentElement.clientHeight;
+
+  /* Phase 1 — read only. */
+  const rects = items.map((item) => item.node.getBoundingClientRect());
+
+  /* Phase 2 — write only. */
+  for (let i = 0; i < items.length; i += 1) {
+    const { node, amount, apply } = items[i];
+    const rect = rects[i];
+
+    if (rect.bottom > 0 && rect.top < viewportH) {
+      /* Already on screen: nothing to animate in, so never register it. */
+      apply(VISIBLE_ON_MOUNT);
+      continue;
+    }
+
+    apply(PENDING);
+
+    let map = pendingByThreshold.get(amount);
+    if (!map) {
+      map = new WeakMap();
+      pendingByThreshold.set(amount, map);
+    }
+
+    map.set(node, { callback: () => apply(REVEALED) });
+    pendingNodes.add(node);
+    getSharedObserver(amount).observe(node);
+  }
+
+  if (pendingNodes.size > 0) startSweeping();
+}
+
 const INITIAL: ViewState = { inView: false, startedOffscreen: false };
 const VISIBLE_ON_MOUNT: ViewState = { inView: true, startedOffscreen: false };
 const PENDING: ViewState = { inView: false, startedOffscreen: true };
@@ -215,14 +283,10 @@ const REVEALED: ViewState = { inView: true, startedOffscreen: true };
  *
  * The ref callback is referentially stable, and that is load-bearing rather
  * than tidiness. React re-invokes a ref whose identity changed on every
- * render, so an inline callback that measures the node meant a fresh
- * getBoundingClientRect() after every state update — and because those reads
- * interleave with React's DOM writes, each one forces a synchronous layout.
- * With ~83 Reveal/StaggerItem instances on the homepage that was ~166 forced
- * layouts during hydration, and it was the bulk of the 4.7s Lighthouse
- * attributed to Style & Layout. Holding the identity steady collapses that to
- * one measurement per node, all inside a single commit, so the browser flushes
- * layout once.
+ * render, so an inline callback would re-register the node after every state
+ * update. Holding the identity steady means each node is enqueued exactly
+ * once, and the measurement itself is batched (see flushMeasureQueue) so the
+ * whole page costs one layout instead of one per instance.
  */
 export function useInViewOnce(
   amount = 0,
@@ -236,35 +300,12 @@ export function useInViewOnce(
       if (!node || registered.current === node) return;
       registered.current = node;
 
-      /*
-       * Decide visibility synchronously so a below-fold node is hidden in the
-       * same commit it mounts (no visible flash of unhidden content). This is
-       * the only layout read in the hook, and it happens once per node.
-       */
-      const rect = node.getBoundingClientRect();
-      const viewportH =
-        window.innerHeight || document.documentElement.clientHeight;
+      measureQueue.push({ node, amount, apply: setState });
 
-      if (rect.bottom > 0 && rect.top < viewportH) {
-        /* Already on screen: there is nothing to animate in, so skip the
-           observer entirely rather than registering a node that would fire
-           immediately. */
-        setState(VISIBLE_ON_MOUNT);
-        return;
+      if (!measureScheduled) {
+        measureScheduled = true;
+        queueMicrotask(flushMeasureQueue);
       }
-
-      setState(PENDING);
-
-      let map = pendingByThreshold.get(amount);
-      if (!map) {
-        map = new WeakMap();
-        pendingByThreshold.set(amount, map);
-      }
-
-      map.set(node, { callback: () => setState(REVEALED) });
-      pendingNodes.add(node);
-      getSharedObserver(amount).observe(node);
-      startSweeping();
     },
     [amount],
   );
