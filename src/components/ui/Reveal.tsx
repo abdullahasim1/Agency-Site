@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode } from "react";
 
 /**
@@ -57,14 +57,25 @@ export function Reveal({
   const Tag = as;
   const pending = !reduceMotion && !inView && startedOffscreen;
 
+  /*
+   * Three states, not two. Dropping the attribute entirely once the element is
+   * in view also drops the `transition` declared on `[data-reveal]`, so opacity
+   * and transform snapped to their final values instead of animating — the
+   * reveal was a pop, not a fade. Keeping the attribute with a different value
+   * preserves the transition. Nodes that were never pending (above the fold)
+   * still get no attribute at all, so `contain: layout style` is not applied to
+   * content whose layout was never deferred.
+   */
+  const revealState = pending ? "pending" : startedOffscreen ? "in" : undefined;
+
   return (
     <Tag
       ref={setNode}
-      data-reveal={pending ? "pending" : undefined}
+      data-reveal={revealState}
       style={
         {
           "--reveal-y": `${y}px`,
-          transitionDelay: pending || inView ? `${delay}s` : undefined,
+          transitionDelay: revealState ? `${delay}s` : undefined,
         } as CSSProperties
       }
       className={cn(className)}
@@ -134,12 +145,18 @@ export function StaggerItem({
 }: StaggerItemProps) {
   const [setNode, inView, startedOffscreen] = useInViewOnce();
   const reduceMotion = usePrefersReducedMotion();
-  const [itemDelay, setItemDelay] = useState(0);
-  const nodeRef = useRef<Element | null>(null);
+  const nodeRef = useRef<HTMLElement | null>(null);
 
-  // Sibling index × parent step reproduces staggerChildren's sequencing.
-  // Reads the parent's *inline* style for the CSS variables — this does not
-  // trigger a getComputedStyle() call, avoiding layout thrashing on mount.
+  /*
+   * Sibling index × parent step reproduces staggerChildren's sequencing.
+   *
+   * Written straight to the node's style rather than through state: the delay
+   * is derived once from a value React does not own, so routing it through a
+   * setState only bought an extra render per item — 27 of them on the homepage,
+   * each one a commit React had to reconcile. Reads the parent's *inline* style
+   * for the CSS variables, which avoids a getComputedStyle() call and the
+   * layout flush that comes with it.
+   */
   useEffect(() => {
     const node = nodeRef.current;
     if (!node) return;
@@ -151,25 +168,21 @@ export function StaggerItem({
     const step = readInlineCSSVar(parent, "--stagger-step", DEFAULT_STAGGER_STEP_S);
     const base = readInlineCSSVar(parent, "--stagger-delay", 0);
 
-    setItemDelay(base + Math.min(index, MAX_STAGGER_STEPS) * step);
+    node.style.transitionDelay = `${base + Math.min(index, MAX_STAGGER_STEPS) * step}s`;
   }, []);
 
   const Tag = as;
   const pending = !reduceMotion && !inView && startedOffscreen;
+  const revealState = pending ? "pending" : startedOffscreen ? "in" : undefined;
 
   return (
     <Tag
-      ref={(node: Element | null) => {
+      ref={(node: HTMLElement | null) => {
         nodeRef.current = node;
         setNode(node);
       }}
-      data-reveal={pending ? "pending" : undefined}
-      style={
-        {
-          "--reveal-y": `${y}px`,
-          transitionDelay: `${itemDelay}s`,
-        } as CSSProperties
-      }
+      data-reveal={revealState}
+      style={{ "--reveal-y": `${y}px` } as CSSProperties}
       className={cn(className)}
     >
       {children}

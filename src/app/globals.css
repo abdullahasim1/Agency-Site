@@ -297,21 +297,15 @@
 
   .animate-marquee {
     animation: marquee-x 28s linear infinite;
-    /* GPU-accelerate the translateX animation. */
-    will-change: transform;
+    /* No standing `will-change: transform`. A transform animation is promoted
+       to its own compositor layer by the browser for as long as it runs, so
+       declaring will-change only pins that GPU memory permanently — including
+       while the strip is paused off-screen, which is most of the time. */
   }
 
   .marquee-track:hover .animate-marquee,
   .marquee-track:focus-within .animate-marquee {
     animation-play-state: paused;
-  }
-
-  /* When the marquee is paused (via hover, focus, or out-of-view), release
-     the compositor layer to save GPU memory. */
-  .animate-marquee[style*="paused"],
-  .marquee-track:hover .animate-marquee,
-  .marquee-track:focus-within .animate-marquee {
-    will-change: auto;
   }
 
   /* Glass sheen sweeping across dark marquee strips. */
@@ -337,6 +331,19 @@
     }
   }
 
+  /*
+   * `stroke-dashoffset` cannot be composited — every frame is a main-thread
+   * repaint of the path. That is acceptable for a few thin strokes, but only
+   * if the repaint stays inside a small, isolated surface: without isolation
+   * the invalidated rect covers whatever sits behind the path, and in these
+   * diagrams that is a `blur(90px)` wash whose re-rasterisation costs orders
+   * of magnitude more than the stroke itself.
+   *
+   * `contain: paint` on the animated group bounds the invalidation; the wash
+   * is promoted to its own layer by `.wash` below so it is rasterised once.
+   * Lighthouse flagged 8 of these paths in the hero as non-composited
+   * animations — that was the site's single largest source of idle jank.
+   */
   .animate-dash {
     animation: dash-flow 1.6s linear infinite;
   }
@@ -356,6 +363,27 @@
   .animate-node {
     animation: pulse-node 3.2s var(--ease-in-out-soft) infinite;
     transform-origin: center;
+  }
+
+  /* -------------------------------------------------------------------------
+     Soft colour wash (the large `blur(90–130px)` circles behind heroes and
+     dark sections).
+
+     A blur of that radius is one of the most expensive paint operations the
+     browser has: the surface has to be rasterised, then run through a
+     separable Gaussian with a kernel wider than most phones' viewports. Doing
+     it once is fine. Doing it again because something in front of it animated
+     is not — and these washes sit behind animated SVG diagrams and parallax
+     layers on every hero.
+
+     `translateZ(0)` promotes the wash to its own compositor layer, so it is
+     rasterised once and thereafter only composited. Nothing painting in front
+     of it can invalidate it.
+     ------------------------------------------------------------------------- */
+  .wash {
+    transform: translateZ(0);
+    /* The layer is static; the compositor keeps the rasterised blur. */
+    backface-visibility: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -409,16 +437,60 @@
 /* ---------------------------------------------------------------------------
    Content-visibility: below-fold sections render lazily.
 
-   Tells the browser to skip layout/paint for off-screen sections until they
-   approach the viewport. Combined with contain-intrinsic-size, this avoids
-   layout shifts while dramatically cutting initial render work.
+   Tells the browser to skip layout, paint *and* animation for off-screen
+   sections until they approach the viewport. Combined with
+   contain-intrinsic-size this avoids layout shifts while cutting initial
+   render work — and it is what stops the infinite CSS animations
+   (.animate-dash, .animate-node, .animate-marquee) in off-screen sections
+   from costing a repaint per frame.
+
+   Apply this to ONE SECTION AT A TIME. Wrapping several sections in a single
+   .content-below-fold container defeats the point: the whole group becomes one
+   skip-unit, so the browser has to lay out and paint every section in it in a
+   single task the moment any part of it nears the viewport — which is a worse
+   long task than not using content-visibility at all.
+
+   `--cv-est` is the placeholder height used *before* the section has ever been
+   rendered. It matters more than it looks: while a section is unrendered the
+   browser reserves exactly this much room, so if the estimate is short the
+   document grows as each section resolves, the scrollbar rescales and content
+   below jumps under the reader's cursor. Eleven sections at the old flat 800px
+   default stood in for ~10,600px of real content and the page grew ~1,500px
+   over a single scroll-through. Pass a per-section value; the 800px fallback
+   only applies if none is given.
+
+   The `auto` keyword means the reserved height switches to the section's real
+   measured height once it has been rendered once, so the estimate only ever
+   affects the reader's first pass down the page.
 
    Applied at all viewport widths — mobile users benefit just as much from
    skipped off-screen rendering.
    ------------------------------------------------------------------------- */
 .content-below-fold {
   content-visibility: auto;
-  contain-intrinsic-size: auto 800px;
+  contain-intrinsic-size: auto var(--cv-est, 800px);
+}
+
+/* ---------------------------------------------------------------------------
+   Same mechanism, for a block that starts *inside* the viewport.
+
+   The hero diagram is visible on load, so it renders normally — but it holds
+   eight `stroke-dashoffset` animations, which the compositor cannot take over,
+   so each one repaints on the main thread every frame for as long as it runs.
+   Lighthouse named these eight paths as the page's non-composited animations.
+   Without containment they kept repainting after the user had scrolled well
+   past them; with it the browser stops rendering the block once it leaves the
+   viewport, and the animations go quiet with it.
+
+   `contain-intrinsic-size: auto <estimate>` means "use the size you last
+   measured, and fall back to the estimate before the first measurement" — and
+   the first measurement happens during the initial render here, because the
+   element is on screen. So the estimate is never actually used and the block
+   cannot shift the layout.
+   ------------------------------------------------------------------------- */
+.content-near-viewport {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 /* ---------------------------------------------------------------------------

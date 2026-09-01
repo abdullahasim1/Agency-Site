@@ -11,6 +11,7 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { OurTeam } from "@/components/services/OurTeam";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/ui/TechMarquee";
+import { clients } from "@/data/clients";
 import { siteConfig, siteTitle } from "@/data/site";
 import { pageGraph } from "@/lib/seo";
 
@@ -29,18 +30,70 @@ export default function HomePage() {
       {/* Hero: always visible, no animation delay on first paint */}
       <Hero />
 
-      {/* Below-fold sections: content-visibility auto defers rendering */}
-      <div className="content-below-fold">
+      {/*
+        Below-fold sections, each its own content-visibility skip-unit.
+
+        One wrapper around all eleven used to be a single skip-unit: the moment
+        any part of it neared the viewport the browser had to lay out and paint
+        every section in one task, and the 800px intrinsic estimate stood in for
+        a block roughly ten times that tall, so the scroll height jumped as it
+        resolved. Per-section containers render independently and keep each
+        task small.
+
+        `--cv-est` is each section's measured height, and it is the room reserved
+        while that section is still unrendered. A flat default made the document
+        grow ~1,500px over one scroll-through — every section below the one being
+        resolved slid downward mid-scroll, and the scrollbar rescaled under the
+        reader's thumb. These sections differ by an order of magnitude (a 260px
+        logo strip against a 2,400px technology grid), so one number cannot
+        serve them all.
+
+        Two sets, because the grids reflow: measured at 1440px the sections total
+        10,649px, and at 545px the same sections total 18,676px — the estimate
+        has to move with the breakpoint or it is wrong by 70% on phones, which
+        is where it hurts most. Base values come from the narrow measurement,
+        `lg:` from the wide one.
+
+        Only the reader's first pass is affected; `contain-intrinsic-size: auto`
+        switches each section to its real measured height once rendered.
+      */}
+      <div className="content-below-fold [--cv-est:190px] lg:[--cv-est:260px]">
         <TechMarquee />
-        <ClientLogos />
+      </div>
+      {/* ClientLogos renders null while the Keystatic client list is empty, and
+          a skip-unit around nothing still reserves its estimate — a phantom gap
+          under the hero until the browser resolved it. Gate the wrapper on the
+          same condition the component gates itself on. */}
+      {clients.length > 0 && (
+        <div className="content-below-fold [--cv-est:190px] lg:[--cv-est:260px]">
+          <ClientLogos />
+        </div>
+      )}
+      <div className="content-below-fold [--cv-est:890px] lg:[--cv-est:320px]">
         <Stats />
+      </div>
+      <div className="content-below-fold [--cv-est:3140px] lg:[--cv-est:1700px]">
         <Services />
+      </div>
+      <div className="content-below-fold [--cv-est:1150px] lg:[--cv-est:620px]">
         <OurTeam tone="light" />
+      </div>
+      <div className="content-below-fold [--cv-est:3630px] lg:[--cv-est:2400px]">
         <Technologies />
+      </div>
+      <div className="content-below-fold [--cv-est:1540px] lg:[--cv-est:950px]">
         <Process />
+      </div>
+      <div className="content-below-fold [--cv-est:4070px] lg:[--cv-est:1650px]">
         <FeaturedProjects />
+      </div>
+      <div className="content-below-fold [--cv-est:1790px] lg:[--cv-est:1100px]">
         <WhyChooseUs />
+      </div>
+      <div className="content-below-fold [--cv-est:1630px] lg:[--cv-est:1150px]">
         <Testimonials />
+      </div>
+      <div className="content-below-fold [--cv-est:660px] lg:[--cv-est:750px]">
         <FinalCTA />
       </div>
 

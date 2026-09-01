@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-40 -top-40 -z-10 size-[34rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
+          className="wash pointer-events-none absolute -left-40 -top-40 -z-10 size-[34rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
         />
 
         <Container>

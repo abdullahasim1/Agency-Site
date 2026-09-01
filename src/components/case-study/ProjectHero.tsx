@@ -27,7 +27,7 @@ export function ProjectHero({ project }: { project: Project }) {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-48 -top-32 -z-10 size-[36rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
+        className="wash pointer-events-none absolute -right-48 -top-32 -z-10 size-[36rem] rounded-full bg-brand-500/[0.07] blur-[130px]"
       />
 
 <Container>

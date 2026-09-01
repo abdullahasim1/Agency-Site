@@ -46,7 +46,7 @@ export function SchedulerMockup({ className }: SchedulerMockupProps) {
     <div
       aria-hidden="true"
       className={cn(
-        "relative isolate overflow-hidden rounded-card border border-ink-200 bg-white shadow-soft",
+        "content-near-viewport relative isolate overflow-hidden rounded-card border border-ink-200 bg-white shadow-soft",
         className,
       )}
     >

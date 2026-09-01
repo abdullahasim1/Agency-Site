@@ -42,11 +42,11 @@ export function FinalCTA({
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute -left-24 -top-32 size-[30rem] rounded-full bg-brand-500/15 blur-[120px]"
+              className="wash pointer-events-none absolute -left-24 -top-32 size-[30rem] rounded-full bg-brand-500/15 blur-[120px]"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute -bottom-40 -right-20 size-[28rem] rounded-full bg-accent-violet/15 blur-[120px]"
+              className="wash pointer-events-none absolute -bottom-40 -right-20 size-[28rem] rounded-full bg-accent-violet/15 blur-[120px]"
             />
 
             <div className="relative mx-auto max-w-3xl text-center">

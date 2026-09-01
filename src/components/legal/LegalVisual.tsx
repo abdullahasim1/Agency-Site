@@ -29,14 +29,14 @@ function Panel({ label, ariaLabel, className, children }: PanelProps) {
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-soft",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-soft",
         className,
       )}
     >
       <div aria-hidden className="absolute inset-0 bg-blueprint opacity-60" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-20 -top-24 size-60 rounded-full bg-brand-500/[0.08] blur-[90px]"
+        className="wash pointer-events-none absolute -right-20 -top-24 size-60 rounded-full bg-brand-500/[0.08] blur-[90px]"
       />
 
       <div className="relative flex items-center gap-2 border-b border-ink-200/80 bg-ink-25/80 px-4 py-3">

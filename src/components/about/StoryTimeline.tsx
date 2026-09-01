@@ -47,7 +47,7 @@ export function StoryTimeline({ className }: StoryTimelineProps) {
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-soft",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-soft",
         className,
       )}
     >

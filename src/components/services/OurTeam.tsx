@@ -47,14 +47,14 @@ export function OurTeam({ tone = "dark" }: OurTeamProps) {
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute -left-40 top-0 size-[30rem] rounded-full blur-[130px]",
+          "wash pointer-events-none absolute -left-40 top-0 size-[30rem] rounded-full blur-[130px]",
           dark ? "bg-brand-600/10" : "bg-brand-500/[0.09]",
         )}
       />
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute -right-40 bottom-0 size-[28rem] rounded-full blur-[130px]",
+          "wash pointer-events-none absolute -right-40 bottom-0 size-[28rem] rounded-full blur-[130px]",
           dark ? "bg-accent-cyan/10" : "bg-accent-cyan/10",
         )}
       />

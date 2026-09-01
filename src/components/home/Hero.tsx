@@ -15,18 +15,19 @@ export function Hero() {
     <section className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-24">
       {/* Two very soft washes anchor the corners without reading as a gradient.
           They drift at different speeds as the user scrolls, creating a subtle
-          depth effect. Parallax is GPU-only (transform: translateY) and pauses
-          when the element is off-screen. */}
+          depth effect. Parallax writes transform straight to the DOM on the
+          compositor; `.wash` promotes the blurred circle to its own layer so
+          the blur is rasterised once and only ever composited after that. */}
       <Parallax speed={0.15} className="absolute -left-48 -top-40 -z-10 size-[42rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-brand-500/[0.07] blur-[130px]"
+          className="wash size-full rounded-full bg-brand-500/[0.07] blur-[130px]"
         />
       </Parallax>
       <Parallax speed={0.25} className="absolute -right-56 top-24 -z-10 size-[38rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-accent-violet/[0.06] blur-[130px]"
+          className="wash size-full rounded-full bg-accent-violet/[0.06] blur-[130px]"
         />
       </Parallax>
       <div

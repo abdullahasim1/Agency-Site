@@ -74,7 +74,7 @@ export function AutomationRunVisual({ className }: AutomationRunVisualProps) {
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
         className,
       )}
     >
@@ -82,7 +82,7 @@ export function AutomationRunVisual({ className }: AutomationRunVisualProps) {
       <div aria-hidden className="absolute inset-0 bg-blueprint opacity-70" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-brand-500/10 blur-[90px]"
+        className="wash pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-brand-500/10 blur-[90px]"
       />
 
       {/* Panel chrome: reads as a tool, not a marketing illustration. */}

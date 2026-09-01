@@ -41,7 +41,7 @@ export function VisualPanel({
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
         className,
       )}
     >
@@ -49,7 +49,7 @@ export function VisualPanel({
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute -right-24 -top-24 size-72 rounded-full blur-[90px]",
+          "wash pointer-events-none absolute -right-24 -top-24 size-72 rounded-full blur-[90px]",
           accentGlow[accent],
         )}
       />

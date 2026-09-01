@@ -94,13 +94,13 @@ export function Technologies() {
       <Parallax speed={0.2} className="absolute -right-40 top-0 size-[34rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-brand-600/10 blur-[130px]"
+          className="wash size-full rounded-full bg-brand-600/10 blur-[130px]"
         />
       </Parallax>
       <Parallax speed={0.15} className="absolute -left-40 bottom-0 size-[30rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-accent-violet/10 blur-[130px]"
+          className="wash size-full rounded-full bg-accent-violet/10 blur-[130px]"
         />
       </Parallax>
 

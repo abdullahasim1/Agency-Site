@@ -49,7 +49,7 @@ export function ConsultationMockup({ className }: ConsultationMockupProps) {
   return (
     <figure
       className={cn(
-        "relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
         className,
       )}
       aria-label="Illustrative scoping conversation between a client and DevRox."
@@ -58,7 +58,7 @@ export function ConsultationMockup({ className }: ConsultationMockupProps) {
       <div aria-hidden className="absolute inset-0 bg-blueprint opacity-70" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-brand-500/10 blur-[90px]"
+        className="wash pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-brand-500/10 blur-[90px]"
       />
 
       {/* Panel chrome: reads as a tool, not a marketing illustration. */}

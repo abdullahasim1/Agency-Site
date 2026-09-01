@@ -4,18 +4,24 @@
  * Lightweight parallax wrapper.
  *
  * Moves its child at a fraction of the scroll speed, creating a depth effect.
- * Uses only `transform: translateY()` — a compositor-only property that never
- * triggers layout or paint — so the effect costs zero main-thread work per
- * frame after the initial observe.
  *
- * The element is wrapped in a container whose overflow is clipped, so the
- * parallaxed child never causes the page to grow taller.
+ * The offset is written straight to the node's `style.transform` inside a
+ * requestAnimationFrame callback. It deliberately does *not* live in React
+ * state: `setState` on every scroll frame put a full render, reconcile and
+ * commit between the scroll event and the paint, at 60fps, for every instance
+ * on the page — and the children here are `blur(130px)` washes, so React was
+ * being asked to re-render around the most expensive paint on the site. Writing
+ * the transform directly keeps the whole effect on the compositor.
  *
- * Respects `prefers-reduced-motion: reduce` — the child renders at its
- * natural position with no transform.
+ * A shared IntersectionObserver suspends the work entirely while the container
+ * is off-screen, so a parallax layer in the footer costs nothing while the user
+ * reads the hero.
+ *
+ * Respects `prefers-reduced-motion: reduce` — the child renders at its natural
+ * position with no transform and no scroll listener.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode } from "react";
 
 import { usePrefersReducedMotion } from "@/lib/use-in-view";
@@ -40,7 +46,6 @@ export function Parallax({
   const clipRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
-  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -49,46 +54,75 @@ export function Parallax({
     const inner = innerRef.current;
     if (!clip || !inner) return;
 
-    let ticking = false;
+    let frame = 0;
+    let visible = false;
+    let lastOffset = Number.NaN;
 
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
+    const apply = () => {
+      frame = 0;
 
-      requestAnimationFrame(() => {
-        const rect = clip.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
+      const rect = clip.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
 
-        // Element is fully above or below viewport — skip the transform.
-        if (rect.bottom < 0 || rect.top > vh) {
-          ticking = false;
-          return;
-        }
+      /* Fully above or below the viewport — leave the transform where it is. */
+      if (rect.bottom < 0 || rect.top > vh) return;
 
-        // Progress: 0 when the element's top hits the viewport bottom,
-        // 1 when the element's bottom leaves the viewport top.
-        const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
+      /*
+       * Progress: 0 when the element's top hits the viewport bottom,
+       * 1 when the element's bottom leaves the viewport top.
+       */
+      const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
+      const offset = (progress - 0.5) * rect.height * speed;
 
-        // Map progress (0→1) to a pixel offset centred around 0.
-        const maxTravel = rect.height * speed;
-        setOffset((progress - 0.5) * maxTravel);
+      /* Sub-pixel changes are invisible but still cost a composite. */
+      if (Math.abs(offset - lastOffset) < 0.5) return;
+      lastOffset = offset;
 
-        ticking = false;
-      });
+      /* translate3d keeps the layer on the compositor. */
+      inner.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    // Run once to set initial position.
-    onScroll();
+    const onScroll = () => {
+      if (frame || !visible) return;
+      frame = requestAnimationFrame(apply);
+    };
 
-    return () => window.removeEventListener("scroll", onScroll);
+    /*
+     * Only listen while the container can actually be seen. Attaching and
+     * detaching around visibility is cheaper than running the rect read for
+     * every instance on every frame of a long scroll.
+     */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting === visible) continue;
+          visible = entry.isIntersecting;
+
+          if (visible) {
+            inner.style.willChange = "transform";
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+          } else {
+            window.removeEventListener("scroll", onScroll);
+            /* Release the compositor layer while the effect is idle. */
+            inner.style.willChange = "";
+          }
+        }
+      },
+      /* Start a little before the element scrolls in so the first frame of
+         movement is already correct rather than snapping into place. */
+      { rootMargin: "200px 0px" },
+    );
+
+    observer.observe(clip);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+      inner.style.willChange = "";
+    };
   }, [reduceMotion, speed]);
-
-  // Apply the transform directly — React batches state updates so this
-  // only repaints once per rAF frame.
-  const transform = reduceMotion
-    ? undefined
-    : `translateY(${offset}px)`;
 
   return (
     <div
@@ -96,15 +130,7 @@ export function Parallax({
       className={cn("overflow-hidden", className)}
       style={style}
     >
-      <div
-        ref={innerRef}
-        style={{
-          transform,
-          willChange: reduceMotion ? undefined : "transform",
-        }}
-      >
-        {children}
-      </div>
+      <div ref={innerRef}>{children}</div>
     </div>
   );
 }
