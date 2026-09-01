@@ -5,13 +5,11 @@
  *
  * Moves its child at a fraction of the scroll speed, creating a depth effect.
  *
- * The offset is written straight to the node's `style.transform` inside a
- * requestAnimationFrame callback. It deliberately does *not* live in React
- * state: `setState` on every scroll frame put a full render, reconcile and
- * commit between the scroll event and the paint, at 60fps, for every instance
- * on the page — and the children here are `blur(130px)` washes, so React was
- * being asked to re-render around the most expensive paint on the site. Writing
- * the transform directly keeps the whole effect on the compositor.
+ * All active instances share a single scroll handler: one requestAnimationFrame
+ * reads every clip rect in one batch (one layout reflow), then writes every
+ * transform in one batch (no forced layout between reads and writes). This
+ * replaces the previous per-instance pattern where 6 elements each called
+ * getBoundingClientRect() independently, causing 6 layout reads per frame.
  *
  * A shared IntersectionObserver suspends the work entirely while the container
  * is off-screen, so a parallax layer in the footer costs nothing while the user
@@ -37,6 +35,78 @@ interface ParallaxProps {
   style?: CSSProperties;
 }
 
+/* -----------------------------------------------------------------------
+   Shared scroll handler
+
+   Every instance reads getBoundingClientRect(), which forces a layout
+   reflow. Six instances doing that independently = six layout reads per
+   scroll frame. One shared handler reads all rects in a single batch
+   (browser resolves layout once) and writes all transforms in a second
+   batch. Total: 1 layout + N compositor-only writes per frame.
+----------------------------------------------------------------------- */
+
+type Instance = {
+  clip: HTMLElement;
+  inner: HTMLElement;
+  speed: number;
+  lastOffset: number;
+};
+
+const active = new Set<Instance>();
+let frame = 0;
+
+function applyAll(): void {
+  frame = 0;
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+
+  /* Phase 1 — read all rects in one pass (single layout). */
+  const rects: DOMRect[] = [];
+  const items: Instance[] = [];
+  for (const inst of active) {
+    rects.push(inst.clip.getBoundingClientRect());
+    items.push(inst);
+  }
+
+  /* Phase 2 — write all transforms (no layout reads between). */
+  for (let i = 0; i < items.length; i++) {
+    const inst = items[i];
+    const rect = rects[i];
+
+    /* Fully above or below the viewport — leave the transform where it is. */
+    if (rect.bottom < 0 || rect.top > vh) continue;
+
+    const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
+    const offset = (progress - 0.5) * rect.height * inst.speed;
+
+    /* Sub-pixel changes are invisible but still cost a composite. */
+    if (Math.abs(offset - inst.lastOffset) < 0.5) continue;
+    inst.lastOffset = offset;
+
+    /* translate3d keeps the layer on the compositor. */
+    inst.inner.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+  }
+}
+
+function onScroll(): void {
+  if (frame || active.size === 0) return;
+  frame = requestAnimationFrame(applyAll);
+}
+
+function startListening(): void {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  onScroll();
+}
+
+function stopListening(): void {
+  window.removeEventListener("scroll", onScroll);
+  window.removeEventListener("resize", onScroll);
+  if (frame) {
+    cancelAnimationFrame(frame);
+    frame = 0;
+  }
+}
+
 export function Parallax({
   children,
   speed = 0.3,
@@ -54,38 +124,9 @@ export function Parallax({
     const inner = innerRef.current;
     if (!clip || !inner) return;
 
-    let frame = 0;
+    const inst: Instance = { clip, inner, speed, lastOffset: Number.NaN };
+
     let visible = false;
-    let lastOffset = Number.NaN;
-
-    const apply = () => {
-      frame = 0;
-
-      const rect = clip.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-
-      /* Fully above or below the viewport — leave the transform where it is. */
-      if (rect.bottom < 0 || rect.top > vh) return;
-
-      /*
-       * Progress: 0 when the element's top hits the viewport bottom,
-       * 1 when the element's bottom leaves the viewport top.
-       */
-      const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
-      const offset = (progress - 0.5) * rect.height * speed;
-
-      /* Sub-pixel changes are invisible but still cost a composite. */
-      if (Math.abs(offset - lastOffset) < 0.5) return;
-      lastOffset = offset;
-
-      /* translate3d keeps the layer on the compositor. */
-      inner.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
-    };
-
-    const onScroll = () => {
-      if (frame || !visible) return;
-      frame = requestAnimationFrame(apply);
-    };
 
     /*
      * Only listen while the container can actually be seen. Attaching and
@@ -100,12 +141,14 @@ export function Parallax({
 
           if (visible) {
             inner.style.willChange = "transform";
-            window.addEventListener("scroll", onScroll, { passive: true });
-            onScroll();
+            if (!active.has(inst)) {
+              active.add(inst);
+              if (active.size === 1) startListening();
+            }
           } else {
-            window.removeEventListener("scroll", onScroll);
-            /* Release the compositor layer while the effect is idle. */
             inner.style.willChange = "";
+            active.delete(inst);
+            if (active.size === 0) stopListening();
           }
         }
       },
@@ -118,8 +161,8 @@ export function Parallax({
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      if (frame) cancelAnimationFrame(frame);
+      active.delete(inst);
+      if (active.size === 0) stopListening();
       inner.style.willChange = "";
     };
   }, [reduceMotion, speed]);

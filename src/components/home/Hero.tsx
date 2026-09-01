@@ -20,13 +20,13 @@ export function Hero() {
       <Parallax speed={0.15} className="absolute -left-48 -top-40 -z-10 size-[42rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-brand-500/[0.07] blur-[130px]"
+          className="size-full rounded-full bg-brand-500/[0.07] blur-[80px]"
         />
       </Parallax>
       <Parallax speed={0.25} className="absolute -right-56 top-24 -z-10 size-[38rem]">
         <div
           aria-hidden
-          className="size-full rounded-full bg-accent-violet/[0.06] blur-[130px]"
+          className="size-full rounded-full bg-accent-violet/[0.06] blur-[80px]"
         />
       </Parallax>
       <div
