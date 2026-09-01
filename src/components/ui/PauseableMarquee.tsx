@@ -6,9 +6,12 @@
  * multiple marquee strips (homepage has two: tech + client logos).
  *
  * The animation resumes instantly on re-entry, so the user never notices.
+ * Also respects `prefers-reduced-motion` to disable animations for users who
+ * have requested reduced motion.
  */
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-in-view";
 
 interface PauseableMarqueeProps {
   children: ReactNode;
@@ -19,9 +22,21 @@ export function PauseableMarquee({
   children,
   className,
 }: PauseableMarqueeProps) {
+  const reduceMotion = usePrefersReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (reduceMotion) {
+      const container = containerRef.current;
+      if (container) {
+        const track = container.querySelector<HTMLElement>(".animate-marquee");
+        if (track) {
+          track.style.animationPlayState = "paused";
+        }
+      }
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -49,7 +64,7 @@ export function PauseableMarquee({
 
     observer.observe(track);
     return () => observer.disconnect();
-  }, []);
+  }, [reduceMotion]);
 
   return (
     <div ref={containerRef} className={className}>
