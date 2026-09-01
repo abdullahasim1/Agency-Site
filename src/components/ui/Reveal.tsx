@@ -1,28 +1,25 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode } from "react";
 
-/**
- * Read a CSS custom property from an element's inline style.
- * Unlike getComputedStyle(), this does not trigger a style recalculation.
- * Falls back to a default when the property is absent or non-numeric.
- */
-function readInlineCSSVar(
-  element: Element | null,
-  name: string,
-  fallback: number,
-): number {
-  if (!element) return fallback;
-  const raw = (element as HTMLElement).style.getPropertyValue(name);
-  if (!raw) return fallback;
-  // Strip trailing units ("s", "px") — we only need the number.
-  const num = parseFloat(raw);
-  return Number.isFinite(num) ? num : fallback;
-}
-
-import { useInViewOnce, usePrefersReducedMotion } from "@/lib/use-in-view";
 import { cn } from "@/lib/utils";
+
+/**
+ * Scroll-reveal primitives.
+ *
+ * These are deliberately *server* components. They used to be client
+ * components holding an IntersectionObserver and a piece of React state each,
+ * and the site renders 87 of them — every one a client boundary whose children
+ * React had to serialise into the RSC flight payload and then hydrate on the
+ * other side. All that machinery ever did was toggle one attribute.
+ *
+ * So the attribute ships empty — "candidate, not yet decided", and visible —
+ * and one client component (RevealEngine) measures every candidate in a single
+ * batch, marks only the ones below the fold "pending", and flips them to "in"
+ * as they arrive. Same behaviour, no client boundary here.
+ *
+ * Nothing is hidden before that measurement, which is the point: content above
+ * the fold is never invisible while the bundle loads, and a page whose
+ * JavaScript never runs stays fully readable.
+ */
 
 interface RevealProps {
   children: ReactNode;
@@ -34,16 +31,7 @@ interface RevealProps {
   as?: "div" | "section" | "li" | "article" | "header" | "figure";
 }
 
-/**
- * Scroll-triggered entrance.
- *
- * CSS-driven twin of the original framer-motion variant: the node is marked
- * data-reveal="pending" only when it starts below the viewport and the user
- * has not asked for reduced motion — entering view removes the attribute and
- * globals.css animates the rest. Children are passed in from a server
- * component, so the markup itself stays server-rendered; without JavaScript
- * (or for crawlers) the content renders plainly visible.
- */
+/** Fades and lifts its children in when they first reach the viewport. */
 export function Reveal({
   children,
   className,
@@ -51,31 +39,17 @@ export function Reveal({
   y = 16,
   as = "div",
 }: RevealProps) {
-  const [setNode, inView, startedOffscreen] = useInViewOnce();
-  const reduceMotion = usePrefersReducedMotion();
-
   const Tag = as;
-  const pending = !reduceMotion && !inView && startedOffscreen;
-
-  /*
-   * Three states, not two. Dropping the attribute entirely once the element is
-   * in view also drops the `transition` declared on `[data-reveal]`, so opacity
-   * and transform snapped to their final values instead of animating — the
-   * reveal was a pop, not a fade. Keeping the attribute with a different value
-   * preserves the transition. Nodes that were never pending (above the fold)
-   * still get no attribute at all, so `contain: layout style` is not applied to
-   * content whose layout was never deferred.
-   */
-  const revealState = pending ? "pending" : startedOffscreen ? "in" : undefined;
 
   return (
     <Tag
-      ref={setNode}
-      data-reveal={revealState}
+      data-reveal=""
       style={
         {
           "--reveal-y": `${y}px`,
-          transitionDelay: revealState ? `${delay}s` : undefined,
+          /* Set only when non-zero: an inline `0s` would beat the stagger rule
+             in globals.css, which is where a StaggerItem's delay comes from. */
+          ...(delay ? { "--reveal-delay": `${delay}s` } : null),
         } as CSSProperties
       }
       className={cn(className)}
@@ -97,9 +71,8 @@ interface StaggerProps {
 /**
  * Parent for staggered lists. Pair with <StaggerItem> children.
  *
- * The container carries the timing variables; each StaggerItem reads its own
- * sibling position at mount to derive the same sequential delay the old
- * framer-motion staggerChildren produced.
+ * Carries the timing variables; globals.css derives each child's delay from its
+ * `nth-child` position, so the sequence costs no JavaScript at all.
  */
 export function Stagger({
   children,
@@ -133,9 +106,6 @@ interface StaggerItemProps {
   as?: "div" | "li" | "article";
 }
 
-const MAX_STAGGER_STEPS = 8;
-const DEFAULT_STAGGER_STEP_S = 0.07;
-
 /** One animated child inside a <Stagger>. */
 export function StaggerItem({
   children,
@@ -143,45 +113,11 @@ export function StaggerItem({
   y = 14,
   as = "div",
 }: StaggerItemProps) {
-  const [setNode, inView, startedOffscreen] = useInViewOnce();
-  const reduceMotion = usePrefersReducedMotion();
-  const nodeRef = useRef<HTMLElement | null>(null);
-
-  /*
-   * Sibling index × parent step reproduces staggerChildren's sequencing.
-   *
-   * Written straight to the node's style rather than through state: the delay
-   * is derived once from a value React does not own, so routing it through a
-   * setState only bought an extra render per item — 27 of them on the homepage,
-   * each one a commit React had to reconcile. Reads the parent's *inline* style
-   * for the CSS variables, which avoids a getComputedStyle() call and the
-   * layout flush that comes with it.
-   */
-  useEffect(() => {
-    const node = nodeRef.current;
-    if (!node) return;
-    const parent = node.parentElement;
-    if (!parent) return;
-    const index = Array.prototype.indexOf.call(parent.children, node);
-    if (index < 0) return;
-
-    const step = readInlineCSSVar(parent, "--stagger-step", DEFAULT_STAGGER_STEP_S);
-    const base = readInlineCSSVar(parent, "--stagger-delay", 0);
-
-    node.style.transitionDelay = `${base + Math.min(index, MAX_STAGGER_STEPS) * step}s`;
-  }, []);
-
   const Tag = as;
-  const pending = !reduceMotion && !inView && startedOffscreen;
-  const revealState = pending ? "pending" : startedOffscreen ? "in" : undefined;
 
   return (
     <Tag
-      ref={(node: HTMLElement | null) => {
-        nodeRef.current = node;
-        setNode(node);
-      }}
-      data-reveal={revealState}
+      data-reveal=""
       style={{ "--reveal-y": `${y}px` } as CSSProperties}
       className={cn(className)}
     >

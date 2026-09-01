@@ -91,7 +91,10 @@ function revealNode(node: Element): void {
 
 function sweepPending(): void {
   const viewportH = window.innerHeight || document.documentElement.clientHeight;
+  const due: Element[] = [];
 
+  /* Read phase. Revealing writes an attribute, and a write between two reads
+     forces a fresh layout for the second, so collect first and write after. */
   for (const node of pendingNodes) {
     /* Unmounted before it was ever seen — drop it rather than measure it. */
     if (!node.isConnected) {
@@ -108,6 +111,11 @@ function sweepPending(): void {
     /* Still below the fold: the observer will handle it normally. */
     if (rect.top >= viewportH) continue;
 
+    due.push(node);
+  }
+
+  /* Write phase. */
+  for (const node of due) {
     pendingNodes.delete(node);
     revealNode(node);
   }
@@ -175,9 +183,17 @@ function getSharedObserver(
          * is no entrance left to animate at that point; the goal is only to
          * guarantee the element is never left invisible.
          */
-        const scrolledPast = entry.rootBounds
-          ? entry.boundingClientRect.bottom <= entry.rootBounds.top
-          : entry.boundingClientRect.bottom <= 0;
+        const rect = entry.boundingClientRect;
+        /* A node inside a `content-visibility`-skipped section has no boxes, so
+           its rect is 0x0 at the origin — which satisfies "above the viewport"
+           while actually being far below it. Require a real box; the sweep
+           picks those up once they have one. */
+        const hasBox = rect.width > 0 || rect.height > 0;
+        const scrolledPast =
+          hasBox &&
+          (entry.rootBounds
+            ? rect.bottom <= entry.rootBounds.top
+            : rect.bottom <= 0);
 
         if (entry.isIntersecting || scrolledPast) {
           map.delete(entry.target);

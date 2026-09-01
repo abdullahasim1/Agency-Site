@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { RevealEngine } from "@/components/ui/RevealEngine";
 import { WebMCPProvider } from "@/components/webmcp/WebMCPProvider";
 import { siteConfig, siteTitle } from "@/data/site";
 import { siteGraph } from "@/lib/seo";
@@ -101,6 +102,10 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      {/* Drives every scroll reveal on the page. The <Reveal> wrappers
+          themselves are server components; this is the only client boundary
+          they need, and it renders nothing. */}
+      <RevealEngine />
       {/* Organisation + WebSite, stated once. Each page's own graph refers back
           into these two nodes by @id rather than restating them. */}
       <JsonLd data={siteGraph()} />
