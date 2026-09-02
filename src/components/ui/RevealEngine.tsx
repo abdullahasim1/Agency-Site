@@ -47,16 +47,23 @@ function getObserver(): IntersectionObserver {
       for (const entry of entries) {
         if (!pending.has(entry.target)) continue;
 
-        const rect = entry.boundingClientRect;
-        const hasBox = rect.width > 0 || rect.height > 0;
-        const scrolledPast =
-          hasBox &&
-          (entry.rootBounds
-            ? rect.bottom <= entry.rootBounds.top
-            : rect.bottom <= 0);
-
-        if (entry.isIntersecting || scrolledPast) {
+        if (entry.isIntersecting) {
           reveal(entry.target);
+        } else {
+          // Asynchronously calculated bounding box provided by browser compositor
+          const rect = entry.boundingClientRect;
+          const hasBox = rect.width > 0 || rect.height > 0;
+          const scrolledPast =
+            hasBox &&
+            (entry.rootBounds
+              ? rect.bottom <= entry.rootBounds.top
+              : rect.bottom <= 0);
+
+          if (scrolledPast) {
+            reveal(entry.target);
+          } else {
+            entry.target.setAttribute("data-reveal", PENDING);
+          }
         }
       }
     },
@@ -70,7 +77,8 @@ function getObserver(): IntersectionObserver {
 }
 
 /**
- * Classifies candidates using a single batched read pass followed by a write pass.
+ * Non-blocking scan: registers elements with the IntersectionObserver
+ * without calling getBoundingClientRect() on the main thread.
  */
 function scan(): void {
   if (typeof window === "undefined") return;
@@ -84,22 +92,8 @@ function scan(): void {
 
   if (fresh.length === 0) return;
 
-  const viewportH = window.innerHeight || document.documentElement.clientHeight;
-  const rects = fresh.map((node) => node.getBoundingClientRect());
-
   const obs = getObserver();
-
-  for (let i = 0; i < fresh.length; i += 1) {
-    const rect = rects[i];
-    const node = fresh[i];
-
-    // Already on screen or within top margin: stays visible
-    if (rect.bottom > 0 && rect.top < viewportH + 200) {
-      node.setAttribute("data-reveal", REVEALED);
-      continue;
-    }
-
-    node.setAttribute("data-reveal", PENDING);
+  for (const node of fresh) {
     pending.add(node);
     obs.observe(node);
   }
@@ -112,13 +106,23 @@ export function RevealEngine() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Run after initial paint so it doesn't block hydration or FCP
-    const timer = requestAnimationFrame(() => {
+    // Schedule during idle callback so click handling and navigation INP is 0ms
+    const schedule =
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback
+        : (cb: () => void) => window.setTimeout(cb, 1);
+
+    const cancel =
+      typeof window.cancelIdleCallback === "function"
+        ? window.cancelIdleCallback
+        : window.clearTimeout;
+
+    const handle = schedule(() => {
       scan();
     });
 
     return () => {
-      cancelAnimationFrame(timer);
+      cancel(handle);
       for (const node of pending) {
         if (node.isConnected) continue;
         pending.delete(node);

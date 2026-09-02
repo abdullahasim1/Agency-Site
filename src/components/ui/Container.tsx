@@ -11,7 +11,8 @@ interface ContainerProps {
 }
 
 const widths = {
-  default: "max-w-[80rem] 2xl:max-w-[88rem] 3xl:max-w-[96rem] 4xl:max-w-[110rem]",
+  default:
+    "max-w-[80rem] 2xl:max-w-[88rem] 3xl:max-w-[96rem] 4xl:max-w-[110rem]",
   wide: "max-w-[90rem] 2xl:max-w-[100rem] 3xl:max-w-[112rem] 4xl:max-w-[128rem]",
   prose: "max-w-[46rem] 2xl:max-w-[52rem]",
 } as const;
