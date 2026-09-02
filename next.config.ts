@@ -61,8 +61,7 @@ const cspHeader = [
  * allowed because generated SVGs carry their own `<style>` blocks. `<img>`
  * tags are unaffected — they never execute SVG scripts anyway.
  */
-const svgCspHeader =
-  "default-src 'none'; style-src 'unsafe-inline'; sandbox";
+const svgCspHeader = "default-src 'none'; style-src 'unsafe-inline'; sandbox";
 
 /*
  * Long-lived image caching. After a first load the browser serves artwork from
@@ -73,8 +72,7 @@ const svgCspHeader =
  * a replaced file propagates within 7 days instead of being pinned forever.
  * `minimumCacheTTL` gives the /_next/image optimizer output the same lifetime.
  */
-const IMAGE_CACHE =
-  "public, max-age=604800, stale-while-revalidate=2592000";
+const IMAGE_CACHE = "public, max-age=604800, stale-while-revalidate=2592000";
 
 /*
  * HTML pages: serve from cache, revalidate in background. Users get instant
@@ -82,7 +80,6 @@ const IMAGE_CACHE =
  */
 const PAGE_CACHE =
   "public, max-age=0, must-revalidate, stale-while-revalidate=3600";
-
 
 /*
  * Fonts: long cache, same as Vercel's default for /_next/static.
@@ -122,10 +119,7 @@ const nextConfig: NextConfig = {
      * `search` deliberately: asset-version appends ?v=<hash> for cache
      * busting, so any query on these two prefixes must be accepted.
      */
-    localPatterns: [
-      { pathname: "/images/**" },
-      { pathname: "/logos/**" },
-    ],
+    localPatterns: [{ pathname: "/images/**" }, { pathname: "/logos/**" }],
   },
   async headers() {
     return [
@@ -149,8 +143,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value:
-              "camera=(), microphone=(), geolocation=(), payment=()",
+            value: "camera=(), microphone=(), geolocation=(), payment=()",
           },
           /*
            * The agent-discovery Link headers (RFC 8288 + llmstxt.org v2) used
@@ -188,9 +181,7 @@ const nextConfig: NextConfig = {
          from /public when someone navigates to the file directly. */
       {
         source: "/:path*.svg",
-        headers: [
-          { key: "Content-Security-Policy", value: svgCspHeader },
-        ],
+        headers: [{ key: "Content-Security-Policy", value: svgCspHeader }],
       },
     ];
   },

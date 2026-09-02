@@ -177,10 +177,10 @@ export function Navbar() {
         ref={panelRef}
         className={cn(
           "lg:hidden overflow-hidden transition-all duration-240 ease-out",
-          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-            <div className="border-t border-ink-200 bg-white/95">
+        <div className="border-t border-ink-200 bg-white/95">
           <Container className="py-5">
             <ul className="flex flex-col">
               {primaryNav.map((item, index) => (
@@ -189,7 +189,7 @@ export function Navbar() {
                   className={cn(
                     "border-b border-ink-100 last:border-b-0",
                     "animate-menu-item-in",
-                    !open && "opacity-0"
+                    !open && "opacity-0",
                   )}
                   style={{ animationDelay: open ? `${0.04 * index}s` : "0s" }}
                 >
@@ -204,10 +204,7 @@ export function Navbar() {
                     )}
                   >
                     {item.label}
-                    <ArrowUpRight
-                      className="size-4 text-ink-400"
-                      aria-hidden
-                    />
+                    <ArrowUpRight className="size-4 text-ink-400" aria-hidden />
                   </Link>
                 </li>
               ))}

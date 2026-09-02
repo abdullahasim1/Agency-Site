@@ -201,13 +201,7 @@ export function HeroVisual({ className }: HeroVisualProps) {
               fill="#ffffff"
               stroke="#dfe3ea"
             />
-            <circle
-              cx="502"
-              cy={node.y}
-              r="3.5"
-              fill="#22d3ee"
-              opacity="0.8"
-            />
+            <circle cx="502" cy={node.y} r="3.5" fill="#22d3ee" opacity="0.8" />
             <text
               x="516"
               y={node.y + 4}

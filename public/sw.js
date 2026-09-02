@@ -19,10 +19,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter(
-              (key) =>
-                key !== STATIC_CACHE && key !== PAGES_CACHE,
-            )
+            .filter((key) => key !== STATIC_CACHE && key !== PAGES_CACHE)
             .map((key) => caches.delete(key)),
         ),
       )

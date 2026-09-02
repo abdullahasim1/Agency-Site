@@ -28,8 +28,7 @@ export function ProjectHero({ project }: { project: Project }) {
         className="pointer-events-none absolute -right-48 -top-32 -z-10 size-[36rem] rounded-full bg-brand-500/[0.07] blur-[80px]"
       />
 
-<Container>
-
+      <Container>
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-12">
           <div>
             <div>
