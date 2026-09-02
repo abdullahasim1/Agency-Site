@@ -11,7 +11,7 @@ const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
   subsets: ["latin"],
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 /* Body face: built for long-form paragraphs on case-study pages. */
@@ -19,6 +19,7 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 /* Mono face: eyebrows, step numbers, metrics and technical labels. */
@@ -27,7 +28,7 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
-  preload: false,
+  preload: true,
 });
 
 /*

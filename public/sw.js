@@ -7,7 +7,7 @@ const PAGES_MAX = 20;
 // Install: skip pre-caching — fetching 5 pages on first visit adds to initial
 // load time. The cache-first strategy for static assets and stale-while-revalidate
 // for pages means they fill in naturally as the user browses.
-self.addEventListener("install", (event) => {
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 

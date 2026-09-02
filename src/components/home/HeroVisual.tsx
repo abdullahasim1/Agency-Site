@@ -31,8 +31,9 @@ const outputs = [
 export function HeroVisual({ className }: HeroVisualProps) {
   return (
     <div
+      style={{ contain: "paint layout" }}
       className={cn(
-        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card",
+        "content-near-viewport relative isolate overflow-hidden rounded-panel border border-ink-200 bg-white shadow-card transform-gpu",
         className,
       )}
     >

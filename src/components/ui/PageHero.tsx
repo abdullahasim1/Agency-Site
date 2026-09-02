@@ -34,40 +34,30 @@ export function PageHero({
 }: PageHeroProps) {
   const content = (
     <>
-      <Reveal y={12}>
+      <div>
         <Eyebrow>{eyebrow}</Eyebrow>
-      </Reveal>
+      </div>
 
-      <Reveal delay={0.08} y={14}>
-        <h1 className="type-display mt-6">{title}</h1>
-      </Reveal>
+      <h1 className="type-display mt-6">{title}</h1>
 
-      <Reveal delay={0.16} y={14}>
-        <p className="type-lead mt-5 max-w-2xl text-ink-600">{description}</p>
-      </Reveal>
+      <p className="type-lead mt-5 max-w-2xl text-ink-600">{description}</p>
 
-      {children ? (
-        <Reveal delay={0.24} y={14}>
-          <div className="mt-8">{children}</div>
-        </Reveal>
-      ) : null}
+      {children ? <div className="mt-8">{children}</div> : null}
     </>
   );
 
   /** Full-bleed under the whole hero, so it spans the visual column too. */
   const metaRow = meta?.length ? (
-    <Reveal delay={0.3} y={14}>
-      <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-4">
-        {meta.map((item) => (
-          <div key={item.label} className="bg-white/90 p-5">
-            <dt className="type-eyebrow text-ink-400">{item.label}</dt>
-            <dd className="mt-2 text-[0.9375rem] font-medium text-ink-900">
-              {item.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </Reveal>
+    <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-ink-200 bg-ink-200 sm:grid-cols-4">
+      {meta.map((item) => (
+        <div key={item.label} className="bg-white/90 p-5">
+          <dt className="type-eyebrow text-ink-400">{item.label}</dt>
+          <dd className="mt-2 text-[0.9375rem] font-medium text-ink-900">
+            {item.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
   ) : null;
 
   return (

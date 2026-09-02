@@ -32,59 +32,49 @@ export function ProjectHero({ project }: { project: Project }) {
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-12">
           <div>
-            <Reveal y={12}>
+            <div>
               <Eyebrow>{`Case Study / ${project.category}`}</Eyebrow>
-            </Reveal>
+            </div>
 
-            <Reveal delay={0.08} y={14}>
-              <p className="mt-5 font-mono text-sm font-medium uppercase tracking-[0.18em] text-brand-600">
-                {project.title} / {project.overview.timeline}
-              </p>
-            </Reveal>
+            <p className="mt-5 font-mono text-sm font-medium uppercase tracking-[0.18em] text-brand-600">
+              {project.title} / {project.overview.timeline}
+            </p>
 
-            <Reveal delay={0.14} y={14}>
-              <h1 className="type-display mt-4">{project.tagline}</h1>
-            </Reveal>
+            <h1 className="type-display mt-4">{project.tagline}</h1>
 
-            <Reveal delay={0.2} y={14}>
-              <p className="type-lead mt-6 text-ink-600">
-                {project.shortDescription}
-              </p>
-            </Reveal>
+            <p className="type-lead mt-6 text-ink-600">
+              {project.shortDescription}
+            </p>
 
-            <Reveal delay={0.26} y={14}>
-              <ul className="mt-8 space-y-3" aria-label="Key outcomes">
-                {outcomes.map((outcome) => (
-                  <li key={outcome.label} className="flex items-start gap-3">
-                    <span
-                      aria-hidden
-                      className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-100"
-                    >
-                      <CheckCircle2 className="size-4" strokeWidth={2.2} />
-                    </span>
-                    <span className="text-sm leading-relaxed text-ink-700">
-                      <strong className="font-semibold text-ink-950">
-                        {outcome.value} {outcome.label}.
-                      </strong>{" "}
-                      {outcome.detail}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            <ul className="mt-8 space-y-3" aria-label="Key outcomes">
+              {outcomes.map((outcome) => (
+                <li key={outcome.label} className="flex items-start gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-100"
+                  >
+                    <CheckCircle2 className="size-4" strokeWidth={2.2} />
+                  </span>
+                  <span className="text-sm leading-relaxed text-ink-700">
+                    <strong className="font-semibold text-ink-950">
+                      {outcome.value} {outcome.label}.
+                    </strong>{" "}
+                    {outcome.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-            <Reveal delay={0.32} y={14}>
-              <ul
-                className="mt-8 flex flex-wrap gap-2"
-                aria-label="Technologies used"
-              >
-                {project.technologies.map((tech) => (
-                  <li key={tech}>
-                    <TechBadge name={tech} tone="neutral" />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            <ul
+              className="mt-8 flex flex-wrap gap-2"
+              aria-label="Technologies used"
+            >
+              {project.technologies.map((tech) => (
+                <li key={tech}>
+                  <TechBadge name={tech} tone="neutral" />
+                </li>
+              ))}
+            </ul>
           </div>
 
           <Reveal delay={0.18} y={18} className="lg:sticky lg:top-28">

@@ -83,10 +83,6 @@ const IMAGE_CACHE =
 const PAGE_CACHE =
   "public, max-age=0, must-revalidate, stale-while-revalidate=3600";
 
-/*
- * immutable assets: content-hashed bundles can be cached forever.
- */
-const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
 
 /*
  * Fonts: long cache, same as Vercel's default for /_next/static.
@@ -175,11 +171,6 @@ const nextConfig: NextConfig = {
       {
         source: "/logos/:path*",
         headers: [{ key: "Cache-Control", value: IMAGE_CACHE }],
-      },
-      /* Content-hashed JS/CSS bundles: immutable for the lifetime of the hash. */
-      {
-        source: "/_next/static/:path*",
-        headers: [{ key: "Cache-Control", value: IMMUTABLE_CACHE }],
       },
       /* Fonts served from /public: long immutable cache. */
       {

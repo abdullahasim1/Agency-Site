@@ -87,7 +87,7 @@ export function TechMarquee({
                     "flex shrink-0 items-center gap-3 rounded-pill border px-5 py-2.5",
                     dark
                       ? "border-white/15 bg-white/[0.07] text-ink-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]"
-                      : "border-ink-200/80 bg-white/70 text-ink-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_10px_24px_-14px_rgba(23,26,38,0.25)] backdrop-blur-sm",
+                      : "border-ink-200/80 bg-white text-ink-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_12px_-6px_rgba(23,26,38,0.12)]",
                   )}
                 >
                   <TechLogo name={tech} size="sm" dark={dark} />
