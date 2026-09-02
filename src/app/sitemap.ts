@@ -4,6 +4,7 @@ import { getProjectSlugs } from "@/data/projects";
 import { getPostSlugs } from "@/data/posts";
 import { getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site";
+import { getLocationPaths } from "@/data/locations";
 
 /**
  * One timestamp for the whole sitemap, captured when the module is first
@@ -48,6 +49,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getPostSlugs(),
   ]);
 
+  const locationPaths = getLocationPaths();
+
   const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
     url: url(`/services/${slug}`),
     lastModified,
@@ -69,5 +72,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...postRoutes];
+  const locationRoutes: MetadataRoute.Sitemap = locationPaths.map(
+    ({ city, service }) => ({
+      url: url(`/locations/${city}/${service}`),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    }),
+  );
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...projectRoutes,
+    ...postRoutes,
+    ...locationRoutes,
+  ];
 }
