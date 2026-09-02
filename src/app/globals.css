@@ -729,7 +729,17 @@
 
 
 
-/* NOTE: will-change on scroll-reveal elements is intentionally omitted.
-   The browser already promotes data-reveal elements during their CSS
-   transition; a static will-change forces a compositor layer for the
-   element's entire lifetime, wasting GPU memory. */
+/* 120 FPS High Refresh Rate & GPU Compositor Optimizations */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Force hardware layer creation for smooth 120fps scrolling */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

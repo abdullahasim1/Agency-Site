@@ -49,114 +49,9 @@ type PendingEntry = {
 
 const pendingByThreshold = new Map<number, WeakMap<Element, PendingEntry>>();
 
-/* ---------------------------------------------------------------------------
-   Safety-net sweep
+const observersByThreshold = new Map<number, IntersectionObserver>();
 
-   An IntersectionObserver is the only thing that can move a node out of
-   `data-reveal="pending"`, and `pending` means `opacity: 0`. So any path where
-   the observer never delivers an entry leaves content permanently invisible —
-   a correctness bug, not a missed animation.
-
-   Two such paths exist here, both created by the per-section
-   `content-visibility: auto` on the homepage:
-
-   1. A skipped subtree has no boxes, so its descendants produce no entries at
-      all. If the reader scrolls past a section faster than the browser decides
-      to render it, its cards are never observed — not intersecting, and not
-      "scrolled past" either, because there was nothing to report.
-   2. Even when the section does render, doing so costs a layout of ~1,600px of
-      grid. On a slow device the intersection sample can land after the reader
-      has already moved on.
-
-   The sweep closes both. It runs when scrolling *stops* — not per frame — and
-   reveals anything still pending that is no longer below the fold. The listener
-   is attached only while nodes are pending and removed as soon as the set
-   empties, so a fully-revealed page pays nothing.
---------------------------------------------------------------------------- */
-
-const pendingNodes = new Set<Element>();
-let sweepListening = false;
-let sweepTimer = 0;
-
-function revealNode(node: Element): void {
-  for (const [threshold, map] of pendingByThreshold) {
-    const entry = map.get(node);
-    if (!entry) continue;
-    map.delete(node);
-    observersByThreshold.get(threshold)?.unobserve(node);
-    entry.callback();
-    return;
-  }
-}
-
-function sweepPending(): void {
-  const viewportH = window.innerHeight || document.documentElement.clientHeight;
-  const due: Element[] = [];
-
-  /* Read phase. Revealing writes an attribute, and a write between two reads
-     forces a fresh layout for the second, so collect first and write after. */
-  for (const node of pendingNodes) {
-    /* Unmounted before it was ever seen — drop it rather than measure it. */
-    if (!node.isConnected) {
-      pendingNodes.delete(node);
-      continue;
-    }
-
-    const rect = node.getBoundingClientRect();
-
-    /* A zero-height rect means an ancestor is still skipping its contents;
-       there is nothing to reveal yet and no reason to guess. */
-    if (rect.width === 0 && rect.height === 0) continue;
-
-    /* Still below the fold: the observer will handle it normally. */
-    if (rect.top >= viewportH) continue;
-
-    due.push(node);
-  }
-
-  /* Write phase. */
-  for (const node of due) {
-    pendingNodes.delete(node);
-    revealNode(node);
-  }
-
-  if (pendingNodes.size === 0) stopSweeping();
-}
-
-function onScrollEnd(): void {
-  if (sweepTimer) return;
-  /* Coalesce: one sweep per settle, on an idle-ish tick after the scroll. */
-  sweepTimer = window.setTimeout(() => {
-    sweepTimer = 0;
-    sweepPending();
-  }, 150);
-}
-
-function startSweeping(): void {
-  if (sweepListening) return;
-  sweepListening = true;
-  /* `scrollend` where available; the debounced `scroll` covers the rest and is
-     harmless where both fire, because onScrollEnd coalesces. */
-  window.addEventListener("scrollend", onScrollEnd, { passive: true });
-  window.addEventListener("scroll", onScrollEnd, { passive: true });
-  window.addEventListener("resize", onScrollEnd, { passive: true });
-}
-
-function stopSweeping(): void {
-  if (!sweepListening) return;
-  sweepListening = false;
-  window.removeEventListener("scrollend", onScrollEnd);
-  window.removeEventListener("scroll", onScrollEnd);
-  window.removeEventListener("resize", onScrollEnd);
-  if (sweepTimer) {
-    clearTimeout(sweepTimer);
-    sweepTimer = 0;
-  }
-}
-
-function getSharedObserver(
-  threshold: number,
-): IntersectionObserver {
+function getSharedObserver(threshold: number): IntersectionObserver {
   let observer = observersByThreshold.get(threshold);
   if (observer) return observer;
 
@@ -169,25 +64,7 @@ function getSharedObserver(
         const pending = map.get(entry.target);
         if (!pending) continue;
 
-        /*
-         * `isIntersecting` alone is not a sufficient trigger.
-         *
-         * An IntersectionObserver only reports what was true at a frame it
-         * actually sampled. A fast flick — or a jump straight to an anchor —
-         * can move a node from below the viewport to above it between two
-         * samples, so it is never *observed* intersecting and the callback
-         * never runs. The node then keeps `data-reveal="pending"`, which means
-         * `opacity: 0` forever: content silently missing from the page.
-         *
-         * So also fire when the node has ended up *above* the viewport. There
-         * is no entrance left to animate at that point; the goal is only to
-         * guarantee the element is never left invisible.
-         */
         const rect = entry.boundingClientRect;
-        /* A node inside a `content-visibility`-skipped section has no boxes, so
-           its rect is 0x0 at the origin — which satisfies "above the viewport"
-           while actually being far below it. Require a real box; the sweep
-           picks those up once they have one. */
         const hasBox = rect.width > 0 || rect.height > 0;
         const scrolledPast =
           hasBox &&
@@ -197,22 +74,17 @@ function getSharedObserver(
 
         if (entry.isIntersecting || scrolledPast) {
           map.delete(entry.target);
-          pendingNodes.delete(entry.target);
           observer?.unobserve(entry.target);
           pending.callback();
         }
       }
-
-      if (pendingNodes.size === 0) stopSweeping();
     },
-    { threshold },
+    { threshold, rootMargin: "250px 0px 50px 0px" },
   );
 
   observersByThreshold.set(threshold, observer);
   return observer;
 }
-
-const observersByThreshold = new Map<number, IntersectionObserver>();
 
 type ViewState = { inView: boolean; startedOffscreen: boolean };
 
@@ -277,11 +149,8 @@ function flushMeasureQueue(): void {
     }
 
     map.set(node, { callback: () => apply(REVEALED) });
-    pendingNodes.add(node);
     getSharedObserver(amount).observe(node);
   }
-
-  if (pendingNodes.size > 0) startSweeping();
 }
 
 const INITIAL: ViewState = { inView: false, startedOffscreen: false };

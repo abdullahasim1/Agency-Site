@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { useInViewOnce, usePrefersReducedMotion } from "@/lib/use-in-view";
 import { cn } from "@/lib/utils";
@@ -37,39 +37,36 @@ export function AnimatedCounter({
 }: AnimatedCounterProps) {
   const [setNode, inView] = useInViewOnce(0.5);
   const reduceMotion = usePrefersReducedMotion();
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(reduceMotion ? value : 0);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!inView) return;
-
-    if (reduceMotion) {
-      // Jump straight to the final value on the next frame — no tween, and no
-      // synchronous state update inside the effect body.
-      const settle = requestAnimationFrame(() => setDisplay(value));
-      return () => cancelAnimationFrame(settle);
-    }
+    if (!inView || reduceMotion || !textRef.current) return;
 
     let frame = 0;
     let start: number | null = null;
+    const target = textRef.current;
 
     const tick = (timestamp: number) => {
       if (start === null) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      setDisplay(value * easeOutCubic(progress));
+      const current = value * easeOutCubic(progress);
+
+      target.textContent = current.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
 
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
-      } else {
-        setDisplay(value);
       }
     };
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [inView, value, duration, reduceMotion]);
+  }, [inView, value, duration, reduceMotion, decimals]);
 
-  const formatted = display.toLocaleString("en-US", {
+  const initialFormatted = (reduceMotion ? value : 0).toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
@@ -77,7 +74,7 @@ export function AnimatedCounter({
   return (
     <span
       ref={(node: HTMLSpanElement | null) => {
-        spanRef.current = node;
+        containerRef.current = node;
         setNode(node);
       }}
       className={cn("nums-tabular", className)}
@@ -85,7 +82,7 @@ export function AnimatedCounter({
       {/* The accessible value is always the final number, never the tween. */}
       <span aria-hidden>
         {prefix}
-        {formatted}
+        <span ref={textRef}>{initialFormatted}</span>
         {suffix}
       </span>
       <span className="sr-only">
