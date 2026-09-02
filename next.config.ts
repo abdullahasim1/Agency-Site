@@ -111,6 +111,8 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840, 5120],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
     /* 1 year: matches the long-lived Cache-Control, ensuring optimized images stay cached */
     minimumCacheTTL: 31_536_000,
     /*
