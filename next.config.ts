@@ -72,8 +72,7 @@ const svgCspHeader = "default-src 'none'; style-src 'unsafe-inline'; sandbox";
  * a replaced file propagates within 7 days instead of being pinned forever.
  * `minimumCacheTTL` gives the /_next/image optimizer output the same lifetime.
  */
-const IMAGE_CACHE =
-  "public, max-age=31536000, stale-while-revalidate=31536000";
+const IMAGE_CACHE = "public, max-age=31536000, stale-while-revalidate=31536000";
 
 /*
  * HTML pages: serve from cache, revalidate in background. Users get instant

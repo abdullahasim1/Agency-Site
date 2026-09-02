@@ -121,16 +121,16 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           strategy="lazyOnload"
         />
       ) : null}
-      {/* Service worker: enables offline caching for repeat visits. */}
+      {/* Service worker: enables persistent caching for images, static assets and offline visits. */}
       <Script
         id="sw-register"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             if ('serviceWorker' in navigator) {
-              window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').catch(function() {});
-              });
+              navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                reg.update();
+              }).catch(function() {});
             }
           `,
         }}

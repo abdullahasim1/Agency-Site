@@ -28,11 +28,26 @@ export function Navbar() {
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
+  /* A 1px sentinel at the top of the page. When it leaves the viewport the
+     navbar enters its "scrolled" state. This replaces the scroll listener with
+     a zero-cost IntersectionObserver that never runs JS during a scroll frame. */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText =
+      "position:absolute;top:0;left:0;width:1px;height:12px;pointer-events:none";
+    document.body.prepend(sentinel);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      sentinel.remove();
+    };
   }, []);
 
   // Close the mobile menu whenever the route changes. Syncing to an external
@@ -176,11 +191,11 @@ export function Navbar() {
         id="mobile-menu"
         ref={panelRef}
         className={cn(
-          "lg:hidden overflow-hidden transition-all duration-240 ease-out",
-          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
+          "lg:hidden overflow-hidden transition-[grid-template-rows,opacity] duration-240 ease-out grid",
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
         )}
       >
-        <div className="border-t border-ink-200 bg-white/95">
+        <div className="min-h-0 border-t border-ink-200 bg-white/95">
           <Container className="py-5">
             <ul className="flex flex-col">
               {primaryNav.map((item, index) => (

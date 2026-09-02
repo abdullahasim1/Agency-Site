@@ -44,6 +44,7 @@ self.addEventListener("fetch", (event) => {
 
   // 1. Next.js Optimized Images (/_next/image) and all Image assets
   if (
+    request.destination === "image" ||
     url.pathname.startsWith("/_next/image") ||
     url.pathname.startsWith("/images/") ||
     url.pathname.startsWith("/logos/") ||
@@ -87,10 +88,13 @@ async function cacheFirst(request, cacheName, maxItems = 100) {
     }
     return response;
   } catch {
-    return cached || new Response("Asset Unavailable Offline", {
-      status: 503,
-      headers: { "Content-Type": "text/plain" },
-    });
+    return (
+      cached ||
+      new Response("Asset Unavailable Offline", {
+        status: 503,
+        headers: { "Content-Type": "text/plain" },
+      })
+    );
   }
 }
 

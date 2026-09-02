@@ -729,11 +729,12 @@
 
 
 
-/* 120 FPS High Refresh Rate & GPU Compositor Optimizations */
+/* GPU compositor hint — no standing will-change. The browser already promotes
+   transform-animated elements to their own layer during animation, so a static
+   will-change only pins GPU memory permanently for zero benefit. */
 .transform-gpu {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  will-change: transform;
 }
 
 /* Force hardware layer creation for smooth 120fps scrolling */
