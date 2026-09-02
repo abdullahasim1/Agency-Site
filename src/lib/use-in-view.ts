@@ -175,7 +175,11 @@ const REVEALED: ViewState = { inView: true, startedOffscreen: true };
  */
 export function useInViewOnce(
   amount = 0,
-): [setNode: (node: Element | null) => void, inView: boolean, startedOffscreen: boolean] {
+): [
+  setNode: (node: Element | null) => void,
+  inView: boolean,
+  startedOffscreen: boolean,
+] {
   const [state, setState] = useState<ViewState>(INITIAL);
   /* Guards one-time registration without putting the node in the dep list. */
   const registered = useRef<Element | null>(null);

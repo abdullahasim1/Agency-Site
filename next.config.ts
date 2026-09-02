@@ -72,7 +72,8 @@ const svgCspHeader = "default-src 'none'; style-src 'unsafe-inline'; sandbox";
  * a replaced file propagates within 7 days instead of being pinned forever.
  * `minimumCacheTTL` gives the /_next/image optimizer output the same lifetime.
  */
-const IMAGE_CACHE = "public, max-age=604800, stale-while-revalidate=2592000";
+const IMAGE_CACHE =
+  "public, max-age=31536000, stale-while-revalidate=31536000";
 
 /*
  * HTML pages: serve from cache, revalidate in background. Users get instant
@@ -111,9 +112,8 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     formats: ["image/avif", "image/webp"],
-    /* 7 days: matches the Cache-Control set on the source files below, so a
-       cached optimized variant is not discarded after the default short TTL. */
-    minimumCacheTTL: 604_800,
+    /* 1 year: matches the long-lived Cache-Control, ensuring optimized images stay cached */
+    minimumCacheTTL: 31_536_000,
     /*
      * Only first-party artwork and brand marks may be optimized. Omitting
      * `search` deliberately: asset-version appends ?v=<hash> for cache

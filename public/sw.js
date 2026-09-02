@@ -1,17 +1,17 @@
-const STATIC_CACHE = "thedevrox-static-v2";
-const PAGES_CACHE = "thedevrox-pages-v2";
+const STATIC_CACHE = "thedevrox-static-v3";
+const IMAGES_CACHE = "thedevrox-images-v3";
+const PAGES_CACHE = "thedevrox-pages-v3";
 
-// Max items in the pages cache before oldest entries are evicted.
-const PAGES_MAX = 20;
+// Max items in caches
+const PAGES_MAX = 30;
+const IMAGES_MAX = 500;
 
-// Install: skip pre-caching — fetching 5 pages on first visit adds to initial
-// load time. The cache-first strategy for static assets and stale-while-revalidate
-// for pages means they fill in naturally as the user browses.
+// Install: claim immediately
 self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
-// Activate: clean old caches (including v1 from previous versions).
+// Activate: clean old cache versions
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
@@ -19,7 +19,12 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key !== STATIC_CACHE && key !== PAGES_CACHE)
+            .filter(
+              (key) =>
+                key !== STATIC_CACHE &&
+                key !== IMAGES_CACHE &&
+                key !== PAGES_CACHE,
+            )
             .map((key) => caches.delete(key)),
         ),
       )
@@ -37,28 +42,36 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // HTML pages: stale-while-revalidate
-  if (request.headers.get("accept")?.includes("text/html")) {
-    event.respondWith(staleWhileRevalidate(request, PAGES_CACHE));
+  // 1. Next.js Optimized Images (/_next/image) and all Image assets
+  if (
+    url.pathname.startsWith("/_next/image") ||
+    url.pathname.startsWith("/images/") ||
+    url.pathname.startsWith("/logos/") ||
+    url.pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|avif|ico)$/i)
+  ) {
+    event.respondWith(cacheFirst(request, IMAGES_CACHE, IMAGES_MAX));
     return;
   }
 
-  // Static assets (JS, CSS, fonts, images): cache-first
+  // 2. Static Code Assets (JS bundles, CSS, fonts)
   if (
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.startsWith("/fonts/") ||
-    url.pathname.startsWith("/images/") ||
-    url.pathname.startsWith("/logos/") ||
-    url.pathname.match(/\.(js|css|woff2?|png|jpg|jpeg|gif|svg|webp|avif|ico)$/)
+    url.pathname.match(/\.(js|css|woff2?)$/i)
   ) {
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
+    event.respondWith(cacheFirst(request, STATIC_CACHE, 150));
+    return;
+  }
+
+  // 3. HTML pages: stale-while-revalidate
+  if (request.headers.get("accept")?.includes("text/html")) {
+    event.respondWith(staleWhileRevalidate(request, PAGES_CACHE, PAGES_MAX));
     return;
   }
 });
 
-// Cache-first: serve from cache, fallback to network.
-// Returns a proper offline page when both cache and network fail.
-async function cacheFirst(request, cacheName) {
+// Cache-first strategy: serves instantly from cache, downloads and stores on miss
+async function cacheFirst(request, cacheName, maxItems = 100) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
   if (cached) return cached;
@@ -66,25 +79,23 @@ async function cacheFirst(request, cacheName) {
   try {
     const response = await fetch(request);
     if (response.ok) {
-      // Evict oldest entries if the cache is too large.
       const keys = await cache.keys();
-      if (keys.length > 50) {
+      if (keys.length >= maxItems) {
         await cache.delete(keys[0]);
       }
       cache.put(request, response.clone());
     }
     return response;
   } catch {
-    return new Response("Offline", {
+    return cached || new Response("Asset Unavailable Offline", {
       status: 503,
       headers: { "Content-Type": "text/plain" },
     });
   }
 }
 
-// Stale-while-revalidate: serve cache, update in background.
-// Limits the pages cache to PAGES_MAX entries.
-async function staleWhileRevalidate(request, cacheName) {
+// Stale-while-revalidate: serve cache immediately, update in background
+async function staleWhileRevalidate(request, cacheName, maxItems = 30) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
 
@@ -92,11 +103,9 @@ async function staleWhileRevalidate(request, cacheName) {
     .then(async (response) => {
       if (response.ok) {
         await cache.put(request, response.clone());
-
-        // Evict oldest entries if the cache is too large.
         const keys = await cache.keys();
-        if (keys.length > PAGES_MAX) {
-          for (let i = 0; i < keys.length - PAGES_MAX; i++) {
+        if (keys.length > maxItems) {
+          for (let i = 0; i < keys.length - maxItems; i++) {
             await cache.delete(keys[i]);
           }
         }
