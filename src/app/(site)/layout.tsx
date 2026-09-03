@@ -1,12 +1,11 @@
-import Script from "next/script";
 import type { Metadata, Viewport } from "next";
-import { Suspense, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import Script from "next/script";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { RevealEngine } from "@/components/ui/RevealEngine";
-import { RouteProgressBar } from "@/components/ui/RouteProgressBar";
 import { WebMCPProvider } from "@/components/webmcp/WebMCPProvider";
 import { siteConfig, siteTitle } from "@/data/site";
 import { siteGraph } from "@/lib/seo";
@@ -97,9 +96,6 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <Suspense fallback={null}>
-        <RouteProgressBar />
-      </Suspense>
       <Navbar />
       {/* pt offsets the fixed navbar; each page controls its own top spacing. */}
       <main id="main" className="flex-1">

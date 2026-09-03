@@ -27,39 +27,21 @@ export function Navbar() {
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  /* A 1px sentinel at the top of the page. When it leaves the viewport the
-     navbar enters its "scrolled" state. This replaces the scroll listener with
-     a zero-cost IntersectionObserver that never runs JS during a scroll frame. */
+  // Sticky navbar state: passive listener with equality check so it only triggers 1 re-render when crossing 12px
   useEffect(() => {
-    // Create sentinel only once
-    if (!sentinelRef.current) {
-      sentinelRef.current = document.createElement("div");
-      sentinelRef.current.setAttribute("aria-hidden", "true");
-      sentinelRef.current.style.cssText =
-        "position:absolute;top:0;left:0;width:1px;height:12px;pointer-events:none";
-      document.body.prepend(sentinelRef.current);
-
-      observerRef.current = new IntersectionObserver(
-        ([entry]) => setScrolled(!entry.isIntersecting),
-        { threshold: 0 },
-      );
-      observerRef.current.observe(sentinelRef.current);
-    }
-
-    // Close mobile menu when pathname changes
-    setOpen(false);
-
-    return () => {
-      if (sentinelRef.current && observerRef.current) {
-        observerRef.current.disconnect();
-        sentinelRef.current.remove();
-        sentinelRef.current = null;
-        observerRef.current = null;
-      }
+    const onScroll = () => {
+      const isScrolled = window.scrollY > 12;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
     };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close mobile menu whenever the route changes
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
   }, [pathname]);
 
   // Lock body scroll and trap Escape while the mobile panel is open.
