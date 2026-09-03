@@ -1,6 +1,6 @@
+import Script from "next/script";
 import type { Metadata, Viewport } from "next";
 import { Suspense, type ReactNode } from "react";
-import Script from "next/script";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";

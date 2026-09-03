@@ -27,34 +27,39 @@ export function Navbar() {
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   /* A 1px sentinel at the top of the page. When it leaves the viewport the
      navbar enters its "scrolled" state. This replaces the scroll listener with
      a zero-cost IntersectionObserver that never runs JS during a scroll frame. */
   useEffect(() => {
-    const sentinel = document.createElement("div");
-    sentinel.setAttribute("aria-hidden", "true");
-    sentinel.style.cssText =
-      "position:absolute;top:0;left:0;width:1px;height:12px;pointer-events:none";
-    document.body.prepend(sentinel);
+    // Create sentinel only once
+    if (!sentinelRef.current) {
+      sentinelRef.current = document.createElement("div");
+      sentinelRef.current.setAttribute("aria-hidden", "true");
+      sentinelRef.current.style.cssText =
+        "position:absolute;top:0;left:0;width:1px;height:12px;pointer-events:none";
+      document.body.prepend(sentinelRef.current);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { threshold: 0 },
-    );
-    observer.observe(sentinel);
+      observerRef.current = new IntersectionObserver(
+        ([entry]) => setScrolled(!entry.isIntersecting),
+        { threshold: 0 },
+      );
+      observerRef.current.observe(sentinelRef.current);
+    }
+
+    // Close mobile menu when pathname changes
+    setOpen(false);
 
     return () => {
-      observer.disconnect();
-      sentinel.remove();
+      if (sentinelRef.current && observerRef.current) {
+        observerRef.current.disconnect();
+        sentinelRef.current.remove();
+        sentinelRef.current = null;
+        observerRef.current = null;
+      }
     };
-  }, []);
-
-  // Close the mobile menu whenever the route changes. Syncing to an external
-  // event (navigation) is exactly what this effect is for.
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setOpen(false);
   }, [pathname]);
 
   // Lock body scroll and trap Escape while the mobile panel is open.

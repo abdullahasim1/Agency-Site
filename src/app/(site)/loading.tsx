@@ -8,10 +8,10 @@ export default function Loading() {
         <div className="mx-auto max-w-3xl text-center">
           {/* Eyebrow badge skeleton */}
           <div className="mx-auto mb-4 h-6 w-32 animate-pulse rounded-full bg-ink-100 dark:bg-white/10" />
-          
+
           {/* Headline skeleton */}
           <div className="mx-auto h-12 w-3/4 animate-pulse rounded-xl bg-ink-200/80 dark:bg-white/15" />
-          
+
           {/* Subtitle skeleton */}
           <div className="mx-auto mt-4 h-5 w-1/2 animate-pulse rounded-lg bg-ink-100 dark:bg-white/10" />
         </div>
@@ -25,10 +25,10 @@ export default function Loading() {
             >
               {/* Image / Icon skeleton */}
               <div className="h-44 w-full animate-pulse rounded-lg bg-ink-100/90 dark:bg-white/10" />
-              
+
               {/* Title skeleton */}
               <div className="mt-5 h-6 w-2/3 animate-pulse rounded-md bg-ink-200/70 dark:bg-white/15" />
-              
+
               {/* Text lines skeleton */}
               <div className="mt-3 space-y-2">
                 <div className="h-4 w-full animate-pulse rounded-md bg-ink-100/80 dark:bg-white/10" />

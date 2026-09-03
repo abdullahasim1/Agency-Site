@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 
 /**
  * The one client component behind every scroll reveal on the site.
@@ -28,59 +28,27 @@ import { useEffect } from "react";
 const PENDING = "pending";
 const REVEALED = "in";
 
-const seen = new WeakSet<Element>();
-const pending = new Set<Element>();
-
-let observer: IntersectionObserver | null = null;
-
-function reveal(node: Element): void {
-  pending.delete(node);
-  observer?.unobserve(node);
+function reveal(
+  node: Element,
+  setPending: (value: (prev: Set<Element>) => Set<Element>) => void,
+): void {
+  setPending((prev) => {
+    const newPending = new Set(prev);
+    newPending.delete(node);
+    return newPending;
+  });
   node.setAttribute("data-reveal", REVEALED);
-}
-
-function getObserver(): IntersectionObserver {
-  if (observer) return observer;
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!pending.has(entry.target)) continue;
-
-        if (entry.isIntersecting) {
-          reveal(entry.target);
-        } else {
-          // Asynchronously calculated bounding box provided by browser compositor
-          const rect = entry.boundingClientRect;
-          const hasBox = rect.width > 0 || rect.height > 0;
-          const scrolledPast =
-            hasBox &&
-            (entry.rootBounds
-              ? rect.bottom <= entry.rootBounds.top
-              : rect.bottom <= 0);
-
-          if (scrolledPast) {
-            reveal(entry.target);
-          } else {
-            entry.target.setAttribute("data-reveal", PENDING);
-          }
-        }
-      }
-    },
-    {
-      rootMargin: "250px 0px 50px 0px",
-      threshold: 0,
-    },
-  );
-
-  return observer;
 }
 
 /**
  * Non-blocking scan: registers elements with the IntersectionObserver
  * without calling getBoundingClientRect() on the main thread.
  */
-function scan(): void {
+function scan(
+  seen: WeakSet<Element>,
+  setPending: (value: (prev: Set<Element>) => Set<Element>) => void,
+  observerRef: React.RefObject<IntersectionObserver | null>,
+): void {
   if (typeof window === "undefined") return;
 
   const fresh: Element[] = [];
@@ -92,10 +60,16 @@ function scan(): void {
 
   if (fresh.length === 0) return;
 
-  const obs = getObserver();
+  const observer = observerRef.current;
+  if (!observer) return;
+
   for (const node of fresh) {
-    pending.add(node);
-    obs.observe(node);
+    setPending((prev) => {
+      const newPending = new Set(prev);
+      newPending.add(node);
+      return newPending;
+    });
+    observer.observe(node);
   }
 }
 
@@ -104,9 +78,69 @@ function scan(): void {
  */
 export function RevealEngine() {
   const pathname = usePathname();
+  const [seen, setSeen] = useState<WeakSet<Element>>(() => new WeakSet());
+  const [pending, setPending] = useState<Set<Element>>(() => new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const previousPathnameRef = useRef<string>(pathname);
 
+  // Create observer once and reuse
   useEffect(() => {
-    // Schedule during idle callback so click handling and navigation INP is 0ms
+    if (!observerRef.current) {
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!pending.has(entry.target)) return;
+
+            if (entry.isIntersecting) {
+              reveal(entry.target, setPending);
+              observerRef.current?.unobserve(entry.target);
+            } else {
+              // Asynchronously calculated bounding box provided by browser compositor
+              const rect = entry.boundingClientRect;
+              const hasBox = rect.width > 0 || rect.height > 0;
+              const scrolledPast =
+                hasBox &&
+                (entry.rootBounds
+                  ? rect.bottom <= entry.rootBounds.top
+                  : rect.bottom <= 0);
+
+              if (scrolledPast) {
+                reveal(entry.target, setPending);
+                observerRef.current?.unobserve(entry.target);
+              } else {
+                entry.target.setAttribute("data-reveal", PENDING);
+              }
+            }
+          }
+        },
+        {
+          rootMargin: "250px 0px 50px 0px",
+          threshold: 0,
+        },
+      );
+    }
+
+    return () => {
+      // Cleanup observer on unmount
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+    };
+  }, []);
+
+  // Reset state when pathname changes to prevent memory leaks
+  useEffect(() => {
+    if (previousPathnameRef.current !== pathname) {
+      previousPathnameRef.current = pathname;
+      // Schedule state reset for next render to avoid synchronous state updates
+      setSeen(new WeakSet());
+      setPending(new Set());
+    }
+  }, [pathname]);
+
+  // Schedule scanning during idle callback
+  useEffect(() => {
     const schedule =
       typeof window.requestIdleCallback === "function"
         ? window.requestIdleCallback
@@ -118,18 +152,25 @@ export function RevealEngine() {
         : window.clearTimeout;
 
     const handle = schedule(() => {
-      scan();
+      scan(seen, setPending, observerRef);
     });
 
     return () => {
       cancel(handle);
-      for (const node of pending) {
-        if (node.isConnected) continue;
-        pending.delete(node);
-        observer?.unobserve(node);
-      }
+      // Clean up pending nodes that are no longer connected
+      // Use state updater function for safe cleanup
+      setPending((prev) => {
+        const newPending = new Set(prev);
+        for (const node of newPending) {
+          if (!node.isConnected) {
+            newPending.delete(node);
+            observerRef.current?.unobserve(node);
+          }
+        }
+        return newPending;
+      });
     };
-  }, [pathname]);
+  }, [pathname, seen, pending, observerRef]);
 
   return null;
 }

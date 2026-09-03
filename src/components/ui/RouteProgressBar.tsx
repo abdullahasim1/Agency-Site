@@ -12,6 +12,10 @@ export function RouteProgressBar() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [, startTransition] = useTransition();
+  const [cachedUrls, setCachedUrls] = useState({
+    currentUrl: new URL(window.location.href),
+    origin: window.location.origin,
+  });
 
   // Reset loading bar whenever navigation completes
   useEffect(() => {
@@ -39,8 +43,8 @@ export function RouteProgressBar() {
       }
 
       try {
-        const targetUrl = new URL(anchor.href, window.location.origin);
-        const currentUrl = new URL(window.location.href);
+        const targetUrl = new URL(anchor.href, cachedUrls.origin);
+        const currentUrl = cachedUrls.currentUrl;
 
         // Only trigger for internal page transitions to different URLs
         if (
@@ -57,7 +61,10 @@ export function RouteProgressBar() {
       }
     };
 
-    document.addEventListener("click", handleClick, { capture: true, passive: true });
+    document.addEventListener("click", handleClick, {
+      capture: true,
+      passive: true,
+    });
     return () => {
       document.removeEventListener("click", handleClick, { capture: true });
     };
