@@ -18,7 +18,7 @@ export function Hero() {
           drift stays on the compositor and never re-renders React. */}
       <Parallax
         speed={0.15}
-        className="absolute -left-48 -top-40 -z-10 size-[42rem]"
+        className="absolute -left-48 -top-40 -z-10 size-168"
       >
         <div
           aria-hidden
@@ -27,16 +27,16 @@ export function Hero() {
       </Parallax>
       <Parallax
         speed={0.25}
-        className="absolute -right-56 top-24 -z-10 size-[38rem]"
+        className="absolute -right-56 top-24 -z-10 size-152"
       >
         <div
           aria-hidden
-          className="size-full rounded-full bg-accent-violet/[0.06] blur-[80px]"
+          className="size-full rounded-full bg-accent-violet/6 blur-[80px]"
         />
       </Parallax>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[38rem] bg-blueprint mask-fade-b opacity-60"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-152 bg-blueprint mask-fade-b opacity-60"
       />
 
       <Container>
@@ -49,7 +49,7 @@ export function Hero() {
             <h1 className="type-display mt-6">
               {homeCopy.heroHeadline}{" "}
               <span className="relative">
-                <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-cyan bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-brand-600 via-brand-500 to-accent-cyan bg-clip-text text-transparent">
                   {homeCopy.heroHeadlineAccent}
                 </span>
               </span>
@@ -65,7 +65,7 @@ export function Hero() {
                 size="lg"
                 trailingIcon={
                   <ArrowUpRight
-                    className="size-[1.125rem] transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                    className="size-4.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                     aria-hidden
                   />
                 }
@@ -78,7 +78,7 @@ export function Hero() {
                 variant="secondary"
                 trailingIcon={
                   <ArrowRight
-                    className="size-[1.125rem] transition-transform duration-200 group-hover/btn:translate-x-0.5"
+                    className="size-4.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
                     aria-hidden
                   />
                 }
