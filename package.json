@@ -40,7 +40,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/dompurify": "^3.0.5",
     "@types/jsdom": "^30.0.0",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
