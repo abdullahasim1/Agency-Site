@@ -21,7 +21,13 @@
   "objectives": [],
   "closing": {},
   "results": [],
-  "gallery": [],
+  "gallery": [
+    {
+      "src": "/images/projects/predictive-pump-monitoring-n8n-workflow/gallery/0/src.png",
+      "alt": "n8n workflow automation",
+      "caption": "Predictive Pump Monitoring n8n Workflow"
+    }
+  ],
   "video": {},
   "workflow": [],
   "workflowLayout": "linear",
