@@ -1,0 +1,78 @@
+/* ---------------------------------------------------------------------------
+   Dark sections are opt-in via data-theme="dark" on a wrapper element.
+   This deliberately replaces the default prefers-color-scheme behaviour: the
+   design uses fixed light and dark bands, not a user-switchable theme.
+   Usage:  <section data-theme="dark" class="bg-ink-950"> ... dark:* applies
+--------------------------------------------------------------------------- */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ===========================================================================
+   DESIGN TOKENS
+   Single source of truth for colour, type, radius, shadow and container width.
+   =========================================================================== */
+@theme {
+  /* ---- Typography families ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-instrument-sans), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+
+  /* ---- Neutral ramp (cool slate) ---- */
+  --color-ink-25: #fbfcfd;
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eef0f4;
+  --color-ink-200: #dfe3ea;
+  --color-ink-300: #c5ccd9;
+  --color-ink-400: #98a1b3;
+  --color-ink-500: #6b7488;
+  --color-ink-600: #4d5568;
+  --color-ink-700: #39404f;
+  --color-ink-800: #232936;
+  --color-ink-900: #141922;
+  --color-ink-950: #0a0d14;
+
+  /* ---- Brand (primary blue) ---- */
+  --color-brand-50: #eef3ff;
+  --color-brand-100: #dde7ff;
+  --color-brand-200: #bacdff;
+  --color-brand-300: #8faaff;
+  --color-brand-400: #6384ff;
+  --color-brand-500: #3d63ff;
+  --color-brand-600: #2947e6;
+  --color-brand-700: #1f37b8;
+  --color-brand-800: #1b2d8f;
+  --color-brand-900: #182670;
+
+  /* ---- Accents (used sparingly, never as a full background) ---- */
+  --color-accent-violet: #8b5cf6;
+  --color-accent-violet-soft: #a78bfa;
+  --color-accent-cyan: #22d3ee;
+  --color-accent-cyan-soft: #67e8f9;
+
+  /* ---- Radii ---- */
+  --radius-card: 1.125rem;
+  --radius-panel: 1.5rem;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-soft: 0 1px 2px rgb(10 13 20 / 0.04),
+    0 8px 24px -10px rgb(10 13 20 / 0.08);
+  --shadow-card: 0 1px 3px rgb(10 13 20 / 0.05),
+    0 14px 34px -14px rgb(10 13 20 / 0.12);
+  --shadow-lift: 0 2px 6px rgb(10 13 20 / 0.06),
+    0 28px 56px -20px rgb(10 13 20 / 0.2);
+
+  /* ---- Layout & 5K Ultra-HD Breakpoints ---- */
+  --container-page: 80rem;
+  --container-prose: 46rem;
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
+  --breakpoint-5xl: 240rem;
+  --breakpoint-5k: 320rem;
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}

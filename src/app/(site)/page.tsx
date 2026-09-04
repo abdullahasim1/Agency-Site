@@ -72,25 +72,25 @@ export default function HomePage() {
       <div className="content-below-fold [--cv-est:980px] lg:[--cv-est:260px]">
         <Stats />
       </div>
-      <div className="content-below-fold [--cv-est:3480px] lg:[--cv-est:1660px]">
+      <div className="content-below-fold [--cv-est:1800px] lg:[--cv-est:1200px]">
         <Services />
       </div>
       <div className="content-below-fold [--cv-est:1190px] lg:[--cv-est:590px]">
         <OurTeam tone="light" />
       </div>
-      <div className="content-below-fold [--cv-est:3810px] lg:[--cv-est:2410px]">
+      <div className="content-below-fold [--cv-est:2400px] lg:[--cv-est:1400px]">
         <Technologies />
       </div>
-      <div className="content-below-fold [--cv-est:1880px] lg:[--cv-est:900px]">
+      <div className="content-below-fold [--cv-est:1400px] lg:[--cv-est:800px]">
         <Process />
       </div>
-      <div className="content-below-fold [--cv-est:3930px] lg:[--cv-est:1640px]">
+      <div className="content-below-fold [--cv-est:2200px] lg:[--cv-est:1200px]">
         <FeaturedProjects />
       </div>
-      <div className="content-below-fold [--cv-est:2000px] lg:[--cv-est:1080px]">
+      <div className="content-below-fold [--cv-est:1200px] lg:[--cv-est:800px]">
         <WhyChooseUs />
       </div>
-      <div className="content-below-fold [--cv-est:1760px] lg:[--cv-est:1150px]">
+      <div className="content-below-fold [--cv-est:1200px] lg:[--cv-est:800px]">
         <Testimonials />
       </div>
       <div className="content-below-fold [--cv-est:650px] lg:[--cv-est:720px]">

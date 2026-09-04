@@ -1,0 +1,145 @@
+/* ===========================================================================
+   SURFACE / DECORATION UTILITIES
+   =========================================================================== */
+
+/* Blueprint grid. Signals "engineering" without particles or glow. */
+@utility bg-blueprint {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-ink-950) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-ink-950) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  background-position: center;
+}
+
+@utility bg-blueprint-dark {
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255 / 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center;
+}
+
+@utility mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+@utility mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+/* ===========================================================================
+   LAYOUT UTILITIES
+   =========================================================================== */
+
+/* Vertical rhythm: one knob for every section's padding. */
+@utility section-y {
+  padding-block: clamp(4rem, 2.5rem + 6vw, 7.5rem);
+}
+
+@utility section-y-sm {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+}
+
+/* ===========================================================================
+   KEYFRAME-DRIVEN PRIMITIVES
+   Kept in CSS (not JS) so these cost zero client-side JavaScript.
+   =========================================================================== */
+@layer components {
+  @keyframes marquee-x {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee-x 28s linear infinite;
+  }
+
+  .marquee-track:hover .animate-marquee,
+  .marquee-track:focus-within .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Glass sheen sweeping across dark marquee strips. */
+  @keyframes sheen-sweep {
+    0% {
+      transform: translateX(-130%) skewX(-18deg);
+    }
+    45% {
+      transform: translateX(430%) skewX(-18deg);
+    }
+    100% {
+      transform: translateX(430%) skewX(-18deg);
+    }
+  }
+
+  .animate-sheen {
+    animation: sheen-sweep 8s var(--ease-in-out-soft) infinite;
+  }
+
+
+  @keyframes dash-flow {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+
+  .animate-dash {
+    animation: dash-flow 1.6s linear infinite;
+  }
+
+  @keyframes pulse-node {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.35);
+    }
+  }
+
+  .animate-node {
+    animation: pulse-node 3.2s var(--ease-in-out-soft) infinite;
+    transform-origin: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-sheen,
+    .animate-dash,
+    .animate-node {
+      animation: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+}

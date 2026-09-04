@@ -1,0 +1,83 @@
+/* ---------------------------------------------------------------------------
+   Scroll-reveal engine.
+
+   Server-rendered. Every Reveal/StaggerItem is a plain server component that
+   ships markup carrying an empty data-reveal — none of them is a client
+   component, so React never hydrates them and their children are never
+   serialised into the RSC flight payload. That is what makes 56 Reveals and 31
+   StaggerItems affordable: they used to be 87 client boundaries, each one
+   pushing its whole subtree into the flight stream and then hydrating it.
+
+   An empty value means "candidate, not yet decided", and it is *visible*. One
+   client component (RevealEngine) measures every candidate in a single batch
+   after mount and sets "pending" only on the ones that start below the fold,
+   then flips them to "in" as they arrive. Nothing above the fold is ever
+   hidden, so this cannot delay LCP or blank out content while the bundle
+   loads, and a page whose JavaScript never runs at all just stays visible.
+
+   Two values rather than removing the attribute on reveal, because dropping it
+   would also drop the transition below and the reveal would snap instead of
+   fade.
+
+   Only `opacity` and `transform` are animated; both are compositor-only
+   properties that never trigger layout or paint.
+   ------------------------------------------------------------------------- */
+[data-reveal] {
+  transition:
+    opacity 0.55s var(--ease-out-soft),
+    transform 0.55s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 16px));
+}
+
+/* Stagger delay from the child's own position, so nothing has to measure
+   sibling indexes at runtime. Capped at eight steps: past that the last cards
+   in a long grid wait long enough to read as broken rather than sequenced. */
+[data-stagger] > *:nth-child(1) {
+  --reveal-step: 0;
+}
+[data-stagger] > *:nth-child(2) {
+  --reveal-step: 1;
+}
+[data-stagger] > *:nth-child(3) {
+  --reveal-step: 2;
+}
+[data-stagger] > *:nth-child(4) {
+  --reveal-step: 3;
+}
+[data-stagger] > *:nth-child(5) {
+  --reveal-step: 4;
+}
+[data-stagger] > *:nth-child(6) {
+  --reveal-step: 5;
+}
+[data-stagger] > *:nth-child(7) {
+  --reveal-step: 6;
+}
+[data-stagger] > *:nth-child(8) {
+  --reveal-step: 7;
+}
+[data-stagger] > *:nth-child(n + 9) {
+  --reveal-step: 8;
+}
+
+[data-stagger] > [data-reveal] {
+  --reveal-delay: calc(
+    var(--stagger-delay, 0s) + var(--reveal-step, 0) * var(--stagger-step, 0.07s)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal="pending"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal] {
+    transition: none;
+  }
+}

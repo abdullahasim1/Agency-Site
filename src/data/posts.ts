@@ -1,6 +1,15 @@
 import { marked } from "marked";
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
 
 import { reader } from "./reader";
+
+/**
+ * DOMPurify needs a DOM. In Node 22 we can use the native JSDOM environment
+ * for server-side sanitization — the same instance is reused across all posts.
+ */
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 
 /**
  * Blog post content.
@@ -50,10 +59,11 @@ interface PostEntry {
   authorUrl?: string;
 }
 
-/** Markdown → HTML, once per build. Headings stay one level under the H1. */
+/** Markdown → HTML, once per build, sanitized against XSS. */
 const renderMarkdown = (markdown: string): string => {
   marked.setOptions({ gfm: true, breaks: false });
-  return marked.parse(markdown, { async: false }) as string;
+  const rawHtml = marked.parse(markdown, { async: false }) as string;
+  return purify.sanitize(rawHtml);
 };
 
 /** Reading time at 200 wpm, rounded up to whole minutes (minimum 1). */

@@ -1,0 +1,81 @@
+/* ===========================================================================
+   BASE
+   =========================================================================== */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Anchor targets clear the sticky navbar. */
+    scroll-padding-top: 6rem;
+    color-scheme: light;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-950);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, consistent keyboard focus everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  [data-theme="dark"] :focus-visible {
+    outline-color: var(--color-brand-300);
+  }
+
+  ::selection {
+    background-color: color-mix(
+      in oklab,
+      var(--color-brand-500) 22%,
+      transparent
+    );
+    color: var(--color-ink-950);
+  }
+
+  /* Keep the page from shifting when a scrollbar appears/disappears. */
+  @supports (scrollbar-gutter: stable) {
+    html {
+      scrollbar-gutter: stable;
+    }
+  }
+}
+
+/* ===========================================================================
+   REDUCED MOTION
+   Neutralises transitions/animations globally, including Motion's inline
+   styles, for users who ask for it.
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

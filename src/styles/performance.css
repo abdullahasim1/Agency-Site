@@ -1,0 +1,81 @@
+/* ---------------------------------------------------------------------------
+   Content-visibility: below-fold sections render lazily.
+
+   Tells the browser to skip layout, paint *and* animation for off-screen
+   sections until they approach the viewport. Combined with
+   contain-intrinsic-size this avoids layout shifts while cutting initial
+   render work — and it is what stops the infinite CSS animations
+   (.animate-dash, .animate-node, .animate-marquee) in off-screen sections
+   from costing a repaint per frame.
+
+   Apply this to ONE SECTION AT A TIME. Wrapping several sections in a single
+   .content-below-fold container defeats the point: the whole group becomes one
+   skip-unit, so the browser has to lay out and paint every section in it in a
+   single task the moment any part of it nears the viewport — which is a worse
+   long task than not using content-visibility at all.
+
+   `--cv-est` is the placeholder height used *before* the section has ever been
+   rendered. It matters more than it looks: while a section is unrendered the
+   browser reserves exactly this much room, so if the estimate is short the
+   document grows as each section resolves, the scrollbar rescales and content
+   below jumps under the reader's cursor. Eleven sections at the old flat 800px
+   default stood in for ~10,600px of real content and the page grew ~1,500px
+   over a single scroll-through. Pass a per-section value; the 800px fallback
+   only applies if none is given.
+
+   The `auto` keyword means the reserved height switches to the section's real
+   measured height once it has been rendered once, so the estimate only ever
+   affects the reader's first pass down the page.
+
+   Applied at all viewport widths — mobile users benefit just as much from
+   skipped off-screen rendering.
+   ------------------------------------------------------------------------- */
+.content-below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cv-est, 800px);
+}
+
+/* ---------------------------------------------------------------------------
+   Same mechanism, for a block that starts *inside* the viewport.
+
+   The hero diagram is visible on load, so it renders normally — but it holds
+   eight `stroke-dashoffset` animations, which the compositor cannot take over,
+   so each one repaints on the main thread every frame for as long as it runs.
+   Lighthouse named these eight paths as the page's non-composited animations.
+   Without containment they kept repainting after the user had scrolled well
+   past them; with it the browser stops rendering the block once it leaves the
+   viewport, and the animations go quiet with it.
+
+   `contain-intrinsic-size: auto <estimate>` means "use the size you last
+   measured, and fall back to the estimate before the first measurement" — and
+   the first measurement happens during the initial render here, because the
+   element is on screen. So the estimate is never actually used and the block
+   cannot shift the layout.
+   ------------------------------------------------------------------------- */
+.content-near-viewport {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+/* GPU compositor hint — no standing will-change. The browser already promotes
+   transform-animated elements to their own layer during animation, so a static
+   will-change only pins GPU memory permanently for zero benefit. */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Force hardware layer creation for smooth 120fps scrolling */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Smooth scroll performance optimizations */
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
