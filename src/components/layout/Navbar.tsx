@@ -94,6 +94,7 @@ export function Navbar() {
         >
           <Link
             href="/"
+            onClick={() => setOpen(false)}
             className="-mx-1.5 flex shrink-0 items-center gap-2.5 rounded-lg px-1.5 py-2 lg:py-0"
             aria-label={`${siteConfig.name} — home`}
           >
@@ -177,9 +178,12 @@ export function Navbar() {
       <div
         id="mobile-menu"
         ref={panelRef}
+        aria-hidden={!open}
         className={cn(
           "lg:hidden overflow-hidden transition-[grid-template-rows,opacity] duration-240 ease-out grid",
-          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+          open
+            ? "grid-rows-[1fr] opacity-100 pointer-events-auto visible"
+            : "grid-rows-[0fr] opacity-0 pointer-events-none invisible",
         )}
       >
         <div className="min-h-0 border-t border-ink-200 bg-white/95">
@@ -197,6 +201,7 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href}
+                    onClick={() => setOpen(false)}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
                       "flex items-center justify-between py-3.5 text-base font-medium transition-colors",
@@ -214,6 +219,7 @@ export function Navbar() {
 
             <Button
               href={PRIMARY_CTA.href}
+              onClick={() => setOpen(false)}
               size="lg"
               fullWidth
               className="mt-5"

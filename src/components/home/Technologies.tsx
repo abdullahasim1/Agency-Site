@@ -91,13 +91,19 @@ export function Technologies() {
       className="section-y relative isolate overflow-hidden bg-ink-950"
     >
       <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-50" />
-      <Parallax speed={0.2} className="absolute -right-40 top-0 size-[34rem]">
+      <Parallax
+        speed={0.2}
+        className="pointer-events-none absolute -right-40 top-0 size-[34rem]"
+      >
         <div
           aria-hidden
           className="size-full rounded-full bg-brand-600/10 blur-[80px]"
         />
       </Parallax>
-      <Parallax speed={0.15} className="absolute -left-40 bottom-0 size-[30rem]">
+      <Parallax
+        speed={0.15}
+        className="pointer-events-none absolute -left-40 bottom-0 size-[30rem]"
+      >
         <div
           aria-hidden
           className="size-full rounded-full bg-accent-violet/10 blur-[80px]"

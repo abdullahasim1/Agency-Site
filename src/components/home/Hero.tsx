@@ -18,7 +18,7 @@ export function Hero() {
           drift stays on the compositor and never re-renders React. */}
       <Parallax
         speed={0.15}
-        className="absolute -left-48 -top-40 -z-10 size-168"
+        className="pointer-events-none absolute -left-48 -top-40 -z-10 size-168"
       >
         <div
           aria-hidden
@@ -27,7 +27,7 @@ export function Hero() {
       </Parallax>
       <Parallax
         speed={0.25}
-        className="absolute -right-56 top-24 -z-10 size-152"
+        className="pointer-events-none absolute -right-56 top-24 -z-10 size-152"
       >
         <div
           aria-hidden
