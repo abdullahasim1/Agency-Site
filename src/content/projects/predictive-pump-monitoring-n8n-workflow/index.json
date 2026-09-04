@@ -6,7 +6,8 @@
   "categories": [],
   "listing": {},
   "cover": {
-    "image": "/images/projects/predictive-pump-monitoring-n8n-workflow/cover/image.png"
+    "image": "/images/projects/predictive-pump-monitoring-n8n-workflow/cover/image.png",
+    "imageAlt": "n8n workflow , automation , n8n , ai"
   },
   "technologies": [],
   "techStack": [],
