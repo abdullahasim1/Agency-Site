@@ -107,6 +107,12 @@ export function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={(e) => {
+                    if (pathname === item.href) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
                     "relative rounded-lg px-3.5 py-2 text-[0.9375rem] font-medium transition-colors duration-200",
@@ -201,7 +207,13 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => {
+                      setOpen(false);
+                      if (pathname === item.href) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
                       "flex items-center justify-between py-3.5 text-base font-medium transition-colors",
