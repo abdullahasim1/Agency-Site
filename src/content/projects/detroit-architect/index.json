@@ -1,0 +1,202 @@
+{
+  "title": "Detroit Architect",
+  "basics": {
+    "id": "detroit-architect",
+    "tagline": "A conversational AI assistant for Detroit architecture"
+  },
+  "category": "AI / Conversational AI / Architecture",
+  "categories": ["AI", "Web Apps", "Automation"],
+  "listing": {
+    "shortDescription": "A custom architecture practice website with an embedded AI chatbot built around the OpenAI GPT API and delivered through Chatbase.",
+    "fullDescription": "Detroit Architect is a focused digital presence for a licensed Detroit architecture practice, with a conversational AI assistant at the centre of the experience. The chatbot combines the OpenAI GPT API with a conversational delivery layer through Chatbase and Voiceflow-style flows, helping visitors understand services, ask project questions, and move naturally toward a consultation."
+  },
+  "cover": {
+    "image": "/images/projects/detroit-architect/cover.png",
+    "imageAlt": "Chatbot platform ecosystem covering Chatbase, Voiceflow, Landbot, ManyChat, Tidio, Intercom, Drift and related conversational AI tools"
+  },
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "OpenAI GPT API",
+    "Chatbase",
+    "Voiceflow",
+    "Tailwind CSS"
+  ],
+  "techStack": [
+    {
+      "group": "Website",
+      "items": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "group": "AI chatbot",
+      "items": [
+        "OpenAI GPT API",
+        "Chatbase chatbot embed",
+        "Voiceflow conversation design",
+        "Prompt and response orchestration"
+      ]
+    },
+    {
+      "group": "Experience",
+      "items": [
+        "Responsive architecture portfolio",
+        "Consultation call-to-actions",
+        "Embedded conversational interface"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Embedded AI chatbot",
+      "description": "A Chatbase-powered assistant is embedded directly into the architecture website so visitors can get help without leaving the page.",
+      "icon": "Bot"
+    },
+    {
+      "title": "OpenAI GPT intelligence",
+      "description": "The OpenAI GPT API provides the language intelligence for answering questions about architecture services, projects, and consultations.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Voiceflow conversation design",
+      "description": "Voiceflow-style conversational flows shape the assistant's prompts, routing, tone, and handoff points for a more useful visitor experience.",
+      "icon": "Workflow"
+    },
+    {
+      "title": "Practice-aware answers",
+      "description": "The chatbot experience is tailored around Detroit Architect's residential, commercial, public, and renovation services.",
+      "icon": "Building2"
+    },
+    {
+      "title": "Consultation journey",
+      "description": "Clear contact and booking paths turn useful chatbot conversations into the next step: starting a project consultation.",
+      "icon": "MessagesSquare"
+    },
+    {
+      "title": "Responsive portfolio site",
+      "description": "The surrounding website presents the practice, projects, credentials, and contact flow across desktop and mobile screens.",
+      "icon": "Smartphone"
+    }
+  ],
+  "challenge": {
+    "summary": "The practice needed more than a polished architecture portfolio. Visitors also needed an immediate way to ask questions, understand the firm's capabilities, and decide whether to begin a conversation.",
+    "points": [
+      {
+        "icon": "MessagesSquare",
+        "title": "Visitors need immediate answers",
+        "description": "Prospective clients may arrive with early questions about services, project types, process, or fit before they are ready to call."
+      },
+      {
+        "icon": "Bot",
+        "title": "The chatbot had to feel intentional",
+        "description": "A generic support widget would feel disconnected from a considered architecture practice and its consultation-led journey."
+      },
+      {
+        "icon": "Route",
+        "title": "Conversation needs a useful destination",
+        "description": "The experience needed to guide visitors from an open-ended question toward relevant service information and a consultation enquiry."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "We built a deliberately focused architecture website around an AI-first visitor experience: OpenAI GPT API for natural language responses, Voiceflow for conversation structure, and Chatbase for the embedded chatbot delivery layer.",
+    "points": [
+      {
+        "icon": "BrainCircuit",
+        "title": "OpenAI GPT API as the intelligence layer",
+        "description": "GPT handles natural-language understanding and response generation, allowing the assistant to answer questions in a conversational way."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Voiceflow for conversation logic",
+        "description": "Conversation flows define the assistant's tone, prompts, branches, and handoffs so the chatbot stays aligned with the practice's goals."
+      },
+      {
+        "icon": "PanelsTopLeft",
+        "title": "Chatbase for website delivery",
+        "description": "Chatbase provides the embeddable chatbot layer, making the assistant available inside the public website through a lightweight script integration."
+      },
+      {
+        "icon": "Route",
+        "title": "Chat-to-consultation handoff",
+        "description": "The chatbot sits alongside clear contact paths, helping turn an exploratory visitor question into a qualified consultation opportunity."
+      }
+    ]
+  },
+  "objectives": [
+    "Make an AI chatbot the primary interactive touchpoint on the architecture website",
+    "Use the OpenAI GPT API to provide natural, useful answers for prospective clients",
+    "Structure the conversational experience through Voiceflow-style flows and prompts",
+    "Deliver the chatbot through Chatbase as an embedded website experience",
+    "Connect visitor questions to Detroit Architect's services and consultation journey"
+  ],
+  "closing": {
+    "clientOverview": "Detroit Architect is a licensed architecture practice serving clients from Highland Park and across Detroit, with work spanning custom homes, additions, multi-unit residential, commercial, public, institutional, renovation, and industrial projects. The website needed to communicate that breadth while giving prospective clients a more direct way to start a conversation.",
+    "conclusion": "The result is a sharp architecture portfolio with a conversational layer that does real work. OpenAI GPT API supplies the intelligence, Voiceflow shapes the conversation, and Chatbase puts the chatbot directly in front of visitors, making the website feel more responsive while preserving a clear path to consultation."
+  },
+  "results": [
+    {
+      "value": "1",
+      "label": "AI chatbot touchpoint",
+      "detail": "One embedded assistant gives website visitors an immediate conversational entry point to the practice."
+    },
+    {
+      "value": "3",
+      "label": "Core AI service layers",
+      "detail": "OpenAI GPT API, Voiceflow conversation design, and Chatbase delivery work together as one chatbot experience."
+    },
+    {
+      "value": "6",
+      "label": "Practice specialties covered",
+      "detail": "The website presents residential, multi-unit, commercial, public, renovation, and industrial architecture services."
+    }
+  ],
+  "gallery": [],
+  "video": {},
+  "workflow": [
+    {
+      "id": "chat-1",
+      "title": "Visitor arrives",
+      "description": "A prospective client explores the architecture practice and opens the embedded assistant.",
+      "tag": "DISCOVER"
+    },
+    {
+      "id": "chat-2",
+      "title": "Question understood",
+      "description": "OpenAI GPT API interprets the visitor's question and prepares a natural response.",
+      "tag": "UNDERSTAND"
+    },
+    {
+      "id": "chat-3",
+      "title": "Conversation guided",
+      "description": "Voiceflow conversation logic keeps the exchange aligned with services, project fit, and next steps.",
+      "tag": "GUIDE"
+    },
+    {
+      "id": "chat-4",
+      "title": "Consultation begins",
+      "description": "Chatbase keeps the assistant available on the website while the visitor moves toward contact or booking.",
+      "tag": "CONNECT"
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Detroit Architect",
+    "industry": "Architecture / Professional Services",
+    "timeline": "Focused website build",
+    "year": "2026",
+    "platforms": ["Responsive web application", "Embedded AI chatbot"],
+    "services": [
+      "AI Chatbot Development",
+      "OpenAI GPT API Integration",
+      "Voiceflow Conversation Design",
+      "Chatbase Integration",
+      "Conversational AI Development",
+      "Web Development"
+    ],
+    "team": "Web and AI implementation team"
+  },
+  "featured": false,
+  "accent": "brand",
+  "order": 2
+}
