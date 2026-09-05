@@ -1,0 +1,197 @@
+{
+  "title": "GAV & Associates",
+  "basics": {
+    "id": "claude-rag-chatbot",
+    "tagline": "A grounded Claude-powered RAG chatbot"
+  },
+  "category": "AI / Conversational AI",
+  "categories": ["AI", "SaaS"],
+  "listing": {
+    "shortDescription": "A knowledge-aware chatbot that combines Claude by Anthropic, LangChain orchestration, retrieval-augmented generation, and Pinecone vector search to deliver grounded answers from a private knowledge base.",
+    "fullDescription": "This chatbot project turns a private knowledge base into a useful conversational interface. Claude (Anthropic) handles the response generation, LangChain coordinates retrieval and prompt flow, RAG supplies relevant context, and Pinecone provides fast vector search so answers stay connected to the source material."
+  },
+  "cover": {
+    "image": "/images/projects/claude-rag-chatbot/cover.png"
+  },
+  "technologies": [
+    "Claude (Anthropic)",
+    "LangChain",
+    "RAG",
+    "Pinecone",
+    "Vector Database",
+    "Conversational AI"
+  ],
+  "techStack": [
+    {
+      "group": "LLM",
+      "items": ["Claude by Anthropic"]
+    },
+    {
+      "group": "Orchestration",
+      "items": ["LangChain"]
+    },
+    {
+      "group": "Knowledge Retrieval",
+      "items": [
+        "Retrieval-Augmented Generation (RAG)",
+        "Pinecone Vector Database"
+      ]
+    },
+    {
+      "group": "Application",
+      "items": ["Conversational AI", "Prompt Engineering"]
+    }
+  ],
+  "features": [
+    {
+      "title": "Claude-powered responses",
+      "description": "Uses Claude from Anthropic to generate clear, natural responses from the retrieved context.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Retrieval-augmented answers",
+      "description": "Retrieves relevant knowledge before generation so the assistant can answer from the connected source material.",
+      "icon": "Search"
+    },
+    {
+      "title": "Pinecone vector search",
+      "description": "Stores and searches embedded knowledge in Pinecone for fast semantic retrieval.",
+      "icon": "Database"
+    },
+    {
+      "title": "LangChain orchestration",
+      "description": "Coordinates document retrieval, context assembly, prompts, and the model response in one pipeline.",
+      "icon": "Workflow"
+    },
+    {
+      "title": "Context-aware conversation",
+      "description": "Maintains conversational context so follow-up questions feel connected and useful.",
+      "icon": "MessagesSquare"
+    },
+    {
+      "title": "Knowledge-grounded UX",
+      "description": "Turns a structured knowledge base into a focused assistant experience for faster information access.",
+      "icon": "Files"
+    }
+  ],
+  "challenge": {
+    "summary": "The core challenge was to create a chatbot that could do more than produce generic language-model responses. It needed to understand the user's question, find the most relevant knowledge, and pass that context to Claude without making the conversation feel slow or disconnected.",
+    "points": [
+      {
+        "icon": "Bot",
+        "title": "Useful conversational answers",
+        "description": "Create a natural chatbot experience that remains focused on the connected knowledge base."
+      },
+      {
+        "icon": "Search",
+        "title": "Reliable knowledge retrieval",
+        "description": "Find semantically relevant content instead of relying only on keyword matching."
+      },
+      {
+        "icon": "Database",
+        "title": "Vector database foundation",
+        "description": "Use Pinecone to store and retrieve knowledge embeddings efficiently."
+      },
+      {
+        "icon": "Layers",
+        "title": "Connected AI pipeline",
+        "description": "Join retrieval, context, prompting, and generation into a dependable workflow."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Grounded responses",
+        "description": "Give Claude relevant source context before generation to reduce unsupported answers."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "The solution uses a focused RAG architecture: the user's message enters a LangChain pipeline, relevant vectors are retrieved from Pinecone, and the resulting context is provided to Claude by Anthropic for the final conversational response. This keeps the chatbot flexible while tying its answers to the project's knowledge source.",
+    "points": [
+      {
+        "icon": "Sparkles",
+        "title": "Claude as the reasoning layer",
+        "description": "Anthropic's Claude model turns retrieved context into clear, human-friendly answers."
+      },
+      {
+        "icon": "Workflow",
+        "title": "LangChain pipeline",
+        "description": "LangChain manages the retrieval chain, prompt composition, and model invocation."
+      },
+      {
+        "icon": "Search",
+        "title": "RAG context injection",
+        "description": "Relevant knowledge is selected and injected into the prompt before Claude responds."
+      },
+      {
+        "icon": "Database",
+        "title": "Pinecone semantic retrieval",
+        "description": "Pinecone acts as the vector database for similarity-based knowledge lookup."
+      },
+      {
+        "icon": "MessagesSquare",
+        "title": "Conversational interaction",
+        "description": "The architecture supports natural questions and follow-up interactions over the same knowledge domain."
+      }
+    ]
+  },
+  "objectives": [
+    "Build a chatbot around Claude by Anthropic",
+    "Connect LangChain as the orchestration layer",
+    "Ground responses with retrieval-augmented generation",
+    "Use Pinecone as the vector database",
+    "Make private knowledge easier to access conversationally",
+    "Keep the architecture ready for future knowledge sources"
+  ],
+  "closing": {
+    "clientOverview": "This self-initiated AI product concept demonstrates how Claude, LangChain, RAG, and Pinecone can be combined into one practical conversational knowledge assistant.",
+    "conclusion": "The result is a focused chatbot foundation that connects a modern language model to a searchable knowledge base, giving users a more relevant way to ask questions and explore information."
+  },
+  "results": [],
+  "gallery": [],
+  "video": null,
+  "workflow": [
+    {
+      "id": "question",
+      "title": "User question",
+      "description": "A user asks the chatbot for information in natural language.",
+      "tag": "INPUT"
+    },
+    {
+      "id": "retrieve",
+      "title": "Pinecone retrieval",
+      "description": "Relevant knowledge is found through vector similarity search.",
+      "tag": "RETRIEVE"
+    },
+    {
+      "id": "orchestrate",
+      "title": "LangChain context",
+      "description": "LangChain assembles retrieved context and the conversation prompt.",
+      "tag": "ORCHESTRATE"
+    },
+    {
+      "id": "respond",
+      "title": "Claude response",
+      "description": "Claude generates a grounded conversational answer.",
+      "tag": "GENERATE"
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Self-Initiated AI Product Project",
+    "industry": "Artificial Intelligence / Knowledge Management",
+    "timeline": "Multiple development sessions",
+    "year": "2026",
+    "platforms": ["Responsive Web Application"],
+    "services": [
+      "Conversational AI Development",
+      "RAG Implementation",
+      "LLM Integration",
+      "Vector Database Integration",
+      "AI Product Development"
+    ],
+    "team": "AI Product Development Team"
+  },
+  "featured": true,
+  "accent": "cyan",
+  "order": 1
+}

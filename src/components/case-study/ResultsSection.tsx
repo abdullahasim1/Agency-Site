@@ -15,6 +15,9 @@ import type { Project } from "@/data/projects";
 export function ResultsSection({ project }: { project: Project }) {
   if (project.results.length === 0) return null;
 
+  const resultsGridColumns =
+    project.results.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
+
   return (
     <section className="section-y-sm">
       <Container>
@@ -27,7 +30,7 @@ export function ResultsSection({ project }: { project: Project }) {
         <Stagger
           as="ul"
           stagger={0.07}
-          className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card bg-ink-200 sm:grid-cols-2 lg:grid-cols-4"
+          className={`mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-card bg-ink-200 sm:grid-cols-2 ${resultsGridColumns}`}
         >
           {project.results.map((result) => (
             <StaggerItem as="li" key={result.label} className="bg-white">
