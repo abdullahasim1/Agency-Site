@@ -221,19 +221,34 @@ const resolveEntry = (entry: Record<string, unknown>) => {
           };
         }
 
-        // Preserve uploaded gallery if JSON doesn't specify one
+        // Preserve and auto-enhance uploaded gallery if JSON doesn't specify one
         if (
-          !parsed.gallery &&
+          (!Array.isArray(parsed.gallery) || parsed.gallery.length === 0) &&
           Array.isArray(entry.gallery) &&
           entry.gallery.length > 0
         ) {
-          parsed.gallery = entry.gallery;
+          const projectTitle = String(parsed.title || entry.title || "Project");
+          parsed.gallery = entry.gallery.map((item, idx) => {
+            const rawItem = (item as Record<string, unknown>) || {};
+            const src = typeof rawItem.src === "string" ? rawItem.src : "";
+            const alt =
+              typeof rawItem.alt === "string" && rawItem.alt.trim()
+                ? rawItem.alt
+                : `${projectTitle} screenshot ${idx + 1}`;
+            const caption =
+              typeof rawItem.caption === "string" ? rawItem.caption : "";
+            return { src, alt, caption };
+          });
         }
 
         return parsed;
       }
-    } catch {
-      // Invalid JSON — fall through to the structured form fields.
+    } catch (err) {
+      // Invalid JSON — log clear diagnostics so the user/developer knows exactly what failed
+      console.warn(
+        `[Projects] ⚠️ Failed to parse rawJson for project "${String(entry.title || "untitled")}":`,
+        err instanceof Error ? err.message : String(err),
+      );
     }
   }
   return entry;

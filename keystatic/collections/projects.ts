@@ -504,14 +504,14 @@ export const projects = collection({
         sampleTemplate: fields.text({
           label: "📋 Sample JSON Template (Copy from here)",
           description:
-            "COPY THIS TEMPLATE to create your project JSON. Notice: You DO NOT need to add any image path in the JSON! Simply select & upload your image in the 'Cover image' section above, and it will be linked automatically.",
+            "COPY THIS TEMPLATE to create your project JSON. Tip: For instant generation with ChatGPT/Claude, open src/content/projects/ai-prompt-template.md! You DO NOT need any image paths in the JSON — simply upload your cover & gallery images above, and they will be linked automatically.",
           multiline: true,
           defaultValue: SAMPLE_PROJECT_JSON,
         }),
         rawJson: fields.text({
           label: "Raw JSON (Paste your project JSON here)",
           description:
-            "Paste your customized project JSON here to populate the project. You DO NOT need any image path inside this JSON — the cover image you upload in the 'Cover image' section above is automatically linked! Leave empty to use form fields.",
+            "Paste your customized project JSON here to populate the project. You DO NOT need any image path inside this JSON — the cover & gallery images you upload above are automatically linked! If your JSON has any syntax errors, a detailed warning will be logged with the exact error. Leave empty to use form fields.",
           multiline: true,
         }),
         galleryUrls: fields.text({
@@ -522,9 +522,9 @@ export const projects = collection({
         }),
       },
       {
-        label: "Advanced — JSON Import & Sample Template",
+        label: "Advanced — JSON Import, Sample Template & AI",
         description:
-          "Copy the sample JSON template, customize your project data, and paste it into Raw JSON. Upload your cover image in the Cover image section above — no manual image paths needed!",
+          "Copy the sample JSON template or generate with AI prompt, customize your project data, and paste it into Raw JSON. Upload your cover image in the Cover image section above — no manual image paths needed!",
         layout: [12, 12, 12],
       },
     ),
