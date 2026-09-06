@@ -163,7 +163,8 @@ export const projects = collection({
     title: fields.slug({
       name: {
         label: "Project title",
-        description: "Project name, shown on the card and case-study page. Not required if you're using Raw JSON.",
+        description:
+          "Project name, shown on the card and case-study page. Not required if you're using Raw JSON.",
         validation: { isRequired: false },
       },
       slug: {
@@ -205,7 +206,8 @@ export const projects = collection({
     }),
     categories: fields.multiselect({
       label: "Portfolio filters",
-      description: "Choose where this project appears in the portfolio filters.",
+      description:
+        "Choose where this project appears in the portfolio filters.",
       options: [
         { label: "AI", value: "AI" },
         { label: "Automation", value: "Automation" },
@@ -231,7 +233,8 @@ export const projects = collection({
       },
       {
         label: "Card & hero copy",
-        description: "The short card text and the lead paragraph of the case study.",
+        description:
+          "The short card text and the lead paragraph of the case study.",
         layout: [6, 6],
       },
     ),
@@ -247,12 +250,14 @@ export const projects = collection({
         }),
         imageAlt: fields.text({
           label: "Cover image alt text",
-          description: "Describes the image for screen readers and search engines.",
+          description:
+            "Describes the image for screen readers and search engines.",
         }),
       },
       {
         label: "Cover image",
-        description: "The artwork shown on the portfolio card and the case-study hero.",
+        description:
+          "The artwork shown on the portfolio card and the case-study hero.",
         layout: [12, 12],
       },
     ),
@@ -306,7 +311,7 @@ export const projects = collection({
             icon: iconField(),
             title: fields.text({
               label: "Card title",
-              description: "Short heading, e.g. \"Fragmented customer data\".",
+              description: 'Short heading, e.g. "Fragmented customer data".',
               validation: { isRequired: true },
             }),
             description: fields.text({
@@ -323,7 +328,11 @@ export const projects = collection({
           },
         ),
       },
-      { label: "Business Challenge", description: "The situation before the engagement, in the client's terms." },
+      {
+        label: "Business Challenge",
+        description:
+          "The situation before the engagement, in the client's terms.",
+      },
     ),
     solution: fields.object(
       {
@@ -337,7 +346,8 @@ export const projects = collection({
             icon: iconField(),
             title: fields.text({
               label: "Card title",
-              description: "Short heading, e.g. \"Schema modelled on the real pipeline\".",
+              description:
+                'Short heading, e.g. "Schema modelled on the real pipeline".',
               validation: { isRequired: true },
             }),
             description: fields.text({
@@ -354,7 +364,10 @@ export const projects = collection({
           },
         ),
       },
-      { label: "Solution Design", description: "What we built, mirroring the challenge cards above it." },
+      {
+        label: "Solution Design",
+        description: "What we built, mirroring the challenge cards above it.",
+      },
     ),
     objectives: fields.array(fields.text({ label: "Objective" }), {
       label: "Engagement objectives",
@@ -394,12 +407,13 @@ export const projects = collection({
           }),
           label: fields.text({
             label: "Label",
-            description: "What the figure measures, e.g. \"Faster onboarding\".",
+            description: 'What the figure measures, e.g. "Faster onboarding".',
             validation: { isRequired: true },
           }),
           detail: fields.text({
             label: "Detail",
-            description: "One or two sentences explaining the figure in context.",
+            description:
+              "One or two sentences explaining the figure in context.",
             multiline: true,
           }),
         },
@@ -470,7 +484,8 @@ export const projects = collection({
       }),
       {
         label: "Workflow diagram nodes",
-        description: "The system flow, one node per step. 3–6 nodes reads best.",
+        description:
+          "The system flow, one node per step. 3–6 nodes reads best.",
         itemLabel: (props) => props.fields.title.value || "Node",
       },
     ),
@@ -517,7 +532,7 @@ export const projects = collection({
       {
         client: fields.text({
           label: "Client",
-          description: "Name, or \"Confidential\" if undisclosed.",
+          description: 'Name, or "Confidential" if undisclosed.',
           validation: { isRequired: false },
         }),
         industry: fields.text({ label: "Industry" }),

@@ -155,10 +155,14 @@ let projectsPromise: Promise<Project[]> | undefined;
  * components only ever see the flat `Project` shape.
  */
 const flatten = (entry: Record<string, unknown>): Omit<Project, "slug"> => {
-  const { basics, listing, cover, closing, advanced: _advanced, ...rest } = entry as Record<
-    string,
-    Record<string, unknown>
-  >;
+  const {
+    basics,
+    listing,
+    cover,
+    closing,
+    advanced: _advanced,
+    ...rest
+  } = entry as Record<string, Record<string, unknown>>;
   return {
     ...rest,
     ...basics,
@@ -244,7 +248,11 @@ const bulkGalleryItems = (entry: Record<string, unknown>) => {
   return urls
     .map((line) => line.trim())
     .filter(Boolean)
-    .map((src, index) => ({ src, alt: `Gallery image ${index + 1}`, caption: "" }));
+    .map((src, index) => ({
+      src,
+      alt: `Gallery image ${index + 1}`,
+      caption: "",
+    }));
 };
 
 /** All projects in portfolio order (lowest `order` first). */
@@ -254,39 +262,44 @@ export function getProjects(): Promise<Project[]> {
   if (process.env.NODE_ENV === "development") {
     projectsPromise = undefined;
   }
-  projectsPromise ??= reader.collections.projects.all().then(async (entries) => {
-    const projects: Project[] = [];
+  projectsPromise ??= reader.collections.projects
+    .all()
+    .then(async (entries) => {
+      const projects: Project[] = [];
 
-    for (const { slug, entry } of entries) {
-      const resolved = resolveEntry(entry);
-      const flat = flatten(resolved);
-      const baseGallery = Array.isArray(flat.gallery) ? flat.gallery : [];
-      const project = {
-        ...flat,
-        gallery: [...baseGallery, ...bulkGalleryItems(entry)],
-        slug,
-      } as unknown as Project;
-      /* Content-hashed URLs: a replaced image gets a new URL (fresh fetch for
+      for (const { slug, entry } of entries) {
+        const resolved = resolveEntry(entry);
+        const flat = flatten(resolved);
+        const baseGallery = Array.isArray(flat.gallery) ? flat.gallery : [];
+        const project = {
+          ...flat,
+          gallery: [...baseGallery, ...bulkGalleryItems(entry)],
+          slug,
+        } as unknown as Project;
+        /* Content-hashed URLs: a replaced image gets a new URL (fresh fetch for
          everyone immediately), untouched ones stay cached. */
-      project.image = v(project.image);
-      project.gallery = project.gallery.map((item) => ({ ...item, src: v(item.src) }));
-      const cover = await imageSize(project.image);
-      project.imageWidth = cover.width;
-      project.imageHeight = cover.height;
+        project.image = v(project.image);
+        project.gallery = project.gallery.map((item) => ({
+          ...item,
+          src: v(item.src),
+        }));
+        const cover = await imageSize(project.image);
+        project.imageWidth = cover.width;
+        project.imageHeight = cover.height;
 
-      const gallery = await Promise.all(
-        project.gallery.map(async (item) => {
-          const { width, height } = await imageSize(item.src);
-          return { ...item, width, height };
-        }),
-      );
-      project.gallery = gallery;
+        const gallery = await Promise.all(
+          project.gallery.map(async (item) => {
+            const { width, height } = await imageSize(item.src);
+            return { ...item, width, height };
+          }),
+        );
+        project.gallery = gallery;
 
-      projects.push(project);
-    }
+        projects.push(project);
+      }
 
-    return projects.sort((a, b) => a.order - b.order);
-  });
+      return projects.sort((a, b) => a.order - b.order);
+    });
   return projectsPromise;
 }
 
@@ -330,8 +343,7 @@ export async function getRelatedProjects(
     ).length;
 
   const ranked = others.sort(
-    (a, b) =>
-      sharedCategories(b) - sharedCategories(a) || a.order - b.order,
+    (a, b) => sharedCategories(b) - sharedCategories(a) || a.order - b.order,
   );
 
   return ranked.slice(0, limit);
