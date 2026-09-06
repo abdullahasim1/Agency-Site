@@ -105,51 +105,42 @@ export default config({
   ui: {
     brand: { name: "DevRox" },
     /*
-     * Grouped by PAGE, not by data type. Open a page's group and everything on
-     * that page is listed in the order it appears — a table of contents you can
-     * edit. To add a project, open "Portfolio page" → Projects → New; to add a
-     * service, open "Services page" → Services → New.
-     *
-     * A block that appears on several pages (Technologies, Process, Statistics,
-     * the projects/services lists…) is listed under EVERY page it shows on. It
-     * is the same entry each time, so editing it in one place updates it on all
-     * of those pages at once. Keystatic renders each reference independently,
-     * which is why a key can repeat across groups.
+     * Clean 3-tier navigation:
+     * 1. 🚀 Main Collections (Projects, Services, Posts) — what developers add & edit daily.
+     * 2. 🏢 Shared Blocks — reusable sections edited once that update across the site.
+     * 3. 📄 Pages & Site Settings — page-level copy, legal, and site configuration.
+     * Zero duplicate links, zero confusion.
      */
     navigation: {
-      "🏠 Home page": [
-        "homePage",
-        "stats",
-        "clients",
-        "services",
-        "technologies",
-        "process",
+      "🚀 Main Collections": [
         "projects",
-        "why",
-        "testimonials",
-      ],
-      "👤 About page": [
-        "aboutPage",
-        "about",
-        "why",
-        "stats",
-        "process",
-        "technologies",
-      ],
-      "🧰 Services page": [
-        "servicesPage",
         "services",
-        "industries",
-        "process",
-        "technologies",
+        "posts",
       ],
-      "💼 Portfolio page": ["portfolioPage", "projects"],
-      "📝 Blog": ["posts"],
-      "❓ FAQ page": ["faqPage", "faq", "technologies"],
-      "✉️ Contact page": ["contactPage", "contact", "site"],
-      "📞 Book a call page": ["bookACallPage", "contact", "site"],
-      "📄 Legal pages (Privacy & Terms)": ["legal"],
-      "⚙️ Site-wide settings & footer": ["site", "sharedCopy"],
+      "🏢 Shared Blocks & Content": [
+        "technologies",
+        "clients",
+        "stats",
+        "testimonials",
+        "process",
+        "why",
+        "industries",
+        "about",
+        "faq",
+        "contact",
+      ],
+      "📄 Pages & Site Settings": [
+        "site",
+        "sharedCopy",
+        "homePage",
+        "aboutPage",
+        "servicesPage",
+        "portfolioPage",
+        "contactPage",
+        "bookACallPage",
+        "faqPage",
+        "legal",
+      ],
     },
   },
 

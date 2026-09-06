@@ -174,6 +174,82 @@ export const projects = collection({
         ),
       },
     }),
+    /*
+     * ── QUICK MODE (30-Second Project Creation) ───────────────────────────
+     * 1. Enter Title & Slug above
+     * 2. Upload Cover Image below
+     * 3. Copy Sample JSON or AI Prompt, customize, and paste into Raw JSON
+     * 4. Toggle Featured & Display Order
+     * Done! No need to fill out individual forms below.
+     * ─────────────────────────────────────────────────────────────────────
+     */
+    cover: fields.object(
+      {
+        image: fields.image({
+          label: "Cover image",
+          description:
+            "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
+          directory: "public/images/projects",
+          publicPath: "/images/projects",
+          validation: { isRequired: false },
+        }),
+        imageAlt: fields.text({
+          label: "Cover image alt text",
+          description:
+            "Describes the image for screen readers and search engines.",
+        }),
+      },
+      {
+        label: "Cover image",
+        description:
+          "The artwork shown on the portfolio card and the case-study hero.",
+        layout: [12, 12],
+      },
+    ),
+    advanced: fields.object(
+      {
+        sampleTemplate: fields.text({
+          label: "📋 1. Sample JSON Template (Click & Copy)",
+          description:
+            "COPY THIS TEMPLATE to create your project JSON. Tip: For instant generation with ChatGPT/Claude, open src/content/projects/ai-prompt-template.md! You DO NOT need any image paths in the JSON — simply upload your cover & gallery images above, and they will be linked automatically.",
+          multiline: true,
+          defaultValue: SAMPLE_PROJECT_JSON,
+        }),
+        rawJson: fields.text({
+          label: "📥 2. Raw JSON (Paste your project JSON here)",
+          description:
+            "Paste your customized project JSON here to populate the project. You DO NOT need any image path inside this JSON — the cover & gallery images you upload above are automatically linked! If your JSON has any syntax errors, a detailed warning will be logged with the exact error. Leave empty to use manual form fields below.",
+          multiline: true,
+        }),
+        galleryUrls: fields.text({
+          label: "🖼️ Bulk gallery images (Optional)",
+          description:
+            "Optional. Add several gallery images at once — one image URL or /images/... path per line. Appended to the gallery above when saved.",
+          multiline: true,
+        }),
+      },
+      {
+        label: "⚡ Quick Mode — JSON Import & AI Template",
+        description:
+          "Fastest way to add a project: 1) Copy the sample JSON template below (or use ai-prompt-template.md with AI), 2) Paste into Raw JSON, 3) Upload your Cover Image above. Done!",
+        layout: [12, 12, 12],
+      },
+    ),
+    featured: fields.checkbox({
+      label: "Featured",
+      description: "Show this project on the home page.",
+    }),
+    order: fields.integer({
+      label: "Display order",
+      description: "Lower numbers show first.",
+      defaultValue: 100,
+    }),
+    /*
+     * ── DETAILED FORM FIELDS (Optional granular editing) ─────────────────
+     * If you are NOT using Raw JSON, or want to tweak individual sections
+     * manually, edit the fields below:
+     * ─────────────────────────────────────────────────────────────────────
+     */
     basics: fields.object(
       {
         id: fields.text({
@@ -236,29 +312,6 @@ export const projects = collection({
         description:
           "The short card text and the lead paragraph of the case study.",
         layout: [6, 6],
-      },
-    ),
-    cover: fields.object(
-      {
-        image: fields.image({
-          label: "Cover image",
-          description:
-            "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
-          directory: "public/images/projects",
-          publicPath: "/images/projects",
-          validation: { isRequired: false },
-        }),
-        imageAlt: fields.text({
-          label: "Cover image alt text",
-          description:
-            "Describes the image for screen readers and search engines.",
-        }),
-      },
-      {
-        label: "Cover image",
-        description:
-          "The artwork shown on the portfolio card and the case-study hero.",
-        layout: [12, 12],
       },
     ),
     technologies: fields.array(fields.text({ label: "Technology" }), {
@@ -499,35 +552,6 @@ export const projects = collection({
       ],
       defaultValue: "linear",
     }),
-    advanced: fields.object(
-      {
-        sampleTemplate: fields.text({
-          label: "📋 Sample JSON Template (Copy from here)",
-          description:
-            "COPY THIS TEMPLATE to create your project JSON. Tip: For instant generation with ChatGPT/Claude, open src/content/projects/ai-prompt-template.md! You DO NOT need any image paths in the JSON — simply upload your cover & gallery images above, and they will be linked automatically.",
-          multiline: true,
-          defaultValue: SAMPLE_PROJECT_JSON,
-        }),
-        rawJson: fields.text({
-          label: "Raw JSON (Paste your project JSON here)",
-          description:
-            "Paste your customized project JSON here to populate the project. You DO NOT need any image path inside this JSON — the cover & gallery images you upload above are automatically linked! If your JSON has any syntax errors, a detailed warning will be logged with the exact error. Leave empty to use form fields.",
-          multiline: true,
-        }),
-        galleryUrls: fields.text({
-          label: "Bulk gallery images",
-          description:
-            "Optional. Add several gallery images at once — one image URL or /images/... path per line. Appended to the gallery above when saved.",
-          multiline: true,
-        }),
-      },
-      {
-        label: "Advanced — JSON Import, Sample Template & AI",
-        description:
-          "Copy the sample JSON template or generate with AI prompt, customize your project data, and paste it into Raw JSON. Upload your cover image in the Cover image section above — no manual image paths needed!",
-        layout: [12, 12, 12],
-      },
-    ),
     overview: fields.object(
       {
         client: fields.text({
@@ -563,15 +587,6 @@ export const projects = collection({
         layout: [6, 6, 6, 6, 6, 6, 12],
       },
     ),
-    featured: fields.checkbox({
-      label: "Featured",
-      description: "Show this project on the home page.",
-    }),
     accent: accentField(),
-    order: fields.integer({
-      label: "Display order",
-      description: "Lower numbers show first.",
-      defaultValue: 100,
-    }),
   },
 });
