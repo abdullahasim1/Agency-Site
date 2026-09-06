@@ -112,11 +112,7 @@ export default config({
      * Zero duplicate links, zero confusion.
      */
     navigation: {
-      "🚀 Main Collections": [
-        "projects",
-        "services",
-        "posts",
-      ],
+      "🚀 Main Collections": ["projects", "services", "posts"],
       "🏢 Shared Blocks & Content": [
         "technologies",
         "clients",

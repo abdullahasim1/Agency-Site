@@ -80,7 +80,10 @@ async function main() {
     try {
       templateData = JSON.parse(readFileSync(templateFile, "utf-8"));
     } catch (err) {
-      console.warn("⚠️ Could not parse sample-template.json, using fallback defaults.", err);
+      console.warn(
+        "⚠️ Could not parse sample-template.json, using fallback defaults.",
+        err,
+      );
     }
   }
 
@@ -90,7 +93,8 @@ async function main() {
     basics: {
       ...(templateData.basics || {}),
       id: `prj-${slug}`,
-      tagline: templateData.basics?.tagline || `Innovative ${category} solution`,
+      tagline:
+        templateData.basics?.tagline || `Innovative ${category} solution`,
     },
     category,
     categories: category
@@ -107,18 +111,30 @@ async function main() {
   };
 
   mkdirSync(projectDir, { recursive: true });
-  writeFileSync(projectFile, JSON.stringify(newProject, null, 2) + "\n", "utf-8");
+  writeFileSync(
+    projectFile,
+    JSON.stringify(newProject, null, 2) + "\n",
+    "utf-8",
+  );
   mkdirSync(imagesDir, { recursive: true });
 
   console.log("\n🚀 Project created successfully!");
   console.log(`📁 JSON Data:  src/content/projects/${slug}/index.json`);
   console.log(`🖼️  Images Dir: public/images/projects/${slug}/\n`);
   console.log("💡 Next steps:");
-  console.log(`  1. Drop your cover image into 'public/images/projects/${slug}/'`);
+  console.log(
+    `  1. Drop your cover image into 'public/images/projects/${slug}/'`,
+  );
   console.log(`     (name it 'cover.png' / 'cover.jpg' / 'hero.png')`);
-  console.log("  2. Open Keystatic CMS: npm run dev -> http://localhost:3000/keystatic");
-  console.log(`     Your new project is already listed under '🚀 Main Collections -> Projects'!`);
-  console.log("  3. Or edit the JSON file directly or with ChatGPT/Claude prompt template in:");
+  console.log(
+    "  2. Open Keystatic CMS: npm run dev -> http://localhost:3000/keystatic",
+  );
+  console.log(
+    `     Your new project is already listed under '🚀 Main Collections -> Projects'!`,
+  );
+  console.log(
+    "  3. Or edit the JSON file directly or with ChatGPT/Claude prompt template in:",
+  );
   console.log("     src/content/projects/ai-prompt-template.md\n");
 }
 
