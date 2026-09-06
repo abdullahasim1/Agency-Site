@@ -98,28 +98,146 @@ const iconLoaders: Record<string, () => Promise<{ default: LucideIcon }>> = {
   Wallet: () => import("lucide-react").then((m) => ({ default: m.Wallet })),
   WalletCards: () => import("lucide-react").then((m) => ({ default: m.WalletCards })),
   Wand2: () => import("lucide-react").then((m) => ({ default: m.Wand2 })),
+  Webhook: () => import("lucide-react").then((m) => ({ default: m.Webhook })),
   WifiOff: () => import("lucide-react").then((m) => ({ default: m.WifiOff })),
   Workflow: () => import("lucide-react").then((m) => ({ default: m.Workflow })),
   Wrench: () => import("lucide-react").then((m) => ({ default: m.Wrench })),
   Zap: () => import("lucide-react").then((m) => ({ default: m.Zap })),
+  CheckCircle2: () => import("lucide-react").then((m) => ({ default: m.CheckCircle2 })),
+  CheckCircle: () => import("lucide-react").then((m) => ({ default: m.CheckCircle2 })),
+  AlertTriangle: () => import("lucide-react").then((m) => ({ default: m.TriangleAlert })),
+  TrendingUp: () => import("lucide-react").then((m) => ({ default: m.TrendingUp })),
+  Sliders: () => import("lucide-react").then((m) => ({ default: m.Sliders })),
+  Key: () => import("lucide-react").then((m) => ({ default: m.Key })),
+  Terminal: () => import("lucide-react").then((m) => ({ default: m.Terminal })),
+  Star: () => import("lucide-react").then((m) => ({ default: m.Star })),
+  Award: () => import("lucide-react").then((m) => ({ default: m.Award })),
+  Trophy: () => import("lucide-react").then((m) => ({ default: m.Trophy })),
+  Smile: () => import("lucide-react").then((m) => ({ default: m.Smile })),
+  HeartHandshake: () => import("lucide-react").then((m) => ({ default: m.HeartHandshake })),
+  UserCheck: () => import("lucide-react").then((m) => ({ default: m.UserCheck })),
 };
 
-export type IconName = keyof typeof iconLoaders;
+export type IconName = keyof typeof iconLoaders | (string & {});
 
 /**
  * Synchronous icon name registry for Keystatic dropdowns.
  * Only the names are exported — actual icon components are lazy-loaded via loadIcon().
  */
 export const iconRegistry = Object.fromEntries(
-  Object.keys(iconLoaders).map((name) => [name, name])
-) as Record<IconName, IconName>;
+  Object.keys(iconLoaders).map((name) => [name, name]),
+) as Record<string, string>;
 
 /**
- * Lazily load an icon by name. Returns the component or undefined if not found.
+ * Normalizes an icon name to PascalCase:
+ * "webhook" -> "Webhook", "check-circle-2" -> "CheckCircle2", "alert_triangle" -> "AlertTriangle"
  */
-export async function loadIcon(name: IconName): Promise<LucideIcon | undefined> {
-  const loader = iconLoaders[name];
-  if (!loader) return undefined;
-  const { default: Icon } = await loader();
-  return Icon;
+function toPascalCase(str: string): string {
+  if (!str) return "";
+  return str
+    .trim()
+    .replace(/[-_ ]+([a-zA-Z0-9])/g, (_, c) => c.toUpperCase())
+    .replace(/^[a-z]/, (c) => c.toUpperCase());
+}
+
+/**
+ * Common keyword / legacy aliases to modern Lucide icon names.
+ */
+const iconAliases: Record<string, string> = {
+  ai: "BrainCircuit",
+  robot: "Bot",
+  api: "Webhook",
+  webhook: "Webhook",
+  security: "ShieldCheck",
+  secure: "ShieldCheck",
+  speed: "Zap",
+  fast: "Zap",
+  performance: "Gauge",
+  analytics: "BarChart3",
+  chart: "BarChart3",
+  chat: "MessagesSquare",
+  message: "MessagesSquare",
+  mobile: "Smartphone",
+  web: "Globe",
+  integration: "PlugZap",
+  sync: "RefreshCw",
+  automation: "Workflow",
+  settings: "Wrench",
+  time: "Timer",
+  clock: "Timer",
+  star: "Sparkles",
+  success: "CheckCircle2",
+  check: "CheckCircle2",
+  checkcircle: "CheckCircle2",
+  warning: "TriangleAlert",
+  alert: "TriangleAlert",
+  alerttriangle: "TriangleAlert",
+  error: "ShieldAlert",
+  code: "Code2",
+  dev: "Code2",
+  database: "Database",
+  db: "Database",
+  cloud: "Cloud",
+};
+
+/**
+ * Universal dynamic icon loader.
+ * Resolves bundled icons, converts naming variations, checks aliases,
+ * dynamically loads any of the 1,400+ Lucide icons, and gracefully falls back to Sparkles.
+ * Never returns undefined, so layout never renders a broken/empty box.
+ */
+export async function loadIcon(name: string): Promise<LucideIcon> {
+  if (!name || typeof name !== "string") {
+    const fallback = await iconLoaders.Sparkles();
+    return fallback.default;
+  }
+
+  const trimmed = name.trim();
+
+  // 1. Direct match in iconLoaders
+  if (iconLoaders[trimmed]) {
+    const { default: Icon } = await iconLoaders[trimmed]();
+    return Icon;
+  }
+
+  // 2. PascalCase conversion (e.g. "webhook" -> "Webhook", "check-circle-2" -> "CheckCircle2")
+  const pascal = toPascalCase(trimmed);
+  if (iconLoaders[pascal]) {
+    const { default: Icon } = await iconLoaders[pascal]();
+    return Icon;
+  }
+
+  // 3. Alias dictionary check
+  const lower = trimmed.toLowerCase();
+  const alias = iconAliases[lower] || iconAliases[pascal];
+  if (alias && iconLoaders[alias]) {
+    const { default: Icon } = await iconLoaders[alias]();
+    return Icon;
+  }
+
+  // 4. Dynamic import from lucide-react (access to all 1,400+ icons!)
+  try {
+    const lucide = await import("lucide-react");
+    const candidateName =
+      pascal in lucide
+        ? pascal
+        : alias && alias in lucide
+          ? alias
+          : trimmed in lucide
+            ? trimmed
+            : undefined;
+
+    if (candidateName) {
+      const CandidateIcon = (lucide as Record<string, unknown>)[
+        candidateName
+      ] as LucideIcon | undefined;
+      if (CandidateIcon) return CandidateIcon;
+    }
+  } catch {
+    // Dynamic import fallback
+  }
+
+  // 5. Fallback icon so layout never renders empty box
+  const fallback = await iconLoaders.Sparkles();
+  return fallback.default;
 }

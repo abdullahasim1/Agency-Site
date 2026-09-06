@@ -13,6 +13,7 @@
     "art": "node scripts/generate-art.mjs",
     "check:dns-aid": "node scripts/check-dns-aid.mjs",
     "new:project": "node scripts/create-project.mjs",
+    "fetch:logos": "node scripts/fetch-logos.mjs",
     "fix:git": "rm -f .git/index && git reset HEAD .",
     "lighthouse": "lhci autorun",
     "lighthouse:collect": "lhci collect --config=lighthouserc.json"

@@ -135,7 +135,10 @@ async function main() {
   console.log(
     "  3. Or edit the JSON file directly or with ChatGPT/Claude prompt template in:",
   );
-  console.log("     src/content/projects/ai-prompt-template.md\n");
+  console.log("     src/content/projects/ai-prompt-template.md");
+  console.log(
+    "  4. Auto-download tech logos for any new technologies: npm run fetch:logos\n",
+  );
 }
 
 main().catch((err) => {
