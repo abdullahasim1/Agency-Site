@@ -11,7 +11,14 @@
  * Runs automatically before `npm run build` and `npm run dev` (prebuild/predev).
  */
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  readdirSync,
+  readFileSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
@@ -56,10 +63,17 @@ for (const dir of PUBLIC_DIRS) {
   }
   for (const file of files) {
     const key = "/" + relative(join(ROOT, "public"), file).split(sep).join("/");
-    manifest[key] = createHash("sha256").update(readFileSync(file)).digest("hex").slice(0, 10);
+    manifest[key] = createHash("sha256")
+      .update(readFileSync(file))
+      .digest("hex")
+      .slice(0, 10);
   }
 }
 
-const sorted = Object.fromEntries(Object.entries(manifest).sort(([a], [b]) => a.localeCompare(b)));
+const sorted = Object.fromEntries(
+  Object.entries(manifest).sort(([a], [b]) => a.localeCompare(b)),
+);
 writeFileSync(OUT, JSON.stringify(sorted, null, 2) + "\n");
-console.log(`[asset-manifest] ${Object.keys(sorted).length} assets hashed -> ${relative(ROOT, OUT)}`);
+console.log(
+  `[asset-manifest] ${Object.keys(sorted).length} assets hashed -> ${relative(ROOT, OUT)}`,
+);
