@@ -15,7 +15,13 @@
  *   node scripts/fetch-logos.mjs "Pinecone"
  */
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
@@ -80,7 +86,8 @@ function slugify(text) {
 async function fetchLogo(techName) {
   const normalized = techName.toLowerCase().trim();
   const hint = BRAND_HINTS[normalized];
-  const primarySlug = hint?.slug || slugify(techName.replace(/\s*\([^)]*\)\s*/g, ""));
+  const primarySlug =
+    hint?.slug || slugify(techName.replace(/\s*\([^)]*\)\s*/g, ""));
   const primaryDomain = hint?.domain;
 
   // 1. Try Simple Icons SVG
@@ -103,7 +110,9 @@ async function fetchLogo(techName) {
   }
 
   // 2. Try Google Favicon if domain is known or inferrable
-  const domainToTry = primaryDomain || (primarySlug.includes(".") ? primarySlug : `${primarySlug}.com`);
+  const domainToTry =
+    primaryDomain ||
+    (primarySlug.includes(".") ? primarySlug : `${primarySlug}.com`);
   if (domainToTry) {
     try {
       const url = `https://www.google.com/s2/favicons?domain=${domainToTry}&sz=128`;
@@ -131,7 +140,9 @@ function parseExistingTechLogos() {
   const content = readFileSync(filePath, "utf-8");
   const logos = new Map();
 
-  const match = content.match(/const techLogos: Record<string, string> = \{([\s\S]*?)\};/);
+  const match = content.match(
+    /const techLogos: Record<string, string> = \{([\s\S]*?)\};/,
+  );
   if (match) {
     const lines = match[1].split("\n");
     for (const line of lines) {
@@ -154,7 +165,9 @@ function updateTechLogosFile(newEntries) {
   if (closingIndex === -1) return;
 
   const insertion = newEntries
-    .map(({ name, path }) => `  ${JSON.stringify(name)}: ${JSON.stringify(path)},`)
+    .map(
+      ({ name, path }) => `  ${JSON.stringify(name)}: ${JSON.stringify(path)},`,
+    )
     .join("\n");
 
   const updatedContent =
@@ -216,7 +229,10 @@ async function main() {
 
   for (const tech of allTech) {
     const existing = logos.get(tech);
-    if (!existing || !existsSync(resolve(ROOT, "public", existing.replace(/^\//, "")))) {
+    if (
+      !existing ||
+      !existsSync(resolve(ROOT, "public", existing.replace(/^\//, "")))
+    ) {
       missingTech.push(tech);
     }
   }
@@ -238,12 +254,17 @@ async function main() {
   }
 
   if (newlyAdded.length > 0) {
-    console.log(`\n💾 Registering ${newlyAdded.length} new logo(s) in src/data/tech-logos.ts...`);
+    console.log(
+      `\n💾 Registering ${newlyAdded.length} new logo(s) in src/data/tech-logos.ts...`,
+    );
     updateTechLogosFile(newlyAdded);
 
     console.log("🔄 Refreshing asset manifest...");
     try {
-      execSync("node scripts/generate-asset-manifest.mjs", { stdio: "inherit", cwd: ROOT });
+      execSync("node scripts/generate-asset-manifest.mjs", {
+        stdio: "inherit",
+        cwd: ROOT,
+      });
     } catch {
       // ignore
     }
