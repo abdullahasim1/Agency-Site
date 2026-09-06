@@ -1,0 +1,7 @@
+{
+  "git.autorefresh": true,
+  "git.autoStash": false,
+  "git.fetchOnType": false,
+  "git.experimental.useCommitGraph": false,
+  "git.status.checkDynamicSubmodules": false
+}

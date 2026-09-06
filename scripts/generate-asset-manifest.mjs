@@ -11,11 +11,27 @@
  * Runs automatically before `npm run build` and `npm run dev` (prebuild/predev).
  */
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { execSync } from "node:child_process";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+// Auto-heal corrupted/0-byte .git/index if present
+const gitIndexPath = join(ROOT, ".git", "index");
+if (existsSync(gitIndexPath)) {
+  try {
+    const size = statSync(gitIndexPath).size;
+    if (size < 12) {
+      unlinkSync(gitIndexPath);
+      execSync("git reset HEAD .", { cwd: ROOT, stdio: "pipe" });
+    }
+  } catch {
+    // ignore
+  }
+}
+
 const PUBLIC_DIRS = ["images", "logos"].map((dir) => join(ROOT, "public", dir));
 const OUT = join(ROOT, "src/content/asset-manifest.json");
 
