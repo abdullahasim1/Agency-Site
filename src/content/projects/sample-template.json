@@ -1,0 +1,144 @@
+{
+  "title": "Project Name Here",
+  "basics": {
+    "id": "prj-example",
+    "tagline": "Short compelling tagline describing the project"
+  },
+  "category": "AI / Automation",
+  "categories": [
+    "AI",
+    "Automation"
+  ],
+  "listing": {
+    "shortDescription": "1-2 sentence description shown on the portfolio card grid.",
+    "fullDescription": "2-3 sentences lead paragraph on the hero case-study page explaining what the project is and what was delivered."
+  },
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "OpenAI"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "AI & Automation",
+      "items": [
+        "OpenAI",
+        "n8n",
+        "Python"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Smart Automation Flow",
+      "description": "Automates lead ingestion and processing end-to-end.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Real-time Processing",
+      "description": "Processes data through webhooks with sub-second latency.",
+      "icon": "Zap"
+    }
+  ],
+  "challenge": {
+    "summary": "The client spent 20+ hours a week manually copying and routing records across platforms, leading to errors and delays.",
+    "points": [
+      {
+        "icon": "Layers",
+        "title": "Manual bottlenecks",
+        "description": "Manual entry caused delays and missed customer follow-ups."
+      },
+      {
+        "icon": "Puzzle",
+        "title": "Fragmented data",
+        "description": "Customer data was scattered across 4 different platforms."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "We engineered an automated pipeline that connects all platforms, parses incoming data with AI, and syncs status in real time.",
+    "points": [
+      {
+        "icon": "Webhook",
+        "title": "Unified pipeline",
+        "description": "Automated webhook handlers ingest and validate incoming data."
+      },
+      {
+        "icon": "Brain",
+        "title": "AI routing",
+        "description": "AI models categorize and prioritize records automatically."
+      }
+    ]
+  },
+  "objectives": [
+    "Eliminate manual data entry across departments",
+    "Reduce processing time from 48 hours to under 5 minutes",
+    "Ensure 99.9% data accuracy with automated validation"
+  ],
+  "closing": {
+    "clientOverview": "B2B SaaS startup scaling from seed to Series A with an expanding customer base.",
+    "conclusion": "The automated system completely eliminated manual bottlenecks, giving the team their time back to focus on high-value client relationships."
+  },
+  "results": [
+    {
+      "value": "85%",
+      "label": "Time saved",
+      "detail": "Over 20 hours saved weekly across the operations team."
+    },
+    {
+      "value": "< 5m",
+      "label": "Processing speed",
+      "detail": "Tasks that took 2 days now complete in under 5 minutes."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "INGEST",
+      "title": "Data Received",
+      "description": "Webhook catches new records from external tools."
+    },
+    {
+      "id": "w2",
+      "tag": "PROCESS",
+      "title": "AI Classification",
+      "description": "AI analyzes content and assigns correct routing tags."
+    },
+    {
+      "id": "w3",
+      "tag": "SYNC",
+      "title": "CRM Sync",
+      "description": "Cleaned data is pushed directly to the client database."
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Confidential Client",
+    "industry": "SaaS / AI Automation",
+    "timeline": "8 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web Application",
+      "API"
+    ],
+    "services": [
+      "AI Automation",
+      "Custom Software Development"
+    ],
+    "team": "2 engineers, 1 lead"
+  },
+  "featured": true,
+  "accent": "brand",
+  "order": 50
+}

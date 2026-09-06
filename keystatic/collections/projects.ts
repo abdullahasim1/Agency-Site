@@ -7,6 +7,151 @@ import {
   keyPatternValidation,
 } from "../helpers";
 
+const SAMPLE_PROJECT_JSON = `{
+  "title": "Project Name Here",
+  "basics": {
+    "id": "prj-example",
+    "tagline": "Short compelling tagline describing the project"
+  },
+  "category": "AI / Automation",
+  "categories": [
+    "AI",
+    "Automation"
+  ],
+  "listing": {
+    "shortDescription": "1-2 sentence description shown on the portfolio card grid.",
+    "fullDescription": "2-3 sentences lead paragraph on the hero case-study page explaining what the project is and what was delivered."
+  },
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "OpenAI"
+  ],
+  "techStack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "AI & Automation",
+      "items": [
+        "OpenAI",
+        "n8n",
+        "Python"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "title": "Smart Automation Flow",
+      "description": "Automates lead ingestion and processing end-to-end.",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Real-time Processing",
+      "description": "Processes data through webhooks with sub-second latency.",
+      "icon": "Zap"
+    }
+  ],
+  "challenge": {
+    "summary": "The client spent 20+ hours a week manually copying and routing records across platforms, leading to errors and delays.",
+    "points": [
+      {
+        "icon": "Layers",
+        "title": "Manual bottlenecks",
+        "description": "Manual entry caused delays and missed customer follow-ups."
+      },
+      {
+        "icon": "Puzzle",
+        "title": "Fragmented data",
+        "description": "Customer data was scattered across 4 different platforms."
+      }
+    ]
+  },
+  "solution": {
+    "summary": "We engineered an automated pipeline that connects all platforms, parses incoming data with AI, and syncs status in real time.",
+    "points": [
+      {
+        "icon": "Webhook",
+        "title": "Unified pipeline",
+        "description": "Automated webhook handlers ingest and validate incoming data."
+      },
+      {
+        "icon": "Brain",
+        "title": "AI routing",
+        "description": "AI models categorize and prioritize records automatically."
+      }
+    ]
+  },
+  "objectives": [
+    "Eliminate manual data entry across departments",
+    "Reduce processing time from 48 hours to under 5 minutes",
+    "Ensure 99.9% data accuracy with automated validation"
+  ],
+  "closing": {
+    "clientOverview": "B2B SaaS startup scaling from seed to Series A with an expanding customer base.",
+    "conclusion": "The automated system completely eliminated manual bottlenecks, giving the team their time back to focus on high-value client relationships."
+  },
+  "results": [
+    {
+      "value": "85%",
+      "label": "Time saved",
+      "detail": "Over 20 hours saved weekly across the operations team."
+    },
+    {
+      "value": "< 5m",
+      "label": "Processing speed",
+      "detail": "Tasks that took 2 days now complete in under 5 minutes."
+    }
+  ],
+  "workflow": [
+    {
+      "id": "w1",
+      "tag": "INGEST",
+      "title": "Data Received",
+      "description": "Webhook catches new records from external tools."
+    },
+    {
+      "id": "w2",
+      "tag": "PROCESS",
+      "title": "AI Classification",
+      "description": "AI analyzes content and assigns correct routing tags."
+    },
+    {
+      "id": "w3",
+      "tag": "SYNC",
+      "title": "CRM Sync",
+      "description": "Cleaned data is pushed directly to the client database."
+    }
+  ],
+  "workflowLayout": "linear",
+  "overview": {
+    "client": "Confidential Client",
+    "industry": "SaaS / AI Automation",
+    "timeline": "8 weeks",
+    "year": "2026",
+    "platforms": [
+      "Web Application",
+      "API"
+    ],
+    "services": [
+      "AI Automation",
+      "Custom Software Development"
+    ],
+    "team": "2 engineers, 1 lead"
+  },
+  "featured": true,
+  "accent": "brand",
+  "order": 50
+}`;
+
 export const projects = collection({
   label: "Projects - add / edit / delete",
   path: "src/content/projects/*/",
@@ -98,7 +243,7 @@ export const projects = collection({
             "Upload the card / hero image for this project. Stored under public/images/projects/<slug>/.",
           directory: "public/images/projects",
           publicPath: "/images/projects",
-          validation: { isRequired: true },
+          validation: { isRequired: false },
         }),
         imageAlt: fields.text({
           label: "Cover image alt text",
@@ -341,10 +486,17 @@ export const projects = collection({
     }),
     advanced: fields.object(
       {
-        rawJson: fields.text({
-          label: "Raw JSON (advanced)",
+        sampleTemplate: fields.text({
+          label: "📋 Sample JSON Template (Copy from here)",
           description:
-            "Paste the complete project JSON here to override every field in this form. Leave empty to use the form values. Malformed JSON is ignored and the form is used instead.",
+            "COPY THIS TEMPLATE to create your project JSON. Notice: You DO NOT need to add any image path in the JSON! Simply select & upload your image in the 'Cover image' section above, and it will be linked automatically.",
+          multiline: true,
+          defaultValue: SAMPLE_PROJECT_JSON,
+        }),
+        rawJson: fields.text({
+          label: "Raw JSON (Paste your project JSON here)",
+          description:
+            "Paste your customized project JSON here to populate the project. You DO NOT need any image path inside this JSON — the cover image you upload in the 'Cover image' section above is automatically linked! Leave empty to use form fields.",
           multiline: true,
         }),
         galleryUrls: fields.text({
@@ -355,10 +507,10 @@ export const projects = collection({
         }),
       },
       {
-        label: "Advanced — JSON & bulk images",
+        label: "Advanced — JSON Import & Sample Template",
         description:
-          "Power-user options: override the entry with raw JSON, or add many gallery images in one paste.",
-        layout: [12, 12],
+          "Copy the sample JSON template, customize your project data, and paste it into Raw JSON. Upload your cover image in the Cover image section above — no manual image paths needed!",
+        layout: [12, 12, 12],
       },
     ),
     overview: fields.object(

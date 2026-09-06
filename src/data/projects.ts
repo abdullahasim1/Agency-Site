@@ -173,7 +173,9 @@ const flatten = (entry: Record<string, unknown>): Omit<Project, "slug"> => {
  *
  * 1. If the panel's "Raw JSON (advanced)" field holds valid JSON, that JSON
  *    becomes the entire entry — a power-user override for everything above.
- * 2. Any lines in "Bulk gallery images" are appended to the gallery as extra
+ * 2. If the imported JSON does not specify an image, the cover image uploaded
+ *    via the Keystatic form is automatically linked.
+ * 3. Any lines in "Bulk gallery images" are appended to the gallery as extra
  *    items, so many images can be added in one paste.
  */
 const resolveEntry = (entry: Record<string, unknown>) => {
@@ -184,6 +186,46 @@ const resolveEntry = (entry: Record<string, unknown>) => {
     try {
       const parsed = JSON.parse(rawJson) as Record<string, unknown>;
       if (parsed && typeof parsed === "object") {
+        // Auto-link form cover image if not provided in JSON
+        const formCover = entry.cover as Record<string, unknown> | undefined;
+        const formImage =
+          typeof formCover?.image === "string" ? formCover.image.trim() : "";
+        const formImageAlt =
+          typeof formCover?.imageAlt === "string"
+            ? formCover.imageAlt.trim()
+            : "";
+
+        const parsedCover =
+          (parsed.cover as Record<string, unknown> | undefined) || {};
+        const parsedImage =
+          (typeof parsed.image === "string" && parsed.image.trim()) ||
+          (typeof parsedCover.image === "string" && parsedCover.image.trim()) ||
+          formImage;
+        const parsedImageAlt =
+          (typeof parsed.imageAlt === "string" && parsed.imageAlt.trim()) ||
+          (typeof parsedCover.imageAlt === "string" &&
+            parsedCover.imageAlt.trim()) ||
+          formImageAlt;
+
+        if (parsedImage) {
+          parsed.image = parsedImage;
+          parsed.cover = {
+            ...formCover,
+            ...parsedCover,
+            image: parsedImage,
+            imageAlt: parsedImageAlt,
+          };
+        }
+
+        // Preserve uploaded gallery if JSON doesn't specify one
+        if (
+          !parsed.gallery &&
+          Array.isArray(entry.gallery) &&
+          entry.gallery.length > 0
+        ) {
+          parsed.gallery = entry.gallery;
+        }
+
         return parsed;
       }
     } catch {
@@ -218,9 +260,10 @@ export function getProjects(): Promise<Project[]> {
     for (const { slug, entry } of entries) {
       const resolved = resolveEntry(entry);
       const flat = flatten(resolved);
+      const baseGallery = Array.isArray(flat.gallery) ? flat.gallery : [];
       const project = {
         ...flat,
-        gallery: [...flat.gallery, ...bulkGalleryItems(entry)],
+        gallery: [...baseGallery, ...bulkGalleryItems(entry)],
         slug,
       } as unknown as Project;
       /* Content-hashed URLs: a replaced image gets a new URL (fresh fetch for
