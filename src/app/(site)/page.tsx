@@ -11,6 +11,7 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { OurTeam } from "@/components/services/OurTeam";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/ui/TechMarquee";
+import { LatestBlogPosts } from "@/components/home/LatestBlogPosts";
 import { clients } from "@/data/clients";
 import { siteConfig, siteTitle } from "@/data/site";
 import { pageGraph } from "@/lib/seo";
@@ -92,6 +93,9 @@ export default function HomePage() {
       </div>
       <div className="content-below-fold [--cv-est:1200px] lg:[--cv-est:800px]">
         <Testimonials />
+      </div>
+      <div className="content-below-fold [--cv-est:900px] lg:[--cv-est:600px]">
+        <LatestBlogPosts />
       </div>
       <div className="content-below-fold [--cv-est:650px] lg:[--cv-est:720px]">
         <FinalCTA />

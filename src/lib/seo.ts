@@ -43,6 +43,9 @@ export function buildMetadata({
     alternates: {
       canonical: url,
       languages: { en: url },
+      types: {
+        "application/rss+xml": abs("/feed.xml"),
+      },
     },
     openGraph: {
       type,
@@ -51,7 +54,9 @@ export function buildMetadata({
       description,
       siteName: siteConfig.name,
       locale: "en_US",
-      images: [{ url: ogImage, width: OG_WIDTH, height: OG_HEIGHT, alt: title }],
+      images: [
+        { url: ogImage, width: OG_WIDTH, height: OG_HEIGHT, alt: title },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -144,10 +149,7 @@ function organizationSchema(): Node {
     slogan: siteConfig.tagline,
     url: siteConfig.url,
     email: siteConfig.contact.email,
-    areaServed: [
-      { "@type": "Country", name: "Pakistan" },
-      "Worldwide",
-    ],
+    areaServed: [{ "@type": "Country", name: "Pakistan" }, "Worldwide"],
     logo: {
       "@type": "ImageObject",
       "@id": ID.logo,
@@ -252,10 +254,7 @@ export function serviceSchema(options: {
     url: abs(options.path),
     serviceType: options.serviceType,
     provider: ref(ID.organization),
-    areaServed: [
-      { "@type": "Country", name: "Pakistan" },
-      "Worldwide",
-    ],
+    areaServed: [{ "@type": "Country", name: "Pakistan" }, "Worldwide"],
     mainEntityOfPage: ref(ID.page(options.path)),
     hasOfferCatalog: options.deliverables?.length
       ? {
@@ -332,7 +331,10 @@ export function articleSchema(options: {
 }): Node {
   const hasAuthor = Boolean(options.authorName);
   const author = hasAuthor
-    ? authorNode(options.authorName!, options.authorUrl ?? `${siteConfig.url}/about`)
+    ? authorNode(
+        options.authorName!,
+        options.authorUrl ?? `${siteConfig.url}/about`,
+      )
     : undefined;
 
   return present({
@@ -363,7 +365,10 @@ export function articleAuthorNode(options: {
   authorUrl?: string;
 }): Node | undefined {
   if (!options.authorName) return undefined;
-  return authorNode(options.authorName, options.authorUrl ?? `${siteConfig.url}/about`);
+  return authorNode(
+    options.authorName,
+    options.authorUrl ?? `${siteConfig.url}/about`,
+  );
 }
 
 /** Team-member Person nodes for the about page. */
