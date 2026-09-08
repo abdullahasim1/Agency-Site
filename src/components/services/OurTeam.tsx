@@ -40,7 +40,10 @@ export function OurTeam({ tone = "dark" }: OurTeamProps) {
       )}
     >
       {dark ? (
-        <div aria-hidden className="absolute inset-0 bg-blueprint-dark opacity-50" />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-blueprint-dark opacity-50"
+        />
       ) : (
         <div aria-hidden className="absolute inset-0 bg-blueprint opacity-40" />
       )}
@@ -70,13 +73,13 @@ export function OurTeam({ tone = "dark" }: OurTeamProps) {
         <Stagger
           as="ul"
           stagger={0.06}
-          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
         >
           {platforms.map((platform) => (
             <StaggerItem as="li" key={platform.name} className="h-full">
               <div
                 className={cn(
-                  "group flex h-full flex-col rounded-card border p-6 transition-[border-color,background-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1",
+                  "group flex h-full flex-col rounded-card border p-5 sm:p-6 transition-[border-color,background-color,transform] duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1",
                   dark
                     ? "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.06]"
                     : "border-ink-200 bg-white shadow-[0_10px_24px_-14px_rgba(23,26,38,0.18)] hover:border-ink-300 hover:shadow-lift",
@@ -88,11 +91,19 @@ export function OurTeam({ tone = "dark" }: OurTeamProps) {
                     dark ? "bg-white ring-white/10" : "bg-ink-50 ring-ink-100",
                   )}
                 >
-                  <TechLogo name={platform.name} size="md" fallback="monogram" dark={dark} />
+                  <TechLogo
+                    name={platform.name}
+                    size="md"
+                    fallback="monogram"
+                    dark={dark}
+                  />
                 </span>
 
                 <h3
-                  className={cn("type-h4 mt-5", dark ? "text-white" : "text-ink-900")}
+                  className={cn(
+                    "type-h4 mt-5",
+                    dark ? "text-white" : "text-ink-900",
+                  )}
                 >
                   {platform.name}
                 </h3>

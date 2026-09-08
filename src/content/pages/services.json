@@ -42,6 +42,10 @@
         "capability": "Cloud infrastructure, serverless and DevOps — the backbone we deploy and scale on."
       },
       {
+        "name": "Google Cloud Certified",
+        "capability": "Cloud architecture, Vertex AI, BigQuery and scalable Google Cloud infrastructure."
+      },
+      {
         "name": "Microsoft Certified",
         "capability": "Enterprise cloud, identity and app services for teams already invested in Microsoft."
       },
