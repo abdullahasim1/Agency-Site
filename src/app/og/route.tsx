@@ -90,7 +90,12 @@ export function GET(request: Request) {
               </svg>
             </div>
             <div
-              style={{ color: TEXT, fontSize: 30, fontWeight: 700, letterSpacing: -0.5 }}
+              style={{
+                color: TEXT,
+                fontSize: 30,
+                fontWeight: 700,
+                letterSpacing: -0.5,
+              }}
             >
               {siteConfig.name}
             </div>
@@ -156,6 +161,13 @@ export function GET(request: Request) {
         </div>
       </div>
     ),
-    { ...SIZE },
+    {
+      ...SIZE,
+      headers: {
+        /* Social crawlers re-fetch these often; a day at the edge keeps the
+           endpoint cheap without serving stale branding for a month. */
+        "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+      },
+    },
   );
 }

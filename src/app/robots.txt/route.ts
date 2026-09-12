@@ -62,11 +62,12 @@ User-agent: meta-externalagent
 Disallow: /
 
 Sitemap: ${base}/sitemap.xml
-Host: ${base}
 
 # Content Signals (https://contentsignals.org/)
-# Declare AI content usage preferences per draft-romm-aipref-contentsignals
-Content-Signal: ai-train=no, search=yes, ai-input=no
+# Declare AI content usage preferences per draft-romm-aipref-contentsignals.
+# use=reference allows agents to quote/summarize on request without
+# bulk-scraping; ai-input=no keeps real-time RAG grounding off.
+Content-Signal: ai-train=no, search=yes, ai-input=no, use=reference
 `;
 
   return new NextResponse(content, {

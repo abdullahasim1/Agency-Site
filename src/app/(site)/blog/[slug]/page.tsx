@@ -88,6 +88,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <p className="inline-flex items-center gap-1.5 text-xs text-ink-500">
                 <Clock className="size-3.5" aria-hidden />
                 {formatDate(post.publishedAt)} · {post.readingMinutes} min read
+                {post.updatedAt ? (
+                  <span className="text-ink-400">
+                    (updated {formatDate(post.updatedAt)})
+                  </span>
+                ) : null}
               </p>
               {post.authorName ? (
                 <p className="text-xs text-ink-500">
@@ -109,11 +114,38 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <section className="section-y">
         <Container>
-          {/* The compiled Markdown body. Styles live in .prose (globals.css). */}
-          <div
-            className="prose mx-auto max-w-3xl"
-            dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
-          />
+          {/* Article body + sticky outline. The outline comes from the same
+              render pass as the heading ids, so the two cannot disagree. */}
+          <div className="mx-auto grid max-w-3xl gap-10 lg:max-w-none lg:grid-cols-[minmax(0,16rem)_minmax(0,48rem)] lg:justify-center">
+            {post.toc.length > 1 ? (
+              <nav
+                aria-label="Table of contents"
+                className="hidden lg:block"
+              >
+                <div className="sticky top-28 border-l border-ink-200 pl-5">
+                  <p className="type-eyebrow text-ink-400">On this page</p>
+                  <ol className="mt-4 space-y-2.5">
+                    {post.toc.map((entry) => (
+                      <li key={entry.id}>
+                        <a
+                          href={`#${entry.id}`}
+                          className="block text-sm leading-snug text-ink-600 transition-colors hover:text-brand-700"
+                        >
+                          {entry.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </nav>
+            ) : null}
+
+            {/* The compiled Markdown body. Styles live in .prose (globals.css). */}
+            <div
+              className="prose"
+              dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
+            />
+          </div>
 
           <div className="mx-auto mt-14 max-w-3xl border-t border-ink-200 pt-10">
             <div className="flex flex-col gap-6 rounded-panel border border-ink-200 bg-ink-25 p-8 sm:flex-row sm:items-center sm:justify-between">
@@ -206,6 +238,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               description: post.excerpt,
               path,
               datePublished: post.publishedAt,
+              dateModified: post.updatedAt,
               keywords: [post.category],
               authorName: post.authorName,
               authorUrl: post.authorUrl,

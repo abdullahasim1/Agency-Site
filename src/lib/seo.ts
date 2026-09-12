@@ -325,6 +325,8 @@ export function articleSchema(options: {
   description: string;
   path: string;
   datePublished: string;
+  /** Falls back to datePublished — set when a post is meaningfully revised. */
+  dateModified?: string;
   keywords?: string[];
   authorName?: string;
   authorUrl?: string;
@@ -347,7 +349,7 @@ export function articleSchema(options: {
     image: ogImageUrl(options.title, options.path),
     inLanguage: "en",
     datePublished: options.datePublished,
-    dateModified: options.datePublished,
+    dateModified: options.dateModified ?? options.datePublished,
     keywords: options.keywords,
     author: author ? { "@id": author["@id"] } : ref(ID.organization),
     publisher: ref(ID.organization),

@@ -36,7 +36,14 @@ interface Post {
   category: string;
   /** ISO date (YYYY-MM-DD) from the publish-date field. */
   publishedAt: string;
+  /** ISO date set only when a published post is meaningfully revised. */
+  updatedAt?: string;
   bodyHtml: string;
+  /**
+   * H2 outline of the article, derived from the markdown at build time.
+   * Drives the table of contents; empty when a post has no ## headings.
+   */
+  toc: TocEntry[];
   /** Whole-minute read time, derived from the word count. */
   readingMinutes: number;
   /** Named human author — when set, emitted as Person schema instead of Organization. */
@@ -47,11 +54,18 @@ interface Post {
   authorUrl?: string;
 }
 
+interface TocEntry {
+  /** Anchor id — matches the id given to the rendered <h2>. */
+  id: string;
+  text: string;
+}
+
 interface PostEntry {
   title: string;
   excerpt: string;
   category: string;
   publishedAt: string;
+  updatedAt?: string;
   draft: boolean;
   body: string;
   authorName?: string;
@@ -59,11 +73,46 @@ interface PostEntry {
   authorUrl?: string;
 }
 
-/** Markdown → HTML, once per build, sanitized against XSS. */
-const renderMarkdown = (markdown: string): string => {
-  marked.setOptions({ gfm: true, breaks: false });
+/** Anchor id from heading text — lowercase, hyphenated, punctuation stripped. */
+function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+/**
+ * Markdown → HTML, once per build, sanitized against XSS.
+ *
+ * The custom heading renderer gives every h2 a stable id (built from its
+ * text), which is what makes the table of contents and #anchor deep links
+ * work. H3+ are left unadorned to keep the TOC a flat outline. The entries
+ * are collected in the same render pass, so the TOC cannot drift from the
+ * body it describes.
+ */
+const renderMarkdown = (markdown: string): { html: string; toc: TocEntry[] } => {
+  const toc: TocEntry[] = [];
+
+  const renderer = new marked.Renderer();
+  const baseHeading = renderer.heading.bind(renderer);
+  renderer.heading = (heading) => {
+    const html = baseHeading(heading);
+    if (heading.depth === 2) {
+      const id = slugifyHeading(heading.text);
+      toc.push({ id, text: heading.text });
+      return html.replace(/^<h2/, `<h2 id="${id}"`);
+    }
+    return html;
+  };
+
+  marked.setOptions({ gfm: true, breaks: false, renderer });
   const rawHtml = marked.parse(markdown, { async: false }) as string;
-  return purify.sanitize(rawHtml);
+  const html = purify.sanitize(rawHtml, {
+    ADD_ATTR: ["id"],
+  });
+  return { html, toc };
 };
 
 /** Reading time at 200 wpm, rounded up to whole minutes (minimum 1). */
@@ -83,13 +132,16 @@ export function getPosts(): Promise<Post[]> {
       .filter(({ entry }) => !entry.draft)
       .map(({ slug, entry }) => {
         const post = entry as unknown as PostEntry;
+        const { html, toc } = renderMarkdown(post.body);
         return {
           slug,
           title: post.title,
           excerpt: post.excerpt,
           category: post.category,
           publishedAt: post.publishedAt,
-          bodyHtml: renderMarkdown(post.body),
+          updatedAt: post.updatedAt,
+          bodyHtml: html,
+          toc,
           readingMinutes: readingTime(post.body),
           authorName: post.authorName,
           authorRole: post.authorRole,

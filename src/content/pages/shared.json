@@ -7,6 +7,11 @@
   },
   "techMarqueeLabel": "Tools we build with",
   "skipLink": "Skip to content",
+  "notFound": {
+    "title": "This page doesn't exist",
+    "description": "The link may be broken, or the page may have moved. Here's where to go next — or tell us what you were looking for.",
+    "contactLabel": "Tell us what you needed"
+  },
   "actions": {
     "allServices": "All services",
     "viewAllProjects": "View All Projects",

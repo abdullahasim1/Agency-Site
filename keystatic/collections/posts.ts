@@ -54,6 +54,11 @@ export const posts = collection({
         "Shown on the card and the article, and used to order the listing (newest first).",
       validation: { isRequired: true },
     }),
+    updatedAt: fields.date({
+      label: "Last updated",
+      description:
+        "Set only when an already-published post is meaningfully revised. Feeds dateModified in the article's structured data so search engines re-evaluate the page.",
+    }),
     authorName: fields.text({
       label: "Author name",
       description:

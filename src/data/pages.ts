@@ -252,6 +252,12 @@ interface SharedCopy {
   techMarqueeLabel: string;
   /** Keyboard-only link that jumps past the header. */
   skipLink: string;
+  /** Copy on the 404 page; fields render at (site)/not-found.tsx. */
+  notFound: {
+    title: string;
+    description: string;
+    contactLabel: string;
+  };
   /** Button and link labels that repeat across several pages. */
   actions: {
     allServices: string;

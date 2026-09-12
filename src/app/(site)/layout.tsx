@@ -121,16 +121,20 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           strategy="lazyOnload"
         />
       ) : null}
-      {/* Service worker: enables persistent caching for images, static assets and offline visits. */}
+      {/* Service worker: enables persistent caching for images, static assets and offline visits.
+          lazyOnload — registration waits for browser idle time, after hydration and
+          first input, so the main thread never competes with it during page load. */}
       <Script
         id="sw-register"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.register('/sw.js').then(function(reg) {
-                reg.update();
-              }).catch(function() {});
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                  reg.update();
+                }).catch(function() {});
+              });
             }
           `,
         }}

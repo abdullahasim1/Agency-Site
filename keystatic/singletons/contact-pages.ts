@@ -242,6 +242,29 @@ export const sharedCopy = singleton({
       description:
         "The first thing a keyboard user reaches on every page; it jumps past the navigation.",
     }),
+    notFound: fields.object(
+      {
+        title: fields.text({
+          label: "404 title",
+          description: "The heading on the page shown when a URL doesn't exist.",
+        }),
+        description: fields.text({
+          label: "404 description",
+          description:
+            "One or two sentences under the heading. End on where the visitor should go next.",
+          multiline: true,
+        }),
+        contactLabel: fields.text({
+          label: "404 contact button",
+          description: "The secondary button on the 404 page; it links to Contact.",
+        }),
+      },
+      {
+        label: "404 page",
+        description:
+          "The page shown when a visitor follows a broken link or mistypes a URL.",
+      },
+    ),
     actions: fields.object(
       {
         allServices: fields.text({

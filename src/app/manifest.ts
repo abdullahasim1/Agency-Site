@@ -43,5 +43,23 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
+    shortcuts: [
+      {
+        name: "Book a consultation",
+        short_name: "Book a call",
+        url: "/book-a-call",
+        description: "Schedule a free consultation with DevRox.",
+      },
+      {
+        name: "Portfolio",
+        url: "/portfolio",
+        description: "Case studies across AI, automation and software.",
+      },
+      {
+        name: "Blog",
+        url: "/blog",
+        description: "Guides on AI agents, automation costs and delivery.",
+      },
+    ],
   };
 }

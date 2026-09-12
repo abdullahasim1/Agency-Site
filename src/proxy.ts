@@ -8,9 +8,14 @@ const MARKDOWN_ROUTES = new Set([
   "/",
   "/services",
   "/services/ai-agents",
-  "/services/process-automation",
-  "/services/voice-ai",
-  "/services/custom-software",
+  "/services/ai-automation",
+  "/services/ai-voice-agents",
+  "/services/aws-cloud-devops",
+  "/services/crm-api-integrations",
+  "/services/custom-software-development",
+  "/services/mobile-app-development",
+  "/services/web-application-development",
+  "/services/workflow-automation",
   "/portfolio",
   "/about",
   "/contact",
@@ -82,6 +87,12 @@ function markdownResponse(request: NextRequest, basePath: string): NextResponse 
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
       "Cache-Control": "public, max-age=0, must-revalidate",
+      /*
+       * The HTML page is the canonical resource; the .md twin is a convenience
+       * for agents. noindex keeps a crawler that discovers the URL directly
+       * from indexing a second copy of the same content.
+       */
+      "X-Robots-Tag": "noindex, follow",
       /* The HTML original is this document's alternate representation;
          describedby names the llms.txt index that covers it. */
       "Link": [
@@ -134,9 +145,14 @@ Contact: ${siteConfig.contact.email}.
 ${siteConfig.name} offers the following service lines:
 
 - [AI Agents](${url("/services/ai-agents")}) — Autonomous agents that plan, act and iterate.
-- [Process Automation](${url("/services/process-automation")}) — Eliminate manual work with workflows that run themselves.
-- [Voice AI](${url("/services/voice-ai")}) — Conversational voice agents for support, sales and operations.
-- [Custom Software](${url("/services/custom-software")}) — Full-cycle product engineering from architecture to deployment.
+- [AI Automation](${url("/services/ai-automation")}) — AI-driven automation of business processes.
+- [AI Voice Agents](${url("/services/ai-voice-agents")}) — Conversational voice agents for support, sales and operations.
+- [Workflow Automation](${url("/services/workflow-automation")}) — Eliminate manual work with workflows that run themselves.
+- [Custom Software Development](${url("/services/custom-software-development")}) — Full-cycle product engineering from architecture to deployment.
+- [Web Application Development](${url("/services/web-application-development")}) — Modern, scalable web applications.
+- [Mobile App Development](${url("/services/mobile-app-development")}) — Native and cross-platform mobile apps.
+- [CRM & API Integrations](${url("/services/crm-api-integrations")}) — Connect your tools and data.
+- [AWS Cloud & DevOps](${url("/services/aws-cloud-devops")}) — Cloud infrastructure and DevOps automation.
 
 Each service page includes deliverables, technologies, use cases and related case studies.
 `;
@@ -214,7 +230,11 @@ This page is available in markdown for AI agents. Visit the [HTML version](${url
   }
 }
 
-export async function middleware(request: NextRequest) {
+/*
+ * Renamed from middleware.ts per the Next.js 16 proxy convention — same
+ * signature, same matcher, the file convention itself was renamed.
+ */
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   /*
