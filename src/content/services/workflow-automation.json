@@ -1,13 +1,13 @@
 {
-  "title": "Workflow Automation",
+  "title": "Workflow Automation Services",
   "basics": {
     "id": "svc-workflow-automation",
     "navLabel": "Workflow Automation",
     "icon": "Workflow"
   },
   "listing": {
-    "shortDescription": "Connect business tools and automate repetitive processes using intelligent workflows.",
-    "fullDescription": "Your tools already hold the data — the work is getting them to agree with each other. We design workflows that move information between systems reliably, with idempotent steps, dead-letter handling and alerting when something breaks. Where a no-code platform is the right answer we use one; where it would become a liability we write code."
+    "shortDescription": "n8n, Make & Zapier workflow automation services — we connect your tools and migrate you off expensive Zapier bills. Free consultation.",
+    "fullDescription": "Your tools already hold the data — the work is getting them to agree with each other. Our workflow automation services design pipelines that move information between systems reliably, with idempotent steps, dead-letter handling and alerting when something breaks. Where a no-code platform is the right answer we use one; where it would become a liability we write code."
   },
   "order": 6,
   "technologies": [
@@ -42,9 +42,31 @@
     "Approval chains with notifications and audit history"
   ],
   "relatedProjects": [
-    "nexusops",
-    "verivoice"
+    "predictive-pump-monitoring-n8n-workflow",
+    "nexusops"
   ],
   "accent": "cyan",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "Should we migrate from Zapier to n8n?",
+      "answer": "If your Zapier bill keeps climbing or you are hitting task limits, usually yes. n8n's self-hosted option removes per-task pricing, which cuts costs dramatically at volume. We audit your existing Zaps, rebuild them in n8n, and run both in parallel until the migration is proven — no downtime."
+    },
+    {
+      "question": "How much does it cost to hire an n8n developer?",
+      "answer": "Most n8n engagements land between $2,000 and $10,000 for design and build, depending on workflow count and complexity, with optional monthly maintenance after. Retainers make sense when your automations are business-critical and need monitoring. Book a free call and we will scope it in one conversation."
+    },
+    {
+      "question": "n8n vs Make vs Zapier — which should we choose?",
+      "answer": "Zapier wins on simplicity, Make on visual complexity at moderate cost, and n8n on cost at scale plus self-hosting for data control. The right answer depends on your team's technical skill and volume. We work with all three and recommend honestly — including telling you when you do not need a platform at all."
+    },
+    {
+      "question": "What happens when an automation breaks?",
+      "answer": "Ours are built not to fail silently. We design idempotent steps so reruns are safe, add dead-letter handling for failed runs, and wire alerting so you hear about a problem from a notification — not from a customer. Every workflow ships with logging you can actually read."
+    },
+    {
+      "question": "Can you maintain our automations on an ongoing basis?",
+      "answer": "Yes — that is our most popular engagement after the initial build. We monitor your workflows, handle API changes from your vendors, and keep adding automations as new needs come up. It is the difference between automation that works once and automation you can rely on."
+    }
+  ]
 }

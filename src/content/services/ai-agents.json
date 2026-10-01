@@ -1,13 +1,13 @@
 {
-  "title": "AI Agents",
+  "title": "AI Agent Development Company",
   "basics": {
     "id": "svc-ai-agents",
     "navLabel": "AI Agents",
     "icon": "Bot"
   },
   "listing": {
-    "shortDescription": "Build intelligent agents that can reason, communicate, perform tasks and interact with business systems.",
-    "fullDescription": "An agent is only useful when it can act. We build agents with a narrow, well-defined remit, real tool access into your systems, and hard guardrails around what they are permitted to do. Every agent ships with evaluation cases, structured logging of its reasoning and tool calls, and a fallback path to a human. We favour several focused agents over one that tries to do everything, because focused agents are testable."
+    "shortDescription": "Custom AI agent development — agents with real tool access, guardrails, and evals, shipped to production. Book a free consultation.",
+    "fullDescription": "An agent is only useful when it can act. We build AI agents with a narrow, well-defined remit, real tool access into your systems, and hard guardrails around what they are permitted to do. Every agent ships with evaluation cases, structured logging of its reasoning and tool calls, and a fallback path to a human. We favour several focused agents over one that tries to do everything, because focused agents are testable."
   },
   "order": 2,
   "technologies": [
@@ -43,9 +43,31 @@
     "Customer-facing assistants with strict escalation rules"
   ],
   "relatedProjects": [
-    "verivoice",
-    "nexusops"
+    "nexusops",
+    "frontdesk-ai"
   ],
   "accent": "violet",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "How much does it cost to build an AI agent?",
+      "answer": "A focused production agent typically costs $5,000–$25,000 depending on tool integrations, evaluation rigor, and deployment needs. The main cost drivers are how many systems the agent touches and how much testing the task requires. We give fixed, scoped estimates — see our 2026 AI agent cost breakdown on the blog for the full picture."
+    },
+    {
+      "question": "What is the difference between an AI agent and a chatbot?",
+      "answer": "A chatbot answers questions; an agent takes actions. Agents have tool access — they can look up orders, update your CRM, book meetings, and trigger workflows — with guardrails around what they are permitted to do. If the job is ‘answer this,’ you need a chatbot. If it is ‘handle this,’ you need an agent."
+    },
+    {
+      "question": "How do you stop an AI agent from doing the wrong thing?",
+      "answer": "Three layers: a narrow, well-defined remit so the agent cannot wander; hard guardrails that block disallowed actions regardless of what the model wants; and evaluation cases plus structured logging of every reasoning step and tool call, so mistakes are caught in testing and auditable in production."
+    },
+    {
+      "question": "How long does it take to ship an AI agent?",
+      "answer": "A pilot agent with 2–3 tool integrations ships in 3–6 weeks. More complex agents with many systems and approval workflows take 8–12 weeks. We ship a working slice early so you are testing real behavior, not slideware."
+    },
+    {
+      "question": "Can AI agents work with our existing CRM and tools?",
+      "answer": "Yes — that is the whole point. We connect agents to your CRM, helpdesk, databases, and internal APIs with the same defensive integration practices we use for all our work: validated contracts, verified webhooks, and full observability."
+    }
+  ]
 }

@@ -1,12 +1,12 @@
 {
-  "title": "Web Application Development",
+  "title": "Web Application Development Services",
   "basics": {
     "id": "svc-web-application-development",
     "navLabel": "Web Development",
     "icon": "Globe"
   },
   "listing": {
-    "shortDescription": "Build scalable and high-performance web applications using modern technologies.",
+    "shortDescription": "High-performance web application development — typed end-to-end, server-rendered, accessible. Get a free project estimate.",
     "fullDescription": "We build web applications that stay fast as they grow: typed end to end, server-rendered where it matters, and structured so a new engineer can find their way around in an afternoon. Performance, accessibility and observability are part of the definition of done rather than a later cleanup pass."
   },
   "order": 4,
@@ -42,9 +42,27 @@
     "Rebuilds of ageing applications that have stopped scaling"
   ],
   "relatedProjects": [
-    "ai-resume-platform",
-    "commerce-insights"
+    "genai",
+    "homeservices"
   ],
   "accent": "brand",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "Why do you build with Next.js and React?",
+      "answer": "Because they hit the sweet spot of performance, hiring pool, and longevity. Server rendering keeps pages fast, TypeScript end-to-end catches bugs before users do, and you are never locked into an obscure stack that only one vendor understands."
+    },
+    {
+      "question": "How do you keep the app fast as it grows?",
+      "answer": "Performance is part of our definition of done, not a later cleanup pass. We structure the codebase so new features do not tangle old ones, measure Core Web Vitals continuously, and optimize images, queries, and bundles as we go."
+    },
+    {
+      "question": "How much does a web application cost?",
+      "answer": "Most business web apps land between $10,000 and $50,000 depending on features, integrations, and design needs. We scope in fixed phases so you always know what the next slice costs before we start it."
+    },
+    {
+      "question": "Will our team be able to maintain it?",
+      "answer": "Yes. We write code a new engineer can navigate in an afternoon — typed, tested, documented — and we hand over with documentation and walkthroughs. Many clients keep us on for ongoing development, but none are stuck with us."
+    }
+  ]
 }

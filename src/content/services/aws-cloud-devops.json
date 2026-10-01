@@ -1,12 +1,12 @@
 {
-  "title": "AWS Cloud & DevOps",
+  "title": "AWS Cloud & DevOps Services",
   "basics": {
     "id": "svc-aws-cloud-devops",
     "navLabel": "AWS Cloud",
     "icon": "Cloud"
   },
   "listing": {
-    "shortDescription": "Design, deploy and operate secure AWS infrastructure for web apps, APIs, automation and AI workloads.",
+    "shortDescription": "AWS Cloud & DevOps services — secure accounts, automated deployments, observability & cost controls for AI workloads. Free infra review.",
     "fullDescription": "AWS is powerful, but it gets expensive and fragile when accounts, networking, permissions and deployments grow without a plan. We set up production-ready AWS foundations: secure accounts, least-privilege IAM, repeatable infrastructure, automated deployments, observability, backups and cost controls. The goal is simple: your product runs reliably, scales when needed and stays maintainable for the team who owns it."
   },
   "order": 9,
@@ -59,12 +59,23 @@
     {
       "question": "Do you help reduce AWS costs?",
       "answer": "Yes. We look for oversized compute, unused resources, storage lifecycle gaps, missing budgets and architecture choices that are more expensive than the workload needs."
+    },
+    {
+      "question": "How long does it take to set up production AWS infrastructure?",
+      "answer": "A solid production foundation — secure accounts, networking, CI/CD, observability, and backups — typically takes two to four weeks. Migrating existing workloads adds time depending on how tangled the current setup is."
+    },
+    {
+      "question": "Do you support AI workloads on AWS?",
+      "answer": "Yes. We design infrastructure for GPU instances, model serving, and the bursty traffic patterns AI products create — with cost controls, because AI workloads are where AWS bills go to explode."
+    },
+    {
+      "question": "Will you document everything and hand it over?",
+      "answer": "Always. Infrastructure as code, runbooks, and architecture diagrams are deliverables, not extras. Your team should be able to operate everything without us — though most clients keep us around for the hard parts."
     }
   ],
   "relatedProjects": [
-    "commerce-insights",
     "reportai",
-    "cyberthreat-mesh"
+    "cyberthreat"
   ],
   "accent": "brand",
   "featured": true
