@@ -1,13 +1,13 @@
 {
-  "title": "AI Voice Agents",
+  "title": "AI Voice Agent Development",
   "basics": {
     "id": "svc-ai-voice-agents",
     "navLabel": "Voice AI",
     "icon": "PhoneCall"
   },
   "listing": {
-    "shortDescription": "Build AI-powered voice systems for inbound calls, outbound calls, lead qualification, support and appointment booking.",
-    "fullDescription": "Voice is the hardest interface to get right: latency, interruptions, accents and background noise all show up immediately. We build voice agents around a real telephony stack, tune for sub-second turn-taking, and design conversations that fail gracefully — confirming details, handling silence, and handing off to a person the moment the caller asks. Every call is transcribed, scored and pushed into your CRM."
+    "shortDescription": "AI voice agents for calls, lead qualification & appointment booking — sub-second latency on a real telephony stack. Book a free consultation.",
+    "fullDescription": "Voice is the hardest interface to get right: latency, interruptions, accents and background noise all show up immediately. We build AI voice agents around a real telephony stack, tune for sub-second turn-taking, and design conversations that fail gracefully — confirming details, handling silence, and handing off to a person the moment the caller asks. Every call is transcribed, scored and pushed into your CRM."
   },
   "order": 3,
   "technologies": [
@@ -42,8 +42,35 @@
     "Tier-one support with escalation to a human agent"
   ],
   "relatedProjects": [
-    "verivoice"
+    "frontdesk-ai",
+    "detroit-architect"
   ],
   "accent": "cyan",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "How much does an AI voice agent cost?",
+      "answer": "Most production voice agents cost between $3,000 and $15,000 to build, depending on call volume, integrations, and conversation complexity — plus ongoing telephony and model usage. We scope fixed-price pilots so you know the exact number before we build anything."
+    },
+    {
+      "question": "How long does it take to build an AI voice agent?",
+      "answer": "A focused pilot — one call flow such as appointment booking or lead qualification — typically ships in 2–4 weeks. Full rollouts across departments take 6–10 weeks including testing and tuning. The biggest variable is usually integrations with your CRM or booking system, not the voice technology itself."
+    },
+    {
+      "question": "Can AI voice agents handle interruptions, accents, and background noise?",
+      "answer": "Yes, when they are built on a real telephony stack and tuned for it. We optimize for sub-second turn-taking, design conversations that confirm details instead of guessing, and fail gracefully — handling silence, asking for clarification, and escalating to a human when confidence is low."
+    },
+    {
+      "question": "Will my callers know they are talking to an AI?",
+      "answer": "They might — and that is fine. We recommend disclosing it upfront; it sets expectations and is required in some US states. In practice, callers care about getting their problem solved quickly, not about whether the voice is human."
+    },
+    {
+      "question": "What systems can an AI voice agent integrate with?",
+      "answer": "Anything with an API. Common integrations include GoHighLevel, HubSpot, and Salesforce for CRM, Calendly and Cal.com for booking, and Twilio or SIP trunks for telephony. If your system has an API or webhook, we can connect it."
+    },
+    {
+      "question": "Are AI voice agents a good fit for real estate and home services?",
+      "answer": "They are an excellent fit. These businesses live on speed-to-lead — calling back a new inquiry within minutes — and a voice agent answers instantly, qualifies the caller, and books straight into your calendar, 24/7. It is one of the highest-ROI use cases we deploy."
+    }
+  ]
 }

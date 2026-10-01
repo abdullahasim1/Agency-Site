@@ -1,13 +1,13 @@
 {
-  "title": "Mobile App Development",
+  "title": "Mobile App Development Services",
   "basics": {
     "id": "svc-mobile-app-development",
     "navLabel": "Mobile Development",
     "icon": "Smartphone"
   },
   "listing": {
-    "shortDescription": "Create modern iOS and Android applications from a single, maintainable codebase.",
-    "fullDescription": "Mobile work lives or dies on the details: offline behaviour, background sync, push permissions, battery use and store review. We build cross-platform apps that share business logic across iOS and Android while respecting each platform's conventions, and we handle the release pipeline so shipping an update is routine."
+    "shortDescription": "Cross-platform mobile app development for iOS & Android from one codebase — release pipeline handled. Book a free consultation.",
+    "fullDescription": "Mobile work lives or dies on the details: offline behaviour, background sync, push permissions, battery use and store review. We build cross-platform mobile apps that share business logic across iOS and Android while respecting each platform's conventions, and we handle the release pipeline so shipping an update is routine."
   },
   "order": 5,
   "technologies": [
@@ -41,9 +41,25 @@
     "Driver, delivery and logistics applications",
     "Internal tools that need a camera, GPS or barcode scanning"
   ],
-  "relatedProjects": [
-    "routelens-driver-app"
-  ],
+  "relatedProjects": [],
   "accent": "violet",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "Native or cross-platform — which should we choose?",
+      "answer": "For most business apps, cross-platform from a single codebase. You get iOS and Android for roughly the cost of one native app, with shared business logic and faster updates. We go native only when you need deep hardware access or platform-specific performance."
+    },
+    {
+      "question": "Do you handle App Store and Play Store submission?",
+      "answer": "Yes — the full release pipeline, including store listings, review compliance, and updates. Store review is where many projects stall; we have shipped through it enough times to know the common rejection reasons in advance."
+    },
+    {
+      "question": "How much does a mobile app cost?",
+      "answer": "A solid v1 typically runs $15,000–$50,000 depending on features and integrations. Cross-platform keeps it to roughly one codebase instead of two, which is the single biggest cost saver."
+    },
+    {
+      "question": "How do you handle offline mode and push notifications?",
+      "answer": "As first-class requirements, not afterthoughts. We design offline behavior, background sync, and push permissions from the start — these are the details that separate apps people keep from apps people delete."
+    }
+  ]
 }

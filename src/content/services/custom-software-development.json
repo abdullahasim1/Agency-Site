@@ -1,13 +1,13 @@
 {
-  "title": "Custom Software Development",
+  "title": "Custom Software Development Company",
   "basics": {
     "id": "svc-custom-software-development",
     "navLabel": "Custom Software",
     "icon": "Code2"
   },
   "listing": {
-    "shortDescription": "Build custom digital products around specific business requirements.",
-    "fullDescription": "Sometimes the process is the competitive advantage and off-the-shelf software cannot express it. We build bespoke platforms for those cases — starting from the real workflow rather than a feature list, shipping a usable slice early, and expanding from there. You own the code, the infrastructure and the roadmap."
+    "shortDescription": "Custom software development company — bespoke platforms built from your real workflow. You own the code. Book a free discovery call.",
+    "fullDescription": "Sometimes the process is the competitive advantage and off-the-shelf software cannot express it. We build custom software for those cases — starting from the real workflow rather than a feature list, shipping a usable slice early, and expanding from there. You own the code, the infrastructure and the roadmap."
   },
   "order": 8,
   "technologies": [
@@ -43,8 +43,27 @@
     "Products that must integrate deeply with legacy systems"
   ],
   "relatedProjects": [
-    "commerce-insights"
+    "postpilot",
+    "four-ai"
   ],
   "accent": "violet",
-  "featured": true
+  "featured": true,
+  "faq": [
+    {
+      "question": "How much does custom software cost?",
+      "answer": "An MVP typically runs $15,000–$60,000 depending on scope; full platforms go higher. Scope drives everything, which is why we start from your real workflow rather than a feature list and ship a usable slice early — you see value before the budget is committed."
+    },
+    {
+      "question": "Should we build custom or buy off-the-shelf?",
+      "answer": "Buy when the process is standard; build when the process is your competitive advantage. If off-the-shelf software forces you to change how you work in ways that cost you money, custom usually wins within 18 months. We will tell you honestly when buying is the smarter move."
+    },
+    {
+      "question": "Who owns the code?",
+      "answer": "You do — the code, the infrastructure, and the documentation. Everything lives in your repositories from day one. No lock-in, no hostage situations."
+    },
+    {
+      "question": "How long does a custom build take?",
+      "answer": "A focused MVP ships in 8–12 weeks. Larger platforms are delivered in slices every two to three weeks so you are testing and giving feedback on working software throughout, not waiting months for a big reveal."
+    }
+  ]
 }

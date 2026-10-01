@@ -1,13 +1,13 @@
 {
-  "title": "CRM & API Integrations",
+  "title": "CRM & API Integration Services",
   "basics": {
     "id": "svc-crm-api-integrations",
     "navLabel": "CRM & Integrations",
     "icon": "PlugZap"
   },
   "listing": {
-    "shortDescription": "Connect CRMs, APIs, databases, communication platforms and third-party services.",
-    "fullDescription": "Integrations are where most systems quietly break. We build them defensively: contracts validated at the boundary, webhooks verified and replayable, pagination and rate limits handled properly, and every sync observable. When a third-party API changes, you find out from an alert rather than from a customer."
+    "shortDescription": "CRM & API integration services — GoHighLevel, Twilio, REST & GraphQL. Defensive builds, verified webhooks, full observability. Let's talk.",
+    "fullDescription": "CRM and API integrations are where most systems quietly break. We build them defensively: contracts validated at the boundary, webhooks verified and replayable, pagination and rate limits handled properly, and every sync observable. When a third-party API changes, you find out from an alert rather than from a customer."
   },
   "technologies": [
     "GoHighLevel",
@@ -42,10 +42,32 @@
     "Consolidating data from several systems into one warehouse"
   ],
   "relatedProjects": [
-    "commerce-insights",
+    "reportai",
     "recruitflow"
   ],
   "accent": "brand",
   "featured": true,
-  "order": 7
+  "order": 7,
+  "faq": [
+    {
+      "question": "Do you work with GoHighLevel?",
+      "answer": "Yes — GoHighLevel is one of our core platforms. We build custom GHL workflows, connect it to your other tools via API and webhooks, and extend it where the native features stop. If your agency or business runs on GHL, we can make it talk to everything else."
+    },
+    {
+      "question": "What happens when a third-party API changes?",
+      "answer": "You find out from an alert, not from a customer. We validate contracts at the boundary, verify and replay webhooks, and handle pagination and rate limits properly — so when a vendor ships a breaking change, the integration degrades gracefully and we get notified."
+    },
+    {
+      "question": "How long does a typical integration take?",
+      "answer": "A straightforward two-system sync takes 1–3 weeks. Multi-system integrations with custom logic take 4–8 weeks. The timeline depends more on API documentation quality than on anything we control — well-documented APIs go fast."
+    },
+    {
+      "question": "Can you sync data between our systems in real time?",
+      "answer": "Usually yes, via webhooks or event-driven pipelines. Where real-time is not possible — some legacy systems only allow polling — we will tell you upfront and design the sync interval around what your business actually needs rather than what is technically maximal."
+    },
+    {
+      "question": "Which CRMs and platforms do you integrate?",
+      "answer": "GoHighLevel, HubSpot, and Salesforce on the CRM side, plus Twilio for communications, Stripe for billing, and effectively any REST or GraphQL API. If it has an API, we can integrate it."
+    }
+  ]
 }
