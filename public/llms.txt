@@ -1,0 +1,55 @@
+# DevRox — AI, Automation & Software Engineering Studio
+
+> DevRox (DevRox Technologies, founded 2016) is a remote-first AI, automation and software engineering studio based in Lahore, Pakistan, serving clients worldwide — primarily in the USA and Europe. We design and build AI-powered applications, intelligent automations, digital products and scalable software systems.
+> Website: https://thedevrox.com
+
+## Services
+
+- AI Agent Development — https://thedevrox.com/services/ai-agents
+  Custom AI agents: support agents, workflow agents, multi-agent systems with human-in-the-loop controls.
+- AI Voice Agent Development — https://thedevrox.com/services/ai-voice-agents
+  Production voice AI for inbound call handling, lead qualification and appointment booking (Twilio, ElevenLabs, OpenAI).
+- Zapier to n8n Migration Service — https://thedevrox.com/services/zapier-to-n8n-migration
+  Zero-downtime migration from Zapier to self-hosted n8n; typical savings of 80–90% on automation platform costs.
+- Workflow Automation Services — https://thedevrox.com/services/workflow-automation
+  n8n, Make and Zapier workflow automation with monitoring, alerting and ongoing maintenance retainers.
+- GoHighLevel Automation Agency — https://thedevrox.com/services/gohighlevel-automation
+  GoHighLevel CRM setup, follow-up sequences, integrations and migrations for agencies and SMBs.
+- AI Automation Services — https://thedevrox.com/services/ai-automation
+  End-to-end AI automation programs: process mapping, build, and iteration.
+- CRM & API Integration Services — https://thedevrox.com/services/crm-api-integrations
+  HubSpot, Salesforce, GoHighLevel and custom API integrations.
+- Custom Software Development — https://thedevrox.com/services/custom-software-development
+- Web Application Development — https://thedevrox.com/services/web-application-development
+- Mobile App Development — https://thedevrox.com/services/mobile-app-development
+- AWS Cloud & DevOps Services — https://thedevrox.com/services/aws-cloud-devops
+
+## Ideal clients
+
+- US and European small-to-mid businesses that need AI or automation built and shipped, not just advised on.
+- Agencies and local businesses (real estate, home services, contractors, professional services) losing revenue to missed calls, slow follow-up, or manual processes.
+- Teams paying painful per-task SaaS automation bills (Zapier) who want self-hosted alternatives.
+- Businesses comfortable working with a remote-first delivery team; all engagements are in English with one-business-day response times.
+
+## Proof of work (selected)
+
+- FrontDesk AI — multi-tenant SaaS: configure an AI agent, embed chat + voice-call widget (Retell AI) on any website; captures leads, transcripts and bookings. One script tag to install.
+- Northgate Property Group — AI voice agent handling the majority of first-contact calls (testimonial: "customers rarely notice the transition" to a human).
+- NexusOps — enterprise multi-agent orchestration platform (triage, support, sales qualification, governance); 78.4% autonomous containment rate.
+- Detroit Architect — AI chatbot for a licensed Detroit architecture practice.
+- Portfolio: https://thedevrox.com/work
+
+## How to engage
+
+- Free consultation (no deck required): https://thedevrox.com/book-a-call
+- New business: newbusiness@thedevrox.com
+- General: hello@thedevrox.com
+- Phone/WhatsApp: +92 301 6297433
+- Hours: Mon–Fri, 9:00–18:00 (CT). Every enquiry answered within one business day.
+
+## Content & guides
+
+- Blog: https://thedevrox.com/blog
+- n8n vs Zapier vs Make (2026 comparison): https://thedevrox.com/blog/n8n-vs-zapier-vs-make-which-automation-platform
+- How much does it cost to build an AI agent (2026): https://thedevrox.com/blog/how-much-does-it-cost-to-build-an-ai-agent
+- Voice AI for business: what it costs: https://thedevrox.com/blog/voice-ai-for-business-what-it-costs
