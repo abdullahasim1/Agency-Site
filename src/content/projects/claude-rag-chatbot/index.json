@@ -5,7 +5,10 @@
     "tagline": "A grounded Claude-powered RAG chatbot"
   },
   "category": "AI / Conversational AI",
-  "categories": ["AI", "SaaS"],
+  "categories": [
+    "AI",
+    "SaaS"
+  ],
   "listing": {
     "shortDescription": "A knowledge-aware chatbot that combines Claude by Anthropic, LangChain orchestration, retrieval-augmented generation, and Pinecone vector search to deliver grounded answers from a private knowledge base.",
     "fullDescription": "This chatbot project turns a private knowledge base into a useful conversational interface. Claude (Anthropic) handles the response generation, LangChain coordinates retrieval and prompt flow, RAG supplies relevant context, and Pinecone provides fast vector search so answers stay connected to the source material."
@@ -24,11 +27,15 @@
   "techStack": [
     {
       "group": "LLM",
-      "items": ["Claude by Anthropic"]
+      "items": [
+        "Claude by Anthropic"
+      ]
     },
     {
       "group": "Orchestration",
-      "items": ["LangChain"]
+      "items": [
+        "LangChain"
+      ]
     },
     {
       "group": "Knowledge Retrieval",
@@ -39,7 +46,10 @@
     },
     {
       "group": "Application",
-      "items": ["Conversational AI", "Prompt Engineering"]
+      "items": [
+        "Conversational AI",
+        "Prompt Engineering"
+      ]
     }
   ],
   "features": [
@@ -144,7 +154,7 @@
   ],
   "closing": {
     "clientOverview": "This self-initiated AI product concept demonstrates how Claude, LangChain, RAG, and Pinecone can be combined into one practical conversational knowledge assistant.",
-    "conclusion": "The result is a focused chatbot foundation that connects a modern language model to a searchable knowledge base, giving users a more relevant way to ask questions and explore information."
+    "conclusion": "The result is a focused chatbot foundation that connects a modern language model to a searchable knowledge base, giving users a more relevant way to ask questions and explore information. Learn more about our [RAG development](/services/rag-development) services."
   },
   "results": [],
   "gallery": [],
@@ -181,7 +191,9 @@
     "industry": "Artificial Intelligence / Knowledge Management",
     "timeline": "Multiple development sessions",
     "year": "2026",
-    "platforms": ["Responsive Web Application"],
+    "platforms": [
+      "Responsive Web Application"
+    ],
     "services": [
       "Conversational AI Development",
       "RAG Implementation",
