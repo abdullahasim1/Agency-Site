@@ -156,7 +156,7 @@
   ],
   "closing": {
     "clientOverview": "An internal SaaS product idea: give agencies and small businesses an AI front desk they can install in minutes. The team wanted one deployable backend serving many business tenants, a zero-dependency widget any site could host, and an admin panel that made agent configuration, knowledge management and lead review approachable for non-technical operators.",
-    "conclusion": "The MVP delivers the full loop — embed, converse, capture, review, book — with production-minded controls: signature-verified webhooks, origin pinning, per-endpoint rate limits and hashed session tokens. The surface stays small enough for a two-person team to operate while every tenant's data remains isolated behind role-guarded, business-scoped queries."
+    "conclusion": "The MVP delivers the full loop — embed, converse, capture, review, book — with production-minded controls: signature-verified webhooks, origin pinning, per-endpoint rate limits and hashed session tokens. The surface stays small enough for a two-person team to operate while every tenant's data remains isolated behind role-guarded, business-scoped queries. Learn more about our [AI chatbot development](/services/ai-chatbot-development) services."
   },
   "results": [
     {
