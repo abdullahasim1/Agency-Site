@@ -14,7 +14,8 @@
     "fullDescription": "This chatbot project turns a private knowledge base into a useful conversational interface. Claude (Anthropic) handles the response generation, LangChain coordinates retrieval and prompt flow, RAG supplies relevant context, and Pinecone provides fast vector search so answers stay connected to the source material."
   },
   "cover": {
-    "image": "/images/projects/claude-rag-chatbot/cover.png"
+    "image": "/images/projects/claude-rag-chatbot/cover.png",
+    "imageAlt": "GAV & Associates Claude-powered RAG chatbot interface built by DevRox"
   },
   "technologies": [
     "Claude (Anthropic)",
