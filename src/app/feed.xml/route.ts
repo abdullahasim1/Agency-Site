@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 import { getPosts } from "@/data/posts";
 import { siteConfig } from "@/data/site";
 
+/** Prerender at build time; revalidate daily. */
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 /**
  * Standard RSS 2.0 Feed for rapid search engine discovery and syndication.
  *
