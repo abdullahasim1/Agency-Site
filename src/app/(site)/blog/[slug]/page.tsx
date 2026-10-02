@@ -21,6 +21,9 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
+/** Only pre-rendered slugs are valid; unknown slugs 404 at the routing level. */
+export const dynamicParams = false;
+
 /** Every published post is known at build time, so all of them prerender. */
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
