@@ -14,10 +14,14 @@
   },
   "closing": {
     "clientOverview": "NexusOps is designed for multi-tier B2B software teams handling high-stakes support, sales, and incident workflows. Support engineers need automated diagnostics, account executives need instant BANT qualification, operations leaders need live execution visibility, and compliance teams need an auditable record of every tool invocation and human approval.",
-    "conclusion": "NexusOps turns fragmented customer operations into a deterministic, observable execution pipeline. Specialized Claude-powered agents collaborate through a verified DAG, connect to Zendesk, HubSpot, Bedrock knowledge retrieval, and Slack, and pause at explicit HITL gates for low-confidence or high-risk actions. Retry policies and circuit-breaker behavior provide a resilient path when third-party integrations fail."
+    "conclusion": "NexusOps turns fragmented customer operations into a deterministic, observable execution pipeline. Specialized Claude-powered agents collaborate through a verified DAG, connect to Zendesk, HubSpot, Bedrock knowledge retrieval, and Slack, and pause at explicit HITL gates for low-confidence or high-risk actions. Retry policies and circuit-breaker behavior provide a resilient path when third-party integrations fail. Learn more about our [AI agent development](/services/ai-agents) services."
   },
   "category": "AI / Automation / Multi-Agent",
-  "categories": ["AI", "Automation", "SaaS"],
+  "categories": [
+    "AI",
+    "Automation",
+    "SaaS"
+  ],
   "technologies": [
     "Anthropic Claude",
     "React",
@@ -35,7 +39,12 @@
   "techStack": [
     {
       "group": "Frontend",
-      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
     },
     {
       "group": "Agent Platform",
@@ -57,11 +66,22 @@
     },
     {
       "group": "System Integrations",
-      "items": ["HubSpot", "Zendesk", "Slack", "WhatsApp", "CRM APIs"]
+      "items": [
+        "HubSpot",
+        "Zendesk",
+        "Slack",
+        "WhatsApp",
+        "CRM APIs"
+      ]
     },
     {
       "group": "Infrastructure",
-      "items": ["PostgreSQL", "Redis", "AWS", "Docker"]
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "AWS",
+        "Docker"
+      ]
     }
   ],
   "features": [
