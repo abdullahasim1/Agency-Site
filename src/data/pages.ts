@@ -67,6 +67,7 @@ interface AboutCopy {
   capabilities: SectionCopy;
   whyUs: SectionCopy;
   team: SectionCopy;
+  certifications: SectionCopy;
   cta: SectionCopy;
 }
 
