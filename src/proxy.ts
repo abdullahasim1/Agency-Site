@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
 
+import { getPostSlugs } from "@/data/posts";
+import { getProjectSlugs } from "@/data/projects";
+import { getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site";
 
 const MARKDOWN_ROUTES = new Set([
@@ -230,6 +233,32 @@ This page is available in markdown for AI agents. Visit the [HTML version](${url
   }
 }
 
+/** Returns true if `basePath` is a real route with a markdown twin. */
+async function isValidMarkdownBasePath(basePath: string): Promise<boolean> {
+  if (basePath === "/" || MARKDOWN_ROUTES.has(basePath)) {
+    return true;
+  }
+  if (basePath.startsWith("/services/")) {
+    const slug = basePath.slice("/services/".length);
+    if (!slug || slug.includes("/")) return false;
+    const slugs = await getServiceSlugs();
+    return slugs.includes(slug);
+  }
+  if (basePath.startsWith("/portfolio/")) {
+    const slug = basePath.slice("/portfolio/".length);
+    if (!slug || slug.includes("/")) return false;
+    const slugs = await getProjectSlugs();
+    return slugs.includes(slug);
+  }
+  if (basePath.startsWith("/blog/")) {
+    const slug = basePath.slice("/blog/".length);
+    if (!slug || slug.includes("/")) return false;
+    const slugs = await getPostSlugs();
+    return slugs.includes(slug);
+  }
+  return false;
+}
+
 /*
  * Renamed from middleware.ts per the Next.js 16 proxy convention — same
  * signature, same matcher, the file convention itself was renamed.
@@ -238,13 +267,16 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   /*
-   * `<path>.md` always serves markdown, regardless of Accept — the llmstxt v2
-   * "extension replaced by .md" convention. Any marketing path works; unknown
-   * ones fall through to the generic summary in generateMarkdown.
+   * `<path>.md` serves the markdown twin, per the llmstxt v2 "extension
+   * replaced by .md" convention. Unknown base paths now 404 instead of
+   * serving generic boilerplate with 200 (soft-404 fix).
    */
   if (pathname.endsWith(".md") && !REAL_MD_ROUTES.has(pathname)) {
     const basePath = pathname.slice(0, -3) || "/";
-    return markdownResponse(request, basePath);
+    if (await isValidMarkdownBasePath(basePath)) {
+      return markdownResponse(request, basePath);
+    }
+    return new NextResponse("Not Found", { status: 404 });
   }
 
   if (!wantsMarkdown(request)) {
