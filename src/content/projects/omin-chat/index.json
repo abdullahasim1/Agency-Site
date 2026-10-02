@@ -251,7 +251,7 @@
   ],
   "closing": {
     "clientOverview": "OminChat is a self-initiated product by the DevRox team: a general-purpose conversational AI assistant that needed to be more than a frontend bolted onto an LLM API. The brief was a complete, polished chat experience — real-time generation, multi-chat management, persistent state, configurable model behaviour, reusable prompts, rich content rendering and a fully responsive interface.",
-    "conclusion": "OminChat delivers the complete conversational experience the brief demanded: streaming answers, searchable multi-chat management, local persistence, user-configurable generation, a categorised prompt library, and polished Markdown and code rendering across every screen size. Its modular architecture — a dedicated AI service layer with centralised state — leaves the door open for RAG, tool use, agentic workflows and multi-model support next."
+    "conclusion": "OminChat delivers the complete conversational experience the brief demanded: streaming answers, searchable multi-chat management, local persistence, user-configurable generation, a categorised prompt library, and polished Markdown and code rendering across every screen size. Its modular architecture — a dedicated AI service layer with centralised state — leaves the door open for RAG, tool use, agentic workflows and multi-model support next. Learn more about our [AI chatbot development](/services/ai-chatbot-development) services."
   },
   "results": [
     {
