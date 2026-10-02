@@ -151,7 +151,7 @@
   ],
   "closing": {
     "clientOverview": "Personal project — AI-powered industrial automation workflow built in n8n",
-    "conclusion": "Predictive Pump Monitoring demonstrates how industrial sensor data can be connected to automated rule-based detection and AI analysis. The workflow transforms raw machine readings into actionable alerts and automatically communicates warning or critical conditions through email."
+    "conclusion": "Predictive Pump Monitoring demonstrates how industrial sensor data can be connected to automated rule-based detection and AI analysis. The workflow transforms raw machine readings into actionable alerts and automatically communicates warning or critical conditions through email. Learn more about our [workflow automation](/services/workflow-automation) services."
   },
   "results": [
     {
