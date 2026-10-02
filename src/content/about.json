@@ -132,5 +132,31 @@
       "description": "Containerised environments, CI pipelines, staged rollouts and the monitoring needed to operate a system confidently.",
       "icon": "Cloud"
     }
+  ],
+  "certifications": [
+    {
+      "id": "cert-aws-genai-pro",
+      "title": "AWS Certified Generative AI Developer – Professional",
+      "issuer": "Amazon Web Services",
+      "date": "March 2026",
+      "detail": "Early Adopter — among the first 5,000 certified worldwide. Covers generative AI application development on AWS Bedrock, including RAG architectures, agent orchestration, and production deployment.",
+      "icon": "Award"
+    },
+    {
+      "id": "cert-claude-architect",
+      "title": "Claude Certified Architect – Foundations (CCAF)",
+      "issuer": "Anthropic",
+      "date": "July 2026",
+      "detail": "Validates architecture-level expertise in designing production systems on Claude — including agent design, tool use, structured outputs, and evaluation harnesses.",
+      "icon": "Award"
+    },
+    {
+      "id": "cert-aws-ai-practitioner",
+      "title": "AWS Certified AI Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "December 2025",
+      "detail": "Foundational certification covering AI/ML concepts, generative AI use cases, and responsible AI practices on AWS.",
+      "icon": "Award"
+    }
   ]
 }
