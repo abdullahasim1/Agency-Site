@@ -14,7 +14,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { aboutCopy, fill } from "@/data/pages";
 import { siteConfig } from "@/data/site";
-import { capabilities, missionVision, team, values } from "@/data/team";
+import { capabilities, certifications, missionVision, team, values } from "@/data/team";
 import { differentiators } from "@/data/whyChooseUs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMetadata, pageGraph, teamPersonNodes } from "@/lib/seo";
@@ -284,6 +284,46 @@ export default function AboutPage() {
           </Stagger>
         </Container>
       </section>
+
+      {/* Certifications */}
+      {certifications.length > 0 && (
+        <section className="section-y-sm bg-ink-25">
+          <Container>
+            <SectionHeading
+              eyebrow={aboutCopy.certifications.eyebrow}
+              title={aboutCopy.certifications.title}
+              description={aboutCopy.certifications.description}
+            />
+
+            <Stagger
+              as="ul"
+              stagger={0.06}
+              className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3"
+            >
+              {certifications.map((cert) => (
+                <StaggerItem as="li" key={cert.id} className="h-full">
+                  <GlowCard
+                    accent="brand"
+                    padding="lg"
+                    className="flex h-full flex-col"
+                  >
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-[0.875rem] bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                      <Icon name={cert.icon} className="size-[1.375rem]" />
+                    </span>
+                    <h3 className="type-h3 mt-5">{cert.title}</h3>
+                    <p className="mt-1 text-sm font-medium text-brand-700">
+                      {cert.issuer} · {cert.date}
+                    </p>
+                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
+                      {cert.detail}
+                    </p>
+                  </GlowCard>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </Container>
+        </section>
+      )}
 
       <FinalCTA
         eyebrow={aboutCopy.cta.eyebrow}
