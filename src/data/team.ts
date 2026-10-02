@@ -9,8 +9,9 @@
  * and biographies with the real team before launch. Avatars are generated
  * monograms, not stock photography.
  *
- * Deliberately absent: awards, certifications and partner badges. None are
- * claimed because none have been verified.
+ * Certifications listed in `about.json` are independently verifiable credentials
+ * held by the founder (AWS, Anthropic). Only list certifications that have
+ * actually been earned and can be verified.
  */
 
 import type { IconName } from "./icons";
@@ -41,6 +42,15 @@ interface Capability {
   icon: IconName;
 }
 
+interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  detail: string;
+  icon: IconName;
+}
+
 export const team = raw.team as unknown as TeamMember[];
 
 export const missionVision = raw.missionVision as unknown as Pillar[];
@@ -48,3 +58,5 @@ export const missionVision = raw.missionVision as unknown as Pillar[];
 export const values = raw.values as unknown as Pillar[];
 
 export const capabilities = raw.capabilities as unknown as Capability[];
+
+export const certifications = (raw.certifications ?? []) as unknown as Certification[];
