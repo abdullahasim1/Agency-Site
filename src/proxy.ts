@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
 
-import { getPostSlugs } from "@/data/posts";
 import { getProjectSlugs } from "@/data/projects";
 import { getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site";
@@ -251,10 +250,10 @@ async function isValidMarkdownBasePath(basePath: string): Promise<boolean> {
     return slugs.includes(slug);
   }
   if (basePath.startsWith("/blog/")) {
-    const slug = basePath.slice("/blog/".length);
-    if (!slug || slug.includes("/")) return false;
-    const slugs = await getPostSlugs();
-    return slugs.includes(slug);
+    // Blog .md twins are not served via the proxy to avoid pulling
+    // JSDOM-dependent code into the Edge runtime. Blog HTML pages
+    // remain fully accessible; only the .md twin returns 404.
+    return false;
   }
   return false;
 }
