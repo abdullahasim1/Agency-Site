@@ -29,7 +29,7 @@
     "paragraphs": [
       "{name} started as a small engineering team building internal tools for operations-heavy businesses. The pattern was always the same: valuable work buried under repetitive work, and software that had been bolted together rather than designed.",
       "We now build AI-powered applications, autonomous agents, voice systems and workflow automation, alongside the web and mobile products those systems sit behind. What has not changed is the approach — understand the process first, use AI only where judgement is genuinely required, and leave behind something a different team could pick up and maintain.",
-      "We are deliberate about what we do not claim. There are no award badges or vendor certifications on this site, because we would rather point you at the work and let you judge it."
+      "We are deliberate about what we claim. Every certification on this page is independently verifiable — AWS and Anthropic credentials held by our founder — because we would rather point you at the work and the credentials behind it, and let you judge."
     ]
   },
   "missionVision": {
@@ -56,6 +56,11 @@
     "eyebrow": "Team",
     "title": "The People You Work With",
     "description": "Small, senior and directly involved. You talk to the engineers building your system, not an account layer."
+  },
+  "certifications": {
+    "eyebrow": "Credentials",
+    "title": "Verified Certifications",
+    "description": "Independently verified credentials backing the engineering claims on this site."
   },
   "cta": {
     "eyebrow": "Work with us",
