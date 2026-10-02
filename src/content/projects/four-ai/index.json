@@ -14,7 +14,7 @@
   },
   "closing": {
     "clientOverview": "Personal project — full-stack AI product built end to end",
-    "conclusion": "Four AI ships as a working product: users can generate speech, change voices, and create images from prompts, with accounts, usage history, and admin moderation — all behind a polished glassmorphic UI."
+    "conclusion": "Four AI ships as a working product: users can generate speech, change voices, and create images from prompts, with accounts, usage history, and admin moderation — all behind a polished glassmorphic UI. Learn more about our [LLM application development](/services/llm-application-development) services."
   },
   "category": "AI / Web Application",
   "categories": [
