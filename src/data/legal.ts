@@ -5,10 +5,9 @@
  * admin panel at `/keystatic`. This module keeps the `LegalSection` shape and
  * the exports both legal pages import.
  *
- * IMPORTANT: the shipped copy is generic, good-faith boilerplate so the routes
- * exist and read sensibly. It is NOT legal advice and has not been reviewed by
- * counsel. Replace it with policies drafted or approved by a qualified lawyer
- * before launch, and set the real effective date.
+ * NOTE: the shipped copy is standard good-faith policy text written for a
+ * small services business. It is NOT legal advice and has not been reviewed
+ * by counsel — have it reviewed for the jurisdictions served.
  */
 
 import raw from "@/content/legal.json";

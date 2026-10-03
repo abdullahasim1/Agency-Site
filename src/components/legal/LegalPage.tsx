@@ -1,11 +1,8 @@
-import { AlertCircle } from "lucide-react";
-
 import { LegalVisual } from "@/components/legal/LegalVisual";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import {
-  legalDisclaimer,
   legalEffectiveDate,
   legalEffectiveDateLabel,
   type LegalSection,
@@ -21,10 +18,11 @@ interface LegalPageProps {
 }
 
 /**
- * Shared layout for the placeholder legal pages (/privacy, /terms).
+ * Shared layout for the legal pages (/privacy, /terms).
  *
- * The disclaimer banner is deliberately prominent so nobody mistakes the
- * boilerplate for reviewed policy. Content comes from src/data/legal.ts.
+ * Content comes from src/content/legal.json (editable in Keystatic).
+ * NOTE: this copy is standard good-faith policy text, not legal advice.
+ * Have it reviewed by qualified counsel for the jurisdictions served.
  */
 export function LegalPage({
   eyebrow,
@@ -48,16 +46,6 @@ export function LegalPage({
             <p className="type-eyebrow text-ink-400">
               {legalEffectiveDateLabel} {legalEffectiveDate}
             </p>
-          </Reveal>
-
-          <Reveal>
-            <div
-              role="note"
-              className="mt-6 flex items-start gap-3 rounded-card border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-amber-900"
-            >
-              <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />
-              <p>{legalDisclaimer}</p>
-            </div>
           </Reveal>
 
           <div className="mt-10 space-y-10">
