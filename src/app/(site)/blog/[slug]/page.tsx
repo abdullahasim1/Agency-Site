@@ -230,6 +230,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           path,
           title: post.title,
           description: post.excerpt,
+          faq: post.faq,
           crumbs: [
             { name: "Home", path: "/" },
             { name: "Blog", path: "/blog" },

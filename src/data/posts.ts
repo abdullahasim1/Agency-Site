@@ -52,6 +52,11 @@ interface Post {
   authorRole?: string;
   /** Absolute URL to the author's profile or bio section. */
   authorUrl?: string;
+  /**
+   * FAQ pairs extracted from the body's FAQ section at build time.
+   * Emitted as FAQPage structured data on the article page.
+   */
+  faq?: Array<{ question: string; answer: string }>;
 }
 
 interface TocEntry {
@@ -119,6 +124,55 @@ const renderMarkdown = (markdown: string): { html: string; toc: TocEntry[] } => 
 const readingTime = (text: string): number =>
   Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 200));
 
+/** Markdown fragment → plain text, for FAQPage structured data. */
+const stripMarkdown = (text: string): string =>
+  text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_`>#~]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+/**
+ * FAQ pairs from the body's "Frequently asked questions" section: each ###
+ * question plus its answer paragraphs, as plain text. Emitted as FAQPage
+ * JSON-LD on the article page; empty when the post has no FAQ section.
+ */
+const extractFaq = (
+  markdown: string,
+): Array<{ question: string; answer: string }> => {
+  const faq: Array<{ question: string; answer: string }> = [];
+  let inFaq = false;
+  let current: { question: string; answer: string[] } | null = null;
+
+  const flush = () => {
+    if (current && current.answer.length) {
+      const answer = stripMarkdown(current.answer.join(" "));
+      if (answer) faq.push({ question: current.question, answer });
+    }
+    current = null;
+  };
+
+  for (const rawLine of markdown.split("\n")) {
+    const line = rawLine.trim();
+    const h2 = /^##\s+(.+)$/.exec(line);
+    if (h2) {
+      flush();
+      inFaq = /frequently asked questions/i.test(h2[1]);
+      continue;
+    }
+    if (!inFaq) continue;
+    const h3 = /^###\s+(.+)$/.exec(line);
+    if (h3) {
+      flush();
+      current = { question: stripMarkdown(h3[1]), answer: [] };
+      continue;
+    }
+    if (current && line) current.answer.push(line);
+  }
+  flush();
+  return faq;
+};
+
 let postsPromise: Promise<Post[]> | undefined;
 
 export function getPosts(): Promise<Post[]> {
@@ -146,6 +200,7 @@ export function getPosts(): Promise<Post[]> {
           authorName: post.authorName,
           authorRole: post.authorRole,
           authorUrl: post.authorUrl,
+          faq: extractFaq(post.body),
         } satisfies Post;
       })
       .sort(
