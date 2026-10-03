@@ -1,10 +1,13 @@
-# DevRox
+# DevRox — thedevrox.com
 
 Marketing site for DevRox — an AI, automation and software‑development studio.
 Built with Next.js 16 (App Router, Turbopack), React 19, TypeScript and
-Tailwind CSS v4.
+Tailwind CSS v4. Content is edited through a built‑in Keystatic CMS panel; the
+site is fully static‑friendly and deploys on Vercel.
 
-## Getting Started
+Live: **https://thedevrox.com**
+
+## Getting started
 
 Use the Node version in [`.nvmrc`](.nvmrc) (Node 22). Then:
 
@@ -18,14 +21,41 @@ at [http://localhost:3000/keystatic](http://localhost:3000/keystatic).
 
 ## Scripts
 
-| Command             | What it does                                      |
-| ------------------- | ------------------------------------------------- |
-| `npm run dev`       | Start the dev server (Turbopack)                  |
-| `npm run build`     | Production build                                  |
-| `npm run start`     | Serve the production build                        |
-| `npm run lint`      | ESLint                                            |
-| `npm run typecheck` | `tsc --noEmit` — type check without emitting      |
-| `npm run art`       | Regenerate the first‑party project artwork (SVGs) |
+| Command             | What it does                                                        |
+| ------------------- | ------------------------------------------------------------------- |
+| `npm run dev`       | Start the dev server (Turbopack)                                    |
+| `npm run build`     | Production build                                                    |
+| `npm run start`     | Serve the production build                                          |
+| `npm run lint`      | ESLint                                                              |
+| `npm run typecheck` | `tsc --noEmit` — type check without emitting                        |
+| `npm run art`       | Regenerate the first‑party project artwork (SVGs)                   |
+| `npm run new:project` | Scaffold a new portfolio project entry                            |
+| `npm run fetch:logos` | Fetch third‑party tech logos                                      |
+| `npm run lighthouse`  | Run Lighthouse CI                                                |
+
+`predev`, `prebuild` and `pretypecheck` automatically regenerate the asset
+manifest (`scripts/generate-asset-manifest.mjs`) — you never need to run it by
+hand.
+
+## Project structure
+
+```
+src/app/(site)/        Public routes: page.tsx, about, blog, book-a-call,
+                       contact, faq, portfolio, privacy, services, terms …
+src/app/api/           Server routes (contact form, og image, keystatic …)
+src/components/       UI components (ui/, legal/, seo/ …)
+src/content/           All editable content as JSON (Keystatic singletons &
+                       collections) — this is the CMS database
+src/data/             TypeScript types + helpers the pages read through
+src/lib/              Shared logic (seo helpers, keystatic mode, …)
+keystatic/            CMS schema: collections, singletons, field definitions
+scripts/              Codegen + maintenance scripts
+public/               Static assets
+```
+
+`src/data/*.ts` keeps the TypeScript types and the helpers the pages read
+through; it no longer holds the content itself. `src/data/pages.ts` also exports
+`fill()`, which expands the `{braced}` words described below.
 
 ## Content editing
 
@@ -38,7 +68,7 @@ a git‑based CMS: the panel is part of this app, and each save is a commit.
 | Environment | URL                                       | Who can edit                 |
 | ----------- | ----------------------------------------- | ---------------------------- |
 | Local       | `http://localhost:3000/keystatic`         | anyone with the repo checked out |
-| Production  | `https://<your-domain>/keystatic`         | GitHub users with **write** access to the repo |
+| Production  | `https://thedevrox.com/keystatic`         | GitHub users with **write** access to the repo |
 
 Locally the panel writes straight to the files in your working tree. In
 production it signs the editor in with GitHub and commits on their behalf, so
@@ -47,23 +77,22 @@ manage, and every edit is attributed to a real person.
 
 ### What you can edit
 
-The sidebar has five groups:
+The sidebar has three groups:
 
-| Group              | Contents                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| **Work**           | Projects and Services — full add / edit / delete                                                   |
-| **Page copy**      | Per‑page headings, hero text, section intros, button labels, form labels and SEO titles/descriptions — one entry per page, plus **Shared copy** for the footer, closing call‑to‑action and other text that repeats sitewide |
-| **Site content**   | Site settings, stats, why‑choose‑us, process steps                                                 |
-| **Page sections**  | About (mission, values, capabilities, team), FAQ, testimonials, industries, technologies            |
-| **Forms & legal**  | Contact form options, privacy policy and terms                                                     |
+| Group                          | Contents                                                                                                                   |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| **🚀 Main Collections**        | Projects, Services and **Posts** (blog) — full add / edit / delete                                                         |
+| **🏢 Shared Blocks & Content**  | Technologies, clients, stats, testimonials, process, why‑choose‑us, industries, about, FAQ, contact                        |
+| **📄 Pages & Site Settings**   | Site settings, shared copy, per‑page copy (home, about, services, portfolio, contact, book‑a‑call, FAQ), and **Legal** (privacy policy + terms) |
 
-**Projects** and **Services** are *collections* — a list with an **Add** button
-and a delete option on each entry, like WordPress posts. Everything else is a
-*singleton*: one form per section, because those sections exist exactly once.
+**Projects**, **Services** and **Posts** are *collections* — a list with an
+**Add** button and a delete option on each entry, like WordPress posts.
+Everything else is a *singleton*: one form per section, because those sections
+exist exactly once.
 
-A few fields contain a word in curly braces, like `Showing {visible} of {total}
-projects` or `© {year} DevRox`. Those are filled in automatically when the page
-renders — edit the words around them freely, and leave the braced words in place.
+A few fields contain a word in curly braces, like `{name}`, `{service}` or
+`© {year} DevRox`. Those are filled in automatically when the page renders —
+edit the words around them freely, and leave the braced words in place.
 
 Counts and figures that the site can work out for itself (how many case studies,
 how many industries) are not editable, only their labels are. That way a number
@@ -76,6 +105,21 @@ Two things stay in code on purpose:
   a *new* icon a developer registers it once, and it then appears in every dropdown.
 - **Navigation** (`src/data/navigation.ts`) — menu links are tied to real routes;
   editing them freely would produce 404s.
+
+### Where the content lives
+
+| Content              | Files                                       |
+| -------------------- | ------------------------------------------- |
+| Blog posts           | `src/content/posts/<slug>/index.json`       |
+| Projects             | `src/content/projects/<slug>/index.json`    |
+| Services             | `src/content/services/<slug>.json`          |
+| Page copy            | `src/content/pages/<page>.json`             |
+| Legal (privacy/terms)| `src/content/legal.json`                    |
+| Everything else      | `src/content/<section>.json`                |
+
+> **Careful with slugs.** A post, project or service slug is its URL
+> (`/blog/<slug>`, `/portfolio/<slug>`, `/services/<slug>`). Renaming one
+> breaks existing links to that page.
 
 ### How publishing works
 
@@ -184,9 +228,9 @@ Check, in this order:
    bundle rather than trusting the dashboard field, which hides whitespace:
 
    ```bash
-   curl -s https://<your-domain>/keystatic \
+   curl -s https://thedevrox.com/keystatic \
      | grep -oE '/_next/static/[^"]+\.js' | sort -u \
-     | while read -r c; do curl -s "https://<your-domain>$c"; done \
+     | while read -r c; do curl -s "https://thedevrox.com$c"; done \
      | grep -oaP '"[^"]*/Agency-Site"' | sort -u | cat -A
    ```
 
@@ -196,21 +240,34 @@ Check, in this order:
 3. **Is the editor a collaborator with write access?** Read-only collaborators
    can sign in but cannot commit, so saving fails later rather than sooner.
 
-### Where the content lives
+## Blog & SEO
 
-| Content              | Files                                       |
-| -------------------- | ------------------------------------------- |
-| Projects             | `src/content/projects/<slug>/index.json`    |
-| Services             | `src/content/services/<slug>.json`          |
-| Page copy            | `src/content/pages/<page>.json`             |
-| Everything else      | `src/content/<section>.json`                |
+The blog (`/blog`) is the main organic‑growth channel. Every article follows the
+same conventions so it ranks and converts:
 
-`src/data/*.ts` keeps the TypeScript types and the helpers the pages read
-through; it no longer holds the content itself. `src/data/pages.ts` also exports
-`fill()`, which is what expands the `{braced}` words described above.
+- **Clear H1** targeting one keyword cluster (AI Agents, AI Automation, Voice AI,
+  RAG, LLM, AI Chatbots).
+- **Direct answer in the intro** (AEO) — the question answered in the first
+  paragraph for featured snippets and AI citations.
+- **FAQ section** with FAQPage JSON‑LD schema.
+- **Internal links** to the relevant service page and related articles.
+- **Consultation CTA** at the end.
+- **No fabricated statistics**, client names, testimonials or citations — only
+  verifiable facts.
 
-> **Careful with slugs.** A project or service slug is its URL
-> (`/portfolio/<slug>`). Renaming one breaks existing links to that page.
+SEO infrastructure in the repo:
+
+| Piece | Where |
+| ----- | ----- |
+| Metadata builder (titles, descriptions, canonicals, OG) | `src/lib/seo` |
+| JSON‑LD helpers (Article, FAQPage, Service, Breadcrumb …) | `src/components/seo/` |
+| Sitemap | `src/app/sitemap.ts` |
+| robots.txt | `src/app/robots.txt` |
+| LLM/AI‑search surface | `src/app/llms.txt` (+ `llms-full.txt` if present) |
+| Per‑page SEO copy | Keystatic → Pages & Site Settings |
+
+**House rule: content and metadata only — never change the UI/design for SEO
+work.** Visual changes go through a separate design decision.
 
 ## CI/CD
 
@@ -248,22 +305,34 @@ static export — it needs Node/serverless hosting, which is what Vercel provide
 ### Site URL
 
 `NEXT_PUBLIC_SITE_URL` sets the canonical origin — it is what canonical tags,
-`og:` tags, `sitemap.xml` and `robots.txt` are built from. Set it in Vercel to
-whatever the deployment actually answers on:
+`og:` tags, `sitemap.xml` and `robots.txt` are built from. It should match the
+domain the deployment actually answers on:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://your-project.vercel.app
+NEXT_PUBLIC_SITE_URL=https://thedevrox.com
 ```
 
-When it is unset the site falls back to `url` in `src/content/site.json`. That
-fallback is a placeholder, so **a deploy without this variable advertises a
-domain nobody is serving** — search engines follow the canonical away from the
-real site and social previews fetch their image from the wrong host. Point it at
-the vercel.app URL now and change it to the custom domain later; it is the only
-place the origin needs updating.
+When it is unset the site falls back to `url` in `src/content/site.json`, which
+is currently `https://thedevrox.com`. Keep both in sync if the domain ever
+changes — the env var wins, and it is the only place the origin needs updating
+for a domain move.
 
 ### Dependency updates
 
 [`.github/dependabot.yml`](.github/dependabot.yml) opens weekly PRs for npm
 dependencies (minor/patch grouped into one) and for the GitHub Actions used in
 the workflows. These PRs run through the same CI before they can be merged.
+
+## Git workflow
+
+Single‑developer repo. `main` is the branch that deploys — commit and push
+straight to `main`:
+
+```bash
+git add <files for this task only>
+git commit -m "type(scope): short description"
+git push origin main
+```
+
+No secrets in commits, no unrelated files in the diff. Vercel deploys
+automatically on each push.
