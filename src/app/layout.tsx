@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { siteConfig } from "@/data/site";
 
@@ -61,7 +62,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${instrumentSans.variable} ${inter.variable} ${jetBrainsMono.variable} antialiased`}
     >
-      <body className="bg-white">{children}</body>
+      <body className="bg-white">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
